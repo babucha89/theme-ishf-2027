@@ -1,14 +1,16 @@
 <?php
 // -----------------------------------------------------------------------------
 //  Section: NEWSLETTER band (site-wide, rendered by footer.php before the footer)
-//  Figma: Home / Newsletter. Yellow band: heading + Subscribe button + footer-1.svg skyline strip as background art behind the content.
+//  Figma: Home / Newsletter. Yellow band: heading + Subscribe button + skyline-new.svg illustration on the right, bottom-aligned (Figma).
 //  The button opens #modal-newsletter, which is hard-coded in the footer
 //  (footer.php -> includes/newsletter-modal.php), so it exists on every page.
 // -----------------------------------------------------------------------------
 ?>
+<?php
+// Skyline art (img/assets/skyline-new.svg); falls back to skyline-colors.svg until the new file is in the theme
+$nl_art = file_exists(get_template_directory() . '/img/assets/skyline-new.svg') ? 'skyline-new.svg' : 'skyline-colors.svg';
+?>
 <section id="newsletter" class="ishf-newsletter" aria-labelledby="newsletter-title">
-  <!-- Decorative background art: sits behind the content, inside the same yellow background -->
-  <img class="newsletter-band-art" src="<?php echo esc_url(BASE_ASSETS . 'footer-1.svg'); ?>" alt="" aria-hidden="true" width="1600" height="148" loading="lazy" />
   <div class="uk-container">
     <div class="newsletter-band">
       <div class="newsletter-band-copy">
@@ -17,6 +19,7 @@
           <?php _e('Subscribe', TEXT_DOMAIN); ?>
         </button>
       </div>
+      <img class="newsletter-band-art" src="<?php echo esc_url(BASE_ASSETS . $nl_art); ?>" alt="" aria-hidden="true" loading="lazy" />
     </div>
   </div>
 </section>
