@@ -947,14 +947,15 @@ html.dark-mode .news-card-media { background-color: var(--colors-night-800); }
 html { scroll-behavior: smooth; }
 @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
 
-/* Newsletter band (Figma: Home / Newsletter) - brand yellow in both modes; footer-1.svg strip along the bottom */
-.ishf-newsletter { background-color: var(--colors-brand-sunny-yellow); overflow: hidden; }
-.newsletter-band { padding: var(--grids-spacing-32) 0 var(--grids-spacing-24); }
+/* Newsletter band (Figma: Home / Newsletter) - brand yellow in both modes; footer-1.svg is background art behind the content */
+.ishf-newsletter { --nl-art-h: clamp(56px, 9.25vw, 148px); position: relative; overflow: hidden; background-color: var(--colors-brand-sunny-yellow); }
+.newsletter-band-art { position: absolute; left: 0; bottom: 0; z-index: 0; display: block; width: 100%; height: var(--nl-art-h); object-fit: cover; object-position: 72% bottom; pointer-events: none; }
+.ishf-newsletter > .uk-container { position: relative; z-index: 1; }
+.newsletter-band { padding: var(--grids-spacing-32) 0 calc(var(--nl-art-h) * 0.45 + var(--grids-spacing-16)); }
 .newsletter-band-title { font-size: var(--fonts-size-heading-3); line-height: 1.2; color: var(--colors-brand-blue-sky); margin: 0 0 var(--grids-spacing-16); }
-.newsletter-band-art { display: block; width: 100%; height: clamp(48px, 6.25vw, 100px); object-fit: cover; object-position: 72% bottom; }
 .ishf-newsletter :focus-visible { outline-color: var(--colors-brand-blue-sky) !important; }
 @media (min-width: 960px) {
-  .newsletter-band { padding: var(--grids-spacing-48) 0 var(--grids-spacing-24); }
+  .newsletter-band { padding-top: var(--grids-spacing-48); min-height: 265px; box-sizing: border-box; }
   .newsletter-band-title { font-size: var(--fonts-size-heading-2); margin-bottom: var(--grids-spacing-24); }
 }
 /* Modal: reuse the partnership modal shell; neutralise the old card look around the form */
@@ -970,3 +971,27 @@ html.dark-mode .cta-badge-newsletter { background-color: var(--cta-newsletter-ba
 .modal-ishf-newsletter .newsletter-consent-text { color: var(--colors-text-muted); }
 html.dark-mode .modal-ishf-newsletter .uk-form-label { color: var(--colors-text-heading); }
 html.dark-mode .modal-ishf-newsletter .form-help-text, html.dark-mode .modal-ishf-newsletter .newsletter-consent-text { color: var(--colors-text-muted) !important; }
+
+/* LIVE EVENT (Figma: Home / Live event block) - navy card, copy left, 16:9 video right, wave deco.
+   Content is still driven by the Streaming page (title, excerpt, content, YouTube). Card stays navy in both modes. */
+.section-streaming { padding-top: var(--grids-spacing-48); padding-bottom: var(--grids-spacing-48); background-color: var(--colors-background-muted); }
+html.dark-mode .section-streaming { background-color: var(--colors-background-default); }
+.cta-box-streaming { background-color: var(--colors-brand-blue-sky); color: var(--colors-neutral-white); border: 0; border-radius: var(--grids-radius-lg); padding: var(--grids-spacing-32); position: relative; overflow: hidden; }
+html.dark-mode .cta-box-streaming { background-color: var(--colors-night-800); border: 0; }
+.cta-box-streaming::before { display: none; }
+.streaming-wave { position: absolute; top: 12px; right: var(--grids-spacing-32); width: 120px; height: auto; pointer-events: none; opacity: 0.9; }
+.cta-box-streaming .cta-badge-streaming, html.dark-mode .cta-box-streaming .cta-badge-streaming { background-color: var(--colors-brand-sunny-yellow); color: var(--colors-brand-blue-sky); border: 0; padding: 7px 16px; letter-spacing: 0.1em; }
+.cta-box-streaming .streaming-live-dot, html.dark-mode .cta-box-streaming .streaming-live-dot { width: 10px; height: 10px; background-color: var(--colors-brand-lisbon-red); }
+.cta-box-streaming .cta-title, html.dark-mode .cta-box-streaming .cta-title { color: var(--colors-neutral-white); font-size: var(--fonts-size-heading-3); line-height: 1.2; text-align: left; }
+.cta-box-streaming .streaming-intro, .cta-box-streaming .streaming-intro p, html.dark-mode .cta-box-streaming .streaming-intro, html.dark-mode .cta-box-streaming .streaming-intro p { color: var(--colors-neutral-white); font-size: var(--fonts-size-lead); line-height: 1.5; margin: 0 0 var(--grids-spacing-16); text-align: left; }
+.cta-box-streaming .streaming-intro small, .cta-box-streaming .streaming-intro .uk-text-small { font-size: var(--fonts-size-xsmall); }
+.streaming-watch-btn, .streaming-watch-btn:hover, .streaming-watch-btn:focus { margin-top: var(--grids-spacing-8); background-color: var(--colors-brand-sunny-yellow) !important; color: var(--colors-brand-blue-sky) !important; }
+.cta-box-streaming :focus-visible { outline-color: var(--colors-focus-ring-inverse) !important; }
+.cta-box-streaming .streaming-video-wrapper { background-color: var(--colors-brand-blue-tejo); border: 0; border-radius: var(--grids-radius-md); box-shadow: none; }
+.cta-box-streaming .streaming-poster-overlay { background: linear-gradient(180deg, rgba(2, 50, 86, 0.10) 0%, rgba(2, 50, 86, 0.45) 100%); }
+.cta-box-streaming .streaming-play-btn { width: 72px; height: 72px; border: 0; box-shadow: none; }
+@media (min-width: 960px) {
+  .cta-box-streaming { padding: var(--grids-spacing-64); }
+  .streaming-wave { right: var(--grids-spacing-64); top: 12px; width: 150px; }
+  .cta-box-streaming .cta-title { font-size: var(--fonts-size-heading-3); }
+}

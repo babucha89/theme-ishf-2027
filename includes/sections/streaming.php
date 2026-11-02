@@ -156,13 +156,19 @@ if (!empty($page_streaming)):
           ? sanitize_html_class($shortcode_atts['modal_id'])
           : ($is_default_page ? 'modal-streaming-video' : 'modal-streaming-video-' . $page_id));
 ?>
-<section id="<?php echo esc_attr($section_id); ?>" class="uk-section uk-section-medium section-streaming uk-position-relative" aria-labelledby="<?php echo esc_attr($title_id); ?>">
-  <div class="uk-container uk-container-large">
+<section id="<?php echo esc_attr($section_id); ?>" class="uk-section section-streaming uk-position-relative" aria-labelledby="<?php echo esc_attr($title_id); ?>">
+  <div class="uk-container">
 
-    <div class="cta-box cta-box-streaming uk-card uk-card-body">
+    <div class="cta-box cta-box-streaming">
 
+      <!-- Decorative wave (Figma: deco/wave) -->
+      <img class="streaming-wave" src="<?php echo esc_url(BASE_ASSETS . 'icon-wave.svg'); ?>" alt="" aria-hidden="true" />
+
+      <div class="streaming-layout uk-grid-large uk-flex-middle" data-uk-grid>
+
+      <div class="uk-width-1-1 uk-width-1-2@m">
       <!-- Streaming Header (Driven by the Streaming Page Title, Excerpt & Content) -->
-      <div class="streaming-header uk-text-center uk-margin-medium-bottom">
+      <div class="streaming-header">
         <?php if (!empty($badge_text)): ?>
           <span class="cta-badge cta-badge-streaming uk-inline-flex uk-flex-middle">
             <span class="streaming-live-dot" aria-hidden="true"></span>
@@ -177,12 +183,25 @@ if (!empty($page_streaming)):
         <?php endif; ?>
 
         <?php if (!empty($clean_content)): ?>
-          <div class="cta-intro streaming-intro uk-margin-auto uk-width-2-3@m">
+          <div class="cta-intro streaming-intro">
             <?php echo $clean_content; ?>
           </div>
         <?php endif; ?>
       </div>
 
+      <?php if ($display_mode === 'modal'): ?>
+        <!-- Watch live CTA (Figma): opens the video modal; label from [youtube button_text] / $args / default -->
+        <button type="button"
+                class="uk-button uk-button-primary streaming-watch-btn"
+                data-uk-toggle="target: #<?php echo esc_attr($modal_target_id); ?>"
+                aria-haspopup="dialog"
+                aria-controls="<?php echo esc_attr($modal_target_id); ?>">
+          <?php echo esc_html($button_text); ?>
+        </button>
+      <?php endif; ?>
+      </div>
+
+      <div class="uk-width-1-1 uk-width-1-2@m">
       <!-- Streaming Media Output (Embed or Modal Trigger) -->
       <?php if ($display_mode === 'modal'): ?>
 
@@ -200,14 +219,6 @@ if (!empty($page_streaming)):
                       aria-controls="<?php echo esc_attr($modal_target_id); ?>"
                       aria-label="<?php echo esc_attr(sprintf(__('Play video: %s', TEXT_DOMAIN), $iframe_title)); ?>">
                 <span data-uk-icon="icon: play; ratio: 2.2" aria-hidden="true"></span>
-              </button>
-              <button type="button"
-                      class="uk-button uk-button-primary uk-border-pill uk-margin-medium-top"
-                      data-uk-toggle="target: #<?php echo esc_attr($modal_target_id); ?>"
-                      aria-haspopup="dialog"
-                      aria-controls="<?php echo esc_attr($modal_target_id); ?>">
-                <span><?php echo esc_html($button_text); ?></span>
-                <span data-uk-icon="icon: video-camera; ratio: 0.95" class="uk-margin-small-left" aria-hidden="true"></span>
               </button>
             </div>
           </div>
@@ -237,6 +248,9 @@ if (!empty($page_streaming)):
         </div>
 
       <?php endif; ?>
+      </div>
+
+      </div><!-- /.streaming-layout -->
 
     </div>
 
