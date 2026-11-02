@@ -47,8 +47,6 @@
       </p>
       <div class="footer-tools">
         <?php get_template_part('includes/language-switcher'); ?>
-        <span class="nav-tools-divider" aria-hidden="true"></span>
-        <?php get_template_part('includes/theme-toggle'); ?>
       </div>
     </div>
   </div>

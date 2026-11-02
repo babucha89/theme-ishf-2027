@@ -875,14 +875,16 @@ html.dark-mode .ishf-hero { background-color: var(--colors-night-800); }
 .hero-date { font-size: var(--fonts-size-lead); font-weight: 600; color: var(--colors-text-heading); margin-bottom: var(--grids-spacing-16); }
 .hero-lead { max-width: 36em; color: var(--colors-text-default); margin-bottom: var(--grids-spacing-32); }
 .hero-ctas { gap: var(--grids-spacing-16); }
-.hero-art { max-width: 440px; margin: var(--grids-spacing-32) auto 0; padding-bottom: var(--grids-spacing-24); }
+.hero-art { max-width: 450px; margin: var(--grids-spacing-32) auto 0; padding-bottom: var(--grids-spacing-24); }
 .hero-photo { display: block; width: 100%; aspect-ratio: 1 / 1; object-fit: cover; border-radius: var(--grids-radius-lg); }
+.hero-art picture { display: block; }
 .hero-photo--placeholder { background-color: var(--colors-brand-blue-tejo); opacity: 0.35; }
 .hero-key { position: absolute; top: -24px; right: -12px; width: 100px; height: auto; }
 .hero-wave { position: absolute; left: -16px; bottom: 0; width: 160px; height: auto; }
 @media (min-width: 960px) {
   .ishf-hero { padding: var(--grids-spacing-96) 0; }
-  .hero-art { margin-top: 0; }
+  .hero-art { max-width: none; margin-top: 0; }
+  .hero-photo { aspect-ratio: 16 / 9; }
   .hero-key { top: -40px; right: -32px; width: 200px; }
   .hero-wave { left: -40px; width: 260px; }
 }
@@ -934,3 +936,5 @@ html.dark-mode .news-card-media { background-color: var(--colors-night-800); }
 .hero-photo--placeholder img { width: 100%; height: auto; }
 .hero-photo { object-position: 30% 50%; }
 .hero-cta-hint { margin: var(--grids-spacing-12) 0 0; color: var(--colors-text-muted); }
+
+.hero-photo--placeholder img { object-position: initial; }
