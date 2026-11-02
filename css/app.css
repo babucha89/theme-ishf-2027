@@ -930,5 +930,7 @@ html.dark-mode .news-card-media { background-color: var(--colors-night-800); }
 .partner-group + .partner-group { margin-top: var(--grids-spacing-48); }
 .partner-logos img { height: 64px; object-fit: contain; }
 @media (min-width: 960px) { .partner-logos img { height: 80px; } }
-.hero-photo--placeholder { display: flex; align-items: flex-end; justify-content: center; opacity: 1; background-color: var(--colors-brand-blue-tejo); overflow: hidden; }
+.hero-photo--placeholder { object-position: initial; display: flex; align-items: flex-end; justify-content: center; opacity: 1; background-color: var(--colors-brand-blue-tejo); overflow: hidden; }
 .hero-photo--placeholder img { width: 100%; height: auto; }
+.hero-photo { object-position: 30% 50%; }
+.hero-cta-hint { margin: var(--grids-spacing-12) 0 0; color: var(--colors-text-muted); }

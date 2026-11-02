@@ -344,6 +344,34 @@ if (!function_exists('ishf_get_register_url')):
   }
 endif;
 
+if (!function_exists('ishf_get_register_cta')):
+  /**
+   * Register CTA for the current registration phase: url + button label + audience hint.
+   * The copy changes with the phase because each phase targets a different focus group
+   * (B2B: professionals and organisations; B2C: general public).
+   * Texts are PLACEHOLDERS pending approval; translate via .po/WPML or override with the
+   * 'ishf_register_cta' filter ($cta, $phase).
+   */
+  function ishf_get_register_cta()
+  {
+    $phase = ishf_get_register_phase();
+    if ($phase === 'b2c') {
+      $cta = array(
+        'label' => __('Get Your Ticket', TEXT_DOMAIN),
+        'hint'  => __('Open to everyone.', TEXT_DOMAIN),
+      );
+    } else {
+      $cta = array(
+        'label' => __('Register as a Professional', TEXT_DOMAIN),
+        'hint'  => __('Professional registration, open until 31 December 2026.', TEXT_DOMAIN),
+      );
+    }
+    $cta['url']   = ishf_get_register_url();
+    $cta['phase'] = $phase;
+    return apply_filters('ishf_register_cta', $cta, $phase);
+  }
+endif;
+
 if (!function_exists('ishf_get_call_for_sessions_url')):
   /**
    * Obtém o link para o formulário externo de "Call for Sessions".
@@ -412,7 +440,6 @@ endif;
 //------------------------------------------------------------------------------
 //  Include Custom Database Leads Manager & Form Handlers
 //------------------------------------------------------------------------------
-require_once __DIR__ . '/includes/post-types/sponsor.php';
 require_once __DIR__ . '/includes/leads-manager.php';
 require_once __DIR__ . '/includes/form-handlers.php';
 

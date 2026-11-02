@@ -1,7 +1,7 @@
 <?php
 // -----------------------------------------------------------------------------
 //  Section: SPONSORS (site-wide, before newsletter + footer)
-//  Source: Custom Post Type "ishf_sponsor" (includes/post-types/sponsor.php),
+//  Source: Custom Post Type "ishf_sponsor" (provided by the base template the team is merging; slug/fields to be aligned then),
 //  grouped by "Sponsor tier" (e.g. Organised with / Supported by).
 //  Renders nothing when there are no published sponsors.
 //  Base Theme: ISHF 2027 Lisbon
