@@ -386,7 +386,7 @@ html.dark-mode { --lang-active-bg: var(--colors-brand-sunny-yellow); --lang-acti
 
 .theme-toggle { padding: 0 !important; border: none !important; background: transparent !important; cursor: pointer; line-height: 1; outline: none; -webkit-tap-highlight-color: transparent; display: inline-flex; align-items: center; }
 .theme-toggle:focus-visible { outline: 2px solid var(--colors-brand-sunny-yellow); outline-offset: 3px; border-radius: var(--grids-radius-pill); }
-.theme-toggle-track { width: 58px; height: 28px; background-color: var(--toggle-track-bg); box-shadow: var(--toggle-track-shadow); border-radius: 9999px; transition: background-color 0.3s ease, box-shadow 0.3s ease; }
+.theme-toggle-track { width: 61px; height: 31px; background-color: var(--toggle-track-bg); box-shadow: var(--toggle-track-shadow); border-radius: 9999px; transition: background-color 0.3s ease, box-shadow 0.3s ease; }
 .theme-toggle-knob { top: 3px; left: 3px; width: 22px; height: 22px; background-color: var(--toggle-knob-bg); border-radius: 50%; box-shadow: var(--toggle-knob-shadow); transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1), background-color 0.3s ease; }
 .theme-toggle-icon { width: 14px; height: 14px; pointer-events: none; transition: opacity 0.25s ease, transform 0.25s ease; }
 .theme-toggle-icon svg { width: 100%; height: 100%; display: block; }
