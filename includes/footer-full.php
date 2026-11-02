@@ -19,16 +19,12 @@
 
       <div class="uk-width-1-2 uk-width-1-4@m">
         <h2 class="footer-heading"><?php _e('Festival', TEXT_DOMAIN); ?></h2>
-        <?php
-        wp_nav_menu(array('theme_location' => 'footer-festival', 'container' => false, 'menu_class' => 'footer-menu', 'depth' => 1, 'fallback_cb' => false, 'items_wrap' => '<ul class="%2$s">%3$s</ul>'));
-        ?>
+        <?php uikit_footer_subnav_left(); // location "Footer Subnav / Left" ?>
       </div>
 
       <div class="uk-width-1-2 uk-width-1-4@m">
         <h2 class="footer-heading"><?php _e('About', TEXT_DOMAIN); ?></h2>
-        <?php
-        wp_nav_menu(array('theme_location' => 'footer-about', 'container' => false, 'menu_class' => 'footer-menu', 'depth' => 1, 'fallback_cb' => false, 'items_wrap' => '<ul class="%2$s">%3$s</ul>'));
-        ?>
+        <?php uikit_footer_subnav_center(); // location "Footer Subnav / Center" ?>
       </div>
 
       <div class="uk-width-1-1 uk-width-1-4@m">

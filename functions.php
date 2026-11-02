@@ -124,12 +124,7 @@ function ishf_setup()
   add_theme_support('html5', array('comment-list', 'comment-form', 'search-form', 'gallery', 'caption', 'style', 'script'));
   add_theme_support('responsive-embeds');
 
-  // Navigation menus (assign in Appearance > Menus; WPML translates menus per language)
-  register_nav_menus(array(
-    'primary'         => __('Primary navigation', TEXT_DOMAIN),
-    'footer-festival' => __('Footer: Festival', TEXT_DOMAIN),
-    'footer-about'    => __('Footer: About', TEXT_DOMAIN),
-  ));
+  // Navigation menus: registered in includes/uikit-menus.php (UIkit locations + walkers in includes/uikit-walker.php)
 
   add_image_size('image-speaker-face', 450, 450, true);
   add_image_size('image-gallery', 1600, 900, true);
@@ -440,6 +435,17 @@ endif;
 //------------------------------------------------------------------------------
 //  Include Custom Database Leads Manager & Form Handlers
 //------------------------------------------------------------------------------
+require_once __DIR__ . '/includes/uikit-walker.php';
+require_once __DIR__ . '/includes/uikit-menus.php';
+
+// Top navbar links collapse into the off-canvas menu below 960px (UIkit @m), matching the burger button.
+// The helper functions in uikit-menus.php hard-code 'uk-visible@s', so the breakpoint is adjusted here.
+add_filter('wp_nav_menu_args', function ($args) {
+  if (isset($args['theme_location']) && $args['theme_location'] === 'top-navbar-right' && !empty($args['menu_class'])) {
+    $args['menu_class'] = str_replace('uk-visible@s', 'uk-visible@m', $args['menu_class']);
+  }
+  return $args;
+});
 require_once __DIR__ . '/includes/leads-manager.php';
 require_once __DIR__ . '/includes/form-handlers.php';
 

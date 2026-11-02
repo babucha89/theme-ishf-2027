@@ -3,7 +3,7 @@
 //  Block: NAVIGATION MENU
 //  Minimal navbar: icon-key + "ISHF 2027 | Lisbon" logo and Theme Toggle
 //  Full variant (ishf_use_full_layout): + menu links, WPML language switch,
-//  off-canvas menu on < 960px. No Register button: the CTA lives in the CTA sections.
+//  off-canvas menu on < 960px. Menus use the UIkit helpers/walkers of includes/uikit-menus.php. No Register button: the CTA lives in the CTA sections.
 //  Base Theme: ISHF 2027 Lisbon
 //  Edited: BB, 27-OUT-2026
 // -----------------------------------------------------------------------------
@@ -39,16 +39,7 @@
       <?php if ($ishf_full): ?>
       <!-- Right: menu links + tools (>= 960px) / burger (< 960px) -->
       <div class="uk-navbar-right uk-flex uk-flex-middle">
-        <?php
-        wp_nav_menu(array(
-          'theme_location' => 'primary',
-          'container'      => false,
-          'menu_class'     => 'nav-links uk-visible@m',
-          'depth'          => 1,
-          'fallback_cb'    => false,
-          'items_wrap'     => '<ul class="%2$s">%3$s</ul>',
-        ));
-        ?>
+        <?php uikit_top_navbar_right(); // location "Top Navbar / Right" (includes/uikit-menus.php) ?>
         <div class="nav-tools uk-visible@m uk-margin-medium-left">
           <?php get_template_part('includes/language-switcher'); ?>
           <span class="nav-tools-divider" aria-hidden="true"></span>
@@ -77,16 +68,7 @@
 <div id="nav-offcanvas" data-uk-offcanvas="overlay: true; flip: true">
   <div class="uk-offcanvas-bar on-inverse" role="dialog" aria-label="<?php esc_attr_e('Main Navigation', TEXT_DOMAIN); ?>">
     <button class="uk-offcanvas-close" type="button" data-uk-close aria-label="<?php esc_attr_e('Close menu', TEXT_DOMAIN); ?>"></button>
-    <?php
-    wp_nav_menu(array(
-      'theme_location' => 'primary',
-      'container'      => false,
-      'menu_class'     => 'nav-links',
-      'depth'          => 1,
-      'fallback_cb'    => false,
-      'items_wrap'     => '<ul class="%2$s">%3$s</ul>',
-    ));
-    ?>
+    <?php uikit_offcanvas_right(); // same menu ("Top Navbar / Right"), off-canvas walker ?>
     <div class="nav-tools">
       <?php get_template_part('includes/language-switcher'); ?>
       <span class="nav-tools-divider" aria-hidden="true"></span>

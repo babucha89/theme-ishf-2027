@@ -431,3 +431,17 @@ Following the `uikit-boostsolutions` function library:
 
 ## Agent Rules & Guidelines
 - Architectural guidelines and accessibility standards are codified in `.agents/rules/ishf-uikit-accessibility.md`.
+
+## Navigation menus (UIkit walkers)
+
+Menus are registered in `includes/uikit-menus.php` and rendered with the walkers of `includes/uikit-walker.php`; both are loaded from `functions.php`. The old `primary`, `footer-festival` and `footer-about` locations were removed.
+
+| Where | Helper function | Location (Appearance > Menus) |
+|---|---|---|
+| Navigation bar links (>= 960px) | `uikit_top_navbar_right()` | Top Navbar / Right |
+| Off-canvas menu (< 960px) | `uikit_offcanvas_right()` | Top Navbar / Right (same menu) |
+| Footer column "Festival" | `uikit_footer_subnav_left()` | Footer Subnav / Left |
+| Footer column "About" | `uikit_footer_subnav_center()` | Footer Subnav / Center |
+
+After updating the theme, assign the existing menus to these locations (once per language when using WPML).
+`functions.php` adds a `wp_nav_menu_args` filter that changes the navbar breakpoint from `uk-visible@s` to `uk-visible@m` so it matches the burger button.
