@@ -7,6 +7,13 @@
 ?>
 
   <?php if (function_exists('ishf_use_full_layout') && ishf_use_full_layout()): ?>
+    <?php // Site-wide pre-footer blocks: sponsors (CPT) then newsletter ?>
+    <div class="ishf-pre-footer">
+      <?php
+      get_template_part('includes/sections/sponsors');
+      get_template_part('includes/sections/newsletter');
+      ?>
+    </div>
     <?php get_template_part('includes/footer-full'); ?>
   <?php else: ?>
   <!-- Main Site Footer (WCAG 2.1 AA) -->

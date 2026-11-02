@@ -312,16 +312,35 @@ endif;
 //------------------------------------------------------------------------------
 //  Call for Sessions - External Form URL Helper
 //------------------------------------------------------------------------------
+if (!function_exists('ishf_get_register_phase')):
+  /**
+   * Registration phase: 'b2b' (until 31/12/2026 23:59:59 UTC) or 'b2c' (from 01/01/2027 00:00:00 UTC).
+   * Override the switch moment with the SITE_REGISTER_PHASE2_START constant (any strtotime() string)
+   * or force a phase with the 'ishf_register_phase' filter (e.g. for testing).
+   */
+  function ishf_get_register_phase()
+  {
+    $start = strtotime(defined('SITE_REGISTER_PHASE2_START') ? SITE_REGISTER_PHASE2_START : '2027-01-01 00:00:00 UTC');
+    $phase = (time() >= $start) ? 'b2c' : 'b2b';
+    return apply_filters('ishf_register_phase', $phase);
+  }
+endif;
+
 if (!function_exists('ishf_get_register_url')):
   /**
-   * Link to the external (third-party) registration page.
-   * Set SITE_REGISTER_URL in functions.php / wp-config.php, or filter 'ishf_register_url'.
-   * Until it is defined the CTA falls back to the Call for Sessions host's home page: replace before launch.
+   * External (third-party) registration form for the current phase.
+   *  - Phase 1 (B2B): SITE_REGISTER_B2B_URL
+   *  - Phase 2 (B2C): SITE_REGISTER_B2C_URL (final URL still unknown). Until it is defined the
+   *    B2B URL is kept as a fallback so the button never points to a dead link.
+   * Filter: 'ishf_register_url' ($url, $phase).
    */
   function ishf_get_register_url()
   {
-    $url = defined('SITE_REGISTER_URL') && !empty(SITE_REGISTER_URL) ? SITE_REGISTER_URL : 'https://congressos.leading.pt/';
-    return apply_filters('ishf_register_url', $url);
+    $b2b   = defined('SITE_REGISTER_B2B_URL') && SITE_REGISTER_B2B_URL ? SITE_REGISTER_B2B_URL : 'https://congressos.leading.pt/geral/inserirresumo.aspx?evento=338&formulario=757&lingua=en-GB&login=false';
+    $b2c   = defined('SITE_REGISTER_B2C_URL') && SITE_REGISTER_B2C_URL ? SITE_REGISTER_B2C_URL : '';
+    $phase = ishf_get_register_phase();
+    $url   = ($phase === 'b2c' && $b2c) ? $b2c : $b2b;
+    return apply_filters('ishf_register_url', $url, $phase);
   }
 endif;
 
@@ -393,6 +412,7 @@ endif;
 //------------------------------------------------------------------------------
 //  Include Custom Database Leads Manager & Form Handlers
 //------------------------------------------------------------------------------
+require_once __DIR__ . '/includes/post-types/sponsor.php';
 require_once __DIR__ . '/includes/leads-manager.php';
 require_once __DIR__ . '/includes/form-handlers.php';
 

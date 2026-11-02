@@ -34,7 +34,7 @@
       <div class="uk-width-1-1 uk-width-1-4@m">
         <h2 class="footer-heading"><?php _e('Newsletter', TEXT_DOMAIN); ?></h2>
         <p class="uk-text-small"><?php _e('Join the ISHF 2027 community', TEXT_DOMAIN); ?></p>
-        <a class="uk-button uk-button-primary" href="<?php echo esc_url(home_url('/#newsletter')); ?>"><?php _e('Subscribe', TEXT_DOMAIN); ?></a>
+        <a class="uk-button uk-button-primary" href="<?php echo esc_url('#newsletter'); ?>"><?php _e('Subscribe', TEXT_DOMAIN); ?></a>
       </div>
 
     </div>

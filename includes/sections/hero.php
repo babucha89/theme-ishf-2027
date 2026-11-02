@@ -38,7 +38,7 @@ $has_hero_image  = file_exists($hero_image_path);
           <?php if ($has_hero_image): ?>
             <img class="hero-photo" src="<?php echo esc_url(BASE_IMAGES . 'hero-lisbon.jpg'); ?>" alt="" width="440" height="440" loading="eager" />
           <?php else: ?>
-            <div class="hero-photo hero-photo--placeholder"></div>
+            <div class="hero-photo hero-photo--placeholder"><img src="<?php echo esc_url(BASE_ASSETS . 'skyline-colors.svg'); ?>" alt="" /></div>
           <?php endif; ?>
           <img class="hero-key light-mode-img" src="<?php echo esc_url(BASE_ASSETS . 'icon-key-light.svg'); ?>" alt="" />
           <img class="hero-key dark-mode-img" src="<?php echo esc_url(BASE_ASSETS . 'icon-key-dark.svg'); ?>" alt="" />

@@ -38,14 +38,9 @@ get_header();
   // -- Section 3: USER JOURNEYS (Contribute, Become a Partner, Attend)
   get_template_part('includes/sections/journeys');
 
-  // -- Section 4: PARTNERS (logos; sponsors live here, not in the footer)
-  get_template_part('includes/sections/sponsors');
-
-  // -- Section 5: NEWS & ARTICLES (3 latest posts)
+  // -- Section 4: NEWS & ARTICLES (3 latest posts)
+  // Sponsors + Newsletter are rendered site-wide by footer.php (full layout), right before the footer.
   get_template_part('includes/sections/news');
-
-  // -- Section 6: NEWSLETTER (existing form)
-  get_template_part('includes/sections/newsletter');
 
   // -- Partnership modal only (opened by the "Become a Partner" journey card)
   get_template_part('includes/sections/ctas', null, array('show_boxes' => false));

@@ -1,39 +1,69 @@
 <?php
 // -----------------------------------------------------------------------------
-//  Section: PARTNERS / SPONSORS (Home)
-//  Figma: Home / Partners. Logos swap automatically with the theme
-//  (.light-mode-img / .dark-mode-img). Export the six SVGs from the Figma
-//  "Sponsors Logos" section into img/sponsors/ with the file names below.
-//  Until a file exists the partner name is shown as text, so nothing breaks.
-//  Roles ("Organised with", "Supported by") are still TBC in the design.
+//  Section: SPONSORS (site-wide, before newsletter + footer)
+//  Source: Custom Post Type "ishf_sponsor" (includes/post-types/sponsor.php),
+//  grouped by "Sponsor tier" (e.g. Organised with / Supported by).
+//  Renders nothing when there are no published sponsors.
 //  Base Theme: ISHF 2027 Lisbon
 // -----------------------------------------------------------------------------
-$ishf_partners = array(
-  array('name' => 'Housing Europe', 'file' => 'housing-europe', 'url' => 'https://www.housingeurope.eu/', 'h' => 105),
-  array('name' => 'Gebalis',        'file' => 'gebalis',        'url' => 'https://gebalis.pt/',            'h' => 105),
-  array('name' => 'Câmara Municipal de Lisboa', 'file' => 'cm-lisboa', 'url' => 'https://www.lisboa.pt/', 'h' => 58),
-);
-$ishf_sponsors_dir = get_template_directory() . '/img/sponsors/';
+if (!post_type_exists('ishf_sponsor')) {
+  return;
+}
+
+$ishf_sponsor_q = new WP_Query(array(
+  'post_type'      => 'ishf_sponsor',
+  'posts_per_page' => 60,
+  'orderby'        => array('menu_order' => 'ASC', 'title' => 'ASC'),
+  'no_found_rows'  => true,
+));
+if (!$ishf_sponsor_q->have_posts()) {
+  wp_reset_postdata();
+  return;
+}
+
+// Group by first tier term (term order = admin order of creation); no tier => generic group
+$groups = array();
+while ($ishf_sponsor_q->have_posts()) {
+  $ishf_sponsor_q->the_post();
+  $terms = get_the_terms(get_the_ID(), 'ishf_sponsor_tier');
+  $term  = (!empty($terms) && !is_wp_error($terms)) ? $terms[0] : null;
+  $key   = $term ? $term->term_id : 0;
+  if (!isset($groups[$key])) {
+    $groups[$key] = array('label' => $term ? $term->name : __('Partners', TEXT_DOMAIN), 'items' => array());
+  }
+  $groups[$key]['items'][] = get_the_ID();
+}
+wp_reset_postdata();
+ksort($groups);
 ?>
-<section id="partners" class="ishf-partners" aria-labelledby="partners-title">
+<section id="partners" class="ishf-partners" aria-label="<?php esc_attr_e('Partners and sponsors', TEXT_DOMAIN); ?>">
   <div class="uk-container">
-    <h2 id="partners-title" class="ishf-eyebrow"><?php _e('Organised with', TEXT_DOMAIN); ?></h2>
-    <ul class="partner-logos" role="list">
-      <?php foreach ($ishf_partners as $p):
-        $has_logos = file_exists($ishf_sponsors_dir . $p['file'] . '-dark.svg') && file_exists($ishf_sponsors_dir . $p['file'] . '-light.svg');
-        ?>
-        <li>
-          <a href="<?php echo esc_url($p['url']); ?>" target="_blank" rel="noopener noreferrer">
-            <?php if ($has_logos): ?>
-              <img class="light-mode-img" src="<?php echo esc_url(BASE_IMAGES . 'sponsors/' . $p['file'] . '-dark.svg'); ?>" alt="<?php echo esc_attr($p['name']); ?>" height="<?php echo (int) $p['h']; ?>" loading="lazy" />
-              <img class="dark-mode-img" src="<?php echo esc_url(BASE_IMAGES . 'sponsors/' . $p['file'] . '-light.svg'); ?>" alt="<?php echo esc_attr($p['name']); ?>" height="<?php echo (int) $p['h']; ?>" loading="lazy" />
-            <?php else: ?>
-              <span class="partner-name"><?php echo esc_html($p['name']); ?></span>
-            <?php endif; ?>
-            <span class="uk-visually-hidden"> <?php _e('(opens in a new tab)', TEXT_DOMAIN); ?></span>
-          </a>
-        </li>
-      <?php endforeach; ?>
-    </ul>
+    <?php foreach ($groups as $gi => $group): ?>
+      <div class="partner-group">
+        <h2 class="ishf-eyebrow"><?php echo esc_html($group['label']); ?></h2>
+        <ul class="partner-logos" role="list">
+          <?php foreach ($group['items'] as $sid):
+            $name    = get_the_title($sid);
+            $url     = get_post_meta($sid, '_ishf_sponsor_url', true);
+            $light   = get_post_thumbnail_id($sid);
+            $dark    = (int) get_post_meta($sid, '_ishf_sponsor_logo_dark_id', true);
+            $img_att = array('alt' => $name, 'loading' => 'lazy', 'class' => '');
+            ?>
+            <li>
+              <?php if ($url): ?><a href="<?php echo esc_url($url); ?>" target="_blank" rel="noopener noreferrer"><?php endif; ?>
+              <?php if ($light && $dark): ?>
+                <?php echo wp_get_attachment_image($light, 'medium', false, array_merge($img_att, array('class' => 'light-mode-img'))); ?>
+                <?php echo wp_get_attachment_image($dark, 'medium', false, array_merge($img_att, array('class' => 'dark-mode-img'))); ?>
+              <?php elseif ($light): ?>
+                <?php echo wp_get_attachment_image($light, 'medium', false, $img_att); ?>
+              <?php else: ?>
+                <span class="partner-name"><?php echo esc_html($name); ?></span>
+              <?php endif; ?>
+              <?php if ($url): ?><span class="uk-visually-hidden"> <?php _e('(opens in a new tab)', TEXT_DOMAIN); ?></span></a><?php endif; ?>
+            </li>
+          <?php endforeach; ?>
+        </ul>
+      </div>
+    <?php endforeach; ?>
   </div>
 </section>

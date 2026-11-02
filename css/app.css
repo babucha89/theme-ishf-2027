@@ -891,7 +891,7 @@ html.dark-mode .ishf-hero { background-color: var(--colors-night-800); }
 .ishf-journeys, .ishf-partners, .ishf-news { padding: var(--grids-spacing-64) 0; }
 .ishf-journeys .ishf-eyebrow { margin: 0 0 var(--grids-spacing-24); }
 .journey-grid { list-style: none; margin-left: 0; padding: 0; }
-.journey-card { position: relative; display: flex; flex-direction: column; align-items: flex-start; justify-content: space-between; gap: var(--grids-spacing-24); height: 100%; min-height: 320px; padding: var(--grids-spacing-32); border-radius: var(--grids-radius-lg); overflow: hidden; }
+.journey-card { position: relative; display: flex; flex-direction: column; align-items: flex-start; justify-content: space-between; gap: var(--grids-spacing-24); height: 100%; min-height: 280px; padding: var(--grids-spacing-32); border-radius: var(--grids-radius-lg); overflow: hidden; }
 .journey-title { font-size: var(--fonts-size-heading-3); line-height: 1.2; margin: 0; position: relative; z-index: 1; }
 .journey-art { position: absolute; right: var(--grids-spacing-16); top: var(--grids-spacing-16); width: 96px; height: auto; opacity: 0.9; pointer-events: none; }
 .journey-card .uk-button { position: relative; z-index: 1; }
@@ -925,3 +925,10 @@ html.dark-mode .news-card-media { background-color: var(--colors-night-800); }
 .news-card-title a { color: var(--colors-text-heading); text-decoration: none; }
 .news-card-title a:hover, .news-card-title a:focus { color: var(--colors-text-link-hover); text-decoration: underline; }
 .news-card-date { margin: 0; color: var(--colors-text-muted); }
+
+/* Sponsors (CPT) + pre-footer */
+.partner-group + .partner-group { margin-top: var(--grids-spacing-48); }
+.partner-logos img { height: 64px; object-fit: contain; }
+@media (min-width: 960px) { .partner-logos img { height: 80px; } }
+.hero-photo--placeholder { display: flex; align-items: flex-end; justify-content: center; opacity: 1; background-color: var(--colors-brand-blue-tejo); overflow: hidden; }
+.hero-photo--placeholder img { width: 100%; height: auto; }
