@@ -7,16 +7,21 @@
 
 :root {
   /* Typography Scale */
-  --fonts-size-heading-1: 52px;
-  --fonts-size-heading-2: 36px;
-  --fonts-size-heading-3: 26px;
-  --fonts-size-heading-4: 22px;
-  --fonts-size-heading-5: 18px;
+  /* Design System v2: Heading 1-6 = 62/44/32/26/20/16 (desktop); Text Lead 20, Base 16, Small 14, Smaller 13 */
+  --fonts-size-heading-1: 62px;
+  --fonts-size-heading-2: 44px;
+  --fonts-size-heading-3: 32px;
+  --fonts-size-heading-4: 26px;
+  --fonts-size-heading-5: 20px;
   --fonts-size-heading-6: 16px;
-  --fonts-size-lead: 18px;
-  --fonts-size-regular: 15px;
-  --fonts-size-small: 13px;
-  --fonts-size-xsmall: 12px;
+  --fonts-size-lead: 20px;
+  --fonts-size-regular: 16px;
+  --fonts-size-small: 14px;
+  --fonts-size-xsmall: 13px;
+  --fonts-size-button: 15px;
+  --fonts-line-height-headings: 1.2;
+  --fonts-line-height-lead: 1.4;
+  --fonts-line-height-texts: 1.5; /* design shows 120%; 1.5 kept for WCAG 1.4.12 text spacing */
 
   --fonts-weight-light: 300;
   --fonts-weight-regular: 400;
@@ -44,6 +49,11 @@
   --colors-brand-lisbon-red: #CE4638;
   --colors-brand-lisbon-red-hover: #B83A2E;
 
+  /* Accessible text variants (WCAG 1.4.3): brand City Forest / Lisbon Red are too light for small text on white */
+  --colors-brand-city-forest-text: #2E6B5F;
+  --colors-brand-lisbon-red-text: #A9342A;
+  --colors-brand-warning-text: #8A5A00;
+
   /* RGB Channels (for alpha compositing) */
   --colors-brand-blue-sky-rgb: 2, 50, 86;
   --colors-brand-sunny-yellow-rgb: 242, 165, 54;
@@ -64,29 +74,59 @@
   --colors-neutral-gray-900: #0A1622;
   --colors-neutral-gray-950: #050B11;
 
+  /* Design System v2 neutrals */
+  --colors-neutral-ink: #0F2233;
+  --colors-neutral-slate: #46586A;
+  --colors-neutral-paper: #F6F4EF;
+  --colors-neutral-line: #D5DCE1;
+  --colors-neutral-tint: #E9F3F6;
+  --colors-night-950: #011A2E;
+  --colors-night-900: #04263F;
+  --colors-night-800: #0A3558;
+  --colors-night-700: #164B73;
+  --colors-night-text: #F2F6F9;
+  --colors-night-text-muted: #B8C9D6;
+
   /* Spacing & Radius */
   --grids-spacing-small: 15px;
   --grids-spacing-medium: 30px;
   --grids-spacing-large: 40px;
-  --grids-radius-default: 12px;
+  --grids-spacing-4: 4px;  --grids-spacing-8: 8px;  --grids-spacing-12: 12px; --grids-spacing-16: 16px;
+  --grids-spacing-24: 24px; --grids-spacing-32: 32px; --grids-spacing-48: 48px; --grids-spacing-64: 64px;
+  --grids-spacing-80: 80px; --grids-spacing-96: 96px; --grids-spacing-120: 120px;
+  --grids-gutter: 24px;
+  --grids-container: 1200px;
+  --grids-radius-sm: 8px;
+  --grids-radius-md: 14px;
+  --grids-radius-lg: 20px;
+  --grids-radius-default: var(--grids-radius-md);
   --grids-radius-pill: 9999px;
 
   /* -------------------------------------------------------------------------
      Semantic Tokens - LIGHT MODE (Default)
      ------------------------------------------------------------------------- */
   --colors-background-default: var(--colors-neutral-white);
-  --colors-background-muted: var(--colors-neutral-gray-50);
+  --colors-background-muted: var(--colors-neutral-paper);
+  --colors-background-tint: var(--colors-neutral-tint);
   --colors-background-card: var(--colors-neutral-white);
   --colors-background-primary: var(--colors-brand-blue-sky);
 
-  --colors-text-default: var(--colors-neutral-gray-800);
-  --colors-text-muted: var(--colors-neutral-gray-600);
+  --colors-text-default: var(--colors-neutral-ink);
+  --colors-text-muted: var(--colors-neutral-slate);
   --colors-text-emphasis: var(--colors-brand-blue-sky);
   --colors-text-heading: var(--colors-brand-blue-sky);
+  --colors-text-eyebrow: var(--colors-brand-city-forest-text);
+  --colors-text-link: var(--colors-brand-blue-sky);
+  --colors-text-link-hover: var(--colors-night-700);
   --colors-text-on-primary: var(--colors-neutral-white);
+  --colors-text-error: var(--colors-brand-lisbon-red-text);
 
-  --colors-border-default: var(--colors-neutral-gray-200);
-  --colors-border-focus: var(--colors-brand-sunny-yellow);
+  /* border-default is decorative only (1.4:1). Controls use border-strong (>=3:1, WCAG 1.4.11). */
+  --colors-border-default: var(--colors-neutral-line);
+  --colors-border-strong: var(--colors-brand-blue-sky);
+  --colors-border-focus: var(--colors-brand-blue-sky);
+  --colors-focus-ring: var(--colors-brand-blue-sky);
+  --colors-focus-ring-inverse: var(--colors-brand-sunny-yellow);
 
   --colors-action-primary: var(--colors-brand-sunny-yellow);
   --colors-action-primary-hover: var(--colors-brand-sunny-yellow-hover);
@@ -104,10 +144,13 @@
   --header-bg: linear-gradient(180deg, var(--colors-neutral-gray-50) 0%, var(--colors-neutral-white) 100%);
 
   /* Toggle Tokens */
-  --toggle-track-bg: var(--colors-neutral-gray-200);
-  --toggle-track-shadow: inset 0 1px 3px rgba(var(--colors-neutral-black-rgb), 0.15);
-  --toggle-knob-bg: var(--colors-brand-sunny-yellow);
-  --toggle-knob-shadow: 0 1px 4px rgba(var(--colors-neutral-black-rgb), 0.20);
+  --toggle-track-bg: var(--colors-background-tint);
+  --toggle-track-border: var(--colors-border-strong);
+  --toggle-track-shadow: none;
+  --toggle-knob-bg: var(--colors-brand-blue-sky);
+  --toggle-knob-color: var(--colors-neutral-white);
+  --toggle-knob-shadow: none;
+  --toggle-icon-inactive: var(--colors-text-muted);
 
   /* CTAs Tokens */
   --cta-box-shadow: 0 10px 30px rgba(var(--colors-neutral-black-rgb), 0.05);
@@ -130,7 +173,7 @@
   --cta-partnership-checkbox-border: rgba(var(--colors-neutral-white-rgb), 0.40);
 
   /* Call for Sessions Box */
-  --cta-sessions-bg: var(--colors-neutral-gray-50);
+  --cta-sessions-bg: var(--colors-background-muted);
   --cta-sessions-color: var(--colors-text-default);
   --cta-sessions-border: var(--colors-border-default);
   --cta-sessions-badge-bg: rgba(var(--colors-brand-blue-sky-rgb), 0.08);
@@ -138,15 +181,15 @@
   --cta-sessions-badge-border: rgba(var(--colors-brand-blue-sky-rgb), 0.20);
 
   /* Newsletter Box */
-  --cta-newsletter-bg: var(--colors-neutral-gray-50);
+  --cta-newsletter-bg: var(--colors-background-muted);
   --cta-newsletter-color: var(--colors-text-default);
   --cta-newsletter-border: var(--colors-border-default);
   --cta-newsletter-badge-bg: rgba(var(--colors-brand-city-forest-rgb), 0.12);
-  --cta-newsletter-badge-color: var(--colors-brand-city-forest);
+  --cta-newsletter-badge-color: var(--colors-brand-city-forest-text);
   --cta-newsletter-badge-border: rgba(var(--colors-brand-city-forest-rgb), 0.30);
   --cta-newsletter-input-bg: var(--colors-neutral-white);
   --cta-newsletter-input-color: var(--colors-text-default);
-  --cta-newsletter-input-border: var(--colors-border-default);
+  --cta-newsletter-input-border: var(--colors-border-strong);
   --cta-newsletter-input-focus: var(--colors-brand-city-forest);
   --cta-newsletter-input-focus-shadow: rgba(var(--colors-brand-city-forest-rgb), 0.25);
 
@@ -165,9 +208,9 @@
 
   --btn-default-bg: transparent;
   --btn-default-color: var(--colors-text-heading);
-  --btn-default-border: var(--colors-border-default);
+  --btn-default-border: var(--colors-border-strong);
   --btn-default-bg-hover: var(--colors-background-muted);
-  --btn-default-border-hover: var(--colors-border-focus);
+  --btn-default-border-hover: var(--colors-night-700);
 
   --btn-danger-bg: var(--colors-action-danger);
   --btn-danger-bg-hover: var(--colors-action-danger-hover);
@@ -178,19 +221,26 @@
    Semantic Tokens - DARK MODE
    --------------------------------------------------------------------------- */
 html.dark-mode {
-  --colors-background-default: var(--colors-neutral-gray-900);
-  --colors-background-muted: #0D1E2E;
-  --colors-background-card: #11263C;
+  --colors-background-default: var(--colors-night-950);
+  --colors-background-muted: var(--colors-night-900);
+  --colors-background-tint: var(--colors-night-800);
+  --colors-background-card: var(--colors-night-900);
   --colors-background-primary: var(--colors-brand-blue-sky);
 
-  --colors-text-default: var(--colors-neutral-gray-200);
-  --colors-text-muted: #94A3B8;
-  --colors-text-emphasis: var(--colors-neutral-white);
-  --colors-text-heading: var(--colors-neutral-white);
-  --colors-text-on-primary: var(--colors-neutral-gray-900);
+  --colors-text-default: var(--colors-night-text);
+  --colors-text-muted: var(--colors-night-text-muted);
+  --colors-text-emphasis: var(--colors-night-text);
+  --colors-text-heading: var(--colors-night-text);
+  --colors-text-eyebrow: var(--colors-brand-blue-tejo);
+  --colors-text-link: var(--colors-brand-blue-tejo);
+  --colors-text-link-hover: var(--colors-brand-sunny-yellow);
+  --colors-text-on-primary: var(--colors-night-950);
+  --colors-text-error: #FF9A8D;
 
-  --colors-border-default: #1C354E;
+  --colors-border-default: var(--colors-night-700);
+  --colors-border-strong: var(--colors-neutral-white);
   --colors-border-focus: var(--colors-brand-sunny-yellow);
+  --colors-focus-ring: var(--colors-brand-sunny-yellow);
 
   --colors-action-primary: var(--colors-brand-sunny-yellow);
   --colors-action-primary-hover: var(--colors-brand-sunny-yellow-hover);
@@ -201,16 +251,19 @@ html.dark-mode {
   --colors-action-success: var(--colors-brand-city-forest-dark);
   --colors-action-success-hover: var(--colors-brand-city-forest-dark-hover);
 
-  --nav-bg: rgba(10, 22, 34, 0.96);
+  --nav-bg: rgba(1, 26, 46, 0.96);
   --nav-text: var(--colors-neutral-white);
   --nav-shadow: 0 4px 20px rgba(var(--colors-neutral-black-rgb), 0.35);
 
-  --header-bg: linear-gradient(180deg, #061524 0%, var(--colors-neutral-gray-900) 100%);
+  --header-bg: linear-gradient(180deg, var(--colors-night-900) 0%, var(--colors-night-950) 100%);
 
   /* Theme Toggle Component in Dark Mode */
-  --toggle-track-bg: var(--colors-brand-blue-sky);
-  --toggle-track-shadow: inset 0 0 0 1px rgba(var(--colors-neutral-white-rgb), 0.20);
+  --toggle-track-bg: var(--colors-night-800);
+  --toggle-track-border: var(--colors-neutral-white);
+  --toggle-track-shadow: none;
   --toggle-knob-bg: var(--colors-brand-sunny-yellow);
+  --toggle-knob-color: var(--colors-brand-blue-sky);
+  --toggle-icon-inactive: var(--colors-night-text-muted);
 
   /* CTAs & Cards in Dark Mode */
   --cta-box-shadow: 0 10px 30px rgba(var(--colors-neutral-black-rgb), 0.25);
@@ -241,14 +294,14 @@ html.dark-mode {
   --cta-newsletter-badge-border: rgba(var(--colors-brand-city-forest-rgb), 0.45);
   --cta-newsletter-input-bg: #0B1724;
   --cta-newsletter-input-color: var(--colors-neutral-white);
-  --cta-newsletter-input-border: #1D3B59;
+  --cta-newsletter-input-border: var(--colors-neutral-white);
   --cta-newsletter-input-focus: var(--colors-brand-sunny-yellow);
   --cta-newsletter-input-focus-shadow: rgba(var(--colors-brand-sunny-yellow-rgb), 0.30);
 
   /* UIkit Buttons in Dark Mode */
   --btn-default-color: var(--colors-neutral-white);
-  --btn-default-border: #1C354E;
-  --btn-default-bg-hover: #11263C;
+  --btn-default-border: var(--colors-neutral-white);
+  --btn-default-bg-hover: var(--colors-night-900);
 }
 
 
@@ -256,13 +309,25 @@ html.dark-mode {
    BASE ELEMENTS
    ============================================================================= */
 
-html { font-family: var(--fonts-family-texts); font-weight: var(--fonts-weight-texts); font-size: 16px; line-height: 1.6; color: var(--colors-text-default); background-color: var(--colors-background-default); scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
+html { font-family: var(--fonts-family-texts); font-weight: var(--fonts-weight-texts); font-size: 16px; line-height: var(--fonts-line-height-texts); color: var(--colors-text-default); background-color: var(--colors-background-default); scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
 body { margin: 0; padding: 0; background-color: var(--colors-background-default); color: var(--colors-text-default); overflow-x: hidden; }
-h1, h2, h3, h4, h5, h6, .uk-h1, .uk-h2, .uk-h3, .uk-h4, .uk-h5, .uk-h6, .uk-heading-small { font-family: var(--fonts-family-headings); font-weight: var(--fonts-weight-headings); line-height: 1.15; color: var(--colors-text-heading); letter-spacing: -0.02em; margin-top: 0; }
-p { color: var(--colors-text-default); line-height: 1.65; }
-a { color: var(--colors-brand-blue-tejo); text-decoration: none; transition: color 0.2s ease; }
-a:hover, a:focus { color: var(--colors-brand-sunny-yellow); text-decoration: none; }
-.uk-visually-hidden { display: none !important; }
+h1, h2, h3, h4, h5, h6, .uk-h1, .uk-h2, .uk-h3, .uk-h4, .uk-h5, .uk-h6, .uk-heading-small { font-family: var(--fonts-family-headings); font-weight: var(--fonts-weight-headings); line-height: var(--fonts-line-height-headings); color: var(--colors-text-heading); letter-spacing: -0.02em; margin-top: 0; }
+h1, .uk-h1 { font-size: var(--fonts-size-heading-1); }
+h2, .uk-h2 { font-size: var(--fonts-size-heading-2); }
+h3, .uk-h3 { font-size: var(--fonts-size-heading-3); }
+h4, .uk-h4 { font-size: var(--fonts-size-heading-4); }
+h5, .uk-h5 { font-size: var(--fonts-size-heading-5); }
+h6, .uk-h6 { font-size: var(--fonts-size-heading-6); }
+.uk-text-lead, .section-lead { font-size: var(--fonts-size-lead); line-height: var(--fonts-line-height-lead); color: var(--colors-text-muted); }
+.uk-text-small { font-size: var(--fonts-size-small); }
+.ishf-text-xs { font-size: var(--fonts-size-xsmall); }
+.ishf-eyebrow { font-family: var(--fonts-family-labels); font-weight: var(--fonts-weight-labels); font-size: var(--fonts-size-xsmall); text-transform: uppercase; letter-spacing: 1.2px; color: var(--colors-text-eyebrow); }
+p { color: var(--colors-text-default); line-height: var(--fonts-line-height-texts); }
+/* Links: Blue Sky on white 13:1 (Light), Blue Tejo on night 8.7:1 (Dark). Links inside running text are underlined (WCAG 1.4.1). */
+a { color: var(--colors-text-link); text-decoration: none; transition: color 0.2s ease; }
+a:hover, a:focus { color: var(--colors-text-link-hover); }
+p a:not(.uk-button), .uk-article-content a, .uk-text-meta a, .uk-list a { text-decoration: underline; text-underline-offset: 3px; }
+/* NOTE: `.uk-visually-hidden` used to be display:none (hidden from screen readers too). It is now defined with .sr-only below: visually hidden, still announced. */
 
 /* =============================================================================
    ADAPTIVE LOGOS (LIGHT / DARK SWITCHING)
@@ -270,6 +335,49 @@ a:hover, a:focus { color: var(--colors-brand-sunny-yellow); text-decoration: non
 
 html.dark-mode .light-mode-img { display: none !important; }
 html:not(.dark-mode) .dark-mode-img { display: none !important; }
+
+
+/* =============================================================================
+   THEME TOGGLE (Design System v2: 60x32 pill, sun / moon, visible 1.5px border)
+   ============================================================================= */
+
+.theme-toggle { padding: 0 !important; border: none !important; background: transparent !important; cursor: pointer; line-height: 1; outline: none; -webkit-tap-highlight-color: transparent; display: inline-flex; align-items: center; min-height: 44px; }
+.theme-toggle:focus-visible { outline: 2px solid var(--colors-focus-ring) !important; outline-offset: 3px !important; border-radius: var(--grids-radius-pill); }
+.theme-toggle-track { position: relative; width: 60px; height: 32px; box-sizing: border-box; background-color: var(--toggle-track-bg); border: 1.5px solid var(--toggle-track-border); box-shadow: var(--toggle-track-shadow); border-radius: 9999px; transition: background-color 0.3s ease, border-color 0.3s ease; }
+.theme-toggle-track-icon { position: absolute; top: 50%; width: 16px; height: 16px; margin-top: -8px; color: var(--toggle-icon-inactive); pointer-events: none; }
+.theme-toggle-track-icon--sun { left: 7px; }
+.theme-toggle-track-icon--moon { right: 7px; }
+.theme-toggle-knob { top: 2.5px; left: 2.5px; width: 24px; height: 24px; background-color: var(--toggle-knob-bg); border-radius: 50%; box-shadow: var(--toggle-knob-shadow); transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1), background-color 0.3s ease; }
+.theme-toggle-icon { width: 14px; height: 14px; color: var(--toggle-knob-color); pointer-events: none; transition: opacity 0.25s ease, transform 0.25s ease; }
+.theme-toggle-icon svg, .theme-toggle-track-icon svg { width: 100%; height: 100%; display: block; }
+/* The shipped sun.svg / moon.svg hard-code their colour: let the tokens drive it */
+.theme-toggle svg [stroke]:not([stroke="none"]) { stroke: currentColor; }
+.theme-toggle svg [fill]:not([fill="none"]) { fill: currentColor; }
+.theme-toggle-icon-sun { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+.theme-toggle-icon-moon { opacity: 0; transform: translate(-50%, -50%) scale(0.5); }
+
+/* Dark mode state */
+html.dark-mode .theme-toggle-knob { transform: translateX(28px); }
+html.dark-mode .theme-toggle-icon-sun { opacity: 0; transform: translate(-50%, -50%) scale(0.5); }
+html.dark-mode .theme-toggle-icon-moon { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+
+
+/* =============================================================================
+   LANGUAGE SWITCH (WPML) + NAV TOOLS
+   ============================================================================= */
+
+:root { --lang-border: var(--colors-border-strong); --lang-color: var(--colors-text-heading); --lang-active-bg: var(--colors-brand-blue-sky); --lang-active-color: var(--colors-neutral-white); }
+html.dark-mode { --lang-active-bg: var(--colors-brand-sunny-yellow); --lang-active-color: var(--colors-brand-blue-sky); }
+.nav-tools { display: flex; align-items: center; gap: 10px; }
+.nav-tools-divider { width: 1px; height: 20px; background-color: var(--colors-border-default); }
+.lang-switch { display: flex; align-items: center; gap: 8px; list-style: none; margin: 0; padding: 0; }
+.lang-switch a, .lang-switch span.lang-switch-item { display: inline-flex; align-items: center; justify-content: center; min-width: 44px; height: 32px; box-sizing: border-box; padding: 0 12px; border-radius: var(--grids-radius-pill); border: 1.5px solid var(--lang-border); color: var(--lang-color); font-family: var(--fonts-family-headings); font-weight: 700; font-size: var(--fonts-size-xsmall); letter-spacing: 0.04em; text-decoration: none; transition: background-color 0.2s ease, color 0.2s ease; }
+.lang-switch a:hover { background-color: var(--colors-background-tint); color: var(--lang-color); }
+.lang-switch [aria-current="true"] { background-color: var(--lang-active-bg); border-color: var(--lang-active-bg); color: var(--lang-active-color); }
+/* Controls placed on a navy surface (footer, off-canvas): white outline, yellow active state */
+.on-inverse, html.dark-mode .on-inverse { --toggle-track-bg: transparent; --toggle-track-border: var(--colors-neutral-white); --toggle-knob-bg: var(--colors-brand-sunny-yellow); --toggle-knob-color: var(--colors-brand-blue-sky); --toggle-icon-inactive: var(--colors-neutral-white); --lang-border: var(--colors-neutral-white); --lang-color: var(--colors-neutral-white); --lang-active-bg: var(--colors-brand-sunny-yellow); --lang-active-color: var(--colors-brand-blue-sky); }
+.on-inverse .nav-tools-divider { background-color: rgba(var(--colors-neutral-white-rgb), 0.35); }
+.on-inverse .lang-switch a:hover { background-color: rgba(var(--colors-neutral-white-rgb), 0.12); color: var(--colors-neutral-white); }
 
 
 /* =============================================================================
@@ -308,6 +416,17 @@ html.dark-mode .theme-toggle-icon-moon { opacity: 1; transform: translate(-50%, 
 #site-scroller { height: 3px; border-radius: 0 !important; background-color: rgba(var(--colors-brand-blue-sky-rgb), 0.15); }
 #site-scroller[value]::-webkit-progress-value { background-color: var(--colors-brand-sunny-yellow) !important; }
 #site-scroller[value]::-moz-progress-bar { background-color: var(--colors-brand-sunny-yellow) !important; }
+
+
+.nav-links { display: flex; align-items: center; gap: 28px; list-style: none; margin: 0; padding: 0; }
+.nav-links a { display: inline-block; padding: 10px 2px; font-size: var(--fonts-size-small); color: var(--nav-text); text-decoration: none; border-bottom: 2px solid transparent; }
+.nav-links a:hover { color: var(--nav-text); border-bottom-color: var(--colors-brand-sunny-yellow); }
+.nav-links .current-menu-item > a, .nav-links .current_page_item > a, .nav-links a[aria-current="page"] { font-weight: 600; border-bottom-color: var(--colors-brand-sunny-yellow); }
+.nav-burger { min-width: 44px; min-height: 44px; display: inline-flex; align-items: center; justify-content: center; background: transparent; border: 1.5px solid var(--colors-border-strong); border-radius: var(--grids-radius-pill); color: var(--nav-text); cursor: pointer; padding: 0 14px; font-family: var(--fonts-family-headings); font-weight: 700; font-size: var(--fonts-size-small); gap: 8px; }
+#nav-offcanvas .uk-offcanvas-bar { background-color: var(--colors-brand-blue-sky); color: var(--colors-neutral-white); }
+#nav-offcanvas .nav-links { flex-direction: column; align-items: flex-start; gap: 4px; margin: 24px 0; }
+#nav-offcanvas .nav-links a { color: var(--colors-neutral-white); font-size: var(--fonts-size-heading-5); padding: 10px 0; }
+#nav-offcanvas .nav-tools { margin-top: 24px; flex-wrap: wrap; }
 
 
 /* =============================================================================
@@ -469,7 +588,7 @@ html.dark-mode .modal-ishf-video .uk-modal-dialog { background-color: #0D2238; b
    BUTTONS (UIKIT SYSTEM)
    ============================================================================= */
 
-.uk-button { font-family: var(--fonts-family-headings); font-weight: var(--fonts-weight-bold); font-size: var(--fonts-size-regular); height: 48px; line-height: 46px; padding: 0 30px; border-radius: var(--grids-radius-default); box-sizing: border-box; text-decoration: none !important; cursor: pointer; display: inline-flex; align-items: center; justify-content: center; gap: 10px; border: 1px solid transparent; transition: transform 0.2s ease, background-color 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease, color 0.2s ease; }
+.uk-button { font-family: var(--fonts-family-headings); font-weight: var(--fonts-weight-bold); font-size: var(--fonts-size-button); height: 48px; line-height: 46px; padding: 0 30px; border-radius: var(--grids-radius-pill); box-sizing: border-box; text-decoration: none !important; cursor: pointer; display: inline-flex; align-items: center; justify-content: center; gap: 10px; border: 1px solid transparent; transition: transform 0.2s ease, background-color 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease, color 0.2s ease; }
 
 .uk-button:hover, .uk-button:focus { text-decoration: none !important; }
 
@@ -492,9 +611,9 @@ html.dark-mode .modal-ishf-video .uk-modal-dialog { background-color: #0D2238; b
 .uk-button-danger:hover, .uk-button-danger:focus { background-color: var(--btn-danger-bg-hover) !important; color: var(--btn-danger-color) !important; }
 
 /* Text Button */
-.uk-button-text { padding: 0; height: auto; line-height: inherit; background: transparent; color: var(--colors-brand-blue-tejo); border: none; }
+.uk-button-text { padding: 0; height: auto; line-height: inherit; background: transparent; color: var(--colors-text-link); border: none; }
 
-.uk-button-text:hover, .uk-button-text:focus { color: var(--colors-brand-sunny-yellow); }
+.uk-button-text:hover, .uk-button-text:focus { color: var(--colors-text-link-hover); }
 
 /* Sizes */
 .uk-button-small { height: 36px; line-height: 34px; padding: 0 18px; font-size: var(--fonts-size-small); }
@@ -509,7 +628,7 @@ html.dark-mode .modal-ishf-video .uk-modal-dialog { background-color: #0D2238; b
 .ishf-form .uk-input, .ishf-form .uk-textarea { border-radius: 8px; font-family: var(--fonts-family-texts); font-size: 14.5px; padding: 9px 13px; box-sizing: border-box; transition: border-color 0.2s ease, box-shadow 0.2s ease; }
 .ishf-form .uk-input { height: 44px; }
 .ishf-form .uk-input.uk-form-danger, .ishf-form .uk-textarea.uk-form-danger { border-color: var(--colors-brand-lisbon-red) !important; background-color: rgba(var(--colors-brand-lisbon-red-rgb), 0.04) !important; }
-.uk-text-danger { color: var(--colors-brand-lisbon-red) !important; font-size: 12px; font-weight: 500; }
+.uk-text-danger { color: var(--colors-text-error) !important; font-size: var(--fonts-size-xsmall); font-weight: 500; }
 html.dark-mode .ishf-form .uk-input.uk-form-danger, html.dark-mode .ishf-form .uk-textarea.uk-form-danger { border-color: #F87171 !important; background-color: rgba(206, 70, 56, 0.12) !important; }
 html.dark-mode .uk-text-danger { color: #F87171 !important; }
 .form-help-text { font-size: 12.5px; color: var(--colors-text-muted); opacity: 0.85; transition: color 0.3s ease; }
@@ -549,10 +668,12 @@ html.dark-mode .form-help-text { color: #94A3B8; }
 .skip-link:hover { background-color: var(--colors-brand-blue-sky-dark) !important; color: var(--colors-neutral-white) !important; text-decoration: none !important; }
 
 /* Universal Focus Visible Rings */
-:focus-visible { outline: 2px solid var(--colors-brand-sunny-yellow) !important; outline-offset: 2px !important; }
+:focus-visible { outline: 2px solid var(--colors-focus-ring) !important; outline-offset: 2px !important; }
+/* Navy ring is invisible on navy surfaces: switch to Sunny Yellow there (WCAG 2.4.7 / 1.4.11) */
+.ishf-footer-simple :focus-visible, .ishf-footer-full :focus-visible, #cookies-disclaimer :focus-visible, .cta-box-partnership :focus-visible, .on-inverse :focus-visible, #nav-offcanvas :focus-visible { outline-color: var(--colors-focus-ring-inverse) !important; }
 
 /* Screen Reader Only Utility */
-.sr-only, .uk-screen-reader-text { position: absolute !important; width: 1px !important; height: 1px !important; padding: 0 !important; margin: -1px !important; overflow: hidden !important; clip: rect(0, 0, 0, 0) !important; white-space: nowrap !important; border: 0 !important; }
+.sr-only, .uk-screen-reader-text, .uk-visually-hidden { position: absolute !important; width: 1px !important; height: 1px !important; padding: 0 !important; margin: -1px !important; overflow: hidden !important; clip: rect(0, 0, 0, 0) !important; white-space: nowrap !important; border: 0 !important; }
 
 /* Maintenance Page Utilities & Light/Dark Compliance */
 @keyframes uk-spinner-rotate { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
@@ -567,7 +688,7 @@ html.dark-mode .maintenance-subtitle { color: var(--colors-brand-blue-tejo) !imp
 .maintenance-lead { color: var(--colors-text-muted); max-width: 620px; margin-left: auto; margin-right: auto; line-height: 1.65; transition: color 0.3s ease; }
 
 /* Badge Pill Utility */
-.ishf-badge-pill { display: inline-block; padding: 5px 16px; border-radius: var(--grids-radius-pill); font-family: var(--fonts-family-headings); font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; background-color: rgba(var(--colors-brand-sunny-yellow-rgb), 0.15); color: var(--colors-brand-sunny-yellow); border: 1px solid rgba(var(--colors-brand-sunny-yellow-rgb), 0.40); }
+.ishf-badge-pill { display: inline-block; padding: 5px 16px; border-radius: var(--grids-radius-pill); font-family: var(--fonts-family-headings); font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; background-color: rgba(var(--colors-brand-city-forest-rgb), 0.12); color: var(--colors-text-eyebrow); border: 1px solid rgba(var(--colors-brand-city-forest-rgb), 0.35); }
 html.dark-mode .ishf-badge-pill { background-color: rgba(var(--colors-brand-sunny-yellow-rgb), 0.20); color: var(--colors-brand-sunny-yellow); border-color: rgba(var(--colors-brand-sunny-yellow-rgb), 0.45); }
 
 /* 404 Page Styling */
@@ -587,6 +708,37 @@ html.dark-mode .ishf-footer-simple { background-color: var(--colors-neutral-gray
 
 
 /* =============================================================================
+   FOOTER - FULL VARIANT (inner pages / master homepage). Navy in Light and Dark (bg/inverse).
+   ============================================================================= */
+.ishf-footer-full { background-color: var(--colors-brand-blue-sky); color: var(--colors-neutral-white); padding-top: 56px; padding-bottom: 28px; }
+.ishf-footer-full a { color: var(--colors-neutral-white); text-decoration: none; }
+.ishf-footer-full a:hover { text-decoration: underline; text-underline-offset: 3px; color: var(--colors-neutral-white); }
+.ishf-footer-full .footer-logo { width: 100%; max-width: 280px; height: auto; display: block; }
+.footer-heading { margin: 0 0 16px; font-family: var(--fonts-family-labels); font-size: var(--fonts-size-xsmall); font-weight: var(--fonts-weight-labels); text-transform: uppercase; letter-spacing: 1.2px; color: var(--colors-brand-blue-tejo); }
+.footer-menu { list-style: none; margin: 0; padding: 0; }
+.footer-menu li { margin-bottom: 10px; font-size: var(--fonts-size-small); }
+.footer-bottom { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px; margin-top: 40px; padding-top: 24px; border-top: 1px solid rgba(var(--colors-neutral-white-rgb), 0.15); }
+.footer-bottom .footer-legal-text { margin: 0; color: var(--colors-neutral-white); font-size: var(--fonts-size-xsmall); }
+.footer-tools { display: flex; align-items: center; gap: 12px; }
+
+
+/* =============================================================================
+   CONTENT SECTIONS (base styling for the homepage blocks that had no CSS yet)
+   Refine when each page is designed. Uses tokens only.
+   ============================================================================= */
+.section-about, .section-speakers, .section-partnership { background-color: var(--colors-background-default); }
+.section-program, .section-partners { background-color: var(--colors-background-muted); }
+.section-title { font-size: var(--fonts-size-heading-2); }
+.pillar-card, .speaker-card, .partner-box { background-color: var(--colors-background-card); border: 1px solid var(--colors-border-default); border-radius: var(--grids-radius-default); box-shadow: none; color: var(--colors-text-default); }
+.pillar-icon-box { width: 56px; height: 56px; border-radius: var(--grids-radius-sm); display: flex; align-items: center; justify-content: center; background-color: var(--colors-background-tint) !important; }
+.pillar-icon { width: 32px; height: 32px; }
+.speaker-avatar-placeholder { width: 96px; height: 96px; background-color: var(--colors-background-tint); }
+.partner-box { min-height: 96px; }
+.program-days-nav a { min-height: 44px; display: inline-flex; align-items: center; }
+.timeline-time { font-family: var(--fonts-family-headings); font-weight: 700; color: var(--colors-text-eyebrow); }
+
+
+/* =============================================================================
    COOKIES DISCLAIMER (Based on marketing-stars reference & ISHF Brand Design System)
    ============================================================================= */
 #cookies-disclaimer { background-color: var(--colors-brand-blue-sky); position: relative; z-index: 999; border-bottom: 1px solid rgba(var(--colors-neutral-white-rgb), 0.15); transition: background-color 0.3s ease, border-color 0.3s ease; }
@@ -601,6 +753,51 @@ html.dark-mode #cookies-disclaimer a { color: var(--colors-brand-sunny-yellow) !
 html.dark-mode #cookies-disclaimer a:hover, html.dark-mode #cookies-disclaimer a:focus { color: var(--colors-brand-sunny-yellow-hover) !important; }
 html.dark-mode #cookies-disclaimer #btnAcceptCookies { background-color: var(--colors-brand-sunny-yellow) !important; color: var(--colors-neutral-gray-950) !important; border-color: var(--colors-brand-sunny-yellow) !important; }
 html.dark-mode #cookies-disclaimer #btnAcceptCookies:hover, html.dark-mode #cookies-disclaimer #btnAcceptCookies:focus { background-color: var(--colors-brand-sunny-yellow-hover) !important; color: var(--colors-neutral-gray-950) !important; }
+
+
+/* =============================================================================
+   MEDIA QUERIES (aligned with UIkit breakpoints: s 640 / m 960 / l 1200 / xl 1600)
+   Mobile-first overrides sit at the end of the file by project convention.
+   ============================================================================= */
+
+/* --- Small: < 640px (mobile, 390 design) -------------------------------------------- */
+@media (max-width: 639.98px) {
+  :root { --fonts-size-heading-1: 40px; --fonts-size-heading-2: 32px; --fonts-size-heading-3: 26px; --fonts-size-heading-4: 22px; --fonts-size-heading-5: 18px; --fonts-size-lead: 18px; }
+  .header-content-wrapper { padding-top: 35px; padding-bottom: 40px; }
+  .header-project-logo { max-width: 320px; }
+  .header-claim-inner { border-left: none; padding-left: 0; text-align: center; margin-top: 18px; }
+  .header-claim { margin-left: auto; margin-right: auto; }
+  .cta-box { padding: 24px 18px; }
+  .maintenance-top-bar { padding: 12px; }
+  .maintenance-project-logo { max-width: 290px; }
+  .footer-bottom { flex-direction: column; align-items: flex-start; }
+}
+
+/* --- Medium (tablet): 640px to 959px ------------------------------------------------ */
+@media (min-width: 640px) and (max-width: 959.98px) {
+  :root { --fonts-size-heading-1: 48px; --fonts-size-heading-2: 36px; }
+  .header-content-wrapper { padding-top: 40px; padding-bottom: 45px; }
+  .header-claim-inner { border-left: none; padding-left: 0; text-align: center; margin-top: 18px; }
+  .header-claim { margin-left: auto; margin-right: auto; }
+}
+
+/* --- Large: 960px and up (uk-width-*@m starts here) ---------------------------------- */
+@media (min-width: 960px) {
+  .header-claim-inner { border-left: 4px solid var(--colors-brand-sunny-yellow); padding-left: 32px; text-align: left; }
+}
+
+/* --- Large only: 960px to 1199px ------------------------------------------------------ */
+@media (min-width: 960px) and (max-width: 1199.98px) {
+}
+
+/* --- XLarge: 1200px and up ------------------------------------------------------------ */
+@media (min-width: 1200px) {
+  .uk-container-large, .uk-container-xlarge { padding-left: 60px; padding-right: 60px; }
+}
+
+/* --- XXLarge: 1600px and up ----------------------------------------------------------- */
+@media (min-width: 1600px) {
+}
 
 
 /* =============================================================================

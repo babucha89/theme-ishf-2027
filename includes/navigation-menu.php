@@ -2,6 +2,8 @@
 // -----------------------------------------------------------------------------
 //  Block: NAVIGATION MENU
 //  Minimal navbar: icon-key + "ISHF 2027 | Lisbon" logo and Theme Toggle
+//  Full variant (ishf_use_full_layout): + menu links, WPML language switch,
+//  off-canvas menu on < 960px. No Register button: the CTA lives in the CTA sections.
 //  Base Theme: ISHF 2027 Lisbon
 //  Edited: BB, 27-OUT-2026
 // -----------------------------------------------------------------------------
@@ -11,7 +13,8 @@
     <progress id="site-scroller" class="uk-progress uk-margin-remove" value="0" max="100" aria-hidden="true"></progress>
   <?php endif; ?>
 
-  <div class="uk-container uk-container-xlarge">
+  <?php $ishf_full = function_exists('ishf_use_full_layout') && ishf_use_full_layout(); ?>
+  <div class="uk-container <?php echo $ishf_full ? '' : 'uk-container-xlarge'; ?>">
     <nav class="uk-navbar-container uk-navbar-transparent uk-flex-between uk-flex-middle" data-uk-navbar role="navigation" aria-label="<?php esc_attr_e('Main Navigation', TEXT_DOMAIN); ?>">
       
       <!-- Brand Logo: icon-key + "ISHF 2027 | Lisbon" -->
@@ -33,16 +36,65 @@
         </a>
       </div>
 
+      <?php if ($ishf_full): ?>
+      <!-- Right: menu links + tools (>= 960px) / burger (< 960px) -->
+      <div class="uk-navbar-right uk-flex uk-flex-middle">
+        <?php
+        wp_nav_menu(array(
+          'theme_location' => 'primary',
+          'container'      => false,
+          'menu_class'     => 'nav-links uk-visible@m',
+          'depth'          => 1,
+          'fallback_cb'    => false,
+          'items_wrap'     => '<ul class="%2$s">%3$s</ul>',
+        ));
+        ?>
+        <div class="nav-tools uk-visible@m uk-margin-medium-left">
+          <?php get_template_part('includes/language-switcher'); ?>
+          <span class="nav-tools-divider" aria-hidden="true"></span>
+          <?php get_template_part('includes/theme-toggle'); ?>
+        </div>
+        <button class="nav-burger uk-hidden@m" type="button" data-uk-toggle="target: #nav-offcanvas" aria-controls="nav-offcanvas" aria-label="<?php esc_attr_e('Open menu', TEXT_DOMAIN); ?>">
+          <span data-uk-icon="icon: menu" aria-hidden="true"></span>
+          <span><?php _e('Menu', TEXT_DOMAIN); ?></span>
+        </button>
+      </div>
+      <?php else: ?>
       <!-- Right: Theme Toggle (Dark / Light Mode) -->
       <div class="uk-navbar-right uk-flex uk-flex-middle">
         <div class="uk-navbar-item theme-toggle-container">
           <?php get_template_part('includes/theme-toggle'); ?>
         </div>
       </div>
+      <?php endif; ?>
 
     </nav>
   </div>
 </div>
+
+<?php if ($ishf_full): ?>
+<!-- Mobile menu (UIkit off-canvas: focus is trapped while open, Esc closes) -->
+<div id="nav-offcanvas" data-uk-offcanvas="overlay: true; flip: true">
+  <div class="uk-offcanvas-bar on-inverse" role="dialog" aria-label="<?php esc_attr_e('Main Navigation', TEXT_DOMAIN); ?>">
+    <button class="uk-offcanvas-close" type="button" data-uk-close aria-label="<?php esc_attr_e('Close menu', TEXT_DOMAIN); ?>"></button>
+    <?php
+    wp_nav_menu(array(
+      'theme_location' => 'primary',
+      'container'      => false,
+      'menu_class'     => 'nav-links',
+      'depth'          => 1,
+      'fallback_cb'    => false,
+      'items_wrap'     => '<ul class="%2$s">%3$s</ul>',
+    ));
+    ?>
+    <div class="nav-tools">
+      <?php get_template_part('includes/language-switcher'); ?>
+      <span class="nav-tools-divider" aria-hidden="true"></span>
+      <?php get_template_part('includes/theme-toggle'); ?>
+    </div>
+  </div>
+</div>
+<?php endif; ?>
 
 <?php if (SITE_USE_NAVSCROLLER): ?>
 <script type="text/javascript">

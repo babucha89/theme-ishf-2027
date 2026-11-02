@@ -124,9 +124,31 @@ function ishf_setup()
   add_theme_support('html5', array('comment-list', 'comment-form', 'search-form', 'gallery', 'caption', 'style', 'script'));
   add_theme_support('responsive-embeds');
 
+  // Navigation menus (assign in Appearance > Menus; WPML translates menus per language)
+  register_nav_menus(array(
+    'primary'         => __('Primary navigation', TEXT_DOMAIN),
+    'footer-festival' => __('Footer: Festival', TEXT_DOMAIN),
+    'footer-about'    => __('Footer: About', TEXT_DOMAIN),
+  ));
+
   add_image_size('image-speaker-face', 450, 450, true);
   add_image_size('image-gallery', 1600, 900, true);
 }
+
+
+//------------------------------------------------------------------------------
+//  Layout variant flag: minimal (landing page, 404, maintenance) vs full
+//  (navigation-menu with links + language switch, footer with columns).
+//  Templates call ishf_use_full_layout(true) before get_header().
+//------------------------------------------------------------------------------
+if (!function_exists('ishf_use_full_layout')):
+  function ishf_use_full_layout($set = null)
+  {
+    static $full = false;
+    if ($set !== null) $full = (bool) $set;
+    return $full;
+  }
+endif;
 
 
 //------------------------------------------------------------------------------

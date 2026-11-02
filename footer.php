@@ -6,6 +6,9 @@
 // -----------------------------------------------------------------------------
 ?>
 
+  <?php if (function_exists('ishf_use_full_layout') && ishf_use_full_layout()): ?>
+    <?php get_template_part('includes/footer-full'); ?>
+  <?php else: ?>
   <!-- Main Site Footer (WCAG 2.1 AA) -->
   <footer class="ishf-footer-simple uk-section uk-section-xsmall uk-text-center" role="contentinfo">
     <div class="uk-container">
@@ -16,6 +19,7 @@
       </p>
     </div>
   </footer>
+  <?php endif; ?>
 
   <?php
   // -- Block: COOKIES DISCLAIMER (Bottom)

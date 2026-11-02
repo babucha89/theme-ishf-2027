@@ -30,25 +30,23 @@ Standalone Base Theme for the official website of the **International Social Hou
 - **Semantic Light/Dark Mode Tokens**:
   - Backgrounds, typography, borders, and inputs adapt seamlessly using `html.dark-mode` semantic overrides.
   - Dedicated component tokens for Theme Toggle (`--toggle-*`), CTA Boxes (`--cta-*`), and UIkit Buttons (`--btn-*`).
-- **Consolidated Media Queries**:
-  - All responsive breakpoint declarations are consolidated strictly at the end of `css/app.css` and `css/app.min.css`:
-    - Small screens: `@media only screen and (max-width: 40em)` (≤ 640px)
-    - Small screens portrait: `@media only screen and (max-width: 40em) and (orientation: portrait)`
-    - Medium screens / Tablet: `@media only screen and (min-width: 40.063em) and (max-width: 64em)` (641px–1024px)
-    - Medium screens portrait: `@media only screen and (min-width: 40.063em) and (max-width: 64em) and (orientation: portrait)`
-    - Large screens: `@media only screen and (min-width: 64.063em)` (≥ 1025px)
-    - Large screens QA: `@media only screen and (min-width: 64.063em) and (max-width: 90em)` (1025px–1440px)
-    - XLarge screens: `@media only screen and (min-width: 90.063em)` (≥ 1441px)
-    - XLarge screens QA: `@media only screen and (min-width: 90.063em) and (max-width: 120em)` (1441px–1920px)
-    - XXLarge screens: `@media only screen and (min-width: 120.063em)` (≥ 1921px)
+- **Consolidated Media Queries** (aligned with UIkit breakpoints, at the end of `css/app.css` and `css/app.min.css`):
+    - Small / mobile: `@media (max-width: 639.98px)`
+    - Medium / tablet: `@media (min-width: 640px) and (max-width: 959.98px)`
+    - Large: `@media (min-width: 960px)` (UIkit `@m` starts here); large only: 960px to 1199.98px
+    - XLarge: `@media (min-width: 1200px)`
+    - XXLarge: `@media (min-width: 1600px)`
     - Reduced motion: `@media (prefers-reduced-motion: reduce)` (WCAG 2.1 AA)
+- **Design System v2 tokens**: type scale 62/44/32/26/20/16 (mobile and tablet overrides in the media queries), radius sm/md/lg/pill, spacing 4 to 120, neutral and night palettes. `--colors-border-default` is decorative only; controls use `--colors-border-strong` (WCAG 1.4.11).
 
 ### 4. WCAG 2.1 AA Accessibility (a11y)
 - **Skip Link**: `<a href="#content-start" class="skip-link">` provides instant keyboard access to main content.
 - **Landmarks**: `<header role="banner">`, `<nav role="navigation">`, `<main id="content-start" role="main" class="site-main" tabindex="-1">`, `<footer role="contentinfo">`, and `<div role="region">`.
 - **Forms**: All inputs have explicit `<label for="...">` associations, `aria-required="true"`, `aria-describedby`, and validation alerts with `role="alert"` / `role="status"`.
-- **Theme Switch**: Implemented with `role="switch"` and dynamic `aria-checked` state updates.
-- **Focus Rings**: Universal `:focus-visible` ring using brand yellow (`#F2A536`).
+- **Theme Switch**: Implemented with `role="switch"` and dynamic `aria-checked` state updates (60x32 pill, sun and moon visible, used in the nav and the footer).
+- **Language Switch (WPML)**: `includes/language-switcher.php` renders the active WPML languages with `lang`, `hreflang` and `aria-current`; prints nothing if WPML is inactive.
+- **Layout variants**: `ishf_use_full_layout(true)` (set by index, page, single, archive, category and search) loads the full navigation-menu (links, language switch, off-canvas on mobile) and footer. Landing page, 404 and maintenance keep the minimal ones.
+- **Focus Rings**: Universal `:focus-visible` ring: Blue Sky in Light mode, Sunny Yellow (`#F2A536`) in Dark mode and on navy surfaces (footer, cookie bar, off-canvas).
 - **Reduced Motion**: Respects `prefers-reduced-motion: reduce` preference across all animations and transitions.
 - **Contrasts**: High contrast ratios (AAA on institutional blue `#023256`, AA/AAA across text and buttons).
 

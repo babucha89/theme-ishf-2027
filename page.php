@@ -16,6 +16,8 @@ $fixed_og_image = null;
 
 <?php
 // -- Block: HEADER
+// Inner pages / master homepage use the full navigation-menu and footer (landing page, 404 and maintenance keep the minimal ones)
+ishf_use_full_layout(true);
 get_header();
 ?>
 
