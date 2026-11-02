@@ -949,13 +949,13 @@ html { scroll-behavior: smooth; }
 
 /* Newsletter band (Figma: Home / Newsletter) - brand yellow in both modes; footer-1.svg strip along the bottom */
 .ishf-newsletter { background-color: var(--colors-brand-sunny-yellow); overflow: hidden; }
-.newsletter-band { padding: var(--grids-spacing-48) 0 var(--grids-spacing-32); }
-.newsletter-band-title { font-size: var(--fonts-size-heading-3); line-height: 1.2; color: var(--colors-brand-blue-sky); margin: 0 0 var(--grids-spacing-24); }
-.newsletter-band-art { display: block; width: 100%; height: clamp(56px, 9.25vw, 148px); object-fit: cover; object-position: 72% bottom; }
+.newsletter-band { padding: var(--grids-spacing-32) 0 var(--grids-spacing-24); }
+.newsletter-band-title { font-size: var(--fonts-size-heading-3); line-height: 1.2; color: var(--colors-brand-blue-sky); margin: 0 0 var(--grids-spacing-16); }
+.newsletter-band-art { display: block; width: 100%; height: clamp(48px, 6.25vw, 100px); object-fit: cover; object-position: 72% bottom; }
 .ishf-newsletter :focus-visible { outline-color: var(--colors-brand-blue-sky) !important; }
 @media (min-width: 960px) {
-  .newsletter-band { padding: var(--grids-spacing-64) 0 var(--grids-spacing-48); }
-  .newsletter-band-title { font-size: var(--fonts-size-heading-2); }
+  .newsletter-band { padding: var(--grids-spacing-48) 0 var(--grids-spacing-24); }
+  .newsletter-band-title { font-size: var(--fonts-size-heading-2); margin-bottom: var(--grids-spacing-24); }
 }
 /* Modal: reuse the partnership modal shell; neutralise the old card look around the form */
 .modal-ishf-newsletter .cta-box-newsletter { background: none; border: 0; padding: 0; color: inherit; }
