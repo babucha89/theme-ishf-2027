@@ -1,7 +1,7 @@
 <?php
 // -----------------------------------------------------------------------------
 //  Section: NEWSLETTER band (site-wide, rendered by footer.php before the footer)
-//  Figma: Home / Newsletter. Yellow band: heading + Subscribe button + skyline art.
+//  Figma: Home / Newsletter. Yellow band: heading + Subscribe button + full-width footer-1.svg skyline strip.
 //  The button opens #modal-newsletter, which is hard-coded in the footer
 //  (footer.php -> includes/newsletter-modal.php), so it exists on every page.
 // -----------------------------------------------------------------------------
@@ -15,7 +15,7 @@
           <?php _e('Subscribe', TEXT_DOMAIN); ?>
         </button>
       </div>
-      <img class="newsletter-band-art" src="<?php echo esc_url(BASE_ASSETS . 'skyline-colors.svg'); ?>" alt="" aria-hidden="true" />
     </div>
   </div>
+  <img class="newsletter-band-art" src="<?php echo esc_url(BASE_ASSETS . 'footer-1.svg'); ?>" alt="" aria-hidden="true" width="1600" height="148" loading="lazy" />
 </section>
