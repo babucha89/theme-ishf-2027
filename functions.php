@@ -1,0 +1,784 @@
+<?php
+// -----------------------------------------------------------------------------
+//  File: FUNCTIONS
+//  Base Theme: International Social Housing Festival (ISHF) 2027 Lisbon
+//  Edited: BB, 27-OUT-2026
+// -----------------------------------------------------------------------------
+
+
+//------------------------------------------------------------------------------
+//  Defining CONSTANTS
+//------------------------------------------------------------------------------
+
+// -- Redirections
+if ($_SERVER['SERVER_NAME'] !== 'localhost'):
+  // defined('REDIRECT_SITE') or define('REDIRECT_SITE', 'https://www.socialhousingfestival.eu');
+  defined('REDIRECT_SITE') or define('REDIRECT_SITE', 'https://bs.xl.pt/ishf-2027');
+else:
+  defined('REDIRECT_SITE') or define('REDIRECT_SITE', get_home_url());
+endif;
+
+// -- CDN Versions
+defined('CDN_JQUERY_VERSION') or define('CDN_JQUERY_VERSION', '4.0.0');
+defined('CDN_UIKIT_VERSION') or define('CDN_UIKIT_VERSION', '3.25.28');
+
+// -- Site Constants
+defined('SITE_VERSION') or define('SITE_VERSION', '1.0.0');
+defined('SITE_LATEST_UPDATE') or define('SITE_LATEST_UPDATE', '27-OUT-2026');
+defined('SITE_GTM_ID') or define('SITE_GTM_ID', 'GTM-WKBFD6MJ');
+defined('SITE_NAME') or define('SITE_NAME', 'International Social Housing Festival 2027');
+defined('SITE_SHORT_NAME') or define('SITE_SHORT_NAME', 'ISHF 2027');
+defined('SITE_CLIENT_NAME') or define('SITE_CLIENT_NAME', 'ISHF 2027 Lisbon');
+defined('SITE_CONTACT_NAME') or define('SITE_CONTACT_NAME', 'Medialivre Boost Activate');
+defined('SITE_CONTACT_EMAIL') or define('SITE_CONTACT_EMAIL', 'boostactivate@medialivre.pt');
+defined('SITE_CONTACT_NAME_2') or define('SITE_CONTACT_NAME_2', null);
+defined('SITE_CONTACT_EMAIL_2') or define('SITE_CONTACT_EMAIL_2', null);
+defined('TEXT_DOMAIN') or define('TEXT_DOMAIN', 'ishf-2027');
+defined('SITE_USE_NAVSCROLLER') or define('SITE_USE_NAVSCROLLER', true);
+defined('SITE_USE_SEARCH') or define('SITE_USE_SEARCH', false);
+defined('SITE_COOKIES_DISCLAIMER_POSITION') or define('SITE_COOKIES_DISCLAIMER_POSITION', 'top'); // 'top' or 'bottom'
+
+// -- Call for Sessions External Form URL
+// Form link from Centro de Congressos de Lisboa.
+defined('SITE_CALL_FOR_SESSIONS_URL') or define('SITE_CALL_FOR_SESSIONS_URL', 'https://congressos.leading.pt/geral/inserirresumo.aspx?evento=338&formulario=757&lingua=en-GB&login=false');
+
+// -- GDPR / Privacy Consent Disclaimers (Configurable)
+// For Partnership & Newsletter Forms it's applied the same consent.
+defined('SITE_DEFAULT_CONSENT_DISCLAIMER') or define('SITE_DEFAULT_CONSENT_DISCLAIMER',
+'I expressly authorize the processing of my personal data for marketing communications by Medialivre, S.A. and its partner entities, via telephone, email, SMS, and postal mail.');
+defined('SITE_PARTNERSHIP_CONSENT_DISCLAIMER') or define('SITE_PARTNERSHIP_CONSENT_DISCLAIMER', SITE_DEFAULT_CONSENT_DISCLAIMER);
+defined('SITE_NEWSLETTER_CONSENT_DISCLAIMER') or define('SITE_NEWSLETTER_CONSENT_DISCLAIMER', SITE_DEFAULT_CONSENT_DISCLAIMER);
+
+defined('RECAPTCHA_SITE_KEY') or define('RECAPTCHA_SITE_KEY', null);
+defined('RECAPTCHA_SECRET_KEY') or define('RECAPTCHA_SECRET_KEY', null);
+
+defined('SITE_USE_ATTENDANTS') or define('SITE_USE_ATTENDANTS', false);
+defined('SITE_USE_BANNERS') or define('SITE_USE_BANNERS', false);
+defined('SITE_USE_COAUTHORS') or define('SITE_USE_COAUTHORS', false);
+defined('SITE_USE_FAQS') or define('SITE_USE_FAQS', false);
+defined('SITE_USE_HEADER_SLIDES') or define('SITE_USE_HEADER_SLIDES', false);
+defined('SITE_USE_PARTNERSHIPS') or define('SITE_USE_PARTNERSHIPS', false);
+defined('SITE_USE_PODCASTS') or define('SITE_USE_PODCASTS', false);
+defined('SITE_USE_PROJECTS') or define('SITE_USE_PROJECTS', false);
+defined('SITE_USE_QUOTATIONS') or define('SITE_USE_QUOTATIONS', false);
+defined('SITE_USE_SEMINARS') or define('SITE_USE_SEMINARS', false);
+defined('SITE_USE_SPONSORS') or define('SITE_USE_SPONSORS', false);
+defined('SITE_USE_TALKS') or define('SITE_USE_TALKS', false);
+defined('SITE_USE_VIDEOCASTS') or define('SITE_USE_VIDEOCASTS', false);
+defined('SITE_USE_WINNERS') or define('SITE_USE_WINNERS', false);
+
+// -- Base Path Constants (Standalone Base Theme)
+defined('BASE_SITE') or define('BASE_SITE', get_home_url());
+defined('BASE_CSS') or define('BASE_CSS', str_replace(BASE_SITE, REDIRECT_SITE, get_stylesheet_directory_uri()) . '/css/');
+defined('BASE_IMAGES') or define('BASE_IMAGES', str_replace(BASE_SITE, REDIRECT_SITE, get_stylesheet_directory_uri()) . '/img/');
+defined('BASE_BACKGROUNDS') or define('BASE_BACKGROUNDS', str_replace(BASE_SITE, REDIRECT_SITE, get_stylesheet_directory_uri()) . '/img/backgrounds/');
+defined('BASE_BRANDING') or define('BASE_BRANDING', str_replace(BASE_SITE, REDIRECT_SITE, get_stylesheet_directory_uri()) . '/img/branding/');
+defined('BASE_ASSETS') or define('BASE_ASSETS', str_replace(BASE_SITE, REDIRECT_SITE, get_stylesheet_directory_uri()) . '/img/assets/');
+defined('BASE_BANNERS') or define('BASE_BANNERS', str_replace(BASE_SITE, REDIRECT_SITE, get_stylesheet_directory_uri()) . '/img/banners/');
+defined('BASE_OG_IMAGES') or define('BASE_OG_IMAGES', str_replace(BASE_SITE, REDIRECT_SITE, get_stylesheet_directory_uri()) . '/img/og-images/');
+defined('BASE_SPONSORS') or define('BASE_SPONSORS', str_replace(BASE_SITE, REDIRECT_SITE, get_stylesheet_directory_uri()) . '/img/sponsors/');
+defined('BASE_FAVICONS') or define('BASE_FAVICONS', str_replace(BASE_SITE, REDIRECT_SITE, get_stylesheet_directory_uri()) . '/favicons/');
+defined('BASE_JS') or define('BASE_JS', str_replace(BASE_SITE, REDIRECT_SITE, get_stylesheet_directory_uri()) . '/js/');
+defined('BASE_FONTS') or define('BASE_FONTS', str_replace(BASE_SITE, REDIRECT_SITE, get_stylesheet_directory_uri()) . '/fonts/');
+
+// -- Backwards Compatibility Aliases
+defined('CHILD_BASE_SITE') or define('CHILD_BASE_SITE', BASE_SITE);
+defined('CHILD_BASE_CSS') or define('CHILD_BASE_CSS', BASE_CSS);
+defined('CHILD_BASE_IMAGES') or define('CHILD_BASE_IMAGES', BASE_IMAGES);
+defined('CHILD_BASE_BACKGROUNDS') or define('CHILD_BASE_BACKGROUNDS', BASE_BACKGROUNDS);
+defined('CHILD_BASE_BRANDING') or define('CHILD_BASE_BRANDING', BASE_BRANDING);
+defined('CHILD_BASE_ASSETS') or define('CHILD_BASE_ASSETS', BASE_ASSETS);
+defined('CHILD_BASE_BANNERS') or define('CHILD_BASE_BANNERS', BASE_BANNERS);
+defined('CHILD_BASE_OG_IMAGES') or define('CHILD_BASE_OG_IMAGES', BASE_OG_IMAGES);
+defined('CHILD_BASE_SPONSORS') or define('CHILD_BASE_SPONSORS', BASE_SPONSORS);
+defined('CHILD_BASE_FAVICONS') or define('CHILD_BASE_FAVICONS', BASE_FAVICONS);
+defined('CHILD_BASE_JS') or define('CHILD_BASE_JS', BASE_JS);
+
+// -- API Webhook Endpoint & Form Project Tokens
+// https://api-mm.boostsolutions.pt/
+defined('NEWSLETTER_API_ENDPOINT') or define('NEWSLETTER_API_ENDPOINT', 'https://api-mm.boostsolutions.pt/api/webhooks/gravity-forms');
+defined('PARTNERSHIP_PROJECT_TOKEN') or define('PARTNERSHIP_PROJECT_TOKEN', 'tk-8XZPBw3Hnl');
+defined('NEWSLETTER_PROJECT_TOKEN') or define('NEWSLETTER_PROJECT_TOKEN', 'tk-lOObEAt91Z');
+
+
+//------------------------------------------------------------------------------
+//  Defining THEME STARTUP
+//------------------------------------------------------------------------------
+add_action('after_setup_theme', 'ishf_setup');
+function ishf_setup()
+{
+  global $content_width;
+  if (!isset($content_width))
+    $content_width = 1200;
+
+  // Load translations for the base theme
+  load_theme_textdomain(TEXT_DOMAIN, __DIR__ . '/languages');
+
+  date_default_timezone_set('Europe/Lisbon');
+  $locale = ($_SERVER['SERVER_NAME'] !== 'localhost') ? 'pt_PT.UTF-8' : 'pt-PT.UTF-8';
+  setlocale(LC_ALL, $locale);
+
+  // Modern Theme Features (Explicitly declared <title> in header.php for WAVE / WCAG 2.1 AA compliance)
+  remove_action('wp_head', '_wp_render_title_tag', 1);
+  add_theme_support('post-thumbnails');
+  add_theme_support('html5', array('comment-list', 'comment-form', 'search-form', 'gallery', 'caption', 'style', 'script'));
+  add_theme_support('responsive-embeds');
+
+  add_image_size('image-speaker-face', 450, 450, true);
+  add_image_size('image-gallery', 1600, 900, true);
+}
+
+
+//------------------------------------------------------------------------------
+//  Loading SCRIPTS and STYLESHEETS
+//------------------------------------------------------------------------------
+add_action('wp_enqueue_scripts', 'ishf_load_scripts');
+function ishf_load_scripts()
+{
+  // -- ENQUEUE STYLESHEETS
+  wp_enqueue_style('uikit', 'https://cdn.jsdelivr.net/npm/uikit@' . CDN_UIKIT_VERSION . '/dist/css/uikit.min.css', array(), CDN_UIKIT_VERSION);
+  wp_enqueue_style('googlefonts', add_query_arg(array('family' => 'Plus+Jakarta+Sans:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900', 'display' => 'swap'), 'https://fonts.googleapis.com/css2'), array(), null);
+
+  $deps = array('uikit');
+  if ($_SERVER['SERVER_NAME'] !== 'localhost'):
+    wp_enqueue_style('app', BASE_CSS . 'app.min.css', $deps, filemtime(__DIR__ . '/css/app.min.css'));
+  else:
+    wp_enqueue_style('app', BASE_CSS . 'app.css', $deps, filemtime(__DIR__ . '/css/app.css'));
+  endif;
+
+  // -- ENQUEUE SCRIPTS
+  wp_deregister_script('jquery');
+  wp_enqueue_script('jquery', 'https://cdnjs.cloudflare.com/ajax/libs/jquery/' . CDN_JQUERY_VERSION . '/jquery.min.js', array(), CDN_JQUERY_VERSION, false);
+
+  $deps = array('jquery');
+  wp_enqueue_script('uikit', 'https://cdn.jsdelivr.net/npm/uikit@' . CDN_UIKIT_VERSION . '/dist/js/uikit.min.js', $deps, CDN_UIKIT_VERSION, false);
+  wp_enqueue_script('uikit-icons', 'https://cdn.jsdelivr.net/npm/uikit@' . CDN_UIKIT_VERSION . '/dist/js/uikit-icons.min.js', array('uikit'), CDN_UIKIT_VERSION, true);
+
+  if (!is_page('widget') && file_exists(__DIR__ . '/js/cookies.js')):
+    wp_enqueue_script('cookies', BASE_JS . 'cookies.js', array('jquery', 'uikit'), SITE_VERSION, true);
+  endif;
+
+  wp_enqueue_script('light-dark-switch', BASE_JS . 'light-dark-switch.js', array('jquery'), false, true);
+
+}
+
+
+//------------------------------------------------------------------------------
+//  Dark / Light Mode: Early script to avoid FOUC (flash of light mode)
+//------------------------------------------------------------------------------
+add_action('wp_head', 'ishf_dark_mode_init_script', 5);
+function ishf_dark_mode_init_script()
+{
+  ?>
+  <script type="text/javascript">
+    (function () {
+      var theme = localStorage.getItem('manualThemePreference');
+      if (!theme) {
+        var ca = document.cookie.split(';');
+        for (var i = 0; i < ca.length; i++) {
+          var c = ca[i].trim();
+          if (c.indexOf('ISHF2027_Theme_Preference=') === 0) {
+            theme = c.substring(26);
+            break;
+          }
+        }
+      }
+      if (theme === 'dark') {
+        document.documentElement.classList.add('dark-mode');
+      }
+    })();
+  </script>
+  <?php
+}
+
+
+//------------------------------------------------------------------------------
+//  Helper: Post Views Counter
+//------------------------------------------------------------------------------
+if (!function_exists('ishf_set_post_views')):
+  function ishf_set_post_views($postID)
+  {
+    if (empty($postID)) return;
+    $count_key = 'ishf_post_views_count';
+    $count = get_post_meta($postID, $count_key, true);
+    if ($count == ''):
+      $count = 0;
+      delete_post_meta($postID, $count_key);
+      add_post_meta($postID, $count_key, '0');
+    else:
+      if (get_post_status($postID) === 'publish'):
+        $count++;
+        update_post_meta($postID, $count_key, $count);
+      endif;
+    endif;
+  }
+endif;
+
+if (!function_exists('uikit_cbs_set_post_views')):
+  function uikit_cbs_set_post_views($postID)
+  {
+    ishf_set_post_views($postID);
+  }
+endif;
+
+
+//------------------------------------------------------------------------------
+//  Helper: Open Graph Tags
+//------------------------------------------------------------------------------
+if (!function_exists('ishf_open_graph_tags')):
+  function ishf_open_graph_tags($fixed_og_image = null)
+  {
+    $og_title = wp_get_document_title();
+    $og_url = REDIRECT_SITE . $_SERVER['REQUEST_URI'];
+    $og_description = __('International Social Housing Festival (ISHF) 2027 Lisbon. Cities with Soul: It Begins with a Key.', TEXT_DOMAIN);
+    $og_image = !empty($fixed_og_image) ? $fixed_og_image : BASE_OG_IMAGES . 'og-image.jpg';
+    ?>
+    <!-- Open Graph / Social Meta Tags -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="<?php echo esc_url($og_url); ?>" />
+    <meta property="og:title" content="<?php echo esc_attr($og_title); ?>" />
+    <meta property="og:description" content="<?php echo esc_attr($og_description); ?>" />
+    <meta property="og:image" content="<?php echo esc_url($og_image); ?>" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="<?php echo esc_attr($og_title); ?>" />
+    <meta name="twitter:description" content="<?php echo esc_attr($og_description); ?>" />
+    <meta name="twitter:image" content="<?php echo esc_url($og_image); ?>" />
+    <?php
+  }
+endif;
+
+if (!function_exists('uikit_cbs_open_graph_tags')):
+  function uikit_cbs_open_graph_tags($fixed_og_image = null)
+  {
+    ishf_open_graph_tags($fixed_og_image);
+  }
+endif;
+
+
+//------------------------------------------------------------------------------
+//  Document Title Customization (Browser Tab & Head Title)
+//------------------------------------------------------------------------------
+if (!function_exists('ishf_document_title_parts')):
+  function ishf_document_title_parts($title_parts)
+  {
+    $short_name = defined('SITE_SHORT_NAME') ? SITE_SHORT_NAME : (defined('SITE_NAME') ? SITE_NAME : 'ISHF 2027');
+    if (is_front_page() || is_home() || is_page('landing-page') || is_page_template('page-landing-page.php')) {
+      $title_parts['title'] = $short_name;
+      $title_parts['tagline'] = __('Cities with Soul: It Begins with a Key', TEXT_DOMAIN);
+      unset($title_parts['site']);
+    } else {
+      $title_parts['site'] = $short_name;
+    }
+    return $title_parts;
+  }
+  add_filter('document_title_parts', 'ishf_document_title_parts', 20);
+endif;
+
+if (!function_exists('ishf_pre_get_document_title')):
+  function ishf_pre_get_document_title($title)
+  {
+    $short_name = defined('SITE_SHORT_NAME') ? SITE_SHORT_NAME : (defined('SITE_NAME') ? SITE_NAME : 'ISHF 2027');
+    if (is_front_page() || is_home() || is_page('landing-page') || is_page_template('page-landing-page.php')) {
+      return $short_name . ' - ' . __('Cities with Soul: It Begins with a Key', TEXT_DOMAIN);
+    }
+    return $title;
+  }
+  add_filter('pre_get_document_title', 'ishf_pre_get_document_title', 20);
+endif;
+
+
+//------------------------------------------------------------------------------
+//  Call for Sessions - External Form URL Helper
+//------------------------------------------------------------------------------
+if (!function_exists('ishf_get_call_for_sessions_url')):
+  /**
+   * Obtém o link para o formulário externo de "Call for Sessions".
+   * O URL pode ser configurado na constante SITE_CALL_FOR_SESSIONS_URL,
+   * alterado diretamente nesta função, ou filtrado através de 'ishf_call_for_sessions_url'.
+   *
+   * @return string
+   */
+  function ishf_get_call_for_sessions_url()
+  {
+    $url = defined('SITE_CALL_FOR_SESSIONS_URL') && !empty(SITE_CALL_FOR_SESSIONS_URL)
+      ? SITE_CALL_FOR_SESSIONS_URL
+      : 'https://docs.google.com/forms/';
+
+    return apply_filters('ishf_call_for_sessions_url', $url);
+  }
+endif;
+
+
+//------------------------------------------------------------------------------
+//  Form Disclaimers / GDPR Consent Statements
+//------------------------------------------------------------------------------
+if (!function_exists('ishf_get_partnership_disclaimer')):
+  /**
+   * Retorna a frase de consentimento/disclaimer para o formulário de parcerias.
+   * Pode ser editado na constante SITE_PARTNERSHIP_CONSENT_DISCLAIMER ou via filtro.
+   *
+   * @return string
+   */
+  function ishf_get_partnership_disclaimer()
+  {
+    $fallback = defined('SITE_DEFAULT_CONSENT_DISCLAIMER')
+      ? SITE_DEFAULT_CONSENT_DISCLAIMER
+      : __('I expressly authorize the processing of my personal data for marketing communications by Medialivre, S.A. and its partner entities, via telephone, email, SMS, and postal mail.', TEXT_DOMAIN);
+
+    $default = defined('SITE_PARTNERSHIP_CONSENT_DISCLAIMER')
+      ? SITE_PARTNERSHIP_CONSENT_DISCLAIMER
+      : $fallback;
+
+    return apply_filters('ishf_partnership_consent_disclaimer', $default);
+  }
+endif;
+
+if (!function_exists('ishf_get_newsletter_disclaimer')):
+  /**
+   * Retorna a frase de consentimento/disclaimer para o formulário de newsletter.
+   * Pode ser editado na constante SITE_NEWSLETTER_CONSENT_DISCLAIMER ou via filtro.
+   *
+   * @return string
+   */
+  function ishf_get_newsletter_disclaimer()
+  {
+    $fallback = defined('SITE_DEFAULT_CONSENT_DISCLAIMER')
+      ? SITE_DEFAULT_CONSENT_DISCLAIMER
+      : __('I expressly authorize the processing of my personal data for marketing communications by Medialivre, S.A. and its partner entities, via telephone, email, SMS, and postal mail.', TEXT_DOMAIN);
+
+    $default = defined('SITE_NEWSLETTER_CONSENT_DISCLAIMER')
+      ? SITE_NEWSLETTER_CONSENT_DISCLAIMER
+      : $fallback;
+
+    return apply_filters('ishf_newsletter_consent_disclaimer', $default);
+  }
+endif;
+
+
+//------------------------------------------------------------------------------
+//  Include Custom Database Leads Manager & Form Handlers
+//------------------------------------------------------------------------------
+require_once __DIR__ . '/includes/leads-manager.php';
+require_once __DIR__ . '/includes/form-handlers.php';
+
+
+//------------------------------------------------------------------------------
+//  ICS Calendar Generator Query Variables
+//------------------------------------------------------------------------------
+if (!function_exists('ishf_ics_query_vars')):
+  function ishf_ics_query_vars($vars)
+  {
+    $vars[] = 'ics_start';
+    $vars[] = 'ics_end';
+    $vars[] = 'ics_name';
+    $vars[] = 'ics_description';
+    $vars[] = 'ics_location';
+    $vars[] = 'ics_alert';
+    $vars[] = 'ics_url';
+    return $vars;
+  }
+  add_filter('query_vars', 'ishf_ics_query_vars');
+endif;
+
+
+//------------------------------------------------------------------------------
+//  GET the post groups from POST CONTENT (returns an Array)
+//  Reference: uikit-boostsolutions/functions.php
+//------------------------------------------------------------------------------
+if (!function_exists('uikit_cbs_get_post_groups')):
+  function uikit_cbs_get_post_groups($postID, $rendered = true)
+  {
+    $groups = array();
+    $post = get_post($postID);
+    if (!$post)
+      return $groups;
+    $blocks = parse_blocks($post->post_content);
+    foreach ($blocks as $block):
+      if ($block['blockName'] === 'core/group'):
+        if (!$rendered):
+          array_push($groups, $block['innerBlocks']);
+        else:
+          $content = null;
+          foreach ($block['innerBlocks'] as $inner_block):
+            $content .= render_block($inner_block);
+          endforeach;
+          $content = apply_filters('the_content', do_blocks($content));
+          array_push($groups, $content);
+        endif;
+      endif;
+    endforeach;
+    return $groups;
+  }
+endif;
+
+if (!function_exists('ishf_get_post_groups')):
+  function ishf_get_post_groups($postID, $rendered = true)
+  {
+    return uikit_cbs_get_post_groups($postID, $rendered);
+  }
+endif;
+
+
+//------------------------------------------------------------------------------
+//  GET the post headings from POST CONTENT (returns an Array)
+//  Reference: uikit-boostsolutions/functions.php
+//------------------------------------------------------------------------------
+if (!function_exists('uikit_cbs_get_post_headings')):
+  function uikit_cbs_get_post_headings($postID)
+  {
+    $headings = array();
+    $post = get_post($postID);
+    if (!$post)
+      return $headings;
+    $blocks = parse_blocks($post->post_content);
+    foreach ($blocks as $block):
+      if ($block['blockName'] == 'core/heading'):
+        array_push($headings, $block['innerHTML']);
+      endif;
+    endforeach;
+    return $headings;
+  }
+endif;
+
+if (!function_exists('ishf_get_post_headings')):
+  function ishf_get_post_headings($postID)
+  {
+    return uikit_cbs_get_post_headings($postID);
+  }
+endif;
+
+
+//------------------------------------------------------------------------------
+//  REMOVE the post headings from POST CONTENT
+//  Reference: uikit-boostsolutions/functions.php
+//------------------------------------------------------------------------------
+if (!function_exists('uikit_cbs_remove_post_headings')):
+  function uikit_cbs_remove_post_headings($postID, $position = -1)
+  {
+    $content = null;
+    $counter = 0;
+    $post = get_post($postID);
+    if (!$post)
+      return '';
+    $blocks = parse_blocks($post->post_content);
+    foreach ($blocks as $block):
+      // -- Remove all headings (-1)
+      if ($position === -1):
+        if ($block['blockName'] != 'core/heading'):
+          $content .= render_block($block);
+        endif;
+      // -- Remove only one heading ($position)
+      else:
+        if ($block['blockName'] !== 'core/heading'):
+          $content .= render_block($block);
+        else:
+          if ($counter !== $position):
+            $content .= render_block($block);
+          endif;
+          $counter++;
+        endif;
+      endif;
+    endforeach;
+    return $content;
+  }
+endif;
+
+if (!function_exists('ishf_remove_post_headings')):
+  function ishf_remove_post_headings($postID, $position = -1)
+  {
+    return uikit_cbs_remove_post_headings($postID, $position);
+  }
+endif;
+
+
+//------------------------------------------------------------------------------
+//  REMOVE specific SHORTCODE from POST CONTENT
+//  Reference: uikit-boostsolutions/functions.php
+//------------------------------------------------------------------------------
+if (!function_exists('uikit_cbs_strip_shortcode')):
+  function uikit_cbs_strip_shortcode($content, $shortcode_tag)
+  {
+    $matches = null;
+    $pos = null;
+    preg_match_all('/' . get_shortcode_regex() . '/s', $content, $matches, PREG_SET_ORDER);
+    if (!empty($matches)):
+      foreach ($matches as $shortcode):
+        if ($shortcode_tag === $shortcode[2]):
+          $pos = strpos($content, $shortcode[0]);
+          if (false !== $pos):
+            $content = substr_replace($content, '', $pos, strlen($shortcode[0]));
+          endif;
+        endif;
+      endforeach;
+    endif;
+    return $content;
+  }
+endif;
+
+if (!function_exists('ishf_strip_shortcode')):
+  function ishf_strip_shortcode($content, $shortcode_tag)
+  {
+    return uikit_cbs_strip_shortcode($content, $shortcode_tag);
+  }
+endif;
+
+
+//------------------------------------------------------------------------------
+//  GET YouTube SHORTCODES from POST CONTENT
+//  Returns IDs or HTML (processed SHORTCODE)
+//  Reference: uikit-boostsolutions/functions.php
+//------------------------------------------------------------------------------
+if (!function_exists('uikit_cbs_get_post_youtubes')):
+  function uikit_cbs_get_post_youtubes($post, $html = true)
+  {
+    if (!$post = get_post($post))
+      return array();
+
+    if (!has_shortcode($post->post_content, 'youtube'))
+      return array();
+
+    $youtubes = array();
+    $matches = null;
+    if (preg_match_all('/' . get_shortcode_regex() . '/s', $post->post_content, $matches, PREG_SET_ORDER)):
+      foreach ($matches as $shortcode):
+        if ('youtube' === $shortcode[2]):
+          if ($html):
+            $youtubes[] = do_shortcode_tag($shortcode);
+          else:
+            $atts = shortcode_parse_atts($shortcode[3]);
+            if (is_array($atts) && !empty($atts['id'])):
+              $youtube_id = trim($atts['id']);
+            else:
+              $youtube_id = trim(str_replace(array(' id="', '"'), '', $shortcode[3]));
+            endif;
+            array_push($youtubes, $youtube_id);
+          endif;
+        endif;
+      endforeach;
+    endif;
+    return apply_filters('uikit_cbs_get_post_youtubes', $youtubes, $post);
+  }
+endif;
+
+if (!function_exists('ishf_get_post_youtubes')):
+  function ishf_get_post_youtubes($post, $html = true)
+  {
+    return uikit_cbs_get_post_youtubes($post, $html);
+  }
+endif;
+
+
+//------------------------------------------------------------------------------
+//  GET YouTube SHORTCODE ATTRIBUTES from POST CONTENT
+//  Returns associative array of attributes from the first [youtube] shortcode
+//------------------------------------------------------------------------------
+if (!function_exists('ishf_get_post_youtube_atts')):
+  function ishf_get_post_youtube_atts($post)
+  {
+    if (!$post = get_post($post))
+      return array();
+
+    if (!has_shortcode($post->post_content, 'youtube'))
+      return array();
+
+    $matches = null;
+    if (preg_match_all('/' . get_shortcode_regex() . '/s', $post->post_content, $matches, PREG_SET_ORDER)):
+      foreach ($matches as $shortcode):
+        if ('youtube' === $shortcode[2]):
+          $atts = shortcode_parse_atts($shortcode[3]);
+          return is_array($atts) ? $atts : array();
+        endif;
+      endforeach;
+    endif;
+    return array();
+  }
+endif;
+
+if (!function_exists('uikit_cbs_get_post_youtube_atts')):
+  function uikit_cbs_get_post_youtube_atts($post)
+  {
+    return ishf_get_post_youtube_atts($post);
+  }
+endif;
+
+
+//------------------------------------------------------------------------------
+//  GET Brightcove SHORTCODES from POST CONTENT
+//  Returns IDs or HTML (processed SHORTCODE)
+//  Reference: uikit-boostsolutions/functions.php
+//------------------------------------------------------------------------------
+if (!function_exists('uikit_cbs_get_post_brightcoves')):
+  function uikit_cbs_get_post_brightcoves($post, $html = true)
+  {
+    if (!$post = get_post($post))
+      return array();
+
+    if (!has_shortcode($post->post_content, 'brightcove'))
+      return array();
+
+    $brightcoves = array();
+    $matches = null;
+    if (preg_match_all('/' . get_shortcode_regex() . '/s', $post->post_content, $matches, PREG_SET_ORDER)):
+      foreach ($matches as $shortcode):
+        if ('brightcove' === $shortcode[2]):
+          if ($html):
+            $brightcoves[] = do_shortcode_tag($shortcode);
+          else:
+            $atts = shortcode_parse_atts($shortcode[3]);
+            if (is_array($atts) && !empty($atts['id'])):
+              $brightcove_id = trim($atts['id']);
+            else:
+              $brightcove_id = trim(str_replace(array(' id="', '"'), '', $shortcode[3]));
+            endif;
+            array_push($brightcoves, $brightcove_id);
+          endif;
+        endif;
+      endforeach;
+    endif;
+    return apply_filters('uikit_cbs_get_post_brightcoves', $brightcoves, $post);
+  }
+endif;
+
+if (!function_exists('ishf_get_post_brightcoves')):
+  function ishf_get_post_brightcoves($post, $html = true)
+  {
+    return uikit_cbs_get_post_brightcoves($post, $html);
+  }
+endif;
+
+
+//------------------------------------------------------------------------------
+//  Function that adds Referrer Policy to YouTube embeds
+//  Reference: uikit-boostsolutions/functions.php
+//------------------------------------------------------------------------------
+if (!function_exists('uikit_cbs_youtube_add_referrerpolicy')):
+  function uikit_cbs_youtube_add_referrerpolicy($html, $url, $attr, $post_id)
+  {
+    if (strpos($html, 'youtube.com') !== false || strpos($html, 'youtu.be') !== false):
+      if (strpos($html, 'referrerpolicy=') === false):
+        $html = str_replace('<iframe', '<iframe referrerpolicy="no-referrer-when-downgrade"', $html);
+      endif;
+    endif;
+    return $html;
+  }
+  add_filter('embed_oembed_html', 'uikit_cbs_youtube_add_referrerpolicy', 10, 4);
+  add_filter('video_embed_html', 'uikit_cbs_youtube_add_referrerpolicy', 10, 4);
+endif;
+
+
+//------------------------------------------------------------------------------
+//  Defining SHORTCODES
+//  Reference: uikit-boostsolutions/functions.php
+//------------------------------------------------------------------------------
+
+// -- VÍDEO YOUTUBE
+if (!function_exists('shortcode_youtube')):
+  function shortcode_youtube($attributes)
+  {
+    $id = !empty($attributes['id']) ? trim($attributes['id']) : '';
+    $html = '';
+    if (!empty($id)):
+      // Clean YouTube ID if a full URL was passed
+      if (preg_match('%(?:youtube(?:-nocookie)?\.com/(?:[^/]+/.+/|(?:v|e(?:mbed)?|live)/|.*[?&]v=)|youtu\.be/)([^"&?/ ]{11})%i', $id, $match)):
+        $id = $match[1];
+      endif;
+
+      $title = (!empty($attributes['title'])) ? $attributes['title'] : null;
+      $title = (!empty($title)) ? str_replace('{br}', '<br/>', $title) : null;
+      $iframe_title = (!empty($title)) ? wp_strip_all_tags($title) : __('YouTube Video', TEXT_DOMAIN);
+      $title_size = (!empty($attributes['title_size'])) ? (int) $attributes['title_size'] : 2;
+      $title_position = (!empty($attributes['title_position'])) ? $attributes['title_position'] : 'none';
+      $no_margin = (!empty($attributes['no_margin'])) ? filter_var($attributes['no_margin'], FILTER_VALIDATE_BOOLEAN) : false;
+      $list = (!empty($attributes['list'])) ? 'list=' . rawurlencode($attributes['list']) . '&' : '';
+
+      $html = '<div';
+      if (!$no_margin):
+        $html .= ' class="uk-margin-medium"';
+      endif;
+      $html .= '>';
+      if ((!empty($title)) && ($title_position === 'top')):
+        $html .= '<h' . $title_size . '>' . wp_kses_post($title) . '</h' . $title_size . '>';
+      endif;
+      $html .= '<iframe width="1280" height="720" src="https://www.youtube.com/embed/' . esc_attr($id) . '?' . $list . 'showinfo=0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen data-uk-responsive loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="' . esc_attr($iframe_title) . '"></iframe>';
+      if ((!empty($title)) && ($title_position === 'bottom')):
+        $html .= '<h' . $title_size . ' class="uk-margin-top">' . wp_kses_post($title) . '</h' . $title_size . '>';
+      endif;
+      $html .= '</div>';
+    endif;
+    return $html;
+  }
+  remove_shortcode('youtube');
+  add_shortcode('youtube', 'shortcode_youtube');
+endif;
+
+
+// -- VÍDEO BRIGHTCOVE
+if (!function_exists('shortcode_brightcove')):
+  function shortcode_brightcove($attributes)
+  {
+    $id = !empty($attributes['id']) ? trim($attributes['id']) : '';
+    $html = '';
+    if (!empty($id)):
+      $title = (!empty($attributes['title'])) ? $attributes['title'] : null;
+      $title = (!empty($title)) ? str_replace('{br}', '<br/>', $title) : null;
+      $iframe_title = (!empty($title)) ? wp_strip_all_tags($title) : __('BrightCove Video', TEXT_DOMAIN);
+      $title_size = (!empty($attributes['title_size'])) ? (int) $attributes['title_size'] : 2;
+      $title_position = (!empty($attributes['title_position'])) ? $attributes['title_position'] : 'none';
+      $no_margin = (!empty($attributes['no_margin'])) ? filter_var($attributes['no_margin'], FILTER_VALIDATE_BOOLEAN) : false;
+
+      $html = '<div';
+      if (!$no_margin):
+        $html .= ' class="uk-margin-medium"';
+      endif;
+      $html .= '>';
+      if ((!empty($title)) && ($title_position === 'top')):
+        $html .= '<h' . $title_size . '>' . wp_kses_post($title) . '</h' . $title_size . '>';
+      endif;
+      $html .= '<iframe src="https://players.brightcove.net/6108484330001/kAtzSWivK_default/index.html?videoId=' . esc_attr($id) . '" allowfullscreen="" allow="encrypted-media" width="1280" height="720" data-uk-responsive loading="lazy" title="' . esc_attr($iframe_title) . '"></iframe>';
+      if ((!empty($title)) && ($title_position === 'bottom')):
+        $html .= '<h' . $title_size . ' class="uk-margin-top">' . wp_kses_post($title) . '</h' . $title_size . '>';
+      endif;
+      $html .= '</div>';
+    endif;
+    return $html;
+  }
+  remove_shortcode('brightcove');
+  add_shortcode('brightcove', 'shortcode_brightcove');
+endif;
+
+
+// -- STREAMING EVENT BLOCK SHORTCODE ([streaming] or [streaming-event])
+if (!function_exists('shortcode_streaming_event')):
+  function shortcode_streaming_event($attributes)
+  {
+    $attributes = shortcode_atts(
+      array(
+        'youtube_id'  => '',
+        'mode'        => '',
+        'title'       => '',
+        'badge'       => '',
+        'button_text' => '',
+        'autoplay'    => '',
+        'auto_fire'   => '',
+        'modal_id'    => '',
+        'poster'      => '',
+        'page_path'   => '',
+        'page_id'     => '',
+      ),
+      $attributes
+    );
+
+    // Filter out empty string attributes so streaming.php defaults/page values apply
+    $clean_args = array_filter($attributes, function ($v) {
+      return $v !== '';
+    });
+
+    ob_start();
+    get_template_part('includes/sections/streaming', null, $clean_args);
+    return ob_get_clean();
+  }
+  remove_shortcode('streaming');
+  add_shortcode('streaming', 'shortcode_streaming_event');
+  remove_shortcode('streaming-event');
+  add_shortcode('streaming-event', 'shortcode_streaming_event');
+endif;

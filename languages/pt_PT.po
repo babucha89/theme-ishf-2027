@@ -1,0 +1,1621 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Theme Starter\n"
+"POT-Creation-Date: 2024-06-24 15:56+0100\n"
+"PO-Revision-Date: 2024-06-24 15:56+0100\n"
+"Last-Translator: Luis Lourenço <llourenco@cofina.pt>\n"
+"Language-Team: Boost Solutions <boostsolutions@cofina.pt>\n"
+"Language: pt_PT\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 3.4.2\n"
+"X-Poedit-Basepath: ..\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-KeywordsList: __;_e;_x;esc_attr_x\n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-SearchPathExcluded-0: languages\n"
+"X-Poedit-SearchPathExcluded-1: resources\n"
+
+#: includes/cookies-disclaimer.php:19
+#, php-format
+msgid ""
+"This website uses cookies to improve the navigation. By navigating on the "
+"website you agree with its use. To know more please read our %1sCookies "
+"Policy%2s."
+msgstr ""
+"Este site usa cookies para melhorar a navegação. Ao navegar no website "
+"concorda com o seu uso. Para saber mais leia a nossa %1sPolítica de "
+"Cookies%2s."
+
+#: includes/cookies-disclaimer.php:22
+msgid "I Accept"
+msgstr "Aceito"
+
+#: includes/navigation-menu.php:54
+msgid "Search…"
+msgstr "Pesquisar…"
+
+#: includes/navigation-menu.php:54
+msgid "Search for:"
+msgstr "Pesquisar por:"
+
+#: includes/sections/contact-form.php:34
+msgid "Message"
+msgstr "Mensagem"
+
+#: includes/sections/contact-form.php:50
+msgid "Contact Us"
+msgstr "Contacte-nos"
+
+#: includes/sections/contact-form.php:54
+msgid ""
+"<strong>Message sent</strong><br/> We will return your message as soon as "
+"possible."
+msgstr ""
+"<strong>Messagem enviada</strong><br/> Responderemos o mais brevemente "
+"possível."
+
+#: includes/sections/contact-form.php:56
+msgid "<strong>Message not sent</strong><br/> Please try again later."
+msgstr "<strong>Messagem não enviada</strong><br/> Por favor tente mais tarde."
+
+#: includes/sections/contact-form.php:64
+msgid "Name"
+msgstr "Nome"
+
+#: includes/sections/contact-form.php:73
+msgid "Leave us your message"
+msgstr "Deixe-nos a sua mensagem"
+
+#: includes/sections/contact-form.php:76
+msgid "Request Information"
+msgstr "Pedido de Informação"
+
+#: includes/sections/contact-form.php:76
+msgid "Send Message"
+msgstr "Enviar Mensagem"
+
+#: page-manutencao.php:26
+msgid "Under Maintenance"
+msgstr "Em Manutenção"
+
+#: header.php:33
+msgid "Skip to main content"
+msgstr "Saltar para o conteúdo principal"
+
+#: includes/navigation-menu.php:14
+msgid "Main Navigation"
+msgstr "Navegação Principal"
+
+#: includes/theme-toggle.php:7
+msgid "Toggle dark / light mode"
+msgstr "Alternar entre modo claro e escuro"
+
+#: includes/theme-toggle.php:7
+msgid "Toggle theme"
+msgstr "Alternar tema"
+
+#: includes/sections/header.php:33
+msgid "Cities with Soul: It Begins with a Key"
+msgstr "Cidades com Alma: Começa com uma Chave"
+
+#: includes/sections/ctas.php:45
+msgid "Engagement Options"
+msgstr "Opções de Participação"
+
+#: includes/sections/ctas.php:59
+msgid "Partnership"
+msgstr "Parcerias"
+
+#: includes/sections/ctas.php:62
+msgid "Partner with Us"
+msgstr "Seja Nosso Parceiro"
+
+#: includes/sections/ctas.php:65
+msgid "Join ISHF 2027 as an official partner. Connect your organization with key decision-makers and urban housing pioneers shaping the future of affordable living."
+msgstr "Junte-se ao ISHF 2027 como parceiro oficial. Ligue a sua organização a decisores de referência e pioneiros da habitação urbana que moldam o futuro do acesso à habitação."
+
+#: includes/sections/ctas.php:73
+#: includes/sections/ctas.php:86
+#: includes/sections/ctas.php:234
+#: includes/sections/ctas.php:247
+msgid "Close notification"
+msgstr "Fechar notificação"
+
+#: includes/sections/ctas.php:77
+msgid "Thank you for reaching out!"
+msgstr "Obrigado pelo seu contacto!"
+
+#: includes/sections/ctas.php:79
+msgid "Your partnership inquiry has been received. Our team will contact you shortly."
+msgstr "O seu pedido de parceria foi recebido. A nossa equipa entrará em contacto consigo brevemente."
+
+#: includes/sections/ctas.php:107
+msgid "Full Name *"
+msgstr "Nome Completo *"
+
+#: includes/sections/ctas.php:111
+msgid "Full name"
+msgstr "Nome completo"
+
+#: includes/sections/ctas.php:118
+msgid "Corporate Email *"
+msgstr "E-mail Profissional *"
+
+#: includes/sections/ctas.php:122
+msgid "name@organization.com"
+msgstr "nome@organizacao.pt"
+
+#: includes/sections/ctas.php:132
+msgid "Company / Organization *"
+msgstr "Empresa / Organização *"
+
+#: includes/sections/ctas.php:136
+msgid "Organization name"
+msgstr "Nome da organização"
+
+#: includes/sections/ctas.php:143
+msgid "Job Title / Role *"
+msgstr "Cargo / Função *"
+
+#: includes/sections/ctas.php:147
+msgid "e.g. Director"
+msgstr "ex.: Diretor(a)"
+
+#: includes/sections/ctas.php:156
+msgid "Phone Number (Optional)"
+msgstr "Contacto Telefónico (Opcional)"
+
+#: includes/sections/ctas.php:160
+msgid "+351 ..."
+msgstr "+351 ..."
+
+#: includes/sections/ctas.php:168
+msgid "Message / Partnership Interests (Optional)"
+msgstr "Mensagem / Interesse na Parceria (Opcional)"
+
+#: includes/sections/ctas.php:172
+msgid "Briefly describe your partnership interest..."
+msgstr "Descreva brevemente o seu interesse na parceria..."
+
+#: includes/sections/ctas.php:182
+msgid "I authorize the processing of my personal data for the purpose of receiving partnership information regarding ISHF 2027."
+msgstr "Autorizo o tratamento dos meus dados pessoais para efeitos de receção de informações sobre parcerias do ISHF 2027."
+
+#: includes/sections/ctas.php:188
+#: includes/sections/ctas.php:300
+msgid "All fields marked with * are required."
+msgstr "Todos os campos marcados com * são obrigatórios."
+
+#: includes/sections/ctas.php:193
+msgid "Send Partnership Request"
+msgstr "Enviar Pedido de Parceria"
+
+#: includes/sections/ctas.php:202
+msgid "Send Another Message"
+msgstr "Enviar Outra Mensagem"
+
+#: includes/sections/ctas.php:220
+msgid "Newsletter"
+msgstr "Newsletter"
+
+#: includes/sections/ctas.php:223
+msgid "Stay Informed"
+msgstr "Mantenha-se Informado"
+
+#: includes/sections/ctas.php:226
+msgid "Subscribe to our newsletter to receive the latest updates, announcements, calls for proposals, and festival news directly in your inbox."
+msgstr "Subscreva a nossa newsletter para receber as novidades mais recentes, anúncios, convocatórias e notícias do festival diretamente no seu e-mail."
+
+#: includes/sections/ctas.php:238
+msgid "Thank you for subscribing!"
+msgstr "Obrigado pela sua subscrição!"
+
+#: includes/sections/ctas.php:240
+msgid "You are now registered to receive all the latest news from ISHF 2027 Lisbon."
+msgstr "Ficou registado(a) para receber todas as novidades do ISHF 2027 Lisboa."
+
+#: includes/sections/ctas.php:267
+msgid "Your Name *"
+msgstr "O seu Nome *"
+
+#: includes/sections/ctas.php:271
+msgid "Enter your full name"
+msgstr "Introduza o seu nome completo"
+
+#: includes/sections/ctas.php:278
+msgid "Email Address *"
+msgstr "Endereço de E-mail *"
+
+#: includes/sections/ctas.php:282
+msgid "your.email@domain.com"
+msgstr "o.seu.email@dominio.pt"
+
+#: includes/sections/ctas.php:294
+msgid "I agree to receive the ISHF 2027 newsletter and updates in accordance with the privacy policy."
+msgstr "Concordo em receber a newsletter e novidades do ISHF 2027 de acordo com a política de privacidade."
+
+#: includes/sections/ctas.php:305
+msgid "Subscribe to Newsletter"
+msgstr "Subscrever Newsletter"
+
+#: includes/sections/footer.php:11
+msgid "All rights reserved."
+msgstr "Todos os direitos reservados."
+
+#: includes/sections/footer.php:13
+#, php-format
+msgid "Developed by %s"
+msgstr "Desenvolvido por %s"
+
+
+#~ msgid "Agenda"
+#~ msgstr "Programa"
+
+#~ msgid "Schedule"
+#~ msgstr "Reservar na Agenda"
+
+#~ msgid "Streaming"
+#~ msgstr "Streaming"
+
+#~ msgid "Follow it live"
+#~ msgstr "Assista em direto"
+
+#~ msgid ""
+#~ "Watch the conference live and find out more about the topics under "
+#~ "discussion"
+#~ msgstr "Assista em direto e saiba mais sobre os assuntos em discussão"
+
+#~ msgid "Video"
+#~ msgstr "Vídeo"
+
+#~ msgid "Review the conference"
+#~ msgstr "Reveja a conferência"
+
+#~ msgid ""
+#~ "Watch the conference again and relive the highlights of this conversation"
+#~ msgstr "Reveja a conferência e reviva os momentos altos desta conversa"
+
+#~ msgid "Back to Homepage"
+#~ msgstr "Regressar à Página Inicial"
+
+#~ msgid "Brand"
+#~ msgstr "Marca"
+
+#~ msgid "Client"
+#~ msgstr "Cliente"
+
+#~ msgid "Project Date"
+#~ msgstr "Data de Projeto"
+
+#~ msgid "Project URL"
+#~ msgstr "URL do Projeto"
+
+#~ msgid "URL for the streaming video"
+#~ msgstr "URL para o vídeo em streaming"
+
+#~ msgid "Position"
+#~ msgstr "Cargo"
+
+#~ msgid "Company"
+#~ msgstr "Empresa"
+
+#~ msgid "Projects"
+#~ msgstr "Projetos"
+
+#~ msgid "Project"
+#~ msgstr "Projeto"
+
+#~ msgid "Parent project"
+#~ msgstr "Projeto Pai"
+
+#~ msgid "All projects"
+#~ msgstr "Todos os Projetos"
+
+#~ msgid "View projects"
+#~ msgstr "Ver projetos"
+
+#~ msgid "Add New Project"
+#~ msgstr "Adicionar Novo Projeto"
+
+#~ msgid "New project"
+#~ msgstr "Novo projeto"
+
+#~ msgid "Edit project"
+#~ msgstr "Editar projeto"
+
+#~ msgid "Update project"
+#~ msgstr "Actualizar projeto"
+
+#~ msgid "Search project"
+#~ msgstr "Pesquisar projeto"
+
+#~ msgid "Not Found"
+#~ msgstr "Não Encontrado"
+
+#~ msgid "Not found in Trash"
+#~ msgstr "Não encontrado no Lixo"
+
+#~ msgid "Areas"
+#~ msgstr "Áreas"
+
+#~ msgid "Area"
+#~ msgstr "Área"
+
+#~ msgid "Search Areas"
+#~ msgstr "Pesquisar Áreas"
+
+#~ msgid "All Areas"
+#~ msgstr "Todas as Áreas"
+
+#~ msgid "Parent Area"
+#~ msgstr "Área Pai"
+
+#~ msgid "Parent Area:"
+#~ msgstr "Área Pai:"
+
+#~ msgid "Edit Area"
+#~ msgstr "Editar Área"
+
+#~ msgid "Update Area"
+#~ msgstr "Actualizar Área"
+
+#~ msgid "Add New Area"
+#~ msgstr "Adicionar Nova Área"
+
+#~ msgid "New Area"
+#~ msgstr "Nova Área"
+
+#~ msgid "Connect with us"
+#~ msgstr "Conecte-se connosco"
+
+#~ msgid " at "
+#~ msgstr " em "
+
+#~ msgid "Project Details"
+#~ msgstr "Detalhes de Projeto"
+
+#~ msgid "Project Site"
+#~ msgstr "Website do Projeto"
+
+#~ msgid "Visit Site"
+#~ msgstr "Visitar o Site"
+
+#~ msgid "Project Video"
+#~ msgstr "Vídeo do Projeto"
+
+#~ msgid "View Video"
+#~ msgstr "Ver Vídeo"
+
+#~ msgid "Date"
+#~ msgstr "Data"
+
+#~ msgid "Extra Parameters"
+#~ msgstr "Parâmetros Extra"
+
+#~ msgid "Header Slides"
+#~ msgstr "Slides de Header"
+
+#~ msgid "Slide"
+#~ msgstr "Slide"
+
+#~ msgid "Parent slide"
+#~ msgstr "Slide pai"
+
+#~ msgid "All slides"
+#~ msgstr "Todos os slides"
+
+#~ msgid "Add New Header Slide"
+#~ msgstr "Adicionar Novo Slide Header"
+
+#~ msgid "New slide"
+#~ msgstr "Novo slide"
+
+#~ msgid "Edit slide"
+#~ msgstr "Editar slide"
+
+#~ msgid "Update slide"
+#~ msgstr "Actualizar slide"
+
+#~ msgid "Search slide"
+#~ msgstr "Pesquisar slide"
+
+#~ msgid "Partnerships"
+#~ msgstr "Parcerias"
+
+#~ msgid "Partnership"
+#~ msgstr "Parceria"
+
+#~ msgid "Parent partnership"
+#~ msgstr "Parceria pai"
+
+#~ msgid "All partnerships"
+#~ msgstr "Todas as parcerias"
+
+#~ msgid "View partnerships"
+#~ msgstr "Ver parcerias"
+
+#~ msgid "Add New Partnership"
+#~ msgstr "Adicionar Nova Parceria"
+
+#~ msgid "New partnership"
+#~ msgstr "Nova parceria"
+
+#~ msgid "Edit partnership"
+#~ msgstr "Editar parceria"
+
+#~ msgid "Update partnership"
+#~ msgstr "Alterar parceria"
+
+#~ msgid "Search partnership"
+#~ msgstr "Pesquisar parceria"
+
+#~ msgid "Quotations"
+#~ msgstr "Citações"
+
+#~ msgid "Quotation"
+#~ msgstr "Citação"
+
+#~ msgid "Parent quotation"
+#~ msgstr "Citação pai"
+
+#~ msgid "All quotations"
+#~ msgstr "Todas as citações"
+
+#~ msgid "View quotations"
+#~ msgstr "Ver citações"
+
+#~ msgid "Add New Quotation"
+#~ msgstr "Adicionar Nova Citação"
+
+#~ msgid "New quotation"
+#~ msgstr "Nova citação"
+
+#~ msgid "Edit quotation"
+#~ msgstr "Editar citação"
+
+#~ msgid "Update quotation"
+#~ msgstr "Actualizar citação"
+
+#~ msgid "Search quotation"
+#~ msgstr "Pesquisar citação"
+
+#, fuzzy
+#~| msgid "Parent slide"
+#~ msgid "Parent case study"
+#~ msgstr "Slide pai"
+
+#, fuzzy
+#~| msgid "All slides"
+#~ msgid "All case studies"
+#~ msgstr "Todos os slides"
+
+#, fuzzy
+#~| msgid "View slides"
+#~ msgid "View case studies"
+#~ msgstr "Ver slides"
+
+#, fuzzy
+#~| msgid "Add New Header Slide"
+#~ msgid "Add New Case Study"
+#~ msgstr "Adicionar Novo Slide Header"
+
+#, fuzzy
+#~| msgid "New password"
+#~ msgid "New case study"
+#~ msgstr "Nova senha"
+
+#, fuzzy
+#~| msgid "Update slide"
+#~ msgid "Update case study"
+#~ msgstr "Actualizar slide"
+
+#, fuzzy
+#~| msgid "Search slide"
+#~ msgid "Search case study"
+#~ msgstr "Pesquisar slide"
+
+#~ msgid "Resource not found (404)"
+#~ msgstr "Recurso não encontrado (404)"
+
+#~ msgid "Nothing found for the requested page. Try a search instead?"
+#~ msgstr ""
+#~ "A página solicitada não foi encontrada. Pretende efectuar uma pesquisa?"
+
+#~ msgid "An administrator has been emailed about this problem, too."
+#~ msgstr "Foi também enviado um e-mail ao administrador de sistemas."
+
+#, php-format
+#~ msgid "<span class=\"uk-text-muted\">Daily Archives</span> %s"
+#~ msgstr "<span class=\"uk-text-muted\">Arquivo Diário</span> %s"
+
+#, php-format
+#~ msgid "<span class=\"uk-text-muted\">Monthly Archives</span> %s"
+#~ msgstr "<span class=\"uk-text-muted\">Arquivo Mensal</span> %s"
+
+#, php-format
+#~ msgid "<span class=\"uk-text-muted\">Yearly Archives</span> %s"
+#~ msgstr "<span class=\"uk-text-muted\">Arquivo Anual</span> %s"
+
+#~ msgid "Archives"
+#~ msgstr "Arquivo"
+
+#~ msgid "Author Archives"
+#~ msgstr "Arquivo do Autor"
+
+#~ msgid "Comment"
+#~ msgstr "Comentar"
+
+#~ msgid "Trackbacks"
+#~ msgstr "Retorno"
+
+#~ msgid "Trackback"
+#~ msgstr "Retorno"
+
+#, php-format
+#~ msgid "%1$s %2$s, <strong>%3$s</strong>. All Rights Reserved."
+#~ msgstr "%1$s %2$s, <strong>%3$s</strong>. Todos os Direitos Reservados."
+
+#~ msgid "Developed with"
+#~ msgstr "Desenvolvido com"
+
+#~ msgid "Version"
+#~ msgstr "Versão"
+
+#~ msgid "Last Update"
+#~ msgstr "Última Atualização"
+
+#~ msgid "Normal Sidebar"
+#~ msgstr "Barra Lateral Normal"
+
+#~ msgid "Shop Sidebar"
+#~ msgstr "Barra Lateral Loja"
+
+#~ msgid "Recent Posts"
+#~ msgstr "Artigos Recentes"
+
+#~ msgid "Recent Comments"
+#~ msgstr "Comentários Recentes"
+
+#, php-format
+#~ msgid "%1$s <br/><span class=\"uk-text-small uk-text-muted\">on %2$s</span>"
+#~ msgstr "%1$s <br/><span class=“uk-text-small uk-text-muted”>em %2$s</span>"
+
+#~ msgid "Categories"
+#~ msgstr "Categorias"
+
+#~ msgid "Select Category"
+#~ msgstr "Selecione Categoria"
+
+#~ msgid "Select Year"
+#~ msgstr "Seleccione Ano"
+
+#~ msgid "Select Month"
+#~ msgstr "Seleccione Mês"
+
+#~ msgid "Select Day"
+#~ msgstr "Seleccione Dia"
+
+#~ msgid "Select Week"
+#~ msgstr "Seleccione Semana"
+
+#~ msgid "Select Post"
+#~ msgstr "Seleccione Artigo"
+
+#~ msgid "Meta"
+#~ msgstr "Meta"
+
+#~ msgid "Entries <abbr title=\"Really Simple Syndication\">RSS</abbr>"
+#~ msgstr "Entradas <abbr title=\"Really Simple Syndication\">RSS</abbr>"
+
+#~ msgid "Comments <abbr title=\"Really Simple Syndication\">RSS</abbr>"
+#~ msgstr "Comentários <abbr title=\"Really Simple Syndication\">RSS</abbr>"
+
+#~ msgid "WordPress.org"
+#~ msgstr "WordPress.org"
+
+#~ msgid "Views"
+#~ msgstr "Visualizações"
+
+#~ msgid "Featured?"
+#~ msgstr "Destacada?"
+
+#~ msgid "Check this if this category is featured"
+#~ msgstr "Marcar se a categoria é destacada"
+
+#~ msgid "Published by "
+#~ msgstr "Publicado por "
+
+#~ msgid " on "
+#~ msgstr " em "
+
+#~ msgid "Welcome to our store"
+#~ msgstr "Bem-vind@ à nossa loja"
+
+#~ msgid "Know More"
+#~ msgstr "Saber Mais"
+
+#~ msgid "Tags"
+#~ msgstr "Etiquetas"
+
+#~ msgid "Previous Article"
+#~ msgstr "Artigo Anterior"
+
+#~ msgid "Next Article"
+#~ msgstr "Artigo Seguinte"
+
+#, php-format
+#~ msgid "%s Previous Articles"
+#~ msgstr "%s Artigos Anteriores"
+
+#, php-format
+#~ msgid "Next Articles %s"
+#~ msgstr "Artigos Seguintes %s"
+
+#~ msgid "Shopping Cart"
+#~ msgstr "Carrinho de Compras"
+
+#~ msgid "Our Partnerships"
+#~ msgstr "As Nossas Parcerias"
+
+#~ msgid "Share on Social Networks"
+#~ msgstr "Partilhe nas Redes Sociais"
+
+#~ msgid "On "
+#~ msgstr "Em "
+
+#, php-format
+#~ msgid "<span class=\"uk-text-muted\">Search Results for</span> %s"
+#~ msgstr "<span class=\"uk-text-muted\">Procurar Resultados por</span> %s"
+
+#~ msgid "Nothing Found"
+#~ msgstr "Sem Resultados"
+
+#~ msgid "Sorry, nothing matched your search. Please try again."
+#~ msgstr ""
+#~ "Desculpe, não existem resultados para a sua pesquisa. Por favor tente "
+#~ "novamente."
+
+#~ msgid "Search..."
+#~ msgstr "Pesquisar…"
+
+#~ msgid "Product Categories"
+#~ msgstr "Categorias de Produto"
+
+#~ msgid "Color Filter"
+#~ msgstr "Filtro de Cor"
+
+#~ msgid "Size Filter"
+#~ msgstr "Filtro de Tamanho"
+
+#~ msgid "Tag Archives"
+#~ msgstr "Arquivo de Etiquetas"
+
+#~ msgid "Return to shop"
+#~ msgstr "Voltar à Loja"
+
+#~ msgid "Remove this item"
+#~ msgstr "Remover este item"
+
+#~ msgid "You may be interested in&hellip;"
+#~ msgstr "Você pode estar interessado em&hellip;"
+
+#, php-format
+#~ msgid "%s quantity"
+#~ msgstr "%s quantidade"
+
+#~ msgid "Qty"
+#~ msgstr "Qtd"
+
+#~ msgid "No products were found matching your selection."
+#~ msgstr "Não foram encontrados produtos correspondentes à sua selecção."
+
+#~ msgid "Search products&hellip;"
+#~ msgstr "Pesquisar produtos&hellip;"
+
+#~ msgid "%s would like to connect to your store"
+#~ msgstr "%s pretende ligar-se à sua loja"
+
+#~ msgid "This will give \"%1$s\" %2$s access which will allow it to:"
+#~ msgstr "Permitirá acesso a “%1$s” %2$s para proceder a:"
+
+#~ msgid "Logged in as %s"
+#~ msgstr "Autenticado como %s"
+
+#~ msgid "Logout"
+#~ msgstr "Sair"
+
+#~ msgid "Approve"
+#~ msgstr "Aprovar"
+
+#~ msgid "Deny"
+#~ msgstr "Desaprovar"
+
+#~ msgid "Enter your full address to see shipping costs."
+#~ msgstr "Insira a sua morada completa para ver os custos de envio."
+
+#~ msgid "Cart totals"
+#~ msgstr "Total no carrinho"
+
+#~ msgid "Subtotal"
+#~ msgstr "Subtotal"
+
+#~ msgid "Shipping"
+#~ msgstr "Envio"
+
+#~ msgid "(estimated for %s)"
+#~ msgstr "(estimado para %s)"
+
+#~ msgid "Total"
+#~ msgstr "Total"
+
+#~ msgid "No products in the cart."
+#~ msgstr "Nenhum produto no carrinho."
+
+#~ msgid "Calculate shipping"
+#~ msgstr "Calcular custos de envio"
+
+#~ msgid ""
+#~ "There are some issues with the items in your cart (shown above). Please "
+#~ "go back to the cart page and resolve these issues before checking out."
+#~ msgstr ""
+#~ "Ocorreu um problema com algum item no seu carrinho (exibido em cima). Por "
+#~ "favor, volte para a página de carrinho e resolva estes problemas antes de "
+#~ "finalizar a encomenda."
+
+#~ msgid "Return to cart"
+#~ msgstr "Voltar ao Carrinho"
+
+#~ msgid "Billing &amp; Shipping"
+#~ msgstr "Faturação &amp; Envio"
+
+#~ msgid "Billing details"
+#~ msgstr "Detalhes de Faturação"
+
+#~ msgid "Create an account?"
+#~ msgstr "Criar uma conta?"
+
+#~ msgid "You must be logged in to checkout."
+#~ msgstr "Você precisa estar autenticado para finalizar a compra."
+
+#~ msgid "Your order"
+#~ msgstr "A sua encomenda"
+
+#~ msgid "Have a coupon?"
+#~ msgstr "Tem um cupão de desconto?"
+
+#~ msgid "Click here to enter your code"
+#~ msgstr "Clique aqui e indique o código de desconto"
+
+#~ msgid "Returning customer?"
+#~ msgstr "Já tem conta no nosso site?"
+
+#~ msgid "Click here to login"
+#~ msgstr "Clique aqui para entrar"
+
+#~ msgid ""
+#~ "If you have shopped with us before, please enter your details in the "
+#~ "boxes below. If you are a new customer, please proceed to the Billing "
+#~ "&amp; Shipping section."
+#~ msgstr ""
+#~ "Se já comprou na nossa loja anteriormente (e criou conta), indique os "
+#~ "seus dados de acesso em baixo. Se é um novo cliente, avance para a secção "
+#~ "\"Detalhes de Faturação\"."
+
+#~ msgid ""
+#~ "Sorry, it seems that there are no available payment methods for your "
+#~ "location. Please contact us if you require assistance or wish to make "
+#~ "alternate arrangements."
+#~ msgstr ""
+#~ "Desculpe, parece que não existem métodos de pagamento disponíveis para a "
+#~ "sua região. Entre em contato connosco se precisar de ajuda ou quiser "
+#~ "negociar outra forma de pagamento."
+
+#~ msgid "Ship to a different address?"
+#~ msgstr "Enviar para uma morada diferente?"
+
+#~ msgid "Additional information"
+#~ msgstr "Informação adicional"
+
+#~ msgid "Product"
+#~ msgstr "Produto"
+
+#~ msgid "Pay"
+#~ msgstr "Pagar"
+
+#~ msgid "My account"
+#~ msgstr "A Minha Conta"
+
+#~ msgid "Thank you. Your order has been received."
+#~ msgstr "Obrigado. A sua encomenda foi recebida."
+
+#~ msgid "Order number:"
+#~ msgstr "Número de Encomenda:"
+
+#~ msgid "Date:"
+#~ msgstr "Data:"
+
+#~ msgid "Email:"
+#~ msgstr "Email:"
+
+#~ msgid "Total:"
+#~ msgstr "Total:"
+
+#~ msgid "Payment method:"
+#~ msgstr "Método de Pagamento:"
+
+#~ msgid "You have received an order from %s. The order is as follows:"
+#~ msgstr "Recebeu uma encomenda de %s. A encomenda é a seguinte:"
+
+#~ msgid ""
+#~ "Hi there. Your recent order on %s has been completed. Your order details "
+#~ "are shown below for your reference:"
+#~ msgstr ""
+#~ "Olá. A sua recente encomenda em %s foi concluída. Os detalhes da "
+#~ "encomenda são exibidos em baixo para sua referência:"
+
+#~ msgid "Your password has been automatically generated: %s"
+#~ msgstr "A sua palavra-chave foi automaticamente gerada: %s"
+
+#~ msgid ""
+#~ "You can access your account area to view your orders and change your "
+#~ "password here: %s."
+#~ msgstr ""
+#~ "Pode aceder à sua área pessoal para consultar as encomendas e alterar a "
+#~ "senha aqui: %s."
+
+#~ msgid "Hello, a note has just been added to your order:"
+#~ msgstr "Olá, uma nova nota foi adicionada à sua encomenda:"
+
+#~ msgid "For your reference, your order details are shown below."
+#~ msgstr ""
+#~ "Para sua referência, os dados da encomenda são mostrados de seguida."
+
+#~ msgid ""
+#~ "Your order is on-hold until we confirm payment has been received. Your "
+#~ "order details are shown below for your reference:"
+#~ msgstr ""
+#~ "A sua ordem está em espera até que seja possível confirmar o recebimento "
+#~ "do seu pagamento. Os detalhes da sua onde são mostrados abaixo para sua "
+#~ "referência:"
+
+#~ msgid ""
+#~ "Your order has been received and is now being processed. Your order "
+#~ "details are shown below for your reference:"
+#~ msgstr ""
+#~ "A sua encomenda foi recebida. Os detalhes da encomenda são exibidos em "
+#~ "baixo para sua referência:"
+
+#~ msgid "Hi there. Your order on %s has been partially refunded."
+#~ msgstr "Olá. A sua ordem %s foi parcialmente devolvida."
+
+#~ msgid "Hi there. Your order on %s has been refunded."
+#~ msgstr "Olá. A sua ordem %s foi devolvida."
+
+#~ msgid ""
+#~ "Someone requested that the password be reset for the following account:"
+#~ msgstr "Alguém solicitou que a senha fosse alterada para a seguinte conta:"
+
+#~ msgid "Username: %s"
+#~ msgstr "Utilizador: %s"
+
+#~ msgid ""
+#~ "If this was a mistake, just ignore this email and nothing will happen."
+#~ msgstr "Se isto é um erro, ignore este email e nada acontecerá."
+
+#~ msgid "To reset your password, visit the following address:"
+#~ msgstr "Para alterar a sua senha, visite o seguinte endereço:"
+
+#~ msgid "Click here to reset your password"
+#~ msgstr "Clique aqui para alterar a sua senha"
+
+#~ msgid "Billing address"
+#~ msgstr "Morada de faturação"
+
+#~ msgid "N/A"
+#~ msgstr "N/A"
+
+#~ msgid "Customer details"
+#~ msgstr "Dados do cliente"
+
+#~ msgid "Downloads"
+#~ msgstr "Downloads"
+
+#~ msgid "Never"
+#~ msgstr "Nunca"
+
+#~ msgid "Order #%s"
+#~ msgstr "Encomenda #%s"
+
+#~ msgid "You have received an order from %s."
+#~ msgstr "Recebeu uma encomenda de %s."
+
+#~ msgid "Your password is %s."
+#~ msgstr "As sua senha é %s."
+
+#~ msgid "Order number: %s"
+#~ msgstr "Número da encomenda: %s"
+
+#~ msgid "Password reset email has been sent."
+#~ msgstr "Foi enviado um email para reset da senha"
+
+#~ msgid ""
+#~ "The following addresses will be used on the checkout page by default."
+#~ msgstr ""
+#~ "As seguintes moradas serão utilizadas na página de pagamento como moradas "
+#~ "padrão."
+
+#~ msgid "Edit"
+#~ msgstr "Editar"
+
+#~ msgid "Available downloads"
+#~ msgstr "Downloads disponíveis"
+
+#~ msgid "Order"
+#~ msgstr "Encomenda"
+
+#~ msgid "Status"
+#~ msgstr "Estado"
+
+#~ msgid "Recent orders"
+#~ msgstr "Encomendas recentes"
+
+#~ msgid "Previous"
+#~ msgstr "Anteriores"
+
+#~ msgid "Next"
+#~ msgstr "Seguintes"
+
+#~ msgid "Go shop"
+#~ msgstr "Ir às compras"
+
+#~ msgid "No order has been made yet."
+#~ msgstr "Ainda não procedeu a nenhuma compra."
+
+#~ msgid "Order #%1$s was placed on %2$s and is currently %3$s."
+#~ msgstr "Ordem #%1$s foi colocar em %2$s e está actualmente a %3$s."
+
+#~ msgid "Order updates"
+#~ msgstr "Atualizações da encomenda"
+
+#~ msgid "l jS \\o\\f F Y, h:ia"
+#~ msgstr "l j \\o\\f F Y, H:ia"
+
+#~ msgid "Order again"
+#~ msgstr "Comprar novamente"
+
+#~ msgid "Order details"
+#~ msgstr "Detalhes da encomenda"
+
+#~ msgid "Note:"
+#~ msgstr "Nota:"
+
+#~ msgid "Reviews"
+#~ msgstr "Avaliações"
+
+#~ msgid "There are no reviews yet."
+#~ msgstr "Ainda não existem avaliações."
+
+#~ msgid "Add a review"
+#~ msgstr "Adicionar uma avaliação"
+
+#~ msgid "Be the first to review &ldquo;%s&rdquo;"
+#~ msgstr "Seja o primeiro a rever &ldquo;%s&rdquo;"
+
+#~ msgid "Leave a Reply to %s"
+#~ msgstr "Deixe uma resposta para %s"
+
+#~ msgid "Submit"
+#~ msgstr "Enviar"
+
+#~ msgid "You must be <a href=\"%s\">logged in</a> to post a review."
+#~ msgstr ""
+#~ "Tem que estar <a href=\"%s\">autenticado</a> para deixar uma avaliação."
+
+#~ msgid ""
+#~ "Only logged in customers who have purchased this product may leave a "
+#~ "review."
+#~ msgstr ""
+#~ "Apenas clientes com sessão iniciada que compraram este produto podem "
+#~ "deixar opinião."
+
+#~ msgid "This product is currently out of stock and unavailable."
+#~ msgstr "Este produto está fora de stock e indisponível."
+
+#~ msgid ""
+#~ "Sorry, this product is unavailable. Please choose a different combination."
+#~ msgstr ""
+#~ "Desculpe, este produto não está disponível. Por favor escolha uma "
+#~ "combinação diferente."
+
+#~ msgid "Weight"
+#~ msgstr "Peso"
+
+#~ msgid "Dimensions"
+#~ msgstr "Dimensões"
+
+#~ msgid "Sidebar Widget Area"
+#~ msgstr "Área de Widget Lateral"
+
+#~ msgid "Search your keywords"
+#~ msgstr "Pesquisar as suas palavras chave"
+
+#~ msgid "Username or email address"
+#~ msgstr "Nome de utilizador ou email"
+
+#~ msgid "Password"
+#~ msgstr "Senha"
+
+#~ msgid "Price"
+#~ msgstr "Preço"
+
+#~ msgid "Coupon:"
+#~ msgstr "Cupão:"
+
+#~ msgid "Totals"
+#~ msgstr "Total"
+
+#~ msgid ""
+#~ "Sorry, it seems that there are no available payment methods for your "
+#~ "state. Please contact us if you require assistance or wish to make "
+#~ "alternate arrangements."
+#~ msgstr ""
+#~ "Desculpe, parece que não existem métodos de pagamento disponíveis para a "
+#~ "sua região. Entre em contato connosco se precisar de ajuda ou quiser "
+#~ "negociar outra forma de pagamento."
+
+#~ msgid "Please fill in your details above to see available payment methods."
+#~ msgstr ""
+#~ "Por favor, indique os dados acima para ver os meios de pagamento "
+#~ "disponíveis."
+
+#~ msgid ""
+#~ "Since your browser does not support JavaScript, or it is disabled, please "
+#~ "ensure you click the <em>Update Totals</em> button before placing your "
+#~ "order. You may be charged more than the amount stated above if you fail "
+#~ "to do so."
+#~ msgstr ""
+#~ "Dado que o seu navegador não suporta JavaScript ou está desativado, por "
+#~ "favor clique no botão <em>Atualizar</em> antes de finalizar a sua "
+#~ "encomenda. Se não o fizer, pode pagar mais do que o valor acima indicado."
+
+#~ msgid "pay"
+#~ msgstr "pagar"
+
+#~ msgid "Username or email"
+#~ msgstr "Nome de utilizador ou email"
+
+#~ msgid "Remember me"
+#~ msgstr "Lembrar-me"
+
+#~ msgid "Lost your password?"
+#~ msgstr "Perdeu a sua senha?"
+
+#~ msgid "First name"
+#~ msgstr "Nome"
+
+#~ msgid "Last name"
+#~ msgstr "Apelido"
+
+#~ msgid "Email address"
+#~ msgstr "Endereço de email"
+
+#~ msgid "Password change"
+#~ msgstr "Alterar senha"
+
+#~ msgid "Current password (leave blank to leave unchanged)"
+#~ msgstr "Senha atual (deixe em branco para não modificar)"
+
+#~ msgid "New password (leave blank to leave unchanged)"
+#~ msgstr "Nova senha (deixe em branco para não modificar)"
+
+#~ msgid "Confirm new password"
+#~ msgstr "Confirme a nova senha"
+
+#~ msgid "Login"
+#~ msgstr "Autenticar"
+
+#~ msgid "Register"
+#~ msgstr "Registar-me"
+
+#~ msgid "Username"
+#~ msgstr "Utilizador"
+
+#~ msgid ""
+#~ "Lost your password? Please enter your username or email address. You will "
+#~ "receive a link to create a new password via email."
+#~ msgstr ""
+#~ "Perdeu a sua senha? Insira o seu nome de utilizador ou endereço de email. "
+#~ "Receberá um link, para criar uma nova senha, via email."
+
+#~ msgid "Enter a new password below."
+#~ msgstr "Insira uma nova senha abaixo."
+
+#~ msgid "Re-enter new password"
+#~ msgstr "Insira a sua senha novamente"
+
+#~ msgid ""
+#~ "To track your order please enter your Order ID in the box below and press "
+#~ "the \"Track\" button. This was given to you on your receipt and in the "
+#~ "confirmation email you should have received."
+#~ msgstr ""
+#~ "Para fazer o acompanhamento da sua encomenda, por favor indique o "
+#~ "identificador do pedido na caixa abaixo e pressione o botão "
+#~ "\"Acompanhar\". Este número ter-lhe-á sido indicado no recibo e na "
+#~ "mensagem de confirmação que recebeu."
+
+#~ msgid "Order ID"
+#~ msgstr "Nº de Encomenda"
+
+#~ msgid "Billing email"
+#~ msgstr "Email de faturação"
+
+#~ msgid "%s Older"
+#~ msgstr "%s Antigos"
+
+#~ msgid "Newer %s"
+#~ msgstr "Recentes %s"
+
+#: includes/theme-toggle.php:7
+msgid "Toggle dark / light mode"
+msgstr "Alternar modo claro / escuro"
+
+#: includes/theme-toggle.php:7
+msgid "Toggle theme"
+msgstr "Alternar tema"
+
+#: includes/navigation-menu.php:38
+msgid "About the Festival"
+msgstr "Sobre o Festival"
+
+#: includes/navigation-menu.php:39
+msgid "Partnership"
+msgstr "Parcerias"
+
+#: includes/navigation-menu.php:40
+msgid "Newsletter"
+msgstr "Newsletter"
+
+#: includes/navigation-menu.php:47
+msgid "Partner with Us"
+msgstr "Seja Nosso Parceiro"
+
+#: includes/navigation-menu.php:72
+msgid "Theme"
+msgstr "Tema"
+
+#: includes/sections/header.php:24
+msgid "Cities with Soul: It Begins with a Key"
+msgstr "Cidades com Alma: Tudo Começa com uma Chave"
+
+#: includes/sections/ctas.php:57
+msgid "Join ISHF 2027 as an official partner. Connect your organization with key decision-makers and urban housing pioneers shaping the future of affordable living."
+msgstr "Junte-se ao ISHF 2027 como parceiro oficial. Conecte a sua organização com decisores e pioneiros da habitação urbana que moldam o futuro da habitação acessível."
+
+#: includes/sections/ctas.php:70
+msgid "Thank you for reaching out!"
+msgstr "Obrigado pelo seu contacto!"
+
+#: includes/sections/ctas.php:143
+msgid "Briefly describe your partnership interest..."
+msgstr "Descreva brevemente o seu interesse de parceria..."
+
+#: includes/sections/ctas.php:152
+msgid "I authorize the processing of my personal data for the purpose of receiving partnership information regarding ISHF 2027."
+msgstr "Autorizo o tratamento dos meus dados pessoais para efeito de receção de informações de parceria relativas ao ISHF 2027."
+
+#: includes/sections/header.php:26
+msgid "International Social Housing Festival • Lisbon 2027"
+msgstr "International Social Housing Festival • Lisboa 2027"
+
+#: includes/sections/header.php:30
+msgid "Shaping the Future of Social & Affordable Housing"
+msgstr "Construir o Futuro da Habitação Social e Acessível"
+
+#: includes/sections/header.php:34
+msgid "From 7 to 9 June 2027, Lisbon welcomes housing providers, city leaders, researchers, and communities from across the globe to build inclusive, resilient, and sustainable neighborhoods together."
+msgstr "De 7 a 9 de junho de 2027, Lisboa acolhe promotores de habitação, líderes municipais, investigadores e comunidades de todo o mundo para construir bairros inclusivos, resilientes e sustentáveis."
+
+#: includes/sections/header.php:40
+msgid "Dates:"
+msgstr "Datas:"
+
+#: includes/sections/header.php:40
+msgid "7–9 June 2027"
+msgstr "7–9 de Junho de 2027"
+
+#: includes/sections/header.php:44
+msgid "Host City:"
+msgstr "Cidade Anfitriã:"
+
+#: includes/sections/header.php:44
+msgid "Lisbon, Portugal"
+msgstr "Lisboa, Portugal"
+
+#: includes/sections/header.php:48
+msgid "Format:"
+msgstr "Formato:"
+
+#: includes/sections/header.php:48
+msgid "Conferences & City Visits"
+msgstr "Conferências e Visitas à Cidade"
+
+#: includes/sections/header.php:61
+msgid "Subscribe to Newsletter"
+msgstr "Subscrever Newsletter"
+
+#: includes/sections/header.php:73
+msgid "Lisbon 2027"
+msgstr "Lisboa 2027"
+
+#: includes/sections/header.php:78
+msgid "Sustainable Living"
+msgstr "Habitação Sustentável"
+
+#: includes/sections/about.php:12
+msgid "The 2027 Lisbon Edition"
+msgstr "A Edição Lisboa 2027"
+
+#: includes/sections/about.php:15
+msgid "A Global Gathering for Social & Sustainable Living"
+msgstr "Um Encontro Global para a Habitação Social e Sustentável"
+
+#: includes/sections/about.php:18
+msgid "The International Social Housing Festival (ISHF) is the premier global event dedicated to affordable, public, and cooperative housing. After Amsterdam, Lyon, Helsinki, and Barcelona, Lisbon will host the next biennial edition in June 2027."
+msgstr "O International Social Housing Festival (ISHF) é o principal evento global dedicado à habitação acessível, pública e cooperativa. Após Amesterdão, Lyon, Helsínquia e Barcelona, Lisboa acolherá a próxima edição bienal em junho de 2027."
+
+#: includes/sections/about.php:31
+msgid "Affordable Housing"
+msgstr "Habitação Acessível"
+
+#: includes/sections/about.php:34
+msgid "Showcasing best practices in public and non-profit housing delivery, long-term financing, and cooperative tenure models."
+msgstr "Apresentação de boas práticas em promoção pública e cooperativa, financiamento de longo prazo e modelos de posse partilhada."
+
+#: includes/sections/about.php:45
+msgid "Green Transition"
+msgstr "Transição Ecológica"
+
+#: includes/sections/about.php:48
+msgid "Decarbonizing neighborhoods through circular renovation, renewable energy communities, and climate-resilient architecture."
+msgstr "Descarbonização de bairros através da renovação circular, comunidades de energia renovável e arquitetura resiliente ao clima."
+
+#: includes/sections/about.php:59
+msgid "Social Inclusion"
+msgstr "Inclusão Social"
+
+#: includes/sections/about.php:62
+msgid "Connecting communities, championing tenant democracy, combating spatial segregation, and fostering inclusive cities for all generations."
+msgstr "Unir comunidades, promover a participação dos moradores, combater a segregação espacial e criar cidades inclusivas para todas as gerações."
+
+#: includes/sections/about.php:73
+msgid "Lisbon & Beyond"
+msgstr "Lisboa e Além"
+
+#: includes/sections/about.php:76
+msgid "Immerse in field visits, site tours, and international debates hosted in historic and revitalized venues across the Portuguese capital."
+msgstr "Participe em visitas de estudo no terreno e debates internacionais acolhidos em espaços históricos e revitalizados por toda a capital portuguesa."
+
+#: includes/sections/partnership.php:33
+msgid "Collaboration & Sponsorship"
+msgstr "Colaboração e Patrocínios"
+
+#: includes/sections/partnership.php:37
+msgid "Become an Official Partner of ISHF 2027"
+msgstr "Torne-se Parceiro Oficial do ISHF 2027"
+
+#: includes/sections/partnership.php:41
+msgid "Position your organization at the center of the European conversation on affordable and sustainable living. As a festival partner, you will connect with international policymakers, municipal leaders, housing federations, and urban innovators."
+msgstr "Posicione a sua organização no centro do debate europeu sobre habitação acessível e sustentável. Como parceiro do festival, conecte-se com decisores políticos internacionais, líderes municipais, federações de habitação e inovadores urbanos."
+
+#: includes/sections/partnership.php:48
+msgid "Global Visibility:"
+msgstr "Visibilidade Global:"
+
+#: includes/sections/partnership.php:49
+msgid "Showcase your brand and vision before 2,000+ delegates and hundreds of participating organizations from over 40 countries."
+msgstr "Destaque a sua marca e visão perante mais de 2.000 delegados e centenas de organizações participantes de mais de 40 países."
+
+#: includes/sections/partnership.php:56
+msgid "Thought Leadership:"
+msgstr "Liderança e Conhecimento:"
+
+#: includes/sections/partnership.php:57
+msgid "Co-host dedicated thematic workshops, present innovative projects, and contribute to policy recommendations."
+msgstr "Co-organize workshops temáticos dedicados, apresente projetos inovadores e contribua para recomendações de políticas públicas."
+
+#: includes/sections/partnership.php:64
+msgid "Strategic Networking:"
+msgstr "Networking Estratégico:"
+
+#: includes/sections/partnership.php:65
+msgid "Engage in exclusive B2B and institutional sessions, bilateral meetings, and site visit roundtables across Lisbon."
+msgstr "Participe em sessões exclusivas B2B e institucionais, reuniões bilaterais e mesas-redondas por toda a cidade de Lisboa."
+
+#: includes/sections/partnership.php:72
+msgid "Have specific sponsorship requirements?"
+msgstr "Tem requisitos específicos de patrocínio?"
+
+#: includes/sections/partnership.php:74
+msgid "Contact our team directly at"
+msgstr "Contacte diretamente a nossa equipa em"
+
+#: includes/sections/partnership.php:87
+msgid "Request Partnership Package"
+msgstr "Solicitar Pacote de Parceria"
+
+#: includes/sections/partnership.php:90
+msgid "Fill in your details below and our partnerships secretariat will get in touch with you promptly."
+msgstr "Preencha os seus dados abaixo e o nosso secretariado de parcerias entrará em contacto com a maior brevidade."
+
+#: includes/sections/partnership.php:100
+msgid "Thank you for your interest!"
+msgstr "Obrigado pelo seu interesse!"
+
+#: includes/sections/partnership.php:102
+msgid "Your partnership inquiry has been received. Our team will contact you shortly."
+msgstr "O seu pedido de parceria foi recebido. A nossa equipa entrará em contacto brevemente."
+
+#: includes/sections/partnership.php:127
+msgid "Full Name *"
+msgstr "Nome Completo *"
+
+#: includes/sections/partnership.php:137
+msgid "Corporate Email *"
+msgstr "Email Institucional / Profissional *"
+
+#: includes/sections/partnership.php:148
+msgid "Company / Organization *"
+msgstr "Empresa / Organização *"
+
+#: includes/sections/partnership.php:158
+msgid "Job Title / Role *"
+msgstr "Cargo / Função *"
+
+#: includes/sections/partnership.php:169
+msgid "Phone Number (Optional)"
+msgstr "Telefone (Opcional)"
+
+#: includes/sections/partnership.php:179
+msgid "Message / Partnership Interests (Optional)"
+msgstr "Mensagem / Áreas de Interesse (Opcional)"
+
+#: includes/sections/partnership.php:194
+msgid "I authorize the processing of my personal data for the purpose of receiving partnership information and communications regarding the International Social Housing Festival 2027."
+msgstr "Autorizo o tratamento dos meus dados pessoais para efeito de receção de informações de parceria e comunicações relativas ao International Social Housing Festival 2027."
+
+#: includes/sections/partnership.php:203
+msgid "Send Partnership Request"
+msgstr "Enviar Pedido de Parceria"
+
+#: includes/sections/partnership.php:210
+msgid "Send Another Message"
+msgstr "Enviar Outra Mensagem"
+
+#: includes/sections/newsletter.php:29
+msgid "Stay Informed"
+msgstr "Mantenha-se Informado"
+
+#: includes/sections/newsletter.php:33
+msgid "Subscribe to the ISHF 2027 Newsletter"
+msgstr "Subscreva a Newsletter do ISHF 2027"
+
+#: includes/sections/newsletter.php:37
+msgid "Join a growing global community of housing innovators. Receive official updates, call for sessions and speakers, program releases, and registration announcements."
+msgstr "Junte-se a uma comunidade global em crescimento. Receba atualizações oficiais, chamadas para comunicações, divulgação do programa e abertura de inscrições."
+
+#: includes/sections/newsletter.php:43
+msgid "Curated festival milestones and thematic insights"
+msgstr "Marcos do festival e perspetivas temáticas selecionadas"
+
+#: includes/sections/newsletter.php:47
+msgid "Zero spam. Unsubscribe anytime with one click."
+msgstr "Sem spam. Cancele a subscrição a qualquer momento com um clique."
+
+#: includes/sections/newsletter.php:59
+msgid "Thank you for subscribing!"
+msgstr "Obrigado por subscrever!"
+
+#: includes/sections/newsletter.php:60
+msgid "You are now registered to receive all the latest news from ISHF 2027 Lisbon."
+msgstr "O seu registo foi concluído com sucesso para receber todas as novidades do ISHF 2027 Lisboa."
+
+#: includes/sections/newsletter.php:79
+msgid "Your Name *"
+msgstr "O Seu Nome *"
+
+#: includes/sections/newsletter.php:89
+msgid "Email Address *"
+msgstr "Endereço de Email *"
+
+#: includes/sections/newsletter.php:101
+msgid "I agree to receive the ISHF 2027 newsletter and updates in accordance with the privacy policy."
+msgstr "Concordo em receber a newsletter e comunicações do ISHF 2027 de acordo com a política de privacidade."
+
+#: includes/sections/newsletter.php:112
+msgid "Subscribe Now"
+msgstr "Subscrever Agora"
+
+#: includes/sections/footer.php:22
+msgid "The International Social Housing Festival (ISHF) is an initiative celebrating public, social, and cooperative housing as a fundamental pillar of thriving and sustainable societies."
+msgstr "O International Social Housing Festival (ISHF) é uma iniciativa que celebra a habitação pública, social e cooperativa como um pilar fundamental de sociedades dinâmicas e sustentáveis."
+
+#: includes/sections/footer.php:26
+msgid "Lisbon, Portugal • 7–9 June 2027"
+msgstr "Lisboa, Portugal • 7–9 de Junho de 2027"
+
+#: includes/sections/footer.php:32
+msgid "Quick Links"
+msgstr "Ligações Rápidas"
+
+#: includes/sections/footer.php:34
+msgid "Partnership Opportunities"
+msgstr "Oportunidades de Parceria"
+
+#: includes/sections/footer.php:35
+msgid "Newsletter Subscription"
+msgstr "Subscrição da Newsletter"
+
+#: includes/sections/footer.php:41
+msgid "Secretariat & Inquiries"
+msgstr "Secretariado e Contactos"
+
+#: includes/sections/footer.php:43
+msgid "Email:"
+msgstr "Email:"
+
+#: includes/sections/footer.php:49
+msgid "Organization:"
+msgstr "Organização:"
+
+#: includes/sections/footer.php:54
+msgid "Back to top"
+msgstr "Voltar ao topo"
+
+#: includes/sections/footer.php:65
+msgid "All rights reserved."
+msgstr "Todos os direitos reservados."
+
+#: includes/sections/footer.php:68
+msgid "Developed by %s"
+msgstr "Desenvolvido por %s"
+
+#: includes/form-handlers.php:27
+#: includes/form-handlers.php:165
+msgid "Security validation failed. Please refresh the page and try again."
+msgstr "Validação de segurança falhou. Por favor recarregue a página e tente novamente."
+
+#: includes/form-handlers.php:41
+msgid "You must authorize data processing to submit this form."
+msgstr "É necessário autorizar o tratamento de dados para submeter este formulário."
+
+#: includes/form-handlers.php:48
+#: includes/form-handlers.php:185
+msgid "Please fill in all required fields (*)."
+msgstr "Por favor, preencha todos os campos obrigatórios (*)."
+
+#: includes/form-handlers.php:55
+#: includes/form-handlers.php:192
+msgid "Please provide a valid email address."
+msgstr "Por favor, introduza um endereço de email válido."
+
+#: includes/form-handlers.php:74
+msgid "Security validation failed. Please confirm you are not a robot."
+msgstr "Validação de segurança falhou. Por favor confirme que não é um robô."
+
+#: includes/form-handlers.php:82
+msgid "New Partnership Inquiry"
+msgstr "Novo Pedido de Parceria"
+
+#: includes/form-handlers.php:98
+msgid "Partnership Inquiry"
+msgstr "Pedido de Parceria"
+
+#: includes/form-handlers.php:99
+msgid "A new partnership inquiry was submitted through %s."
+msgstr "Foi submetido um novo pedido de parceria através do site %s."
+
+#: includes/form-handlers.php:101
+msgid "Name"
+msgstr "Nome"
+
+#: includes/form-handlers.php:102
+msgid "Company / Organization"
+msgstr "Empresa / Organização"
+
+#: includes/form-handlers.php:103
+msgid "Job Title / Role"
+msgstr "Cargo / Função"
+
+#: includes/form-handlers.php:104
+msgid "Email"
+msgstr "Email"
+
+#: includes/form-handlers.php:106
+msgid "Phone Number"
+msgstr "Telefone"
+
+#: includes/form-handlers.php:109
+msgid "Message / Areas of Interest"
+msgstr "Mensagem / Áreas de Interesse"
+
+#: includes/form-handlers.php:112
+msgid "Direct reply will be sent to the contact email address."
+msgstr "A resposta direta será enviada para o endereço de email do contacto."
+
+#: includes/form-handlers.php:129
+msgid "An error occurred while sending your request. Please try again later or contact us directly."
+msgstr "Ocorreu um erro ao enviar o seu pedido. Por favor tente mais tarde ou contacte-nos diretamente."
+
+#: includes/form-handlers.php:178
+msgid "You must authorize data processing to subscribe."
+msgstr "É necessário autorizar o tratamento de dados para subscrever."
+
+#: includes/form-handlers.php:230
+#: includes/form-handlers.php:244
+msgid "New Newsletter Subscription"
+msgstr "Nova Subscrição de Newsletter"
+
+#: includes/form-handlers.php:245
+msgid "A new visitor subscribed to the %s newsletter."
+msgstr "Um novo visitante subscreveu a newsletter de %s."
+
+#: includes/form-handlers.php:248
+msgid "Date"
+msgstr "Data"
+
+#: includes/sections/ctas.php:48
+msgid "Call for Sessions"
+msgstr "Call for Sessions"
+
+#: includes/sections/ctas.php:54
+msgid "Help shape the programme of ISHF Lisbon 2027: submit your proposal for a session, debate or workshop and share your ideas on the future of social and affordable housing."
+msgstr "Ajude a construir o programa do ISHF Lisboa 2027: submeta a sua proposta para uma sessão, debate ou workshop e partilhe as suas ideias sobre o futuro da habitação social e acessível."
+
+#: includes/sections/ctas.php:63
+msgid "Sessions & Debates"
+msgstr "Sessões e Debates"
+
+#: includes/sections/ctas.php:64
+msgid "Lead thought-provoking discussions, thematic panels, and policy roundtables."
+msgstr "Lidere discussões inspiradoras, painéis temáticos e mesas-redondas estratégicas."
+
+#: includes/sections/ctas.php:70
+msgid "Workshops & Labs"
+msgstr "Workshops e Laboratórios"
+
+#: includes/sections/ctas.php:71
+msgid "Host collaborative sessions, participatory workshops, and co-creation labs."
+msgstr "Conduza sessões colaborativas, workshops participativos e laboratórios de cocriação."
+
+#: includes/sections/ctas.php:77
+msgid "Projects & Ideas"
+msgstr "Projetos e Ideias"
+
+#: includes/sections/ctas.php:78
+msgid "Showcase innovative housing solutions, research breakthroughs, and field case studies."
+msgstr "Apresente soluções inovadoras de habitação, avanços de investigação e estudos de caso práticos."
+
+#: includes/sections/ctas.php:92
+msgid "Submit Your Proposal"
+msgstr "Submeter Proposta"
+
+#: includes/sections/ctas.php:96
+msgid "External application form opens in a new tab."
+msgstr "O formulário externo de candidatura abre num novo separador."
+
+#: includes/sections/ctas.php:94
+msgid "Become a Partner"
+msgstr "Tornar-se Parceiro"
+
+#: includes/sections/ctas.php:98
+msgid "Opens partnership inquiry form in a popup window."
+msgstr "Abre o formulário de contacto para parcerias numa janela popup."
+
+#: includes/sections/ctas.php:127
+msgid "Join ISHF 2027 as an official partner. Fill in the form below and our team will get in touch shortly."
+msgstr "Junte-se ao ISHF 2027 como parceiro oficial. Preencha o formulário abaixo e a nossa equipa entrará em contacto brevemente."
+
+
