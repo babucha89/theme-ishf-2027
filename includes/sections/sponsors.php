@@ -1,50 +1,39 @@
 <?php
 // -----------------------------------------------------------------------------
-//  Section: SPONSORS / PARTNERS
-//  Institutional partners, sponsors, and supporters
+//  Section: PARTNERS / SPONSORS (Home)
+//  Figma: Home / Partners. Logos swap automatically with the theme
+//  (.light-mode-img / .dark-mode-img). Export the six SVGs from the Figma
+//  "Sponsors Logos" section into img/sponsors/ with the file names below.
+//  Until a file exists the partner name is shown as text, so nothing breaks.
+//  Roles ("Organised with", "Supported by") are still TBC in the design.
 //  Base Theme: ISHF 2027 Lisbon
 // -----------------------------------------------------------------------------
+$ishf_partners = array(
+  array('name' => 'Housing Europe', 'file' => 'housing-europe', 'url' => 'https://www.housingeurope.eu/', 'h' => 105),
+  array('name' => 'Gebalis',        'file' => 'gebalis',        'url' => 'https://gebalis.pt/',            'h' => 105),
+  array('name' => 'Câmara Municipal de Lisboa', 'file' => 'cm-lisboa', 'url' => 'https://www.lisboa.pt/', 'h' => 58),
+);
+$ishf_sponsors_dir = get_template_directory() . '/img/sponsors/';
 ?>
-<section id="partners" class="uk-section uk-section-medium section-partners" aria-labelledby="partners-title">
-  <div class="uk-container uk-container-large">
-    
-    <div class="uk-text-center uk-margin-medium-bottom">
-      <span class="ishf-badge-pill">
-        <?php _e('Partners & Supporters', TEXT_DOMAIN); ?>
-      </span>
-      <h2 id="partners-title" class="uk-h3 uk-text-bold section-title uk-margin-small-top">
-        <?php _e('Institutions Behind ISHF 2027 Lisbon', TEXT_DOMAIN); ?>
-      </h2>
-    </div>
-
-    <!-- Partner Logos Grid -->
-    <div data-uk-grid class="uk-grid-medium uk-flex-middle uk-flex-center uk-child-width-1-2 uk-child-width-1-4@m uk-text-center partner-logos-grid">
-      
-      <div class="partner-logo-item">
-        <div class="partner-box uk-card uk-card-default uk-card-body uk-flex uk-flex-center uk-flex-middle">
-          <span class="uk-text-bold uk-text-muted">Câmara Municipal de Lisboa</span>
-        </div>
-      </div>
-
-      <div class="partner-logo-item">
-        <div class="partner-box uk-card uk-card-default uk-card-body uk-flex uk-flex-center uk-flex-middle">
-          <span class="uk-text-bold uk-text-muted">Housing Europe</span>
-        </div>
-      </div>
-
-      <div class="partner-logo-item">
-        <div class="partner-box uk-card uk-card-default uk-card-body uk-flex uk-flex-center uk-flex-middle">
-          <span class="uk-text-bold uk-text-muted">IHRU Portugal</span>
-        </div>
-      </div>
-
-      <div class="partner-logo-item">
-        <div class="partner-box uk-card uk-card-default uk-card-body uk-flex uk-flex-center uk-flex-middle">
-          <span class="uk-text-bold uk-text-muted">Medialivre Boost Solutions</span>
-        </div>
-      </div>
-
-    </div>
-
+<section id="partners" class="ishf-partners" aria-labelledby="partners-title">
+  <div class="uk-container">
+    <h2 id="partners-title" class="ishf-eyebrow"><?php _e('Organised with', TEXT_DOMAIN); ?></h2>
+    <ul class="partner-logos" role="list">
+      <?php foreach ($ishf_partners as $p):
+        $has_logos = file_exists($ishf_sponsors_dir . $p['file'] . '-dark.svg') && file_exists($ishf_sponsors_dir . $p['file'] . '-light.svg');
+        ?>
+        <li>
+          <a href="<?php echo esc_url($p['url']); ?>" target="_blank" rel="noopener noreferrer">
+            <?php if ($has_logos): ?>
+              <img class="light-mode-img" src="<?php echo esc_url(BASE_IMAGES . 'sponsors/' . $p['file'] . '-dark.svg'); ?>" alt="<?php echo esc_attr($p['name']); ?>" height="<?php echo (int) $p['h']; ?>" loading="lazy" />
+              <img class="dark-mode-img" src="<?php echo esc_url(BASE_IMAGES . 'sponsors/' . $p['file'] . '-light.svg'); ?>" alt="<?php echo esc_attr($p['name']); ?>" height="<?php echo (int) $p['h']; ?>" loading="lazy" />
+            <?php else: ?>
+              <span class="partner-name"><?php echo esc_html($p['name']); ?></span>
+            <?php endif; ?>
+            <span class="uk-visually-hidden"> <?php _e('(opens in a new tab)', TEXT_DOMAIN); ?></span>
+          </a>
+        </li>
+      <?php endforeach; ?>
+    </ul>
   </div>
 </section>

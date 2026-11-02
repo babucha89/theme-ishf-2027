@@ -312,6 +312,19 @@ endif;
 //------------------------------------------------------------------------------
 //  Call for Sessions - External Form URL Helper
 //------------------------------------------------------------------------------
+if (!function_exists('ishf_get_register_url')):
+  /**
+   * Link to the external (third-party) registration page.
+   * Set SITE_REGISTER_URL in functions.php / wp-config.php, or filter 'ishf_register_url'.
+   * Until it is defined the CTA falls back to the Call for Sessions host's home page: replace before launch.
+   */
+  function ishf_get_register_url()
+  {
+    $url = defined('SITE_REGISTER_URL') && !empty(SITE_REGISTER_URL) ? SITE_REGISTER_URL : 'https://congressos.leading.pt/';
+    return apply_filters('ishf_register_url', $url);
+  }
+endif;
+
 if (!function_exists('ishf_get_call_for_sessions_url')):
   /**
    * Obtém o link para o formulário externo de "Call for Sessions".

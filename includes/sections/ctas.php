@@ -30,8 +30,12 @@ if ($has_p_result && !empty($partnership_result['fields'])) {
 }
 
 $p_errors = ($has_p_result && !empty($partnership_result['field_errors'])) ? $partnership_result['field_errors'] : array();
+
+// show_boxes=false renders only the partnership modal (homepage: the journey cards open it)
+$show_boxes = !isset($args['show_boxes']) || $args['show_boxes'];
 ?>
-<section id="dual-ctas" class="uk-section uk-section-medium section-dual-ctas" aria-label="<?php esc_attr_e('Engagement Options', TEXT_DOMAIN); ?>">
+<section id="dual-ctas" class="<?php echo $show_boxes ? 'uk-section uk-section-medium section-dual-ctas' : 'ishf-modal-only'; ?>"<?php echo $show_boxes ? ' aria-label="' . esc_attr__('Engagement Options', TEXT_DOMAIN) . '"' : ''; ?>>
+  <?php if ($show_boxes): ?>
   <div class="uk-container uk-container-large">
     
     <div data-uk-grid class="uk-grid-match uk-grid-large uk-child-width-1-1 uk-child-width-1-2@m">
@@ -112,6 +116,7 @@ $p_errors = ($has_p_result && !empty($partnership_result['field_errors'])) ? $pa
     </div>
 
   </div>
+  <?php endif; ?>
 
   <?php
   // ===========================================================================

@@ -20,50 +20,35 @@ ishf_use_full_layout(true);
 get_header();
 ?>
 
-<?php
-// -- Section: HEADER (Sticky Nav, Project Logo & Claim)
-get_template_part('includes/sections/header');
-?>
+<!-- Banner landmark: navigation-menu (full variant) -->
+<header role="banner" class="ishf-site-header">
+  <?php get_template_part('includes/navigation-menu'); ?>
+</header>
 
 <!-- Main Content Landmark (WCAG 2.1 AA) -->
 <main id="content-start" role="main" class="site-main" tabindex="-1">
-  <h1 class="uk-screen-reader-text sr-only">
-    <?php echo esc_html(defined('SITE_SHORT_NAME') ? SITE_SHORT_NAME : SITE_NAME); ?>
-  </h1>
 
   <?php
-  // -- Section: STREAMING EVENT (Conditional: renders when 'sections/streaming' or 'streaming' page is published with a YouTube ID)
+  // -- Section 1: HERO (the only H1)
+  get_template_part('includes/sections/hero');
+
+  // -- Section 2: LIVE EVENT (Conditional: renders when the 'sections/streaming' or 'streaming' page is published with a YouTube ID)
   get_template_part('includes/sections/streaming');
-  ?>
 
-  <?php
-  // -- Section 1: ABOUT & 4 PILLARS (Affordable Housing, Green Transition, Inclusion, Lisbon)
-  get_template_part('includes/sections/about');
-  ?>
+  // -- Section 3: USER JOURNEYS (Contribute, Become a Partner, Attend)
+  get_template_part('includes/sections/journeys');
 
-  <?php
-  // -- Section 2: PROGRAM / AGENDA (3 Days: Plenaries, Workshops, Site Visits)
-  get_template_part('includes/sections/program');
-  ?>
-
-  <?php
-  // -- Section 3: KEYNOTE SPEAKERS & VISIONARIES
-  get_template_part('includes/sections/speakers');
-  ?>
-
-  <?php
-  // -- Section 4: DUAL ENGAGEMENT CTAS (Partnership Contact & Newsletter Subscription)
-  get_template_part('includes/sections/ctas');
-  ?>
-
-  <?php
-  // -- Section 5: INSTITUTIONAL PARTNERS & SPONSORS
+  // -- Section 4: PARTNERS (logos; sponsors live here, not in the footer)
   get_template_part('includes/sections/sponsors');
-  ?>
 
-  <?php
-  // -- Section 6: DIRECT CONTACT FORM (Optional on Homepage)
-  // get_template_part('includes/sections/contact-form');
+  // -- Section 5: NEWS & ARTICLES (3 latest posts)
+  get_template_part('includes/sections/news');
+
+  // -- Section 6: NEWSLETTER (existing form)
+  get_template_part('includes/sections/newsletter');
+
+  // -- Partnership modal only (opened by the "Become a Partner" journey card)
+  get_template_part('includes/sections/ctas', null, array('show_boxes' => false));
   ?>
 
 </main>

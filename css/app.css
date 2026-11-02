@@ -862,3 +862,66 @@ html.dark-mode #cookies-disclaimer #btnAcceptCookies:hover, html.dark-mode #cook
   .streaming-play-btn:hover, .streaming-play-btn:focus,
   .streaming-poster-wrapper:hover .streaming-poster-img { transform: none !important; }
 }
+/* =============================================================================
+   HOMEPAGE SECTIONS (Figma: Home Light/Dark) - hero, journeys, partners, news
+   Tokens only; breakpoints aligned to UIkit (640 / 960).
+   ============================================================================= */
+.ishf-modal-only { margin: 0; padding: 0; }
+
+/* Hero */
+.ishf-hero { background-color: var(--colors-background-tint); padding: var(--grids-spacing-64) 0; }
+html.dark-mode .ishf-hero { background-color: var(--colors-night-800); }
+.hero-title { font-size: var(--fonts-size-heading-1); line-height: 1.1; margin-bottom: var(--grids-spacing-16); }
+.hero-date { font-size: var(--fonts-size-lead); font-weight: 600; color: var(--colors-text-heading); margin-bottom: var(--grids-spacing-16); }
+.hero-lead { max-width: 36em; color: var(--colors-text-default); margin-bottom: var(--grids-spacing-32); }
+.hero-ctas { gap: var(--grids-spacing-16); }
+.hero-art { max-width: 440px; margin: var(--grids-spacing-32) auto 0; padding-bottom: var(--grids-spacing-24); }
+.hero-photo { display: block; width: 100%; aspect-ratio: 1 / 1; object-fit: cover; border-radius: var(--grids-radius-lg); }
+.hero-photo--placeholder { background-color: var(--colors-brand-blue-tejo); opacity: 0.35; }
+.hero-key { position: absolute; top: -24px; right: -12px; width: 100px; height: auto; }
+.hero-wave { position: absolute; left: -16px; bottom: 0; width: 160px; height: auto; }
+@media (min-width: 960px) {
+  .ishf-hero { padding: var(--grids-spacing-96) 0; }
+  .hero-art { margin-top: 0; }
+  .hero-key { top: -40px; right: -32px; width: 200px; }
+  .hero-wave { left: -40px; width: 260px; }
+}
+
+/* Journeys */
+.ishf-journeys, .ishf-partners, .ishf-news { padding: var(--grids-spacing-64) 0; }
+.ishf-journeys .ishf-eyebrow { margin: 0 0 var(--grids-spacing-24); }
+.journey-grid { list-style: none; margin-left: 0; padding: 0; }
+.journey-card { position: relative; display: flex; flex-direction: column; align-items: flex-start; justify-content: space-between; gap: var(--grids-spacing-24); height: 100%; min-height: 320px; padding: var(--grids-spacing-32); border-radius: var(--grids-radius-lg); overflow: hidden; }
+.journey-title { font-size: var(--fonts-size-heading-3); line-height: 1.2; margin: 0; position: relative; z-index: 1; }
+.journey-art { position: absolute; right: var(--grids-spacing-16); top: var(--grids-spacing-16); width: 96px; height: auto; opacity: 0.9; pointer-events: none; }
+.journey-card .uk-button { position: relative; z-index: 1; }
+.journey-card--tejo { background-color: var(--colors-brand-blue-tejo); }
+.journey-card--sun  { background-color: var(--colors-brand-sunny-yellow); }
+.journey-card--navy { background-color: var(--colors-brand-blue-sky); }
+html.dark-mode .journey-card--navy { background-color: var(--colors-night-700); }
+.journey-card--tejo .journey-title, .journey-card--sun .journey-title { color: var(--colors-brand-blue-sky); }
+.journey-card--navy .journey-title { color: var(--colors-neutral-white); }
+/* fixed brand surfaces: buttons keep their Figma colours in both modes */
+.btn-ishf-dark, .btn-ishf-dark:hover, .btn-ishf-dark:focus { background-color: var(--colors-brand-blue-sky) !important; color: var(--colors-neutral-white) !important; border: none; }
+.btn-ishf-dark:hover, .btn-ishf-dark:focus { background-color: var(--colors-night-900) !important; transform: translateY(-2px); }
+.journey-card--navy .uk-button-primary, .journey-card--navy .uk-button-primary:hover, .journey-card--navy .uk-button-primary:focus { background-color: var(--colors-brand-sunny-yellow) !important; color: var(--colors-brand-blue-sky) !important; }
+.journey-card :focus-visible { outline-color: var(--colors-brand-blue-sky) !important; }
+.journey-card--navy :focus-visible { outline-color: var(--colors-focus-ring-inverse) !important; }
+
+/* Partners */
+.partner-logos { list-style: none; margin: var(--grids-spacing-24) 0 0; padding: 0; display: flex; flex-wrap: wrap; align-items: center; gap: var(--grids-spacing-32); }
+.partner-logos a { display: inline-flex; align-items: center; text-decoration: none; }
+.partner-logos img { width: auto; max-width: 100%; }
+.partner-name { font-weight: 700; font-size: var(--fonts-size-lead); color: var(--colors-text-heading); }
+@media (min-width: 960px) { .partner-logos { gap: var(--grids-spacing-80); } }
+
+/* News */
+.news-grid { list-style: none; margin-left: 0; padding: 0; margin-top: var(--grids-spacing-24); }
+.news-card-media { height: 160px; margin-bottom: var(--grids-spacing-16); border-radius: var(--grids-radius-md); overflow: hidden; background-color: var(--colors-background-tint); }
+html.dark-mode .news-card-media { background-color: var(--colors-night-800); }
+.news-card-media img { display: block; width: 100%; height: 100%; object-fit: cover; }
+.news-card-cat { margin: 0 0 var(--grids-spacing-8); }
+.news-card-title { font-size: var(--fonts-size-heading-5); margin: 0 0 var(--grids-spacing-8); }
+.news-card-title a { color: var(--colors-text-heading); text-decoration: none; }
+.news-card-title a:hover, .news-card-title a:focus { color: var(--colors-text-link-hover); text-decoration: underline; }
+.news-card-date { margin: 0; color: var(--colors-text-muted); }
