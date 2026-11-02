@@ -938,3 +938,6 @@ html.dark-mode .news-card-media { background-color: var(--colors-night-800); }
 .hero-cta-hint { margin: var(--grids-spacing-12) 0 0; color: var(--colors-text-muted); }
 
 .hero-photo--placeholder img { object-position: initial; }
+
+/* Footers are always dark (navy in light mode, near-black in dark mode): all paragraphs stay light */
+.ishf-footer-full p, .ishf-footer-full .uk-text-small, .ishf-footer-full .footer-legal-text, .ishf-footer-simple p { color: var(--colors-neutral-white); }
