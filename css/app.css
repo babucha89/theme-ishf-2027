@@ -963,3 +963,13 @@ html { scroll-behavior: smooth; }
 /* Modal: reuse the partnership modal shell; neutralise the old card look around the form */
 .modal-ishf-newsletter .cta-box-newsletter { background: none; border: 0; padding: 0; color: inherit; }
 .modal-ishf-newsletter .cta-box-newsletter::before { display: none; }
+
+/* Newsletter label (badge) - single declaration, same look wherever it is used (modal header, any block) */
+.cta-badge-newsletter { background-color: var(--cta-newsletter-badge-bg); color: var(--cta-newsletter-badge-color); border: 1px solid var(--cta-newsletter-badge-border); transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease; }
+html.dark-mode .cta-badge-newsletter { background-color: var(--cta-newsletter-badge-bg); color: var(--cta-newsletter-badge-color); border-color: var(--cta-newsletter-badge-border); }
+/* Newsletter form labels / helper / consent text: identical in the modal and in any .cta-box-newsletter wrapper */
+.modal-ishf-newsletter .uk-form-label { color: var(--colors-text-heading); font-weight: 600; font-size: 13.5px; }
+.modal-ishf-newsletter .form-help-text { color: var(--colors-text-muted) !important; font-size: 12.5px; }
+.modal-ishf-newsletter .newsletter-consent-text { color: var(--colors-text-muted); }
+html.dark-mode .modal-ishf-newsletter .uk-form-label { color: var(--colors-text-heading); }
+html.dark-mode .modal-ishf-newsletter .form-help-text, html.dark-mode .modal-ishf-newsletter .newsletter-consent-text { color: var(--colors-text-muted) !important; }
