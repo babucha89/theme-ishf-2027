@@ -26,7 +26,6 @@ $ishf_lang_attr = ($ishf_clip && $ishf_clip['lang_note']) ? ' lang="' . esc_attr
     <a href="<?php echo esc_url($ishf_href); ?>"<?php echo $ishf_lang_attr; ?><?php echo $ishf_clip ? ' target="_blank" rel="noopener noreferrer"' : ''; ?>>
       <?php the_title(); ?>
       <?php if ($ishf_clip): ?>
-        <span class="news-card-ext" data-uk-icon="icon: link; ratio: 0.8" aria-hidden="true"></span>
         <span class="uk-visually-hidden">
           (<?php echo esc_html($ishf_clip['lang_note'] ? $ishf_clip['lang_note'] . ', ' : ''); ?><?php _e('opens in a new tab', TEXT_DOMAIN); ?>)
         </span>

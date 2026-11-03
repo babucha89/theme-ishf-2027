@@ -455,5 +455,8 @@ Clippings are normal posts with **Custom Fields** (post editor; enable the panel
 | `uikit_bs_external_url` | URL of the article on the third-party site. When set, the post is a clipping: label "Clipping"/"Cobertura", the card links to the URL in a new tab. |
 | `ishf_external_lang` | Language of the external content: `pt`, `en`, `es` or `fr` (default `pt`). The "In Portuguese" tag shows when it differs from the site language. |
 | `ishf_external_date` | Publication date at the source, e.g. `2027-03-15` (optional; falls back to the post date). |
+| `ishf_external_source` | Publication name, only used when the post has no publication tag (optional). |
 
 The publication the article comes from is set with **post tags**. Home news cards use the `image-3x2` size (900x600, defined in `functions.php`); the single article uses `image-gallery`.
+
+Clippings have **no single page**: opening one redirects to the external URL (editor previews excepted) and they are left out of the XML sitemap. On single articles, the *Related articles* block lists other articles and clippings with the same cards as the home news block. To limit which tags count as a publication, use `add_filter('ishf_publication_tag_slugs', fn() => array('publico', 'expresso'));`.

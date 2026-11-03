@@ -4,7 +4,8 @@
 //  Layout: compact header -> ARTICLE HERO section (label, title, lead = excerpt side by side with the
 //  'image-gallery' image; date = small detail under the image, right-aligned)
 //  -> ARTICLE BODY section (narrow container, different background for contrast) -> post navigation.
-//  Clippings (external URL) get a "Read at the source" button, with the content-language note.
+//  Clippings (external URL) have no single page (redirected, see includes/post-meta-clipping.php); the
+//  related-articles block lists other articles and clippings with the home news cards.
 //  Base Theme: ISHF 2027 Lisbon
 // -----------------------------------------------------------------------------
 
@@ -41,10 +42,6 @@ if (has_post_thumbnail()) {
           <header class="article-header uk-width-1-1 <?php echo has_post_thumbnail() ? 'uk-width-1-2@m' : ''; ?>">
             <p class="article-meta">
               <?php if ($ishf_label): ?><span class="uk-label ishf-label<?php echo ($ishf_clip || has_category(array('clipping', 'cobertura'))) ? ' ishf-label--clipping' : ''; ?>"><?php echo esc_html($ishf_label); ?></span><?php endif; ?>
-              <?php if ($ishf_clip): ?>
-                <?php foreach ($ishf_clip['sources'] as $source): ?><span class="news-card-tag"><?php echo esc_html($source); ?></span><?php endforeach; ?>
-                <?php if ($ishf_clip['lang_note']): ?><span class="news-card-tag news-card-tag--lang"><?php echo esc_html($ishf_clip['lang_note']); ?></span><?php endif; ?>
-              <?php endif; ?>
             </p>
             <h1 id="article-title" class="article-title"><?php the_title(); ?></h1>
             <?php if ($ishf_lead): ?>
@@ -79,17 +76,7 @@ if (has_post_thumbnail()) {
           <?php the_content(); ?>
         </div>
 
-        <?php if ($ishf_clip): ?>
-          <p class="article-source-cta">
-            <a class="uk-button uk-button-primary" href="<?php echo esc_url($ishf_clip['url']); ?>" target="_blank" rel="noopener noreferrer"<?php echo $ishf_clip['lang_note'] ? ' lang="' . esc_attr($ishf_clip['lang']) . '"' : ''; ?>>
-              <?php _e('Read the full article at the source', TEXT_DOMAIN); ?>
-              <?php if ($ishf_clip['lang_note']): ?>(<?php echo esc_html($ishf_clip['lang_note']); ?>)<?php endif; ?>
-              <span class="uk-visually-hidden"> <?php _e('(opens in a new tab)', TEXT_DOMAIN); ?></span>
-            </a>
-          </p>
-        <?php endif; ?>
-
-        <?php $ishf_tags = !$ishf_clip ? get_the_tags() : false; if ($ishf_tags): ?>
+        <?php $ishf_tags = get_the_tags(); if ($ishf_tags): ?>
           <ul class="article-tags" role="list">
             <?php foreach ($ishf_tags as $tag): ?><li class="news-card-tag"><?php echo esc_html($tag->name); ?></li><?php endforeach; ?>
           </ul>
@@ -98,14 +85,12 @@ if (has_post_thumbnail()) {
       </div>
     </section>
 
-    <!-- Section 3: post navigation -->
+    <!-- Section 3: related articles (content or clippings, same cards as the home news block) -->
+    <?php get_template_part('includes/sections/related-articles'); ?>
+
     <nav class="article-footer" aria-label="<?php esc_attr_e('Article navigation', TEXT_DOMAIN); ?>">
-      <div class="uk-container uk-container-small uk-flex uk-flex-between uk-flex-middle uk-flex-wrap">
+      <div class="uk-container">
         <a class="uk-button uk-button-text article-back" href="<?php echo esc_url(home_url('/')); ?>">← <?php _e('Back to Home', TEXT_DOMAIN); ?></a>
-        <div class="article-pager">
-          <?php previous_post_link('%link', '← ' . __('Previous', TEXT_DOMAIN)); ?>
-          <?php next_post_link('%link', __('Next', TEXT_DOMAIN) . ' →'); ?>
-        </div>
       </div>
     </nav>
 

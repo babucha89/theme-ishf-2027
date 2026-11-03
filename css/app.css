@@ -1077,3 +1077,8 @@ html.dark-mode .news-card-media { background-color: var(--colors-night-700); }
 .article-footer .uk-button-text::before { display: none; }
 .article-footer .uk-button-text:hover, .article-footer .uk-button-text:focus, .article-pager a:hover, .article-pager a:focus { font-weight: 800; color: var(--colors-text-eyebrow); text-decoration: none; }
 .article-pager { display: flex; align-items: center; gap: var(--grids-spacing-24); }
+
+/* Related articles (single): same cards as the home news block, on a contrasting background */
+.article-related { background-color: var(--colors-background-muted); }
+html.dark-mode .article-related { background-color: var(--colors-background-default); }
+.article-related + .article-footer { border-top: 0; padding-top: 0; }

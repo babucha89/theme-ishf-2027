@@ -1683,3 +1683,7 @@ msgstr "Notícias e artigos"
 
 msgid "All news"
 msgstr "Todas as notícias"
+
+#: includes/news-card.php, includes/post-meta-clipping.php, single.php (news & clippings)
+msgid "Related articles"
+msgstr "Artigos relacionados"

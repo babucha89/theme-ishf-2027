@@ -6,6 +6,9 @@
 //    - uikit_bs_external_url : external article URL (same key as the base template)
 //    - ishf_external_lang    : language of the external content: pt, en, es or fr (default pt)
 //    - ishf_external_date    : publication date at the source, e.g. 2027-03-15 (optional; falls back to the post date)
+//    - ishf_external_source  : publication name, only used when the post has no publication tag (optional)
+//  Clippings have NO single page: visiting one redirects to the external URL (previews excepted) and
+//  they are left out of the XML sitemap.
 //  The publication it comes from is set with POST TAGS (e.g. "Público", "Expresso").
 //  Cards show the "In Portuguese" note when the content language differs from the site language.
 //  Base Theme: ISHF 2027 Lisbon
@@ -65,11 +68,23 @@ if (!function_exists('ishf_get_clipping')):
     $iso  = $ts ? gmdate('Y-m-d', $ts) : get_the_date('Y-m-d', $post_id);
     $label = $ts ? date_i18n(get_option('date_format'), $ts) : get_the_date('', $post_id);
 
+    // Publication the article comes from: post tags (optionally limited to the slugs returned by the
+    // 'ishf_publication_tag_slugs' filter, e.g. array('publico', 'expresso')); if there is none, the
+    // free-text custom field ishf_external_source is used.
+    $slugs   = (array) apply_filters('ishf_publication_tag_slugs', array());
     $tags    = get_the_tags($post_id);
     $sources = array();
     if ($tags && !is_wp_error($tags)) {
       foreach ($tags as $tag) {
-        $sources[] = $tag->name;
+        if (empty($slugs) || in_array($tag->slug, $slugs, true)) {
+          $sources[] = $tag->name;
+        }
+      }
+    }
+    if (empty($sources)) {
+      $fallback = trim((string) get_post_meta($post_id, 'ishf_external_source', true));
+      if ($fallback !== '') {
+        $sources[] = $fallback;
       }
     }
 
@@ -101,6 +116,7 @@ endif;
 add_action('init', function () {
   register_post_meta('post', 'uikit_bs_external_url', array('type' => 'string', 'single' => true, 'show_in_rest' => true, 'sanitize_callback' => 'esc_url_raw', 'auth_callback' => function () { return current_user_can('edit_posts'); }));
   register_post_meta('post', 'ishf_external_date', array('type' => 'string', 'single' => true, 'show_in_rest' => true, 'sanitize_callback' => 'sanitize_text_field', 'auth_callback' => function () { return current_user_can('edit_posts'); }));
+  register_post_meta('post', 'ishf_external_source', array('type' => 'string', 'single' => true, 'show_in_rest' => true, 'sanitize_callback' => 'sanitize_text_field', 'auth_callback' => function () { return current_user_can('edit_posts'); }));
   register_post_meta('post', 'ishf_external_lang', array('type' => 'string', 'single' => true, 'show_in_rest' => true, 'sanitize_callback' => 'sanitize_text_field', 'auth_callback' => function () { return current_user_can('edit_posts'); }));
 });
 
@@ -110,3 +126,26 @@ add_action('init', function () {
 add_action('init', function () {
   add_post_type_support('post', 'custom-fields');
 });
+
+// -- Clippings have no single page: send visitors straight to the external article
+add_action('template_redirect', function () {
+  if (is_singular('post') && !is_preview()) {
+    $clip = ishf_get_clipping(get_queried_object_id());
+    if ($clip) {
+      wp_redirect(esc_url_raw($clip['url']), 302);
+      exit;
+    }
+  }
+});
+
+// -- ...and they are not listed in the WordPress XML sitemap
+add_filter('wp_sitemaps_posts_query_args', function ($args, $post_type) {
+  if ($post_type === 'post') {
+    $args['meta_query'] = array(
+      'relation' => 'OR',
+      array('key' => 'uikit_bs_external_url', 'compare' => 'NOT EXISTS'),
+      array('key' => 'uikit_bs_external_url', 'value' => '', 'compare' => '='),
+    );
+  }
+  return $args;
+}, 10, 2);
