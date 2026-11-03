@@ -452,6 +452,7 @@ endif;
 //------------------------------------------------------------------------------
 require_once __DIR__ . '/includes/post-meta-clipping.php';
 require_once __DIR__ . '/includes/seo.php';
+require_once __DIR__ . '/includes/programme.php';
 require_once __DIR__ . '/includes/uikit-walker.php';
 require_once __DIR__ . '/includes/uikit-menus.php';
 
@@ -752,7 +753,22 @@ endif;
 if (!function_exists('ishf_get_post_youtube_atts')):
   function ishf_get_post_youtube_atts($post)
   {
-    return ishf_get_post_youtube_atts($post);
+    if (!$post = get_post($post))
+      return array();
+
+    if (!has_shortcode($post->post_content, 'youtube'))
+      return array();
+
+    $matches = null;
+    if (preg_match_all('/' . get_shortcode_regex() . '/s', $post->post_content, $matches, PREG_SET_ORDER)):
+      foreach ($matches as $shortcode):
+        if ('youtube' === $shortcode[2]):
+          $atts = shortcode_parse_atts($shortcode[3]);
+          return is_array($atts) ? $atts : array();
+        endif;
+      endforeach;
+    endif;
+    return array();
   }
 endif;
 

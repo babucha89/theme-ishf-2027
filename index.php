@@ -38,7 +38,10 @@ get_header();
   // -- Section 3: USER JOURNEYS (Contribute, Become a Partner, Attend)
   get_template_part('includes/sections/journeys');
 
-  // -- Section 4: NEWS & ARTICLES (3 latest posts)
+  // -- Section 4: PROGRAMME (first sessions, or "Programme coming soon" while no seminar is published)
+  get_template_part('includes/sections/program-teaser');
+
+  // -- Section 5: NEWS & ARTICLES (3 latest posts)
   // Sponsors + Newsletter are rendered site-wide by footer.php (full layout), right before the footer.
   get_template_part('includes/sections/news');
 

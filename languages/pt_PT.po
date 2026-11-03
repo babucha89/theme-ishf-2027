@@ -2401,3 +2401,74 @@ msgstr "Data de subscrição"
 
 msgid "Yes"
 msgstr "Sim"
+
+# --- Programme ---
+
+msgid "%d sessions"
+msgstr "%d sessões"
+
+msgid "1 session"
+msgstr "1 sessão"
+
+msgid "Add to calendar"
+msgstr "Adicionar ao calendário"
+
+msgid "All rooms"
+msgstr "Todas as salas"
+
+msgid "All speakers"
+msgstr "Todos os oradores"
+
+msgid "All themes"
+msgstr "Todos os temas"
+
+msgid "Date to be announced"
+msgstr "Data por anunciar"
+
+msgid "Filter the programme"
+msgstr "Filtrar o programa"
+
+msgid "Full programme"
+msgstr "Programa completo"
+
+msgid "Get notified when it is published"
+msgstr "Seja notificado quando for publicado"
+
+msgid "No sessions match these filters."
+msgstr "Nenhuma sessão corresponde a estes filtros."
+
+msgid "Programme coming soon"
+msgstr "Programa em breve"
+
+msgid "Programme days"
+msgstr "Dias do programa"
+
+msgid "Provisional"
+msgstr "Provisório"
+
+msgid "Room"
+msgstr "Sala"
+
+msgid "Room:"
+msgstr "Sala:"
+
+msgid "Speaker"
+msgstr "Orador"
+
+msgid "Speakers:"
+msgstr "Oradores:"
+
+msgid "TBA"
+msgstr "Por anunciar"
+
+msgid "To be announced"
+msgstr "Por anunciar"
+
+msgid "View session"
+msgstr "Ver sessão"
+
+msgid "View the full programme"
+msgstr "Ver o programa completo"
+
+msgid "We are building three days of sessions, workshops and site visits for 7‑9 June 2027 in Lisbon. The full programme will be published here as soon as it is confirmed."
+msgstr "Estamos a preparar três dias de sessões, workshops e visitas técnicas para 7‑9 de junho de 2027, em Lisboa. O programa completo será publicado aqui assim que estiver confirmado."

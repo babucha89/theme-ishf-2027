@@ -1,153 +1,198 @@
 <?php
 // -----------------------------------------------------------------------------
-//  Section: PROGRAM / AGENDA
-//  Festival Schedule & Key Streams (7–9 June 2027 Lisbon)
+//  Section: PROGRAMME (full agenda)
+//  Native list built from the CPT "seminars": grouped by day, with filters by
+//  room, theme and speaker (client-side, no external widget). Without
+//  JavaScript every session stays visible. Shows a "coming soon" panel while
+//  no seminar is published.
 //  Base Theme: ISHF 2027 Lisbon
 // -----------------------------------------------------------------------------
+$sessions = ishf_get_programme_sessions();
 ?>
-<section id="program" class="uk-section uk-section-large section-program" aria-labelledby="program-title">
-  <div class="uk-container uk-container-large">
-    
-    <div class="uk-text-center uk-margin-large-bottom">
-      <span class="ishf-badge-pill">
-        <?php _e('Festival Agenda', TEXT_DOMAIN); ?>
-      </span>
-      <h2 id="program-title" class="uk-h2 uk-text-bold section-title uk-margin-small-top">
-        <?php _e('Three Days of Exchange, Innovation & Urban Action', TEXT_DOMAIN); ?>
-      </h2>
-      <p class="section-lead uk-margin-auto uk-width-2-3@m">
-        <?php _e('Explore high-level international plenaries, practical workshops, site tours of innovative Lisbon housing projects, and policy assemblies.', TEXT_DOMAIN); ?>
-      </p>
+<section id="programme" class="ishf-programme" aria-labelledby="programme-title">
+  <div class="uk-container">
+    <h2 id="programme-title" class="uk-visually-hidden"><?php esc_html_e('Programme', TEXT_DOMAIN); ?></h2>
 
-      <!-- Program Day Switcher (UIkit Subnav) -->
-      <ul class="uk-subnav uk-subnav-pill uk-flex-center uk-margin-medium-top program-days-nav" data-uk-switcher="animation: uk-animation-fade">
-        <li class="uk-active"><a href="#"><?php _e('Day 1 · 7 Jun', TEXT_DOMAIN); ?></a></li>
-        <li><a href="#"><?php _e('Day 2 · 8 Jun', TEXT_DOMAIN); ?></a></li>
-        <li><a href="#"><?php _e('Day 3 · 9 Jun', TEXT_DOMAIN); ?></a></li>
-      </ul>
-    </div>
+    <?php if (empty($sessions)): ?>
 
-    <!-- Day Panels -->
-    <ul class="uk-switcher uk-margin">
-      
-      <!-- Day 1 Panel -->
-      <li>
-        <div class="program-timeline">
-          <div class="timeline-item uk-card uk-card-default uk-card-body uk-margin-small-bottom">
-            <div class="uk-grid-small uk-flex-middle" data-uk-grid>
-              <div class="uk-width-auto@m">
-                <span class="timeline-time uk-text-bold uk-text-primary">09:00 – 10:30</span>
-              </div>
-              <div class="uk-width-expand@m">
-                <span class="uk-label uk-label-warning"><?php _e('Plenary', TEXT_DOMAIN); ?></span>
-                <h3 class="uk-h4 uk-margin-small-top uk-margin-remove-bottom">
-                  <?php _e('Opening Ceremony: Cities with Soul & Right to Housing', TEXT_DOMAIN); ?>
-                </h3>
-                <p class="uk-text-muted uk-text-small uk-margin-remove-top">
-                  <?php _e('Keynotes by European, Portuguese, and Lisbon leadership on social housing governance.', TEXT_DOMAIN); ?>
-                </p>
-              </div>
-            </div>
-          </div>
+      <?php ishf_programme_coming_soon('h3'); ?>
 
-          <div class="timeline-item uk-card uk-card-default uk-card-body uk-margin-small-bottom">
-            <div class="uk-grid-small uk-flex-middle" data-uk-grid>
-              <div class="uk-width-auto@m">
-                <span class="timeline-time uk-text-bold uk-text-primary">11:00 – 13:00</span>
-              </div>
-              <div class="uk-width-expand@m">
-                <span class="uk-label uk-label-success"><?php _e('Policy Debate', TEXT_DOMAIN); ?></span>
-                <h3 class="uk-h4 uk-margin-small-top uk-margin-remove-bottom">
-                  <?php _e('European Financing Models for Affordable Living', TEXT_DOMAIN); ?>
-                </h3>
-                <p class="uk-text-muted uk-text-small uk-margin-remove-top">
-                  <?php _e('Unlocking public investment, EIB facilities, and cooperative housing funds.', TEXT_DOMAIN); ?>
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </li>
+    <?php else:
+      // -- Group by day and collect filter options
+      $days     = array();
+      $rooms    = array();
+      $themes   = array();
+      $speakers = array();
+      foreach ($sessions as $s) {
+        $days[$s['day']][] = $s;
+        if ($s['location'] !== '') {
+          $rooms[$s['location']] = $s['location'];
+        }
+        $themes   += $s['themes'];
+        $speakers += $s['speakers'];
+      }
+      asort($rooms);
+      asort($themes);
+      asort($speakers);
+      $has_filters = !empty($rooms) || !empty($themes) || !empty($speakers);
+    ?>
 
-      <!-- Day 2 Panel -->
-      <li>
-        <div class="program-timeline">
-          <div class="timeline-item uk-card uk-card-default uk-card-body uk-margin-small-bottom">
-            <div class="uk-grid-small uk-flex-middle" data-uk-grid>
-              <div class="uk-width-auto@m">
-                <span class="timeline-time uk-text-bold uk-text-primary">09:30 – 13:00</span>
-              </div>
-              <div class="uk-width-expand@m">
-                <span class="uk-label"><?php _e('Site Visits', TEXT_DOMAIN); ?></span>
-                <h3 class="uk-h4 uk-margin-small-top uk-margin-remove-bottom">
-                  <?php _e('Lisbon Housing Tour: Regeneration, Co-ops & Heritage', TEXT_DOMAIN); ?>
-                </h3>
-                <p class="uk-text-muted uk-text-small uk-margin-remove-top">
-                  <?php _e('Guided field visits across innovative municipal and community housing projects in Greater Lisbon.', TEXT_DOMAIN); ?>
-                </p>
-              </div>
-            </div>
-          </div>
+      <?php if (count($days) > 1): ?>
+      <nav class="programme-days" aria-label="<?php esc_attr_e('Programme days', TEXT_DOMAIN); ?>">
+        <ul class="uk-subnav uk-subnav-pill uk-margin-remove-bottom">
+          <?php foreach ($days as $day_key => $day_sessions): ?>
+            <li><a href="#day-<?php echo esc_attr($day_key); ?>"><?php
+              echo $day_key === 'tba'
+                ? esc_html__('To be announced', TEXT_DOMAIN)
+                : esc_html(wp_date('D j M', $day_sessions[0]['start']->getTimestamp(), new DateTimeZone('Europe/Lisbon')));
+            ?></a></li>
+          <?php endforeach; ?>
+        </ul>
+      </nav>
+      <?php endif; ?>
 
-          <div class="timeline-item uk-card uk-card-default uk-card-body uk-margin-small-bottom">
-            <div class="uk-grid-small uk-flex-middle" data-uk-grid>
-              <div class="uk-width-auto@m">
-                <span class="timeline-time uk-text-bold uk-text-primary">14:30 – 17:00</span>
-              </div>
-              <div class="uk-width-expand@m">
-                <span class="uk-label uk-label-danger"><?php _e('Workshops', TEXT_DOMAIN); ?></span>
-                <h3 class="uk-h4 uk-margin-small-top uk-margin-remove-bottom">
-                  <?php _e('Climate Resilience & Energy Communities in Social Housing', TEXT_DOMAIN); ?>
-                </h3>
-                <p class="uk-text-muted uk-text-small uk-margin-remove-top">
-                  <?php _e('Circular renovation, zero-emission neighborhoods, and combating energy poverty.', TEXT_DOMAIN); ?>
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </li>
+      <?php if ($has_filters): ?>
+      <form class="programme-filters" id="programme-filters" aria-label="<?php esc_attr_e('Filter the programme', TEXT_DOMAIN); ?>" onsubmit="return false;" hidden>
+        <?php if (!empty($rooms)): ?>
+          <label class="programme-filter">
+            <span><?php esc_html_e('Room', TEXT_DOMAIN); ?></span>
+            <select class="uk-select" data-filter="room">
+              <option value=""><?php esc_html_e('All rooms', TEXT_DOMAIN); ?></option>
+              <?php foreach ($rooms as $room): ?>
+                <option value="<?php echo esc_attr($room); ?>"><?php echo esc_html($room); ?></option>
+              <?php endforeach; ?>
+            </select>
+          </label>
+        <?php endif; ?>
+        <?php if (!empty($themes)): ?>
+          <label class="programme-filter">
+            <span><?php esc_html_e('Theme', TEXT_DOMAIN); ?></span>
+            <select class="uk-select" data-filter="theme">
+              <option value=""><?php esc_html_e('All themes', TEXT_DOMAIN); ?></option>
+              <?php foreach ($themes as $slug => $name): ?>
+                <option value="<?php echo esc_attr($slug); ?>"><?php echo esc_html($name); ?></option>
+              <?php endforeach; ?>
+            </select>
+          </label>
+        <?php endif; ?>
+        <?php if (!empty($speakers)): ?>
+          <label class="programme-filter">
+            <span><?php esc_html_e('Speaker', TEXT_DOMAIN); ?></span>
+            <select class="uk-select" data-filter="speaker">
+              <option value=""><?php esc_html_e('All speakers', TEXT_DOMAIN); ?></option>
+              <?php foreach ($speakers as $sid => $name): ?>
+                <option value="<?php echo (int) $sid; ?>"><?php echo esc_html($name); ?></option>
+              <?php endforeach; ?>
+            </select>
+          </label>
+        <?php endif; ?>
+        <button type="button" class="uk-button uk-button-default" data-programme-reset><?php esc_html_e('Clear filters', TEXT_DOMAIN); ?></button>
+      </form>
+      <p id="programme-count" class="programme-count" role="status" aria-live="polite"
+         data-one="<?php echo esc_attr__('1 session', TEXT_DOMAIN); ?>"
+         data-many="<?php echo esc_attr__('%d sessions', TEXT_DOMAIN); ?>"
+         data-none="<?php echo esc_attr__('No sessions match these filters.', TEXT_DOMAIN); ?>"></p>
+      <?php endif; ?>
 
-      <!-- Day 3 Panel -->
-      <li>
-        <div class="program-timeline">
-          <div class="timeline-item uk-card uk-card-default uk-card-body uk-margin-small-bottom">
-            <div class="uk-grid-small uk-flex-middle" data-uk-grid>
-              <div class="uk-width-auto@m">
-                <span class="timeline-time uk-text-bold uk-text-primary">10:00 – 12:30</span>
-              </div>
-              <div class="uk-width-expand@m">
-                <span class="uk-label uk-label-warning"><?php _e('Mayors Assembly', TEXT_DOMAIN); ?></span>
-                <h3 class="uk-h4 uk-margin-small-top uk-margin-remove-bottom">
-                  <?php _e('International Mayors & Urban Leaders Roundtable', TEXT_DOMAIN); ?>
-                </h3>
-                <p class="uk-text-muted uk-text-small uk-margin-remove-top">
-                  <?php _e('Mayors commit to the Lisbon Declaration for Sustainable Public Housing.', TEXT_DOMAIN); ?>
-                </p>
-              </div>
-            </div>
-          </div>
+      <div id="programme-list">
+      <?php foreach ($days as $day_key => $day_sessions): ?>
+        <section id="day-<?php echo esc_attr($day_key); ?>" class="programme-day" data-day aria-labelledby="heading-<?php echo esc_attr($day_key); ?>">
+          <h3 id="heading-<?php echo esc_attr($day_key); ?>" class="programme-day-title">
+            <?php
+            echo $day_key === 'tba'
+              ? esc_html__('Date to be announced', TEXT_DOMAIN)
+              : esc_html(wp_date('l, j F Y', $day_sessions[0]['start']->getTimestamp(), new DateTimeZone('Europe/Lisbon')));
+            ?>
+          </h3>
+          <ol class="programme-items">
+            <?php foreach ($day_sessions as $s):
+              $ics = ishf_programme_ics_url($s);
+            ?>
+              <li class="programme-item"
+                  data-room="<?php echo esc_attr($s['location']); ?>"
+                  data-themes="<?php echo esc_attr(implode(' ', array_keys($s['themes']))); ?>"
+                  data-speakers="<?php echo esc_attr(implode(' ', array_keys($s['speakers']))); ?>">
+                <div class="programme-time">
+                  <?php if ($s['start']): ?>
+                    <time datetime="<?php echo esc_attr($s['start']->format('c')); ?>"><?php echo esc_html(ishf_programme_time_label($s)); ?></time>
+                  <?php else: ?>
+                    <span><?php esc_html_e('TBA', TEXT_DOMAIN); ?></span>
+                  <?php endif; ?>
+                </div>
+                <div class="programme-body">
+                  <?php if (!empty($s['themes']) || $s['provisional']): ?>
+                    <div class="programme-tags">
+                      <?php foreach ($s['themes'] as $name): ?>
+                        <span class="uk-label"><?php echo esc_html($name); ?></span>
+                      <?php endforeach; ?>
+                      <?php if ($s['provisional']): ?>
+                        <span class="uk-label uk-label-warning"><?php esc_html_e('Provisional', TEXT_DOMAIN); ?></span>
+                      <?php endif; ?>
+                    </div>
+                  <?php endif; ?>
+                  <h4 class="programme-title"><a href="<?php echo esc_url($s['url']); ?>"><?php echo esc_html($s['title']); ?></a></h4>
+                  <?php if ($s['excerpt'] !== ''): ?>
+                    <p class="programme-excerpt"><?php echo esc_html($s['excerpt']); ?></p>
+                  <?php endif; ?>
+                  <ul class="programme-meta">
+                    <?php if ($s['location'] !== ''): ?>
+                      <li><span data-uk-icon="icon: location; ratio: .9" aria-hidden="true"></span> <span class="uk-visually-hidden"><?php esc_html_e('Room:', TEXT_DOMAIN); ?></span> <?php echo esc_html($s['location']); ?></li>
+                    <?php endif; ?>
+                    <?php if (!empty($s['speakers'])): ?>
+                      <li><span data-uk-icon="icon: user; ratio: .9" aria-hidden="true"></span> <span class="uk-visually-hidden"><?php esc_html_e('Speakers:', TEXT_DOMAIN); ?></span> <?php echo esc_html(implode(', ', $s['speakers'])); ?></li>
+                    <?php endif; ?>
+                  </ul>
+                </div>
+                <div class="programme-actions">
+                  <a class="uk-button uk-button-default uk-button-small" href="<?php echo esc_url($s['url']); ?>"><?php esc_html_e('View session', TEXT_DOMAIN); ?><span class="uk-visually-hidden"> - <?php echo esc_html($s['title']); ?></span></a>
+                  <?php if ($ics): ?>
+                    <a class="uk-button uk-button-text uk-button-small" href="<?php echo esc_url($ics); ?>" rel="nofollow"><span data-uk-icon="icon: calendar; ratio: .9" aria-hidden="true"></span> <?php esc_html_e('Add to calendar', TEXT_DOMAIN); ?><span class="uk-visually-hidden"> - <?php echo esc_html($s['title']); ?></span></a>
+                  <?php endif; ?>
+                </div>
+              </li>
+            <?php endforeach; ?>
+          </ol>
+        </section>
+      <?php endforeach; ?>
+      </div>
 
-          <div class="timeline-item uk-card uk-card-default uk-card-body uk-margin-small-bottom">
-            <div class="uk-grid-small uk-flex-middle" data-uk-grid>
-              <div class="uk-width-auto@m">
-                <span class="timeline-time uk-text-bold uk-text-primary">14:30 – 16:30</span>
-              </div>
-              <div class="uk-width-expand@m">
-                <span class="uk-label uk-label-success"><?php _e('Closing Plenary', TEXT_DOMAIN); ?></span>
-                <h3 class="uk-h4 uk-margin-small-top uk-margin-remove-bottom">
-                  <?php _e('Handover of the ISHF Key to the 2029 Host City', TEXT_DOMAIN); ?>
-                </h3>
-                <p class="uk-text-muted uk-text-small uk-margin-remove-top">
-                  <?php _e('Celebration of festival achievements, artistic performances, and future outlook.', TEXT_DOMAIN); ?>
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </li>
+      <?php if ($has_filters): ?>
+      <script>
+      (function () {
+        var form = document.getElementById('programme-filters');
+        var list = document.getElementById('programme-list');
+        var counter = document.getElementById('programme-count');
+        if (!form || !list) { return; }
+        form.hidden = false; // filters only make sense with JavaScript
+        var items = list.querySelectorAll('.programme-item');
+        var days = list.querySelectorAll('[data-day]');
+        function apply() {
+          var f = {};
+          form.querySelectorAll('select[data-filter]').forEach(function (s) { f[s.getAttribute('data-filter')] = s.value; });
+          var shown = 0;
+          items.forEach(function (li) {
+            var ok = (!f.room || li.getAttribute('data-room') === f.room) &&
+                     (!f.theme || (' ' + li.getAttribute('data-themes') + ' ').indexOf(' ' + f.theme + ' ') > -1) &&
+                     (!f.speaker || (' ' + li.getAttribute('data-speakers') + ' ').indexOf(' ' + f.speaker + ' ') > -1);
+            li.hidden = !ok;
+            if (ok) { shown++; }
+          });
+          days.forEach(function (d) { d.hidden = !d.querySelector('.programme-item:not([hidden])'); });
+          if (counter) {
+            counter.textContent = shown === 0 ? counter.getAttribute('data-none')
+              : shown === 1 ? counter.getAttribute('data-one')
+              : counter.getAttribute('data-many').replace('%d', shown);
+          }
+        }
+        form.addEventListener('change', apply);
+        form.querySelector('[data-programme-reset]').addEventListener('click', function () {
+          form.reset(); apply();
+        });
+        apply();
+      })();
+      </script>
+      <?php endif; ?>
 
-    </ul>
-
+    <?php endif; ?>
   </div>
 </section>

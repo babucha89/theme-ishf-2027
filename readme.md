@@ -520,3 +520,13 @@ Everything declared by the theme uses the `ishf_` prefix (functions, hooks, meta
 - `includes/sections/attendants.php` is the speakers slider used by `single-seminars.php`. It lists every published attendant (all attendants are speakers), ordered by `ishf_cf_order` (optional) then title, optionally filtered by the global `$current_category`. Attendant fields: `organization`, `function`, `gender`, `order`. There is no jury, talks or per-seminar flag any more: seminars are the only event type (`talks` CPT/flag removed).
 
 **Blocks** (`blocks/ishf-*`): `gallery`, `intro`, `quotation`, `seminar-program`, `video`, `video-slider`. Each folder has `functions.php` (register + render), `index.js` (editor) and `style.css`; namespace `ishf/…`, category `ishf`. `functions.php` loads every folder matching `blocks/ishf-*` except `ishf-example` (reference scaffold). The seminar-program block reads attendants through the REST route `ishf/v1/attendants` (editors only).
+
+## Programme (`includes/programme.php`, `includes/sections/program.php`)
+
+The programme is built from the CPT **Seminars** (nothing is hard-coded).
+
+- **Data**: each seminar gives one session per date (`Date / Time #1` and `#2`, plus the matching end times; format `YYYY-MM-DD HH:MM`, Europe/Lisbon). Room = *Event Location*, themes = the seminar categories, speakers = *Associated Attendants*, *Is event provisional?* adds a "Provisional" badge. Seminars without a date appear last under "Date to be announced". `ishf_get_programme_sessions()` returns the sorted list (cached per language).
+- **Programme page**: `page-programme.php` (template "Programme"). It is used automatically by a page with the slug `programme`; for other languages/slugs (e.g. `programa`) pick the template "Programme" in the page editor. The page content is shown as an optional intro above the agenda. `/seminars/` (`archive-seminars.php`) renders the same programme, so the URL works before the page exists.
+- **Agenda**: sessions grouped by day with a sticky day navigation, filters by room, theme and speaker (vanilla JS; without JavaScript every session stays visible and the filters are hidden), a live result counter (`aria-live`), a link to each session (own stable URL) and an *Add to calendar* link to the ICS generator page (`ics-generator`).
+- **Home block**: `includes/sections/program-teaser.php` (between *journeys* and *news*) is always rendered. With published seminars it lists the first three sessions and links to `ishf_get_programme_url()`; with none it shows **"Programme coming soon"** with a button that opens the newsletter modal.
+- **Fix**: `ishf_get_post_youtube_atts()` had become self-recursive (memory exhaustion on pages with the streaming section); the original implementation was restored.
