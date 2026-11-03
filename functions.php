@@ -71,7 +71,6 @@ defined('SITE_USE_PROJECTS') or define('SITE_USE_PROJECTS', false);
 defined('SITE_USE_QUOTATIONS') or define('SITE_USE_QUOTATIONS', false);
 defined('SITE_USE_SEMINARS') or define('SITE_USE_SEMINARS', true);
 defined('SITE_USE_SPONSORS') or define('SITE_USE_SPONSORS', true);
-defined('SITE_USE_TALKS') or define('SITE_USE_TALKS', false);
 defined('SITE_USE_VIDEOCASTS') or define('SITE_USE_VIDEOCASTS', false);
 defined('SITE_USE_WINNERS') or define('SITE_USE_WINNERS', false);
 

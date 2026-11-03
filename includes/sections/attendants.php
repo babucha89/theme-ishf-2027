@@ -1,32 +1,22 @@
 <?php
 // -----------------------------------------------------------------------------
-//  Section: ATTENDANTS (slider of speakers / jury)
+//  Section: ATTENDANTS (slider of speakers)
 //  Edited: 3L, 03-NOV-2026
 // -----------------------------------------------------------------------------
-//  Globals (set before get_template_part):
-//    $attendant_type   - 'speakers' (default) or 'juri'. Filters CPT attendants
-//                        by the custom field ishf_cf_is_{type} = yes.
-//    $current_category - optional WP_Term; limits the list to that category.
+//  Lists every published attendant (all attendants are speakers), ordered by
+//  ishf_cf_order (optional, high first) then title.
+//  Optional global $current_category (WP_Term) limits the list to a category.
 // -----------------------------------------------------------------------------
 
 // -- Initializations
-global $attendant_type, $current_category;
-
-$attendant_type = !empty($attendant_type) ? sanitize_key($attendant_type) : 'speakers';
+global $current_category;
 
 $args = array(
   'post_type' => 'attendants',
   'post_status' => 'publish',
   'posts_per_page' => -1,
-  // -- Meta query: filter by attendant type; ORDER clause is optional so
-  //    attendants without an order value are still listed (as 0)
+  // -- ORDER clause is optional so attendants without an order value are still listed (as 0)
   'meta_query' => array(
-    'relation' => 'AND',
-    array(
-      'key' => 'ishf_cf_is_' . $attendant_type,
-      'value' => 'yes',
-      'compare' => '=',
-    ),
     'order_clause' => array(
       'relation' => 'OR',
       'order_exists' => array(
@@ -55,11 +45,11 @@ endif;
 $attendants = new WP_Query($args);
 if ($attendants->have_posts()):
 ?>
-<section id="<?php echo esc_attr($attendant_type); ?>" class="ishf-attendants uk-section">
+<section id="speakers" class="ishf-attendants uk-section">
   <div class="uk-container uk-container-xlarge">
     <?php
     // -- Block: SECTION LABEL
-    $section_name = ($attendant_type == 'juri') ? __('Jury', TEXT_DOMAIN) : __('Speakers', TEXT_DOMAIN);
+    $section_name = __('Speakers', TEXT_DOMAIN);
     $heading_size = 2;
     $text_align = 'center';
     $section_label_template = locate_template('includes/section-label.php', false, false);

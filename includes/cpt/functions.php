@@ -148,14 +148,14 @@ $theme_customFields = array(
     'origin'        => TEXT_DOMAIN,
   ),
 
-  // -- SEMINARS and TALKS fields
+  // -- SEMINARS fields
   array(
     'name'          => 'attendants_related',
     'title'         => __('Associated Attendants', TEXT_DOMAIN),
     'description'   => __('Select the speakers associated with this event.', TEXT_DOMAIN),
     'type'          => 'posts_checkboxes',
     'post_type_target' => 'attendants',
-    'scope'         => array('seminars','talks'),
+    'scope'         => array('seminars'),
     'capability'    => 'edit_posts',
     'origin'        => TEXT_DOMAIN,
   ),
@@ -164,7 +164,7 @@ $theme_customFields = array(
     'title'         => __('Is event provisional?', TEXT_DOMAIN),
     'description'   => __('Check if event is provisional (can restrict how it is shown)', TEXT_DOMAIN),
     'type'          => 'checkbox',
-    'scope'         => array('seminars','talks'),
+    'scope'         => array('seminars'),
     'capability'    => 'edit_posts',
     'origin'        => TEXT_DOMAIN,
   ),
@@ -173,7 +173,7 @@ $theme_customFields = array(
     'title'         => __('Date / Time #1', TEXT_DOMAIN),
     'description'   => __('Schedule the date and time (yyyy-mm-dd hh:mm:ss) for start', TEXT_DOMAIN),
     'type'          => 'text',
-    'scope'         => array('seminars','talks'),
+    'scope'         => array('seminars'),
     'capability'    => 'edit_posts',
     'origin'        => TEXT_DOMAIN,
   ),
@@ -182,7 +182,7 @@ $theme_customFields = array(
     'title'         => __('Date / Time #2', TEXT_DOMAIN),
     'description'   => __('Schedule the date and time (yyyy-mm-dd hh:mm:ss) for start', TEXT_DOMAIN),
     'type'          => 'text',
-    'scope'         => array('seminars','talks'),
+    'scope'         => array('seminars'),
     'capability'    => 'edit_posts',
     'origin'        => TEXT_DOMAIN,
   ),
@@ -191,7 +191,7 @@ $theme_customFields = array(
     'title'         => __('Date / Time End #1', TEXT_DOMAIN),
     'description'   => __('Schedule the date and time (yyyy-mm-dd hh:mm:ss) for end', TEXT_DOMAIN),
     'type'          => 'text',
-    'scope'         => array('seminars','talks'),
+    'scope'         => array('seminars'),
     'capability'    => 'edit_posts',
     'origin'        => TEXT_DOMAIN,
   ),
@@ -200,7 +200,7 @@ $theme_customFields = array(
     'title'         => __('Date / Time End #2', TEXT_DOMAIN),
     'description'   => __('Schedule the date and time (yyyy-mm-dd hh:mm:ss) for end', TEXT_DOMAIN),
     'type'          => 'text',
-    'scope'         => array('seminars','talks'),
+    'scope'         => array('seminars'),
     'capability'    => 'edit_posts',
     'origin'        => TEXT_DOMAIN,
   ),
@@ -211,7 +211,7 @@ $theme_customFields = array(
     'title'         => __('Video ID #1', TEXT_DOMAIN),
     'description'   => null,
     'type'          => 'text',
-    'scope'         => array('seminars','talks'),
+    'scope'         => array('seminars'),
     'capability'    => 'edit_posts',
     'origin'        => TEXT_DOMAIN,
   ),
@@ -222,7 +222,7 @@ $theme_customFields = array(
     'labels'        => array('Youtube', 'Brightcove'),
     'values'        => array('youtube','brightcove'),
     'type'          => 'radio',
-    'scope'         => array('seminars','talks'),
+    'scope'         => array('seminars'),
     'capability'    => 'edit_posts',
     'origin'        => TEXT_DOMAIN,
   ),
@@ -233,7 +233,7 @@ $theme_customFields = array(
     'title'         => __('Video ID #2', TEXT_DOMAIN),
     'description'   => null,
     'type'          => 'text',
-    'scope'         => array('seminars','talks'),
+    'scope'         => array('seminars'),
     'capability'    => 'edit_posts',
     'origin'        => TEXT_DOMAIN,
   ),
@@ -244,7 +244,7 @@ $theme_customFields = array(
     'labels'        => array('Youtube', 'Brightcove'),
     'values'        => array('youtube','brightcove'),
     'type'          => 'radio',
-    'scope'         => array('seminars','talks'),
+    'scope'         => array('seminars'),
     'capability'    => 'edit_posts',
     'origin'        => TEXT_DOMAIN,
   ),
@@ -253,7 +253,7 @@ $theme_customFields = array(
     'title'         => __('Event Location', TEXT_DOMAIN),
     'description'   => null,
     'type'          => 'text',
-    'scope'         => array('seminars','talks'),
+    'scope'         => array('seminars'),
     'capability'    => 'edit_posts',
     'origin'        => TEXT_DOMAIN,
   ),
@@ -262,7 +262,7 @@ $theme_customFields = array(
     'title'         => __('Sponsor Name', TEXT_DOMAIN),
     'description'   => __('Insert a sponsor name for this event', TEXT_DOMAIN),
     'type'          => 'text',
-    'scope'         => array('seminars','talks'),
+    'scope'         => array('seminars'),
     'capability'    => 'edit_posts',
     'origin'        => TEXT_DOMAIN,
   ),
@@ -271,7 +271,7 @@ $theme_customFields = array(
     'title'         => __('Sponsor URL', TEXT_DOMAIN),
     'description'   => __('The sponsor URL (needs to have a sponsor name declared also)', TEXT_DOMAIN),
     'type'          => 'text',
-    'scope'         => array('seminars', 'talks'),
+    'scope'         => array('seminars'),
     'capability'    => 'edit_posts',
     'origin'        => TEXT_DOMAIN,
   ),
@@ -320,24 +320,6 @@ $theme_customFields = array(
     'origin'        => TEXT_DOMAIN,
   ),
   array(
-    'name'          => 'is_juri',
-    'title'         => __('Is attendant a Juri?', TEXT_DOMAIN),
-    'description'   => __('Check if this attendant is a member of the juri', TEXT_DOMAIN),
-    'type'          => 'checkbox',
-    'scope'         => array('attendants'),
-    'capability'    => 'edit_posts',
-    'origin'        => TEXT_DOMAIN,
-  ),
-  array(
-    'name'          => 'is_speaker',
-    'title'         => __('Is attendant a Speaker?', TEXT_DOMAIN),
-    'description'   => __('Check if this attendant is a speaker', TEXT_DOMAIN),
-    'type'          => 'checkbox',
-    'scope'         => array('attendants'),
-    'capability'    => 'edit_posts',
-    'origin'        => TEXT_DOMAIN,
-  ),
-  array(
     'name'          => 'gender',
     'title'         => __('Gender', TEXT_DOMAIN),
     'description'   => null,
@@ -348,31 +330,13 @@ $theme_customFields = array(
     'capability'    => 'edit_posts',
     'origin'        => TEXT_DOMAIN,
   ),
-  array(
-    'name'          => 'use_in_seminars',
-    'title'         => __('Include in Seminars?', TEXT_DOMAIN),
-    'description'   => __('Check if this attendant is to be included in seminars', TEXT_DOMAIN),
-    'type'          => 'checkbox',
-    'scope'         => array('attendants'),
-    'capability'    => 'edit_posts',
-    'origin'        => TEXT_DOMAIN,
-  ),
-  array(
-    'name'          => 'use_in_talks',
-    'title'         => __('Include in Talks?', TEXT_DOMAIN),
-    'description'   => __('Check if this attendant is to be included in talks', TEXT_DOMAIN),
-    'type'          => 'checkbox',
-    'scope'         => array('attendants'),
-    'capability'    => 'edit_posts',
-    'origin'        => TEXT_DOMAIN,
-  ),
 
   array(
     'name'          => 'order',
     'title'         => __('Order', TEXT_DOMAIN),
     'description'   => __('Use to order elements from minor to major (defaults to -1)', TEXT_DOMAIN),
     'type'          => 'number',
-    'scope'         => array('attendants','coauthors','events','faqs','header_slides','seminars','sponsors','talks','winners'),
+    'scope'         => array('attendants','coauthors','events','faqs','header_slides','seminars','sponsors','winners'),
     'capability'    => 'edit_posts',
     'origin'        => TEXT_DOMAIN,
   ),
@@ -479,7 +443,6 @@ if (!class_exists('cbsCustomFields')):
         'quotations',
         'seminars',
         'sponsors',
-        'talks',
         'videocasts',
         'winners',
       );
@@ -591,27 +554,6 @@ if (!class_exists('cbsCustomFields')):
                     $target_pt = isset($customField['post_type_target']) ? $customField['post_type_target'] : 'post';
                     
                     $query_args = array('post_type' => $target_pt, 'numberposts' => -1, 'orderby' => 'title', 'order' => 'ASC');
-                    
-                    // Filter attendants by their "use_in_talks" or "use_in_seminars" checkboxes
-                    if ($target_pt === 'attendants') {
-                        if ($post->post_type === 'talks') {
-                            $query_args['meta_query'] = array(
-                                array(
-                                    'key' => $this->prefix . 'use_in_talks',
-                                    'value' => 'yes',
-                                    'compare' => '='
-                                )
-                            );
-                        } elseif ($post->post_type === 'seminars') {
-                            $query_args['meta_query'] = array(
-                                array(
-                                    'key' => $this->prefix . 'use_in_seminars',
-                                    'value' => 'yes',
-                                    'compare' => '='
-                                )
-                            );
-                        }
-                    }
                     
                     $target_posts = get_posts($query_args);
                     

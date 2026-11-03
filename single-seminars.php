@@ -463,10 +463,7 @@ $tag = !empty($post_tags) ? $post_tags[0]->slug : '';
 $attendant_categories = $categories;
 if( $tag != 'edicoes-anteriores'):
 // -- Section: ATTENDANTS
-global $attendant_type;
-foreach (array('speakers', 'juri') as $attendant_type) {
-  get_template_part('includes/sections/attendants');
-}
+get_template_part('includes/sections/attendants');
 ?>
 
 <?php
