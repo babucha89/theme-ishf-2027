@@ -210,8 +210,10 @@ Each valid submission executes three decoupled actions:
 ### 6. Backoffice Dashboard ("ISHF Contacts")
 Safety copy of every Partnership and Newsletter submission. The team that works the contacts does so outside WordPress, so there is deliberately **no status/workflow per contact**.
 - Top-level admin menu "ISHF Contacts" (PT: "Contactos ISHF", icon `dashicons-id-alt`, not used by any CPT) and a submenu shortcut under Dashboard. Slug `ishf2027-leads` is kept so old links still work. The menu shows a red badge with the contacts received since the current user last opened the screen.
+- **English is the base language** of the whole screen (labels, tabs, notification emails, CSV headers); Portuguese comes from `languages/pt_PT.po` when the BO user's language is Portuguese (and can be managed in WPML > String Translation once the plugin is active).
+- **Phone masking**: phone numbers show only the first 3 and last 2 digits (`+351 ••• ••• •56`) on screen and are not searchable; the full number is only in the CSV export (`ishf2027_mask_phone()`).
 - Tabs for *Institutional Partnerships* and *Newsletter Subscriptions* with counters.
-- Search (name, email, company, position, phone, message), date range (from/to), page size (20/50/100) and pagination; all queries are prepared statements.
+- Search (name, email, company, position, message), date range (from/to), page size (20/50/100) and pagination; all queries are prepared statements.
 - **API column**: result of the call to the Boost Solutions webhook stored with each contact (`webhook_status` = `ok` / `error` / `skipped`, plus `webhook_message`, e.g. `HTTP 500 ...`), written by `includes/form-handlers.php` and by the AJAX/REST endpoints. Tables are upgraded automatically (DB version `1.1.0`).
 - **GDPR tools**: per-contact *Delete* and a *Data retention* box that deletes the tab's contacts received before a chosen date (nonce + capability protected, with confirmation; nothing is deleted automatically).
 

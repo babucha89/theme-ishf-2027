@@ -589,19 +589,19 @@ function ishf2027_send_partnership_notification(array $data)
   }
 
   $email_body  = '<div style="font-family: Arial, sans-serif; line-height: 1.6; color: #1e293b; max-width: 600px; margin: 0 auto; border: 1px solid #e2e8f0; border-radius: 8px; padding: 24px;">';
-  $email_body .= '<h2 style="color: #023256; margin-top: 0;">' . esc_html__('Novo Pedido de Parceria', TEXT_DOMAIN) . '</h2>';
-  $email_body .= '<p><strong>' . esc_html__('Nome', TEXT_DOMAIN) . ':</strong> ' . esc_html($data['nome']) . '</p>';
+  $email_body .= '<h2 style="color: #023256; margin-top: 0;">' . esc_html__('New Partnership Request', TEXT_DOMAIN) . '</h2>';
+  $email_body .= '<p><strong>' . esc_html__('Name', TEXT_DOMAIN) . ':</strong> ' . esc_html($data['nome']) . '</p>';
   $email_body .= '<p><strong>' . esc_html__('Email', TEXT_DOMAIN) . ':</strong> ' . esc_html($data['email']) . '</p>';
-  $email_body .= '<p><strong>' . esc_html__('Empresa / Organização', TEXT_DOMAIN) . ':</strong> ' . esc_html($data['empresa']) . '</p>';
-  $email_body .= '<p><strong>' . esc_html__('Cargo', TEXT_DOMAIN) . ':</strong> ' . esc_html($data['cargo']) . '</p>';
+  $email_body .= '<p><strong>' . esc_html__('Company / Organisation', TEXT_DOMAIN) . ':</strong> ' . esc_html($data['empresa']) . '</p>';
+  $email_body .= '<p><strong>' . esc_html__('Position', TEXT_DOMAIN) . ':</strong> ' . esc_html($data['cargo']) . '</p>';
   if (!empty($data['telefone'])) {
-    $email_body .= '<p><strong>' . esc_html__('Telefone', TEXT_DOMAIN) . ':</strong> ' . esc_html($data['telefone']) . '</p>';
+    $email_body .= '<p><strong>' . esc_html__('Phone', TEXT_DOMAIN) . ':</strong> ' . esc_html($data['telefone']) . '</p>';
   }
   if (!empty($data['mensagem'])) {
-    $email_body .= '<p><strong>' . esc_html__('Mensagem', TEXT_DOMAIN) . ':</strong><br />' . nl2br(esc_html($data['mensagem'])) . '</p>';
+    $email_body .= '<p><strong>' . esc_html__('Message', TEXT_DOMAIN) . ':</strong><br />' . nl2br(esc_html($data['mensagem'])) . '</p>';
   }
   $email_body .= '<hr style="border:0; border-top:1px solid #e2e8f0; margin:20px 0;" />';
-  $email_body .= '<p style="font-size:12px; color:#64748b;">' . esc_html__('Registo guardado na base de dados ISHF Contacts.', TEXT_DOMAIN) . '</p>';
+  $email_body .= '<p style="font-size:12px; color:#64748b;">' . esc_html__('Record saved in the ISHF Contacts database.', TEXT_DOMAIN) . '</p>';
   $email_body .= '</div>';
 
   $headers = array('Content-Type: text/html; charset=UTF-8');
@@ -668,7 +668,7 @@ function ishf2027_send_partnership_webhook(array $data)
 function ishf2027_send_newsletter_notification(array $data)
 {
   $site_name = defined('SITE_NAME') ? SITE_NAME : 'ISHF 2027';
-  $subject   = '[' . $site_name . '] ' . __('Nova Subscrição de Newsletter', TEXT_DOMAIN);
+  $subject   = '[' . $site_name . '] ' . __('New Newsletter Subscription', TEXT_DOMAIN);
 
   $recipients = array();
   if (defined('SITE_CONTACT_EMAIL') && !empty(SITE_CONTACT_EMAIL)) {
@@ -678,10 +678,10 @@ function ishf2027_send_newsletter_notification(array $data)
   }
 
   $email_body  = '<div style="font-family: Arial, sans-serif; line-height: 1.6; color: #1e293b; max-width: 600px; margin: 0 auto; border: 1px solid #e2e8f0; border-radius: 8px; padding: 24px;">';
-  $email_body .= '<h2 style="color: #023256; margin-top: 0;">' . esc_html__('Nova Subscrição de Newsletter', TEXT_DOMAIN) . '</h2>';
-  $email_body .= '<p><strong>' . esc_html__('Nome', TEXT_DOMAIN) . ':</strong> ' . esc_html($data['nome']) . '</p>';
+  $email_body .= '<h2 style="color: #023256; margin-top: 0;">' . esc_html__('New Newsletter Subscription', TEXT_DOMAIN) . '</h2>';
+  $email_body .= '<p><strong>' . esc_html__('Name', TEXT_DOMAIN) . ':</strong> ' . esc_html($data['nome']) . '</p>';
   $email_body .= '<p><strong>' . esc_html__('Email', TEXT_DOMAIN) . ':</strong> ' . esc_html($data['email']) . '</p>';
-  $email_body .= '<p><strong>' . esc_html__('Data', TEXT_DOMAIN) . ':</strong> ' . date_i18n('Y-m-d H:i:s') . '</p>';
+  $email_body .= '<p><strong>' . esc_html__('Date', TEXT_DOMAIN) . ':</strong> ' . date_i18n('Y-m-d H:i:s') . '</p>';
   $email_body .= '</div>';
 
   $headers = array('Content-Type: text/html; charset=UTF-8');
@@ -855,7 +855,7 @@ function ishf2027_contacts_where($type, array $filters)
   if ($filters['s'] !== '') {
     $cols = ($type === 'newsletter')
       ? array('nome', 'email')
-      : array('nome', 'email', 'empresa', 'cargo', 'telefone', 'mensagem');
+      : array('nome', 'email', 'empresa', 'cargo', 'mensagem'); // phone is masked on screen, so it is not searchable
     $like = '%' . $wpdb->esc_like($filters['s']) . '%';
     $parts = array();
     foreach ($cols as $col) {
@@ -875,6 +875,30 @@ function ishf2027_contacts_where($type, array $filters)
 
   $sql = implode(' AND ', $where);
   return $params ? $wpdb->prepare($sql, $params) : $sql;
+}
+
+/**
+ * Masks a phone number for on-screen display: keeps the first 3 and last 2
+ * digits (plus spaces and a leading +), everything else becomes a bullet.
+ * The full number is only available in the CSV export.
+ *
+ * @param  string $phone
+ * @return string Masked text (not escaped)
+ */
+function ishf2027_mask_phone($phone)
+{
+  $phone  = (string) $phone;
+  $digits = preg_match_all('/\d/', $phone);
+  if ($digits === 0) {
+    return '';
+  }
+  $keep_start = $digits > 5 ? 3 : 0;
+  $keep_end   = $digits > 5 ? 2 : 0;
+  $i = 0;
+  return preg_replace_callback('/\d/u', function ($m) use (&$i, $digits, $keep_start, $keep_end) {
+    $i++;
+    return ($i <= $keep_start || $i > $digits - $keep_end) ? $m[0] : '•';
+  }, $phone);
 }
 
 /**
@@ -959,18 +983,18 @@ function ishf2027_render_leads_admin_page()
     <?php endif; ?>
 
     <p class="description" style="margin-bottom: 20px;">
-      <?php esc_html_e('Safety copy of everyone who submits the Partnership or Newsletter form. Data is stored in the website database; the contacts are worked on outside WordPress. Contacts are personal data (GDPR): export what is needed and delete what is no longer required.', TEXT_DOMAIN); ?>
+      <?php esc_html_e('Safety copy of everyone who submits the Partnership or Newsletter form. Data is stored in the website database; the contacts are worked on outside WordPress. Contacts are personal data (GDPR): export what is needed and delete what is no longer required. Phone numbers are masked on screen; the full number is only included in the CSV export.', TEXT_DOMAIN); ?>
     </p>
 
     <h2 class="nav-tab-wrapper" style="margin-bottom: 20px;">
       <a href="<?php echo esc_url(add_query_arg(array('page' => ISHF2027_CONTACTS_SLUG, 'tab' => 'partnerships'), admin_url('admin.php'))); ?>"
          class="nav-tab <?php echo $tab === 'partnerships' ? 'nav-tab-active' : ''; ?>">
-        <?php esc_html_e('Parcerias Institucionais', TEXT_DOMAIN); ?>
+        <?php esc_html_e('Institutional Partnerships', TEXT_DOMAIN); ?>
         <span style="margin-left: 6px; padding: 2px 7px; border-radius: 10px; background: #023256; color: #fff; font-size: 11px;"><?php echo esc_html($total_partnerships); ?></span>
       </a>
       <a href="<?php echo esc_url(add_query_arg(array('page' => ISHF2027_CONTACTS_SLUG, 'tab' => 'newsletter'), admin_url('admin.php'))); ?>"
          class="nav-tab <?php echo $tab === 'newsletter' ? 'nav-tab-active' : ''; ?>">
-        <?php esc_html_e('Subscrições Newsletter', TEXT_DOMAIN); ?>
+        <?php esc_html_e('Newsletter Subscriptions', TEXT_DOMAIN); ?>
         <span style="margin-left: 6px; padding: 2px 7px; border-radius: 10px; background: #4a8d80; color: #fff; font-size: 11px;"><?php echo esc_html($total_newsletter); ?></span>
       </a>
     </h2>
@@ -1028,17 +1052,17 @@ function ishf2027_render_leads_admin_page()
       <thead>
         <tr>
           <th scope="col" style="width:50px;">ID</th>
-          <th scope="col" style="width:150px;"><?php esc_html_e('Nome', TEXT_DOMAIN); ?></th>
+          <th scope="col" style="width:150px;"><?php esc_html_e('Name', TEXT_DOMAIN); ?></th>
           <th scope="col" style="width:190px;"><?php esc_html_e('Email', TEXT_DOMAIN); ?></th>
           <?php if ($tab === 'partnerships'): ?>
-            <th scope="col" style="width:150px;"><?php esc_html_e('Empresa', TEXT_DOMAIN); ?></th>
-            <th scope="col" style="width:130px;"><?php esc_html_e('Cargo', TEXT_DOMAIN); ?></th>
-            <th scope="col" style="width:110px;"><?php esc_html_e('Telefone', TEXT_DOMAIN); ?></th>
-            <th scope="col"><?php esc_html_e('Mensagem', TEXT_DOMAIN); ?></th>
+            <th scope="col" style="width:150px;"><?php esc_html_e('Company', TEXT_DOMAIN); ?></th>
+            <th scope="col" style="width:130px;"><?php esc_html_e('Position', TEXT_DOMAIN); ?></th>
+            <th scope="col" style="width:110px;"><?php esc_html_e('Phone', TEXT_DOMAIN); ?></th>
+            <th scope="col"><?php esc_html_e('Message', TEXT_DOMAIN); ?></th>
           <?php endif; ?>
-          <th scope="col" style="width:80px;text-align:center;"><?php esc_html_e('RGPD', TEXT_DOMAIN); ?></th>
+          <th scope="col" style="width:80px;text-align:center;"><?php esc_html_e('GDPR', TEXT_DOMAIN); ?></th>
           <th scope="col" style="width:130px;"><?php esc_html_e('API', TEXT_DOMAIN); ?></th>
-          <th scope="col" style="width:130px;"><?php esc_html_e('Data Registo', TEXT_DOMAIN); ?></th>
+          <th scope="col" style="width:130px;"><?php esc_html_e('Registered', TEXT_DOMAIN); ?></th>
           <th scope="col" style="width:70px;"><span class="screen-reader-text"><?php esc_html_e('Actions', TEXT_DOMAIN); ?></span></th>
         </tr>
       </thead>
@@ -1052,7 +1076,7 @@ function ishf2027_render_leads_admin_page()
               <?php if ($tab === 'partnerships'): ?>
                 <td><?php echo esc_html($row->empresa); ?></td>
                 <td><?php echo esc_html($row->cargo); ?></td>
-                <td><?php echo !empty($row->telefone) ? esc_html($row->telefone) : '<span style="color:#94a3b8;">&mdash;</span>'; ?></td>
+                <td><?php echo !empty($row->telefone) ? esc_html(ishf2027_mask_phone($row->telefone)) : '<span style="color:#94a3b8;">&mdash;</span>'; ?></td>
                 <td>
                   <?php if (!empty($row->mensagem)): ?>
                     <div style="max-height:80px;overflow-y:auto;font-size:13px;color:#334155;line-height:1.4;"><?php echo nl2br(esc_html($row->mensagem)); ?></div>
@@ -1063,9 +1087,9 @@ function ishf2027_render_leads_admin_page()
               <?php endif; ?>
               <td style="text-align:center;">
                 <?php if ($row->gdpr_consent): ?>
-                  <span style="background:#e6f4ea;color:#137333;padding:3px 8px;border-radius:12px;font-weight:600;font-size:11px;">&#10003; <?php esc_html_e('Sim', TEXT_DOMAIN); ?></span>
+                  <span style="background:#e6f4ea;color:#137333;padding:3px 8px;border-radius:12px;font-weight:600;font-size:11px;">&#10003; <?php esc_html_e('Yes', TEXT_DOMAIN); ?></span>
                 <?php else: ?>
-                  <span style="background:#fce8e6;color:#c5221f;padding:3px 8px;border-radius:12px;font-weight:600;font-size:11px;">&#10005; <?php esc_html_e('Não', TEXT_DOMAIN); ?></span>
+                  <span style="background:#fce8e6;color:#c5221f;padding:3px 8px;border-radius:12px;font-weight:600;font-size:11px;">&#10005; <?php esc_html_e('No', TEXT_DOMAIN); ?></span>
                 <?php endif; ?>
               </td>
               <td><?php echo ishf2027_webhook_badge($row); // phpcs:ignore WordPress.Security.EscapeOutput -- escaped inside helper ?></td>
@@ -1228,11 +1252,11 @@ function ishf2027_handle_csv_export()
 
   if ($type === 'newsletter') {
     $filename = 'ishf2027-newsletter-contacts' . $suffix . '-' . $date . '.csv';
-    $headers  = array('ID', 'Nome', 'Email', 'Consentimento RGPD', 'Data Subscricao', 'Envio API', 'Detalhe API');
+    $headers  = array('ID', __('Name', TEXT_DOMAIN), __('Email', TEXT_DOMAIN), __('GDPR consent', TEXT_DOMAIN), __('Subscribed', TEXT_DOMAIN), __('API delivery', TEXT_DOMAIN), __('API detail', TEXT_DOMAIN));
     $rows     = $wpdb->get_results("SELECT id, nome, email, gdpr_consent, created_at, webhook_status, webhook_message FROM {$table} WHERE {$where} ORDER BY id DESC", ARRAY_A);
   } else {
     $filename = 'ishf2027-parcerias-contacts' . $suffix . '-' . $date . '.csv';
-    $headers  = array('ID', 'Nome', 'Email', 'Empresa', 'Cargo', 'Telefone', 'Mensagem', 'Consentimento RGPD', 'Data Registo', 'Envio API', 'Detalhe API');
+    $headers  = array('ID', __('Name', TEXT_DOMAIN), __('Email', TEXT_DOMAIN), __('Company', TEXT_DOMAIN), __('Position', TEXT_DOMAIN), __('Phone', TEXT_DOMAIN), __('Message', TEXT_DOMAIN), __('GDPR consent', TEXT_DOMAIN), __('Registered', TEXT_DOMAIN), __('API delivery', TEXT_DOMAIN), __('API detail', TEXT_DOMAIN));
     $rows     = $wpdb->get_results("SELECT id, nome, email, empresa, cargo, telefone, mensagem, gdpr_consent, created_at, webhook_status, webhook_message FROM {$table} WHERE {$where} ORDER BY id DESC", ARRAY_A);
   }
 
@@ -1255,7 +1279,7 @@ function ishf2027_handle_csv_export()
   fputcsv($output, $headers, ';');
 
   foreach ((array) $rows as $row) {
-    $row['gdpr_consent'] = $row['gdpr_consent'] ? 'Sim' : 'Nao';
+    $row['gdpr_consent'] = $row['gdpr_consent'] ? __('Yes', TEXT_DOMAIN) : __('No', TEXT_DOMAIN);
     // Neutralise spreadsheet formula injection in user-provided text
     foreach ($row as $k => $v) {
       if (is_string($v) && $v !== '' && strpbrk($v[0], "=+-@\t\r") !== false && !preg_match('/^\+[\d\s().-]+$/', $v)) {

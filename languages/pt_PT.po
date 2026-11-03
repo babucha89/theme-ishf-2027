@@ -2339,8 +2339,6 @@ msgstr "Elimina definitivamente os contactos do separador selecionado recebidos 
 msgid "Restricted to site administrators."
 msgstr "Acesso restrito aos administradores do site."
 
-msgid "Safety copy of everyone who submits the Partnership or Newsletter form. Data is stored in the website database; the contacts are worked on outside WordPress. Contacts are personal data (GDPR): export what is needed and delete what is no longer required."
-msgstr "Cópia de segurança de todas as pessoas que submetem o formulário de Parcerias ou de Newsletter. Os dados ficam guardados na base de dados do site; os contactos são trabalhados fora do WordPress. Os contactos são dados pessoais (RGPD): exporte o necessário e elimine o que já não for preciso."
 
 msgid "Search name, email, company..."
 msgstr "Pesquisar nome, email, empresa..."
@@ -2356,3 +2354,50 @@ msgstr "Até"
 
 msgid "Unauthorised access."
 msgstr "Acesso não autorizado."
+
+# --- ISHF Contacts: English base strings ---
+
+msgid "API delivery"
+msgstr "Envio para a API"
+
+msgid "API detail"
+msgstr "Detalhe da API"
+
+msgid "Company / Organisation"
+msgstr "Empresa / Organização"
+
+msgid "GDPR"
+msgstr "RGPD"
+
+msgid "GDPR consent"
+msgstr "Consentimento RGPD"
+
+msgid "Institutional Partnerships"
+msgstr "Parcerias Institucionais"
+
+msgid "New Partnership Request"
+msgstr "Novo Pedido de Parceria"
+
+msgid "Newsletter Subscriptions"
+msgstr "Subscrições Newsletter"
+
+msgid "No"
+msgstr "Não"
+
+msgid "Phone"
+msgstr "Telefone"
+
+msgid "Record saved in the ISHF Contacts database."
+msgstr "Registo guardado na base de dados ISHF Contacts."
+
+msgid "Registered"
+msgstr "Data de registo"
+
+msgid "Safety copy of everyone who submits the Partnership or Newsletter form. Data is stored in the website database; the contacts are worked on outside WordPress. Contacts are personal data (GDPR): export what is needed and delete what is no longer required. Phone numbers are masked on screen; the full number is only included in the CSV export."
+msgstr "Cópia de segurança de todas as pessoas que submetem o formulário de Parcerias ou de Newsletter. Os dados ficam guardados na base de dados do site; os contactos são trabalhados fora do WordPress. Os contactos são dados pessoais (RGPD): exporte o necessário e elimine o que já não for preciso. Os números de telefone estão ocultados no ecrã; o número completo só consta da exportação CSV."
+
+msgid "Subscribed"
+msgstr "Data de subscrição"
+
+msgid "Yes"
+msgstr "Sim"
