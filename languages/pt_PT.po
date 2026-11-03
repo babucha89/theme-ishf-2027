@@ -2255,3 +2255,9 @@ msgstr "Assista novamente aos eventos e relembre os momentos altos destas conver
 
 msgid "Programme"
 msgstr "Programa"
+
+msgid "Jury"
+msgstr "Júri"
+
+msgid "Speakers"
+msgstr "Oradores"

@@ -876,3 +876,10 @@ html.dark-mode .article-hero { background-color: var(--colors-night-800); }
   .streaming-poster-wrapper:hover .streaming-poster-img,
   .news-card, .news-card:hover, .news-card:focus-within { transform: none !important; transition: none !important; }
 }
+
+/* ---------- Attendants slider (includes/sections/attendants.php) ---------- */
+.ishf-attendants .attendant-face { width: 100%; max-width: 180px; margin: 0 auto 16px; overflow: hidden; }
+.ishf-attendants .attendant-face canvas { display: block; width: 100%; height: auto; }
+.ishf-attendants .text-name { font-weight: var(--fonts-weight-bold); font-size: var(--fonts-size-regular); }
+.ishf-attendants .text-function { font-size: var(--fonts-size-small); margin: 4px 0 0; }
+.ishf-attendants .attendant-category { font-size: var(--fonts-size-xsmall); letter-spacing: .05em; margin: 4px 0 0; }
