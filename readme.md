@@ -30,6 +30,8 @@ Standalone Base Theme for the official website of the **International Social Hou
 - **Semantic Light/Dark Mode Tokens**:
   - Backgrounds, typography, borders, and inputs adapt seamlessly using `html.dark-mode` semantic overrides.
   - Dedicated component tokens for Theme Toggle (`--toggle-*`), CTA Boxes (`--cta-*`), and UIkit Buttons (`--btn-*`).
+- **Stylesheet structure** (`css/app.css`, minified copy `css/app.min.css`; regenerate the minified file after every edit): 1. root and tokens (`:root` + `html.dark-mode`), 2. base elements, 3. utilities and accessibility, 4. UIkit components (buttons, labels, forms, alerts, modals, dropdowns), 5. site chrome (cookies, navigation, header, footers), 6. shared components (CTA box, news card), 7. page sections in page order, 8. media queries, 9. reduced motion. A table of contents sits at the top of section 2. `html.dark-mode` selectors appear only where a rule cannot be expressed through a token.
+- **Form and modal tokens** (`--modal-*`, `--form-*`): the partnership modal/form defines the field colours; the newsletter modal reuses it and only overrides the tokens on `.modal-ishf-newsletter`. Change colours there, not in the rules.
 - **Consolidated Media Queries** (aligned with UIkit breakpoints, at the end of `css/app.css` and `css/app.min.css`):
     - Small / mobile: `@media (max-width: 639.98px)`
     - Medium / tablet: `@media (min-width: 640px) and (max-width: 959.98px)`
@@ -429,6 +431,14 @@ Following the `uikit-boostsolutions` function library:
 
 ---
 
+## Environment, WPML and URLs
+
+- **Local detection:** `ISHF_IS_LOCAL` (functions.php) is true for `localhost`, `127.0.0.1`, `*.local`, `*.test` or `WP_ENVIRONMENT_TYPE=local`. Local loads `css/app.css`; everything else loads `css/app.min.css` and applies `REDIRECT_SITE`.
+- **WPML helper:** `ishf_translate_post($post_or_id, 'page')` returns the version in the current language (no-op without WPML). Used for the streaming block, the cookie-policy link and the "All news" link. Use it for any new `get_page_by_path()` lookup.
+- **URLs:** in WPML set "Language URL format" to "Different languages in directories" (`/en/programme`, `/pt/programa`) and translate each page's slug; slugs are not translated automatically.
+- **Activation notes:** see `ISHF_2027_WPML_Activation_Notes.md` (kept outside the theme) for the activation checklist and what to verify afterwards.
+- **Visitor messages** from the AJAX forms (`includes/leads-manager.php`) have English source text and a Portuguese translation in `languages/pt_PT.po`; admin screens and team emails there stay in Portuguese on purpose.
+
 ## Hero content: page-driven and translatable (`includes/sections/hero.php`)
 
 The home hero reads an optional page with the slug `sections/hero` (a child of the "sections" page, like Streaming). When it exists and is published (in WPML: its translation in the current language):
@@ -486,4 +496,4 @@ Clippings are normal posts with **Custom Fields** (post editor; enable the panel
 
 The publication the article comes from is set with **post tags**. Home news cards use the `image-3x2` size (900x600, defined in `functions.php`); the single article uses `image-gallery`.
 
-Clippings have **no single page**: opening one redirects to the external URL (editor previews excepted) and they are left out of the XML sitemap. On single articles, the *Related articles* block lists other articles and clippings with the same cards as the home news block. To limit which tags count as a publication, use `add_filter('ishf_publication_tag_slugs', fn() => array('publico', 'expresso'));`.
+Clippings have **no single page**: opening one redirects to the external URL (editor previews excepted) and they are left out of the XML sitemap (the clipping category archive page is still listed). On single articles, the *Related articles* block lists other articles and clippings with the same cards as the home news block. To limit which tags count as a publication, use `add_filter('ishf_publication_tag_slugs', fn() => array('publico', 'expresso'));`.
