@@ -207,20 +207,22 @@ Each valid submission executes three decoupled actions:
 2. **Boost Solutions Webhook Dispatch** (`https://api-mm.boostsolutions.pt/api/webhooks/gravity-forms`) using `PARTNERSHIP_PROJECT_TOKEN` and `NEWSLETTER_PROJECT_TOKEN`.
 3. **Decoupled Email Notification (`@wp_mail`)**: Email delivery to the Secretariat (`SITE_CONTACT_EMAIL`) runs non-blockingly, ensuring that even in local environments without an active SMTP server or during temporary mail network glitches, database persistence and Boost Solutions API delivery are never aborted.
 
-### 6. Backoffice Dashboard ("Leads ISHF")
-- Top-level admin menu (`dashicons-groups`) and submenu shortcut under Dashboard (`index.php`).
-- Separate navigation tabs for *Institutional Partnerships* and *Newsletter Subscriptions*.
-- Real-time numeric counters in tab headers.
-- Native `wp-list-table widefat fixed striped` table with visual GDPR status badges (`✓ Yes` / `✕ No`) and WordPress-formatted timestamps.
+### 6. Backoffice Dashboard ("ISHF Contacts")
+Safety copy of every Partnership and Newsletter submission. The team that works the contacts does so outside WordPress, so there is deliberately **no status/workflow per contact**.
+- Top-level admin menu "ISHF Contacts" (PT: "Contactos ISHF", icon `dashicons-id-alt`, not used by any CPT) and a submenu shortcut under Dashboard. Slug `ishf2027-leads` is kept so old links still work. The menu shows a red badge with the contacts received since the current user last opened the screen.
+- Tabs for *Institutional Partnerships* and *Newsletter Subscriptions* with counters.
+- Search (name, email, company, position, phone, message), date range (from/to), page size (20/50/100) and pagination; all queries are prepared statements.
+- **API column**: result of the call to the Boost Solutions webhook stored with each contact (`webhook_status` = `ok` / `error` / `skipped`, plus `webhook_message`, e.g. `HTTP 500 ...`), written by `includes/form-handlers.php` and by the AJAX/REST endpoints. Tables are upgraded automatically (DB version `1.1.0`).
+- **GDPR tools**: per-contact *Delete* and a *Data retention* box that deletes the tab's contacts received before a chosen date (nonce + capability protected, with confirmation; nothing is deleted automatically).
 
 ### 7. CSV Export (Excel Ready)
-- Dedicated *"Export to CSV"* button on each tab (`admin_post_ishf2027_export_csv`).
-- Protected by `current_user_can('manage_options')` and `check_admin_referer`.
+- *"Export all to CSV"* on each tab, or *"Export filtered results to CSV"* when a search/date filter is active (`admin_post_ishf2027_export_csv`). Includes the API result columns.
+- Protected by `current_user_can('manage_options')` and `check_admin_referer`; text cells starting with `= + - @` are prefixed with `'` to prevent spreadsheet formula injection (phone numbers like `+351...` are left untouched).
 - Includes a **UTF-8 BOM** (`\xEF\xBB\xBF`) and semicolon `;` delimiter, guaranteeing seamless opening in Microsoft Excel with full support for international characters and accents.
 
-### 8. Phase 2 Specification & Roadmap (Leads ISHF Evolution)
+### 8. Phase 2 Specification & Roadmap (ISHF Contacts Evolution)
 
-For **Phase 2 of the ISHF Lisbon 2027 portal**, this section documents the current maturity state of the **Leads ISHF** module, the technical trade-offs adopted in Phase 1, and the detailed implementation plan for future enhancements:
+For **Phase 2 of the ISHF Lisbon 2027 portal**, this section documents the current maturity state of the **ISHF Contacts** module, the technical trade-offs adopted in Phase 1, and the detailed implementation plan for future enhancements:
 
 #### 8.1. Current State in Phase 1 (Foundation & Stability)
 - **Zero Plugin Dependency**: 100% tailor-made, lightweight, secure, and high-performance system without heavy third-party plugins (Gravity Forms, CF7, etc.).
@@ -228,7 +230,7 @@ For **Phase 2 of the ISHF Lisbon 2027 portal**, this section documents the curre
 - **Idempotency (Anti-Duplication)**: 60-second deduplication window per email on database insertion, preventing duplicate records from double-clicks or page refreshes (F5).
 - **Granular & Accessible Validation**: Field-by-field validation with `.uk-form-danger` visual alerts (Lisbon Red with WCAG 2.1 AA contrast in both Light and Dark Mode), inline `.uk-text-danger` messages, input retention, and automatic modal reopening (`UIkit.modal('#modal-partnership').show()`).
 - **Decoupled Integrations**: Non-blocking Secretariat email dispatch (`@wp_mail`), atomic local `$wpdb` storage, and concurrent webhook delivery to the Boost Solutions API.
-- **Control Panel**: Standalone *"Leads ISHF"* admin menu with dynamic tabs, real-time counter badges, and Microsoft Excel-ready CSV export (UTF-8 with BOM and `;` delimiter).
+- **Control Panel**: Standalone *"ISHF Contacts"* admin menu with dynamic tabs, real-time counter badges, and Microsoft Excel-ready CSV export (UTF-8 with BOM and `;` delimiter).
 - **Ready-to-Use REST API Endpoints**: Routes `/wp-json/ishf2027/v1/partnerships` and `/wp-json/ishf2027/v1/newsletter` already registered and validated in `includes/leads-manager.php`.
 
 ---
@@ -237,7 +239,7 @@ For **Phase 2 of the ISHF Lisbon 2027 portal**, this section documents the curre
 
 ```mermaid
 graph TD
-    A["Leads ISHF Review - Phase 2"] --> B["1. Backoffice & CRM"]
+    A["ISHF Contacts Review - Phase 2"] --> B["1. Backoffice & CRM"]
     A --> C["2. Submission Pipeline"]
     A --> D["3. Integrations & Webhooks"]
     A --> E["4. Infrastructure & Security"]

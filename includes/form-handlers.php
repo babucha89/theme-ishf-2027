@@ -140,6 +140,8 @@ function ishf_process_landing_forms() {
     @wp_mail($recipients, $subject, $email_body, $headers);
 
     // Post to external API webhook if PARTNERSHIP_PROJECT_TOKEN is configured
+    $webhook_status  = 'skipped';
+    $webhook_message = 'No project token configured';
     if (defined('PARTNERSHIP_PROJECT_TOKEN') && !empty(PARTNERSHIP_PROJECT_TOKEN)) {
       $full_name   = trim($name);
       $name_parts  = preg_split('/\s+/', $full_name);
@@ -178,6 +180,10 @@ function ishf_process_landing_forms() {
         'sslverify'   => false,
       ));
 
+      if (function_exists('ishf2027_webhook_outcome')) {
+        list($webhook_status, $webhook_message) = ishf2027_webhook_outcome($response);
+      }
+
       if (is_wp_error($response)) {
         $assunto = (defined('SITE_NAME') ? SITE_NAME : 'ISHF 2027') . ' (Erro API Parcerias)';
         $msg = 'Erro ao enviar lead de parceria para a API (wp_error): ' . $response->get_error_message();
@@ -205,6 +211,8 @@ function ishf_process_landing_forms() {
         'telefone'     => $phone,
         'mensagem'     => $message,
         'gdpr_consent' => $consent,
+        'webhook_status'  => $webhook_status,
+        'webhook_message' => $webhook_message,
       ));
     }
 
@@ -267,6 +275,8 @@ function ishf_process_landing_forms() {
 
     // Post to API if token is configured (like parent template)
     $api_success = false;
+    $webhook_status  = 'skipped';
+    $webhook_message = 'No project token configured';
     if (defined('NEWSLETTER_PROJECT_TOKEN') && !empty(NEWSLETTER_PROJECT_TOKEN)) {
       $full_name   = trim($name);
       $name_parts  = preg_split('/\s+/', $full_name);
@@ -302,6 +312,10 @@ function ishf_process_landing_forms() {
         'data_format' => 'body',
         'sslverify'   => false,
       ));
+
+      if (function_exists('ishf2027_webhook_outcome')) {
+        list($webhook_status, $webhook_message) = ishf2027_webhook_outcome($response);
+      }
 
       if (is_wp_error($response)) {
         $assunto = (defined('SITE_NAME') ? SITE_NAME : 'ISHF 2027') . ' (Erro Newsletter)';
@@ -358,6 +372,8 @@ function ishf_process_landing_forms() {
         'nome'         => $name,
         'email'        => $email,
         'gdpr_consent' => $consent,
+        'webhook_status'  => $webhook_status,
+        'webhook_message' => $webhook_message,
       ));
     }
 

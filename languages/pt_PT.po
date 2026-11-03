@@ -2261,3 +2261,98 @@ msgstr "Júri"
 
 msgid "Speakers"
 msgstr "Oradores"
+
+# --- ISHF Contacts admin ---
+
+msgid "%d contact(s) deleted."
+msgstr "%d contacto(s) eliminado(s)."
+
+msgid "%d items"
+msgstr "%d itens"
+
+msgid "(filtered)"
+msgstr "(filtrado)"
+
+msgid "API"
+msgstr "API"
+
+msgid "Actions"
+msgstr "Ações"
+
+msgid "Clear filters"
+msgstr "Limpar filtros"
+
+msgid "Contact deleted."
+msgstr "Contacto eliminado."
+
+msgid "Data retention"
+msgstr "Retenção de dados"
+
+msgid "Delete"
+msgstr "Eliminar"
+
+msgid "Delete contacts received before"
+msgstr "Eliminar contactos recebidos antes de"
+
+msgid "Delete this contact permanently? This cannot be undone."
+msgstr "Eliminar este contacto definitivamente? Esta ação não pode ser revertida."
+
+msgid "Export all to CSV"
+msgstr "Exportar tudo para CSV"
+
+msgid "Export filtered results to CSV"
+msgstr "Exportar resultados filtrados para CSV"
+
+msgid "Failed"
+msgstr "Falhou"
+
+msgid "Filter"
+msgstr "Filtrar"
+
+msgid "From"
+msgstr "De"
+
+msgid "ISHF Contacts"
+msgstr "Contactos ISHF"
+
+msgid "ISHF Contacts - Lisbon 2027"
+msgstr "Contactos ISHF - Lisboa 2027"
+
+msgid "No contacts match these filters."
+msgstr "Nenhum contacto corresponde a estes filtros."
+
+msgid "No contacts received yet."
+msgstr "Ainda não foram recebidos contactos."
+
+msgid "Not configured"
+msgstr "Não configurado"
+
+msgid "Per page"
+msgstr "Por página"
+
+msgid "Permanently delete all contacts of this tab received before the chosen date? This cannot be undone."
+msgstr "Eliminar definitivamente todos os contactos deste separador recebidos antes da data escolhida? Esta ação não pode ser revertida."
+
+msgid "Permanently delete the contacts of the selected tab received before a given date (for example after the event, once the team has the data). Export a CSV first."
+msgstr "Elimina definitivamente os contactos do separador selecionado recebidos antes de uma data (por exemplo, após o evento, quando a equipa já tiver os dados). Exporte primeiro um CSV."
+
+msgid "Restricted to site administrators."
+msgstr "Acesso restrito aos administradores do site."
+
+msgid "Safety copy of everyone who submits the Partnership or Newsletter form. Data is stored in the website database; the contacts are worked on outside WordPress. Contacts are personal data (GDPR): export what is needed and delete what is no longer required."
+msgstr "Cópia de segurança de todas as pessoas que submetem o formulário de Parcerias ou de Newsletter. Os dados ficam guardados na base de dados do site; os contactos são trabalhados fora do WordPress. Os contactos são dados pessoais (RGPD): exporte o necessário e elimine o que já não for preciso."
+
+msgid "Search name, email, company..."
+msgstr "Pesquisar nome, email, empresa..."
+
+msgid "Sent"
+msgstr "Enviado"
+
+msgid "Showing %1$d of %2$d contacts"
+msgstr "A apresentar %1$d de %2$d contactos"
+
+msgid "To"
+msgstr "Até"
+
+msgid "Unauthorised access."
+msgstr "Acesso não autorizado."
