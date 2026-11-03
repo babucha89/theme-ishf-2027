@@ -7,7 +7,7 @@
 
 add_action('wp_loaded', 'ishf_process_landing_forms');
 function ishf_process_landing_forms() {
-  if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+  if (($_SERVER['REQUEST_METHOD'] ?? '') !== 'POST') {
     return;
   }
 

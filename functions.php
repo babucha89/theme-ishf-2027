@@ -10,8 +10,16 @@
 //  Defining CONSTANTS
 //------------------------------------------------------------------------------
 
+// -- Local environment? (localhost, 127.0.0.1, *.local, *.test, *.localhost, or WP_ENVIRONMENT_TYPE=local).
+//    Safe in CLI / cron contexts where SERVER_NAME is not set.
+defined('ISHF_IS_LOCAL') or define('ISHF_IS_LOCAL',
+  in_array(($_SERVER['SERVER_NAME'] ?? ''), array('localhost', '127.0.0.1', '::1'), true)
+  || (bool) preg_match('/\.(local|test|localhost)$/', ($_SERVER['SERVER_NAME'] ?? ''))
+  || (function_exists('wp_get_environment_type') && wp_get_environment_type() === 'local')
+);
+
 // -- Redirections
-if ($_SERVER['SERVER_NAME'] !== 'localhost'):
+if (!ISHF_IS_LOCAL):
   // defined('REDIRECT_SITE') or define('REDIRECT_SITE', 'https://www.socialhousingfestival.eu');
   defined('REDIRECT_SITE') or define('REDIRECT_SITE', 'https://bs.xl.pt/ishf-2027');
 else:
@@ -115,7 +123,7 @@ function ishf_setup()
   load_theme_textdomain(TEXT_DOMAIN, __DIR__ . '/languages');
 
   date_default_timezone_set('Europe/Lisbon');
-  $locale = ($_SERVER['SERVER_NAME'] !== 'localhost') ? 'pt_PT.UTF-8' : 'pt-PT.UTF-8';
+  $locale = !ISHF_IS_LOCAL ? 'pt_PT.UTF-8' : 'pt-PT.UTF-8';
   setlocale(LC_ALL, $locale);
 
   // Modern Theme Features (Explicitly declared <title> in header.php for WAVE / WCAG 2.1 AA compliance)
@@ -159,7 +167,7 @@ function ishf_load_scripts()
   wp_enqueue_style('googlefonts', add_query_arg(array('family' => 'Plus+Jakarta+Sans:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900', 'display' => 'swap'), 'https://fonts.googleapis.com/css2'), array(), null);
 
   $deps = array('uikit');
-  if ($_SERVER['SERVER_NAME'] !== 'localhost'):
+  if (!ISHF_IS_LOCAL):
     wp_enqueue_style('app', BASE_CSS . 'app.min.css', $deps, filemtime(__DIR__ . '/css/app.min.css'));
   else:
     wp_enqueue_style('app', BASE_CSS . 'app.css', $deps, filemtime(__DIR__ . '/css/app.css'));
@@ -248,7 +256,7 @@ if (!function_exists('ishf_open_graph_tags')):
   function ishf_open_graph_tags($fixed_og_image = null)
   {
     $og_title = wp_get_document_title();
-    $og_url = REDIRECT_SITE . $_SERVER['REQUEST_URI'];
+    $og_url = REDIRECT_SITE . ($_SERVER['REQUEST_URI'] ?? '/');
     $og_description = __('International Social Housing Festival (ISHF) 2027 Lisbon. Cities with Soul: It Begins with a Key.', TEXT_DOMAIN);
     $og_image = !empty($fixed_og_image) ? $fixed_og_image : BASE_OG_IMAGES . 'og-image.jpg';
     ?>
