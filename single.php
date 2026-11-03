@@ -36,10 +36,10 @@ if (has_post_thumbnail()) {
 
     <!-- Section 1: label, title, lead + image side by side (container + background A) -->
     <section class="article-hero" aria-labelledby="article-title">
-      <div class="uk-container">
+      <div class="uk-container uk-container-large">
         <div class="article-hero-grid uk-grid-large uk-flex-middle" data-uk-grid>
 
-          <header class="article-header uk-width-1-1 <?php echo has_post_thumbnail() ? 'uk-width-1-2@m' : ''; ?>">
+          <header class="article-header uk-width-1-1 <?php echo has_post_thumbnail() ? 'uk-width-1-3@s' : ''; ?>">
             <p class="article-meta">
               <?php if ($ishf_label): ?><span class="uk-label ishf-label<?php echo ($ishf_clip || has_category(array('clipping', 'cobertura'))) ? ' ishf-label--clipping' : ''; ?>"><?php echo esc_html($ishf_label); ?></span><?php endif; ?>
             </p>
@@ -53,7 +53,7 @@ if (has_post_thumbnail()) {
           </header>
 
           <?php if (has_post_thumbnail()): ?>
-            <figure class="article-featured-image uk-width-1-1 uk-width-1-2@m">
+            <figure class="article-featured-image uk-width-1-1 uk-width-expand@s">
               <?php the_post_thumbnail('image-gallery', array('alt' => $ishf_img_alt, 'loading' => 'eager', 'fetchpriority' => 'high')); ?>
               <figcaption class="article-image-meta">
                 <?php $ishf_caption = get_the_post_thumbnail_caption(); if ($ishf_caption): ?>

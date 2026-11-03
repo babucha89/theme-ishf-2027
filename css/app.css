@@ -215,6 +215,20 @@
   --btn-danger-bg: var(--colors-action-danger);
   --btn-danger-bg-hover: var(--colors-action-danger-hover);
   --btn-danger-color: var(--colors-neutral-white);
+
+  /* Language Switch (WPML) & Nav Tools */
+  --lang-border: var(--colors-border-strong);
+  --lang-color: var(--colors-text-heading);
+  --lang-active-bg: var(--colors-brand-blue-sky);
+  --lang-active-color: var(--colors-neutral-white);
+
+  /* UIkit Labels (uk-label) */
+  --label-bg: var(--colors-brand-blue-sky);
+  --label-color: var(--colors-neutral-white);
+  --label-clip-bg: var(--colors-brand-sunny-yellow);
+  --label-clip-color: var(--colors-brand-blue-sky);
+  --label-ok-bg: var(--colors-brand-city-forest-text);
+  --label-ok-color: var(--colors-neutral-white);
 }
 
 /* ---------------------------------------------------------------------------
@@ -302,6 +316,18 @@ html.dark-mode {
   --btn-default-color: var(--colors-neutral-white);
   --btn-default-border: var(--colors-neutral-white);
   --btn-default-bg-hover: var(--colors-night-900);
+
+  /* Language Switch in Dark Mode */
+  --lang-active-bg: var(--colors-brand-sunny-yellow);
+  --lang-active-color: var(--colors-brand-blue-sky);
+
+  /* UIkit Labels in Dark Mode */
+  --label-bg: var(--colors-brand-sunny-yellow);
+  --label-color: var(--colors-brand-blue-sky);
+  --label-clip-bg: var(--colors-brand-blue-tejo);
+  --label-clip-color: var(--colors-brand-blue-sky);
+  --label-ok-bg: var(--colors-brand-blue-tejo);
+  --label-ok-color: var(--colors-brand-blue-sky);
 }
 
 
@@ -366,8 +392,6 @@ html.dark-mode .theme-toggle-icon-moon { opacity: 1; transform: translate(-50%, 
    LANGUAGE SWITCH (WPML) + NAV TOOLS
    ============================================================================= */
 
-:root { --lang-border: var(--colors-border-strong); --lang-color: var(--colors-text-heading); --lang-active-bg: var(--colors-brand-blue-sky); --lang-active-color: var(--colors-neutral-white); }
-html.dark-mode { --lang-active-bg: var(--colors-brand-sunny-yellow); --lang-active-color: var(--colors-brand-blue-sky); }
 .nav-tools { display: flex; align-items: center; gap: 10px; }
 .nav-tools-divider { width: 1px; height: 20px; background-color: var(--colors-border-default); }
 .lang-switch { display: flex; align-items: center; gap: 8px; list-style: none; margin: 0; padding: 0; }
@@ -379,25 +403,6 @@ html.dark-mode { --lang-active-bg: var(--colors-brand-sunny-yellow); --lang-acti
 .on-inverse .nav-tools-divider { background-color: rgba(var(--colors-neutral-white-rgb), 0.35); }
 .on-inverse .lang-switch a:hover { background-color: rgba(var(--colors-neutral-white-rgb), 0.12); color: var(--colors-neutral-white); }
 
-
-/* =============================================================================
-   THEME TOGGLE BUTTON (Following marketing-stars logic)
-   ============================================================================= */
-
-.theme-toggle { padding: 0 !important; border: none !important; background: transparent !important; cursor: pointer; line-height: 1; outline: none; -webkit-tap-highlight-color: transparent; display: inline-flex; align-items: center; }
-.theme-toggle:focus-visible { outline: 2px solid var(--colors-brand-sunny-yellow); outline-offset: 3px; border-radius: var(--grids-radius-pill); }
-.theme-toggle-track { width: 61px; height: 31px; background-color: var(--toggle-track-bg); box-shadow: var(--toggle-track-shadow); border-radius: 9999px; transition: background-color 0.3s ease, box-shadow 0.3s ease; }
-.theme-toggle-knob { top: 3px; left: 3px; width: 22px; height: 22px; background-color: var(--toggle-knob-bg); border-radius: 50%; box-shadow: var(--toggle-knob-shadow); transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1), background-color 0.3s ease; }
-.theme-toggle-icon { width: 14px; height: 14px; pointer-events: none; transition: opacity 0.25s ease, transform 0.25s ease; }
-.theme-toggle-icon svg { width: 100%; height: 100%; display: block; }
-.theme-toggle-icon-sun { opacity: 1; transform: translate(-50%, -50%) scale(1); }
-.theme-toggle-icon-moon { opacity: 0; transform: translate(-50%, -50%) scale(0.5); }
-
-/* Dark mode state for toggle */
-html.dark-mode .theme-toggle-track { background-color: var(--toggle-track-bg); box-shadow: var(--toggle-track-shadow); }
-html.dark-mode .theme-toggle-knob { transform: translateX(30px); background-color: var(--toggle-knob-bg); }
-html.dark-mode .theme-toggle-icon-sun { opacity: 0; transform: translate(-50%, -50%) scale(0.5); }
-html.dark-mode .theme-toggle-icon-moon { opacity: 1; transform: translate(-50%, -50%) scale(1); }
 
 
 /* =============================================================================
@@ -750,6 +755,208 @@ html.dark-mode #cookies-disclaimer #btnAcceptCookies:hover, html.dark-mode #cook
 
 
 /* =============================================================================
+   HOMEPAGE SECTIONS (Figma: Home Light/Dark) - hero, journeys, partners, news
+   Tokens only; breakpoints aligned to UIkit (640 / 960).
+   ============================================================================= */
+.ishf-modal-only { margin: 0; padding: 0; }
+
+/* Hero */
+.ishf-hero { background-color: var(--colors-background-tint); padding: var(--grids-spacing-64) 0; }
+html.dark-mode .ishf-hero { background-color: var(--colors-night-800); }
+.hero-title { font-size: var(--fonts-size-heading-1); line-height: 1.1; margin-bottom: var(--grids-spacing-16); }
+.hero-date { font-size: var(--fonts-size-lead); font-weight: 600; color: var(--colors-text-heading); margin-bottom: var(--grids-spacing-16); }
+.hero-lead { max-width: 36em; color: var(--colors-text-default); margin-bottom: var(--grids-spacing-32); }
+.hero-ctas { gap: var(--grids-spacing-16); }
+.hero-art { max-width: 450px; margin: var(--grids-spacing-32) auto 0; padding-bottom: var(--grids-spacing-24); }
+.hero-photo { display: block; width: 100%; aspect-ratio: 1 / 1; object-fit: cover; border-radius: var(--grids-radius-lg); }
+.hero-art picture { display: block; }
+.hero-photo--placeholder { background-color: var(--colors-brand-blue-tejo); opacity: 0.35; }
+.hero-key { position: absolute; top: -24px; right: -12px; width: 100px; height: auto; }
+.hero-wave { position: absolute; left: -16px; bottom: 0; width: 160px; height: auto; }
+
+/* Journeys */
+.ishf-journeys, .ishf-partners, .ishf-news { padding: var(--grids-spacing-64) 0; }
+.ishf-journeys .ishf-eyebrow { margin: 0 0 var(--grids-spacing-24); }
+.journey-grid { list-style: none; margin-left: 0; padding: 0; }
+.journey-card { position: relative; display: flex; flex-direction: column; align-items: flex-start; justify-content: space-between; gap: var(--grids-spacing-24); height: 100%; min-height: 280px; padding: var(--grids-spacing-32); border-radius: var(--grids-radius-lg); overflow: hidden; }
+.journey-title { font-size: var(--fonts-size-heading-3); line-height: 1.2; margin: 0; position: relative; z-index: 1; }
+.journey-art { position: absolute; right: var(--grids-spacing-16); top: var(--grids-spacing-16); width: 96px; height: auto; opacity: 0.9; pointer-events: none; }
+.journey-card .uk-button { position: relative; z-index: 1; }
+.journey-card--tejo { background-color: var(--colors-brand-blue-tejo); }
+.journey-card--sun  { background-color: var(--colors-brand-sunny-yellow); }
+.journey-card--navy { background-color: var(--colors-brand-blue-sky); }
+html.dark-mode .journey-card--navy { background-color: var(--colors-night-700); }
+.journey-card--tejo .journey-title, .journey-card--sun .journey-title { color: var(--colors-brand-blue-sky); }
+.journey-card--navy .journey-title { color: var(--colors-neutral-white); }
+/* fixed brand surfaces: buttons keep their Figma colours in both modes */
+.btn-ishf-dark, .btn-ishf-dark:hover, .btn-ishf-dark:focus { background-color: var(--colors-brand-blue-sky) !important; color: var(--colors-neutral-white) !important; border: none; }
+.btn-ishf-dark:hover, .btn-ishf-dark:focus { background-color: var(--colors-night-900) !important; transform: translateY(-2px); }
+.journey-card--navy .uk-button-primary, .journey-card--navy .uk-button-primary:hover, .journey-card--navy .uk-button-primary:focus { background-color: var(--colors-brand-sunny-yellow) !important; color: var(--colors-brand-blue-sky) !important; }
+.journey-card :focus-visible { outline-color: var(--colors-brand-blue-sky) !important; }
+.journey-card--navy :focus-visible { outline-color: var(--colors-focus-ring-inverse) !important; }
+
+/* Partners */
+.partner-logos { list-style: none; margin: var(--grids-spacing-24) 0 0; padding: 0; display: flex; flex-wrap: wrap; align-items: center; gap: var(--grids-spacing-32); }
+.partner-logos a { display: inline-flex; align-items: center; text-decoration: none; }
+.partner-logos img { width: auto; max-width: 100%; }
+.partner-name { font-weight: 700; font-size: var(--fonts-size-lead); color: var(--colors-text-heading); }
+
+/* News */
+.news-grid { list-style: none; margin-left: 0; padding: 0; margin-top: var(--grids-spacing-24); }
+html.dark-mode .news-card-date { margin: 0; color: var(--colors-text-muted); }
+
+/* Sponsors (CPT) + pre-footer */
+.partner-group + .partner-group { margin-top: var(--grids-spacing-48); }
+.partner-logos img { height: 64px; object-fit: contain; }
+.hero-photo--placeholder { object-position: initial; display: flex; align-items: flex-end; justify-content: center; opacity: 1; background-color: var(--colors-brand-blue-tejo); overflow: hidden; }
+.hero-photo--placeholder img { width: 100%; height: auto; }
+.hero-photo { object-position: 30% 50%; }
+.hero-cta-hint { margin: var(--grids-spacing-12) 0 0; color: var(--colors-text-muted); }
+
+.hero-photo--placeholder img { object-position: initial; }
+
+/* Footers are always dark (navy in light mode, near-black in dark mode): all paragraphs stay light */
+.ishf-footer-full p, .ishf-footer-full .uk-text-small, .ishf-footer-full .footer-legal-text, .ishf-footer-simple p { color: var(--colors-neutral-white); }
+
+/* Anchor target (footer "Subscribe", form action="#newsletter") must clear the sticky navigation */
+#newsletter { scroll-margin-top: 96px; }
+html { scroll-behavior: smooth; }
+
+/* Newsletter band (Figma: Home / Newsletter) - brand yellow in both modes; skyline illustration bottom-right */
+.ishf-newsletter { position: relative; overflow: hidden; background-color: var(--colors-brand-sunny-yellow); }
+.newsletter-band { display: flex; flex-direction: column; justify-content: space-between; gap: var(--grids-spacing-24); padding-top: var(--grids-spacing-32); }
+.newsletter-band-copy { padding-bottom: var(--grids-spacing-8); }
+.newsletter-band-title { font-size: var(--fonts-size-heading-3); line-height: 1.2; color: var(--colors-brand-blue-sky); margin: 0 0 var(--grids-spacing-16); }
+.newsletter-band-art { display: block; align-self: flex-end; width: 100%; max-width: 300px; height: auto; }
+.ishf-newsletter :focus-visible { outline-color: var(--colors-brand-blue-sky) !important; }
+
+/* Modal: reuse the partnership modal shell; neutralise the old card look around the form */
+.modal-ishf-newsletter .cta-box-newsletter { background: none; border: 0; padding: 0; color: inherit; }
+.modal-ishf-newsletter .cta-box-newsletter::before { display: none; }
+
+/* Newsletter label (badge) - single declaration, same look wherever it is used (modal header, any block) */
+.cta-badge-newsletter { background-color: var(--cta-newsletter-badge-bg); color: var(--cta-newsletter-badge-color); border: 1px solid var(--cta-newsletter-badge-border); transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease; }
+html.dark-mode .cta-badge-newsletter { background-color: var(--cta-newsletter-badge-bg); color: var(--cta-newsletter-badge-color); border-color: var(--cta-newsletter-badge-border); }
+/* Newsletter form labels / helper / consent text: identical in the modal and in any .cta-box-newsletter wrapper */
+.modal-ishf-newsletter .uk-form-label { color: var(--colors-text-heading); font-weight: 600; font-size: 13.5px; }
+.modal-ishf-newsletter .form-help-text { color: var(--colors-text-muted) !important; font-size: 12.5px; }
+.modal-ishf-newsletter .newsletter-consent-text { color: var(--colors-text-muted); }
+html.dark-mode .modal-ishf-newsletter .uk-form-label { color: var(--colors-text-heading); }
+html.dark-mode .modal-ishf-newsletter .form-help-text, html.dark-mode .modal-ishf-newsletter .newsletter-consent-text { color: var(--colors-text-muted) !important; }
+
+/* LIVE EVENT (Figma: Home / Live event block) - navy card, copy left, 16:9 video right, wave deco.
+   Content is still driven by the Streaming page (title, excerpt, content, YouTube). Card stays navy in both modes. */
+.section-streaming { padding-top: var(--grids-spacing-48); padding-bottom: var(--grids-spacing-48); background-color: var(--colors-background-muted); }
+html.dark-mode .section-streaming { background-color: var(--colors-background-default); }
+.cta-box-streaming { background-color: var(--colors-brand-blue-sky); color: var(--colors-neutral-white); border: 0; border-radius: var(--grids-radius-lg); padding: var(--grids-spacing-32); position: relative; overflow: hidden; }
+html.dark-mode .cta-box-streaming { background-color: var(--colors-night-800); border: 0; }
+.cta-box-streaming::before { display: none; }
+.streaming-wave { position: absolute; top: 12px; right: var(--grids-spacing-32); width: 120px; height: auto; pointer-events: none; opacity: 0.9; }
+.cta-box-streaming .cta-badge-streaming, html.dark-mode .cta-box-streaming .cta-badge-streaming { background-color: var(--colors-brand-sunny-yellow); color: var(--colors-brand-blue-sky); border: 0; padding: 7px 16px; letter-spacing: 0.1em; }
+.cta-box-streaming .streaming-live-dot, html.dark-mode .cta-box-streaming .streaming-live-dot { width: 10px; height: 10px; background-color: var(--colors-brand-lisbon-red); }
+.cta-box-streaming .cta-title, html.dark-mode .cta-box-streaming .cta-title { color: var(--colors-neutral-white); font-size: var(--fonts-size-heading-3); line-height: 1.2; text-align: left; }
+.cta-box-streaming .streaming-intro, .cta-box-streaming .streaming-intro p, html.dark-mode .cta-box-streaming .streaming-intro, html.dark-mode .cta-box-streaming .streaming-intro p { color: var(--colors-neutral-white); font-size: var(--fonts-size-lead); line-height: 1.5; margin: 0 0 var(--grids-spacing-16); text-align: left; }
+.cta-box-streaming .streaming-intro small, .cta-box-streaming .streaming-intro .uk-text-small { font-size: var(--fonts-size-xsmall); }
+.streaming-watch-btn, .streaming-watch-btn:hover, .streaming-watch-btn:focus { margin-top: var(--grids-spacing-8); background-color: var(--colors-brand-sunny-yellow) !important; color: var(--colors-brand-blue-sky) !important; }
+.cta-box-streaming :focus-visible { outline-color: var(--colors-focus-ring-inverse) !important; }
+.cta-box-streaming .streaming-video-wrapper { background-color: var(--colors-brand-blue-tejo); border: 0; border-radius: var(--grids-radius-md); box-shadow: none; }
+.cta-box-streaming .streaming-poster-overlay { background: linear-gradient(180deg, rgba(2, 50, 86, 0.10) 0%, rgba(2, 50, 86, 0.45) 100%); }
+.cta-box-streaming .streaming-play-btn { width: 72px; height: 72px; border: 0; box-shadow: none; }
+
+/* NAVIGATION MENUS - UIkit markup from includes/uikit-walker.php / uikit-menus.php (uk-navbar-nav, uk-navbar-dropdown, uk-nav, uk-subnav) */
+#navigation-top .uk-navbar-nav { gap: 4px; }
+#navigation-top .uk-navbar-nav > li > a { min-height: 84px; padding: 0 12px; font-family: var(--fonts-family-texts); font-size: var(--fonts-size-small); text-transform: none; letter-spacing: 0; color: var(--nav-text); transition: box-shadow 0.2s ease, color 0.2s ease; }
+#navigation-top .uk-navbar-nav > li:hover > a, #navigation-top .uk-navbar-nav > li > a:focus, #navigation-top .uk-navbar-nav > li > a[aria-expanded="true"] { color: var(--nav-text); box-shadow: inset 0 -3px 0 var(--colors-brand-sunny-yellow); }
+#navigation-top .uk-navbar-nav > li.uk-active > a { color: var(--nav-text); font-weight: 600; box-shadow: inset 0 -3px 0 var(--colors-brand-sunny-yellow); }
+.uk-navbar-dropdown { background-color: var(--colors-background-card); color: var(--colors-text-default); border: 1px solid var(--colors-border-default); border-radius: var(--grids-radius-md); box-shadow: 0 12px 32px rgba(var(--colors-neutral-black-rgb), 0.14); padding: 12px 16px; }
+.uk-navbar-dropdown-nav > li > a { color: var(--colors-text-default); font-size: var(--fonts-size-small); padding: 6px 0; }
+.uk-navbar-dropdown-nav > li > a:hover, .uk-navbar-dropdown-nav > li.uk-active > a { color: var(--colors-text-link); }
+html.dark-mode .uk-navbar-dropdown { background-color: var(--colors-night-800); border-color: var(--colors-night-700); }
+html.dark-mode .uk-navbar-dropdown-nav > li > a:hover, html.dark-mode .uk-navbar-dropdown-nav > li.uk-active > a { color: var(--colors-brand-sunny-yellow); }
+/* Off-canvas */
+#nav-offcanvas .uk-nav { margin: 24px 0; }
+#nav-offcanvas .uk-nav > li > a { color: var(--colors-neutral-white); font-size: var(--fonts-size-heading-5); padding: 10px 0; text-transform: none; }
+#nav-offcanvas .uk-nav > li.uk-active > a, #nav-offcanvas .uk-nav > li > a:hover { color: var(--colors-brand-sunny-yellow); }
+#nav-offcanvas .uk-nav-sub a { color: var(--colors-night-text-muted); font-size: var(--fonts-size-base); }
+/* Footer columns: uk-subnav stacked as a vertical list */
+.ishf-footer-full .uk-subnav { flex-direction: column; flex-wrap: nowrap; align-items: flex-start; margin-left: 0; gap: 10px; }
+.ishf-footer-full .uk-subnav > * { padding-left: 0; }
+.ishf-footer-full .uk-subnav > * > a { color: var(--colors-neutral-white); font-size: var(--fonts-size-small); text-transform: none; letter-spacing: 0; }
+.ishf-footer-full .uk-subnav > * > a:hover, .ishf-footer-full .uk-subnav > * > a:focus { color: var(--colors-neutral-white); text-decoration: underline; text-underline-offset: 3px; }
+.ishf-footer-full .uk-subnav .uk-list { margin-top: 8px; }
+.ishf-footer-full .uk-subnav .uk-list a { color: var(--colors-night-text-muted); }
+
+
+/* NEWS CARDS: whole card clickable, clipping tags */
+.news-card-title a::after { content: ""; position: absolute; inset: 0; }
+.news-card-ext { margin-left: 4px; vertical-align: -1px; }
+.news-card-sources, .article-tags { list-style: none; margin: 0 0 var(--grids-spacing-8); padding: 0; display: flex; flex-wrap: wrap; gap: 6px; }
+.news-card-tag { display: inline-block; padding: 2px 10px; border-radius: var(--grids-radius-pill); font-size: var(--fonts-size-xsmall); font-weight: 600; line-height: 1.6; background-color: var(--colors-background-tint); color: var(--colors-text-heading); border: 1px solid var(--colors-border-default); }
+html.dark-mode .news-card-tag { background-color: var(--colors-night-800); }
+.news-card-tag--lang { background-color: rgba(var(--colors-brand-sunny-yellow-rgb), 0.22); border-color: rgba(var(--colors-brand-sunny-yellow-rgb), 0.6); color: var(--colors-text-heading); }
+.news-card:focus-within .news-card-title a { outline: 3px solid var(--colors-focus-ring); outline-offset: 3px; }
+
+/* SINGLE ARTICLE: compact header, hero section (title/lead/image) and body section with different containers and backgrounds */
+.ishf-simplified-header--compact .header-content-wrapper { padding-top: 16px; padding-bottom: 16px; }
+.ishf-simplified-header--compact .header-hero-grid { max-width: none; }
+.ishf-simplified-header--compact .header-project-logo { max-width: 200px; }
+.ishf-simplified-header--compact .header-claim { font-size: clamp(16px, 1.6vw, 22px); }
+.ishf-simplified-header--compact .header-claim-inner { border-left-width: 3px; padding-left: 16px; margin-top: 0; text-align: left; }
+.ishf-simplified-header--compact .header-logo-col { justify-content: flex-end; }
+.article-hero { background-color: var(--colors-background-tint); padding: var(--grids-spacing-48) 0 var(--grids-spacing-48); }
+html.dark-mode .article-hero { background-color: var(--colors-night-800); }
+.article-meta { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 12px; margin: 0 0 var(--grids-spacing-16); font-size: var(--fonts-size-small); color: var(--colors-text-muted); }
+.article-title { font-size: var(--fonts-size-heading-1); line-height: 1.12; margin: 0 0 var(--grids-spacing-16); }
+.article-lead { margin: 0; color: var(--colors-text-default); max-width: 40em; }
+.article-featured-image img { display: block; width: 100%; height: auto; aspect-ratio: 16 / 9; object-fit: cover; border-radius: var(--grids-radius-lg); }
+.article-body { background-color: var(--colors-background-default); padding: var(--grids-spacing-64) 0; }
+.article-body .uk-article-content { font-size: var(--fonts-size-lead); line-height: 1.7; color: var(--colors-text-default); }
+.article-body .uk-article-content > * + * { margin-top: var(--grids-spacing-24); }
+.article-body .uk-article-content img { max-width: 100%; height: auto; border-radius: var(--grids-radius-md); }
+.article-source-cta, .article-tags { margin-top: var(--grids-spacing-32); }
+.article-footer { background-color: var(--colors-background-muted); padding: var(--grids-spacing-24) 0; border-top: 1px solid var(--colors-border-default); }
+
+
+/* UIKIT LABELS (uk-label) - tokens per mode; used by news cards, single article and program */
+.uk-label { display: inline-block; padding: 3px 12px; border-radius: var(--grids-radius-pill); background-color: var(--label-bg); color: var(--label-color); font-family: var(--fonts-family-labels); font-size: 12px; font-weight: 700; line-height: 1.7; letter-spacing: 0.08em; text-transform: uppercase; }
+.uk-label-warning, .ishf-label--clipping { background-color: var(--label-clip-bg); color: var(--label-clip-color); }
+.uk-label-success { background-color: var(--label-ok-bg); color: var(--label-ok-color); }
+
+/* NEWS CARD (Figma: card with inset 3:2 photo; label overlaid top-left; lifts on hover) */
+.news-card { position: relative; display: flex; flex-direction: column; width: 100%; box-sizing: border-box; padding: var(--grids-spacing-24); background-color: var(--colors-background-card); border: 1px solid var(--colors-border-default); border-radius: var(--grids-radius-lg); transition: transform 0.25s ease, box-shadow 0.25s ease, background-color 0.3s ease, border-color 0.3s ease; }
+html.dark-mode .news-card { background-color: var(--colors-night-800); border-color: var(--colors-night-700); }
+.news-card:hover, .news-card:focus-within { transform: translateY(-6px); box-shadow: 0 14px 32px rgba(var(--colors-neutral-black-rgb), 0.14); }
+html.dark-mode .news-card:hover, html.dark-mode .news-card:focus-within { box-shadow: 0 14px 32px rgba(var(--colors-neutral-black-rgb), 0.5); }
+.news-card-media { position: relative; aspect-ratio: 3 / 2; margin-bottom: var(--grids-spacing-16); border-radius: var(--grids-radius-md); overflow: hidden; background-color: var(--colors-background-tint); }
+html.dark-mode .news-card-media { background-color: var(--colors-night-700); }
+.news-card-media img { display: block; width: 100%; height: 100%; object-fit: cover; }
+.news-card-label { pointer-events: none; position: absolute; top: var(--grids-spacing-12); left: var(--grids-spacing-12); z-index: 1; }
+.news-card-title { font-size: var(--fonts-size-heading-5); line-height: 1.3; margin: 0 0 var(--grids-spacing-8); }
+.news-card-title a, .news-card-title a:hover, .news-card-title a:focus { color: var(--colors-text-heading); text-decoration: none; }
+.news-card-date { margin-top: auto; }
+
+/* SINGLE ARTICLE: side-by-side entrance */
+.article-hero-grid { max-width: 1160px; margin: 0 auto; }
+.article-header { text-align: left; }
+.article-title { font-size: var(--fonts-size-heading-2); }
+.article-featured-image { margin: 0; }
+.article-image-meta { display: flex; justify-content: space-between; align-items: baseline; gap: var(--grids-spacing-16); margin-top: var(--grids-spacing-8); color: var(--colors-text-muted); }
+.article-image-caption { flex: 1; }
+.article-date { margin-left: auto; font-size: var(--fonts-size-xsmall); color: var(--colors-text-muted); text-align: right; }
+
+/* Back / previous / next links: no underline; heavier weight + colour change on hover */
+.article-footer .uk-button-text, .article-pager a { text-transform: none; font-size: var(--fonts-size-base); font-weight: 500; letter-spacing: 0; color: var(--colors-text-heading); text-decoration: none; transition: font-weight 0.2s ease, color 0.2s ease; }
+.article-footer .uk-button-text::before { display: none; }
+.article-footer .uk-button-text:hover, .article-footer .uk-button-text:focus, .article-pager a:hover, .article-pager a:focus { font-weight: 800; color: var(--colors-text-eyebrow); text-decoration: none; }
+.article-pager { display: flex; align-items: center; gap: var(--grids-spacing-24); }
+
+/* Related articles (single): same cards as the home news block, on a contrasting background */
+.article-related { background-color: var(--colors-background-muted); }
+html.dark-mode .article-related { background-color: var(--colors-background-default); }
+.article-related + .article-footer { border-top: 0; padding-top: 0; }
+
+
+/* =============================================================================
    MEDIA QUERIES (aligned with UIkit breakpoints: s 640 / m 960 / l 1200 / xl 1600)
    Mobile-first overrides sit at the end of the file by project convention.
    ============================================================================= */
@@ -778,10 +985,31 @@ html.dark-mode #cookies-disclaimer #btnAcceptCookies:hover, html.dark-mode #cook
 /* --- Large: 960px and up (uk-width-*@m starts here) ---------------------------------- */
 @media (min-width: 960px) {
   .header-claim-inner { border-left: 4px solid var(--colors-brand-sunny-yellow); padding-left: 32px; text-align: left; }
+  .ishf-hero { padding: var(--grids-spacing-96) 0; }
+  .hero-art { max-width: none; margin-top: 0; }
+  .hero-photo { aspect-ratio: 16 / 9; }
+  .hero-key { top: -40px; right: -32px; width: 200px; }
+  .hero-wave { left: -40px; width: 260px; }
+  .partner-logos { gap: var(--grids-spacing-80); }
+  .partner-logos img { height: 80px; }
+  .newsletter-band { flex-direction: row; align-items: stretch; padding-top: 0; min-height: 265px; }
+  .newsletter-band-copy { align-self: center; padding: var(--grids-spacing-48) 0; }
+  .newsletter-band-title { font-size: var(--fonts-size-heading-2); margin-bottom: var(--grids-spacing-24); }
+  .newsletter-band-art { max-width: 520px; }
+  .cta-box-streaming { padding: var(--grids-spacing-64); }
+  .streaming-wave { right: var(--grids-spacing-64); top: 12px; width: 150px; }
+  .cta-box-streaming .cta-title { font-size: var(--fonts-size-heading-3); }
+  .article-hero { padding: var(--grids-spacing-64) 0; }
+  .article-title { font-size: var(--fonts-size-heading-1); }
 }
 
 /* --- Large only: 960px to 1199px ------------------------------------------------------ */
 @media (min-width: 960px) and (max-width: 1199.98px) {
+}
+
+/* --- Up to Medium (< 960px) ----------------------------------------------------------- */
+@media (max-width: 959.98px) {
+  .ishf-simplified-header--compact .header-content-wrapper { display: none; }
 }
 
 /* --- XLarge: 1200px and up ------------------------------------------------------------ */
@@ -848,237 +1076,13 @@ html.dark-mode #cookies-disclaimer #btnAcceptCookies:hover, html.dark-mode #cook
    ============================================================================= */
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; scroll-behavior: auto !important; }
+  html { scroll-behavior: auto; }
   .maintenance-cog, .streaming-live-dot { animation: none !important; }
   .uk-button:hover, .uk-button:focus,
   .btn-partnership-submit:hover, .btn-partnership-submit:focus,
   .btn-newsletter-submit:hover, .btn-newsletter-submit:focus,
   .btn-ishf-primary:hover, .btn-ishf-primary:focus,
   .streaming-play-btn:hover, .streaming-play-btn:focus,
-  .streaming-poster-wrapper:hover .streaming-poster-img { transform: none !important; }
+  .streaming-poster-wrapper:hover .streaming-poster-img,
+  .news-card, .news-card:hover, .news-card:focus-within { transform: none !important; transition: none !important; }
 }
-/* =============================================================================
-   HOMEPAGE SECTIONS (Figma: Home Light/Dark) - hero, journeys, partners, news
-   Tokens only; breakpoints aligned to UIkit (640 / 960).
-   ============================================================================= */
-.ishf-modal-only { margin: 0; padding: 0; }
-
-/* Hero */
-.ishf-hero { background-color: var(--colors-background-tint); padding: var(--grids-spacing-64) 0; }
-html.dark-mode .ishf-hero { background-color: var(--colors-night-800); }
-.hero-title { font-size: var(--fonts-size-heading-1); line-height: 1.1; margin-bottom: var(--grids-spacing-16); }
-.hero-date { font-size: var(--fonts-size-lead); font-weight: 600; color: var(--colors-text-heading); margin-bottom: var(--grids-spacing-16); }
-.hero-lead { max-width: 36em; color: var(--colors-text-default); margin-bottom: var(--grids-spacing-32); }
-.hero-ctas { gap: var(--grids-spacing-16); }
-.hero-art { max-width: 450px; margin: var(--grids-spacing-32) auto 0; padding-bottom: var(--grids-spacing-24); }
-.hero-photo { display: block; width: 100%; aspect-ratio: 1 / 1; object-fit: cover; border-radius: var(--grids-radius-lg); }
-.hero-art picture { display: block; }
-.hero-photo--placeholder { background-color: var(--colors-brand-blue-tejo); opacity: 0.35; }
-.hero-key { position: absolute; top: -24px; right: -12px; width: 100px; height: auto; }
-.hero-wave { position: absolute; left: -16px; bottom: 0; width: 160px; height: auto; }
-@media (min-width: 960px) {
-  .ishf-hero { padding: var(--grids-spacing-96) 0; }
-  .hero-art { max-width: none; margin-top: 0; }
-  .hero-photo { aspect-ratio: 16 / 9; }
-  .hero-key { top: -40px; right: -32px; width: 200px; }
-  .hero-wave { left: -40px; width: 260px; }
-}
-
-/* Journeys */
-.ishf-journeys, .ishf-partners, .ishf-news { padding: var(--grids-spacing-64) 0; }
-.ishf-journeys .ishf-eyebrow { margin: 0 0 var(--grids-spacing-24); }
-.journey-grid { list-style: none; margin-left: 0; padding: 0; }
-.journey-card { position: relative; display: flex; flex-direction: column; align-items: flex-start; justify-content: space-between; gap: var(--grids-spacing-24); height: 100%; min-height: 280px; padding: var(--grids-spacing-32); border-radius: var(--grids-radius-lg); overflow: hidden; }
-.journey-title { font-size: var(--fonts-size-heading-3); line-height: 1.2; margin: 0; position: relative; z-index: 1; }
-.journey-art { position: absolute; right: var(--grids-spacing-16); top: var(--grids-spacing-16); width: 96px; height: auto; opacity: 0.9; pointer-events: none; }
-.journey-card .uk-button { position: relative; z-index: 1; }
-.journey-card--tejo { background-color: var(--colors-brand-blue-tejo); }
-.journey-card--sun  { background-color: var(--colors-brand-sunny-yellow); }
-.journey-card--navy { background-color: var(--colors-brand-blue-sky); }
-html.dark-mode .journey-card--navy { background-color: var(--colors-night-700); }
-.journey-card--tejo .journey-title, .journey-card--sun .journey-title { color: var(--colors-brand-blue-sky); }
-.journey-card--navy .journey-title { color: var(--colors-neutral-white); }
-/* fixed brand surfaces: buttons keep their Figma colours in both modes */
-.btn-ishf-dark, .btn-ishf-dark:hover, .btn-ishf-dark:focus { background-color: var(--colors-brand-blue-sky) !important; color: var(--colors-neutral-white) !important; border: none; }
-.btn-ishf-dark:hover, .btn-ishf-dark:focus { background-color: var(--colors-night-900) !important; transform: translateY(-2px); }
-.journey-card--navy .uk-button-primary, .journey-card--navy .uk-button-primary:hover, .journey-card--navy .uk-button-primary:focus { background-color: var(--colors-brand-sunny-yellow) !important; color: var(--colors-brand-blue-sky) !important; }
-.journey-card :focus-visible { outline-color: var(--colors-brand-blue-sky) !important; }
-.journey-card--navy :focus-visible { outline-color: var(--colors-focus-ring-inverse) !important; }
-
-/* Partners */
-.partner-logos { list-style: none; margin: var(--grids-spacing-24) 0 0; padding: 0; display: flex; flex-wrap: wrap; align-items: center; gap: var(--grids-spacing-32); }
-.partner-logos a { display: inline-flex; align-items: center; text-decoration: none; }
-.partner-logos img { width: auto; max-width: 100%; }
-.partner-name { font-weight: 700; font-size: var(--fonts-size-lead); color: var(--colors-text-heading); }
-@media (min-width: 960px) { .partner-logos { gap: var(--grids-spacing-80); } }
-
-/* News */
-.news-grid { list-style: none; margin-left: 0; padding: 0; margin-top: var(--grids-spacing-24); }
-html.dark-mode .news-card-date { margin: 0; color: var(--colors-text-muted); }
-
-/* Sponsors (CPT) + pre-footer */
-.partner-group + .partner-group { margin-top: var(--grids-spacing-48); }
-.partner-logos img { height: 64px; object-fit: contain; }
-@media (min-width: 960px) { .partner-logos img { height: 80px; } }
-.hero-photo--placeholder { object-position: initial; display: flex; align-items: flex-end; justify-content: center; opacity: 1; background-color: var(--colors-brand-blue-tejo); overflow: hidden; }
-.hero-photo--placeholder img { width: 100%; height: auto; }
-.hero-photo { object-position: 30% 50%; }
-.hero-cta-hint { margin: var(--grids-spacing-12) 0 0; color: var(--colors-text-muted); }
-
-.hero-photo--placeholder img { object-position: initial; }
-
-/* Footers are always dark (navy in light mode, near-black in dark mode): all paragraphs stay light */
-.ishf-footer-full p, .ishf-footer-full .uk-text-small, .ishf-footer-full .footer-legal-text, .ishf-footer-simple p { color: var(--colors-neutral-white); }
-
-/* Anchor target (footer "Subscribe", form action="#newsletter") must clear the sticky navigation */
-#newsletter { scroll-margin-top: 96px; }
-html { scroll-behavior: smooth; }
-@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
-
-/* Newsletter band (Figma: Home / Newsletter) - brand yellow in both modes; skyline illustration bottom-right */
-.ishf-newsletter { position: relative; overflow: hidden; background-color: var(--colors-brand-sunny-yellow); }
-.newsletter-band { display: flex; flex-direction: column; justify-content: space-between; gap: var(--grids-spacing-24); padding-top: var(--grids-spacing-32); }
-.newsletter-band-copy { padding-bottom: var(--grids-spacing-8); }
-.newsletter-band-title { font-size: var(--fonts-size-heading-3); line-height: 1.2; color: var(--colors-brand-blue-sky); margin: 0 0 var(--grids-spacing-16); }
-.newsletter-band-art { display: block; align-self: flex-end; width: 100%; max-width: 300px; height: auto; }
-.ishf-newsletter :focus-visible { outline-color: var(--colors-brand-blue-sky) !important; }
-@media (min-width: 960px) {
-  .newsletter-band { flex-direction: row; align-items: stretch; padding-top: 0; min-height: 265px; }
-  .newsletter-band-copy { align-self: center; padding: var(--grids-spacing-48) 0; }
-  .newsletter-band-title { font-size: var(--fonts-size-heading-2); margin-bottom: var(--grids-spacing-24); }
-  .newsletter-band-art { max-width: 520px; }
-}
-/* Modal: reuse the partnership modal shell; neutralise the old card look around the form */
-.modal-ishf-newsletter .cta-box-newsletter { background: none; border: 0; padding: 0; color: inherit; }
-.modal-ishf-newsletter .cta-box-newsletter::before { display: none; }
-
-/* Newsletter label (badge) - single declaration, same look wherever it is used (modal header, any block) */
-.cta-badge-newsletter { background-color: var(--cta-newsletter-badge-bg); color: var(--cta-newsletter-badge-color); border: 1px solid var(--cta-newsletter-badge-border); transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease; }
-html.dark-mode .cta-badge-newsletter { background-color: var(--cta-newsletter-badge-bg); color: var(--cta-newsletter-badge-color); border-color: var(--cta-newsletter-badge-border); }
-/* Newsletter form labels / helper / consent text: identical in the modal and in any .cta-box-newsletter wrapper */
-.modal-ishf-newsletter .uk-form-label { color: var(--colors-text-heading); font-weight: 600; font-size: 13.5px; }
-.modal-ishf-newsletter .form-help-text { color: var(--colors-text-muted) !important; font-size: 12.5px; }
-.modal-ishf-newsletter .newsletter-consent-text { color: var(--colors-text-muted); }
-html.dark-mode .modal-ishf-newsletter .uk-form-label { color: var(--colors-text-heading); }
-html.dark-mode .modal-ishf-newsletter .form-help-text, html.dark-mode .modal-ishf-newsletter .newsletter-consent-text { color: var(--colors-text-muted) !important; }
-
-/* LIVE EVENT (Figma: Home / Live event block) - navy card, copy left, 16:9 video right, wave deco.
-   Content is still driven by the Streaming page (title, excerpt, content, YouTube). Card stays navy in both modes. */
-.section-streaming { padding-top: var(--grids-spacing-48); padding-bottom: var(--grids-spacing-48); background-color: var(--colors-background-muted); }
-html.dark-mode .section-streaming { background-color: var(--colors-background-default); }
-.cta-box-streaming { background-color: var(--colors-brand-blue-sky); color: var(--colors-neutral-white); border: 0; border-radius: var(--grids-radius-lg); padding: var(--grids-spacing-32); position: relative; overflow: hidden; }
-html.dark-mode .cta-box-streaming { background-color: var(--colors-night-800); border: 0; }
-.cta-box-streaming::before { display: none; }
-.streaming-wave { position: absolute; top: 12px; right: var(--grids-spacing-32); width: 120px; height: auto; pointer-events: none; opacity: 0.9; }
-.cta-box-streaming .cta-badge-streaming, html.dark-mode .cta-box-streaming .cta-badge-streaming { background-color: var(--colors-brand-sunny-yellow); color: var(--colors-brand-blue-sky); border: 0; padding: 7px 16px; letter-spacing: 0.1em; }
-.cta-box-streaming .streaming-live-dot, html.dark-mode .cta-box-streaming .streaming-live-dot { width: 10px; height: 10px; background-color: var(--colors-brand-lisbon-red); }
-.cta-box-streaming .cta-title, html.dark-mode .cta-box-streaming .cta-title { color: var(--colors-neutral-white); font-size: var(--fonts-size-heading-3); line-height: 1.2; text-align: left; }
-.cta-box-streaming .streaming-intro, .cta-box-streaming .streaming-intro p, html.dark-mode .cta-box-streaming .streaming-intro, html.dark-mode .cta-box-streaming .streaming-intro p { color: var(--colors-neutral-white); font-size: var(--fonts-size-lead); line-height: 1.5; margin: 0 0 var(--grids-spacing-16); text-align: left; }
-.cta-box-streaming .streaming-intro small, .cta-box-streaming .streaming-intro .uk-text-small { font-size: var(--fonts-size-xsmall); }
-.streaming-watch-btn, .streaming-watch-btn:hover, .streaming-watch-btn:focus { margin-top: var(--grids-spacing-8); background-color: var(--colors-brand-sunny-yellow) !important; color: var(--colors-brand-blue-sky) !important; }
-.cta-box-streaming :focus-visible { outline-color: var(--colors-focus-ring-inverse) !important; }
-.cta-box-streaming .streaming-video-wrapper { background-color: var(--colors-brand-blue-tejo); border: 0; border-radius: var(--grids-radius-md); box-shadow: none; }
-.cta-box-streaming .streaming-poster-overlay { background: linear-gradient(180deg, rgba(2, 50, 86, 0.10) 0%, rgba(2, 50, 86, 0.45) 100%); }
-.cta-box-streaming .streaming-play-btn { width: 72px; height: 72px; border: 0; box-shadow: none; }
-@media (min-width: 960px) {
-  .cta-box-streaming { padding: var(--grids-spacing-64); }
-  .streaming-wave { right: var(--grids-spacing-64); top: 12px; width: 150px; }
-  .cta-box-streaming .cta-title { font-size: var(--fonts-size-heading-3); }
-}
-
-
-/* NAVIGATION MENUS - UIkit markup from includes/uikit-walker.php / uikit-menus.php (uk-navbar-nav, uk-navbar-dropdown, uk-nav, uk-subnav) */
-#navigation-top .uk-navbar-nav { gap: 4px; }
-#navigation-top .uk-navbar-nav > li > a { min-height: 84px; padding: 0 12px; font-family: var(--fonts-family-texts); font-size: var(--fonts-size-small); text-transform: none; letter-spacing: 0; color: var(--nav-text); transition: box-shadow 0.2s ease, color 0.2s ease; }
-#navigation-top .uk-navbar-nav > li:hover > a, #navigation-top .uk-navbar-nav > li > a:focus, #navigation-top .uk-navbar-nav > li > a[aria-expanded="true"] { color: var(--nav-text); box-shadow: inset 0 -3px 0 var(--colors-brand-sunny-yellow); }
-#navigation-top .uk-navbar-nav > li.uk-active > a { color: var(--nav-text); font-weight: 600; box-shadow: inset 0 -3px 0 var(--colors-brand-sunny-yellow); }
-.uk-navbar-dropdown { background-color: var(--colors-background-card); color: var(--colors-text-default); border: 1px solid var(--colors-border-default); border-radius: var(--grids-radius-md); box-shadow: 0 12px 32px rgba(var(--colors-neutral-black-rgb), 0.14); padding: 12px 16px; }
-.uk-navbar-dropdown-nav > li > a { color: var(--colors-text-default); font-size: var(--fonts-size-small); padding: 6px 0; }
-.uk-navbar-dropdown-nav > li > a:hover, .uk-navbar-dropdown-nav > li.uk-active > a { color: var(--colors-text-link); }
-html.dark-mode .uk-navbar-dropdown { background-color: var(--colors-night-800); border-color: var(--colors-night-700); }
-html.dark-mode .uk-navbar-dropdown-nav > li > a:hover, html.dark-mode .uk-navbar-dropdown-nav > li.uk-active > a { color: var(--colors-brand-sunny-yellow); }
-/* Off-canvas */
-#nav-offcanvas .uk-nav { margin: 24px 0; }
-#nav-offcanvas .uk-nav > li > a { color: var(--colors-neutral-white); font-size: var(--fonts-size-heading-5); padding: 10px 0; text-transform: none; }
-#nav-offcanvas .uk-nav > li.uk-active > a, #nav-offcanvas .uk-nav > li > a:hover { color: var(--colors-brand-sunny-yellow); }
-#nav-offcanvas .uk-nav-sub a { color: var(--colors-night-text-muted); font-size: var(--fonts-size-base); }
-/* Footer columns: uk-subnav stacked as a vertical list */
-.ishf-footer-full .uk-subnav { flex-direction: column; flex-wrap: nowrap; align-items: flex-start; margin-left: 0; gap: 10px; }
-.ishf-footer-full .uk-subnav > * { padding-left: 0; }
-.ishf-footer-full .uk-subnav > * > a { color: var(--colors-neutral-white); font-size: var(--fonts-size-small); text-transform: none; letter-spacing: 0; }
-.ishf-footer-full .uk-subnav > * > a:hover, .ishf-footer-full .uk-subnav > * > a:focus { color: var(--colors-neutral-white); text-decoration: underline; text-underline-offset: 3px; }
-.ishf-footer-full .uk-subnav .uk-list { margin-top: 8px; }
-.ishf-footer-full .uk-subnav .uk-list a { color: var(--colors-night-text-muted); }
-
-
-/* NEWS CARDS: whole card clickable, clipping tags */
-.news-card-title a::after { content: ""; position: absolute; inset: 0; }
-.news-card-ext { margin-left: 4px; vertical-align: -1px; }
-.news-card-sources, .article-tags { list-style: none; margin: 0 0 var(--grids-spacing-8); padding: 0; display: flex; flex-wrap: wrap; gap: 6px; }
-.news-card-tag { display: inline-block; padding: 2px 10px; border-radius: var(--grids-radius-pill); font-size: var(--fonts-size-xsmall); font-weight: 600; line-height: 1.6; background-color: var(--colors-background-tint); color: var(--colors-text-heading); border: 1px solid var(--colors-border-default); }
-html.dark-mode .news-card-tag { background-color: var(--colors-night-800); }
-.news-card-tag--lang { background-color: rgba(var(--colors-brand-sunny-yellow-rgb), 0.22); border-color: rgba(var(--colors-brand-sunny-yellow-rgb), 0.6); color: var(--colors-text-heading); }
-.news-card:focus-within 
-/* SINGLE ARTICLE: compact header, hero section (title/lead/image) and body section with different containers and backgrounds */
-.ishf-simplified-header--compact .header-content-wrapper { padding-top: 16px; padding-bottom: 16px; }
-.ishf-simplified-header--compact .header-hero-grid { max-width: none; }
-.ishf-simplified-header--compact .header-project-logo { max-width: 200px; }
-.ishf-simplified-header--compact .header-claim { font-size: clamp(16px, 1.6vw, 22px); }
-.ishf-simplified-header--compact .header-claim-inner { border-left-width: 3px; padding-left: 16px; margin-top: 0; text-align: left; }
-.ishf-simplified-header--compact .header-logo-col { justify-content: flex-end; }
-@media (max-width: 959px) { .ishf-simplified-header--compact .header-content-wrapper { display: none; } }
-.article-hero { background-color: var(--colors-background-tint); padding: var(--grids-spacing-48) 0 var(--grids-spacing-48); }
-html.dark-mode .article-hero { background-color: var(--colors-night-800); }
-.article-meta { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 12px; margin: 0 0 var(--grids-spacing-16); font-size: var(--fonts-size-small); color: var(--colors-text-muted); }
-.article-title { font-size: var(--fonts-size-heading-1); line-height: 1.12; margin: 0 0 var(--grids-spacing-16); }
-.article-lead { margin: 0; color: var(--colors-text-default); max-width: 40em; }
-.article-featured-image img { display: block; width: 100%; height: auto; aspect-ratio: 16 / 9; object-fit: cover; border-radius: var(--grids-radius-lg); }
-.article-body { background-color: var(--colors-background-default); padding: var(--grids-spacing-64) 0; }
-.article-body .uk-article-content { font-size: var(--fonts-size-lead); line-height: 1.7; color: var(--colors-text-default); }
-.article-body .uk-article-content > * + * { margin-top: var(--grids-spacing-24); }
-.article-body .uk-article-content img { max-width: 100%; height: auto; border-radius: var(--grids-radius-md); }
-.article-source-cta, .article-tags { margin-top: var(--grids-spacing-32); }
-.article-footer { background-color: var(--colors-background-muted); padding: var(--grids-spacing-24) 0; border-top: 1px solid var(--colors-border-default); }
-@media (min-width: 960px) { .article-hero { padding: var(--grids-spacing-64) 0; } }
-
-
-/* UIKIT LABELS (uk-label) - tokens per mode; used by news cards, single article and program */
-:root { --label-bg: var(--colors-brand-blue-sky); --label-color: var(--colors-neutral-white); --label-clip-bg: var(--colors-brand-sunny-yellow); --label-clip-color: var(--colors-brand-blue-sky); --label-ok-bg: var(--colors-brand-city-forest-text); --label-ok-color: var(--colors-neutral-white); }
-html.dark-mode { --label-bg: var(--colors-brand-sunny-yellow); --label-color: var(--colors-brand-blue-sky); --label-clip-bg: var(--colors-brand-blue-tejo); --label-clip-color: var(--colors-brand-blue-sky); --label-ok-bg: var(--colors-brand-blue-tejo); --label-ok-color: var(--colors-brand-blue-sky); }
-.uk-label { display: inline-block; padding: 3px 12px; border-radius: var(--grids-radius-pill); background-color: var(--label-bg); color: var(--label-color); font-family: var(--fonts-family-labels); font-size: 12px; font-weight: 700; line-height: 1.7; letter-spacing: 0.08em; text-transform: uppercase; }
-.uk-label-warning, .ishf-label--clipping { background-color: var(--label-clip-bg); color: var(--label-clip-color); }
-.uk-label-success { background-color: var(--label-ok-bg); color: var(--label-ok-color); }
-
-/* NEWS CARD (Figma: card with inset 3:2 photo; label overlaid top-left; lifts on hover) */
-.news-card { position: relative; display: flex; flex-direction: column; width: 100%; box-sizing: border-box; padding: var(--grids-spacing-24); background-color: var(--colors-background-card); border: 1px solid var(--colors-border-default); border-radius: var(--grids-radius-lg); transition: transform 0.25s ease, box-shadow 0.25s ease, background-color 0.3s ease, border-color 0.3s ease; }
-html.dark-mode .news-card { background-color: var(--colors-night-800); border-color: var(--colors-night-700); }
-.news-card:hover, .news-card:focus-within { transform: translateY(-6px); box-shadow: 0 14px 32px rgba(var(--colors-neutral-black-rgb), 0.14); }
-html.dark-mode .news-card:hover, html.dark-mode .news-card:focus-within { box-shadow: 0 14px 32px rgba(var(--colors-neutral-black-rgb), 0.5); }
-.news-card-media { position: relative; aspect-ratio: 3 / 2; margin-bottom: var(--grids-spacing-16); border-radius: var(--grids-radius-md); overflow: hidden; background-color: var(--colors-background-tint); }
-html.dark-mode .news-card-media { background-color: var(--colors-night-700); }
-.news-card-media img { display: block; width: 100%; height: 100%; object-fit: cover; }
-.news-card-label { pointer-events: none; position: absolute; top: var(--grids-spacing-12); left: var(--grids-spacing-12); z-index: 1; }
-.news-card-title { font-size: var(--fonts-size-heading-5); line-height: 1.3; margin: 0 0 var(--grids-spacing-8); }
-.news-card-title a, .news-card-title a:hover, .news-card-title a:focus { color: var(--colors-text-heading); text-decoration: none; }
-.news-card-date { margin-top: auto; }
-@media (prefers-reduced-motion: reduce) { .news-card, .news-card:hover, .news-card:focus-within { transition: none; transform: none; } }
-
-/* SINGLE ARTICLE: side-by-side entrance */
-.article-hero-grid { max-width: 1160px; margin: 0 auto; }
-.article-header { text-align: left; }
-.article-title { font-size: var(--fonts-size-heading-2); }
-.article-featured-image { margin: 0; }
-.article-image-meta { display: flex; justify-content: space-between; align-items: baseline; gap: var(--grids-spacing-16); margin-top: var(--grids-spacing-8); color: var(--colors-text-muted); }
-.article-image-caption { flex: 1; }
-.article-date { margin-left: auto; font-size: var(--fonts-size-xsmall); color: var(--colors-text-muted); text-align: right; }
-@media (min-width: 960px) { .article-title { font-size: var(--fonts-size-heading-1); } }
-
-/* Back / previous / next links: no underline; heavier weight + colour change on hover */
-.article-footer .uk-button-text, .article-pager a { text-transform: none; font-size: var(--fonts-size-base); font-weight: 500; letter-spacing: 0; color: var(--colors-text-heading); text-decoration: none; transition: font-weight 0.2s ease, color 0.2s ease; }
-.article-footer .uk-button-text::before { display: none; }
-.article-footer .uk-button-text:hover, .article-footer .uk-button-text:focus, .article-pager a:hover, .article-pager a:focus { font-weight: 800; color: var(--colors-text-eyebrow); text-decoration: none; }
-.article-pager { display: flex; align-items: center; gap: var(--grids-spacing-24); }
-
-/* Related articles (single): same cards as the home news block, on a contrasting background */
-.article-related { background-color: var(--colors-background-muted); }
-html.dark-mode .article-related { background-color: var(--colors-background-default); }
-.article-related + .article-footer { border-top: 0; padding-top: 0; }

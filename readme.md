@@ -452,7 +452,7 @@ Clippings are normal posts with **Custom Fields** (post editor; enable the panel
 
 | Custom field | Value |
 |---|---|
-| `uikit_bs_external_url` | URL of the article on the third-party site. When set, the post is a clipping: label "Clipping"/"Cobertura", the card links to the URL in a new tab. |
+| `ishf_external_url` | URL of the article on the third-party site. When set, the post is a clipping: label "Clipping"/"Cobertura", the card links to the URL in a new tab. |
 | `ishf_external_lang` | Language of the external content: `pt`, `en`, `es` or `fr` (default `pt`). The "In Portuguese" tag shows when it differs from the site language. |
 | `ishf_external_date` | Publication date at the source, e.g. `2027-03-15` (optional; falls back to the post date). |
 | `ishf_external_source` | Publication name, only used when the post has no publication tag (optional). |

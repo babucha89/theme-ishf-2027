@@ -3,7 +3,7 @@
 //  Block: CLIPPING / EXTERNAL LINK (post meta + helpers)
 //  A "Clipping" (PT: "Cobertura") is a post that points to coverage published on a
 //  third-party website. It is a normal post with these CUSTOM FIELDS (post editor > Custom Fields):
-//    - uikit_bs_external_url : external article URL (same key as the base template)
+//    - ishf_external_url : external article URL (same key as the base template)
 //    - ishf_external_lang    : language of the external content: pt, en, es or fr (default pt)
 //    - ishf_external_date    : publication date at the source, e.g. 2027-03-15 (optional; falls back to the post date)
 //    - ishf_external_source  : publication name, only used when the post has no publication tag (optional)
@@ -47,7 +47,7 @@ if (!function_exists('ishf_get_clipping')):
   function ishf_get_clipping($post_id = 0)
   {
     $post_id = $post_id ? (int) $post_id : get_the_ID();
-    $url     = trim((string) get_post_meta($post_id, 'uikit_bs_external_url', true));
+    $url     = trim((string) get_post_meta($post_id, 'ishf_external_url', true));
     if ($url === '') {
       return null;
     }
@@ -114,7 +114,7 @@ endif;
 
 // -- Meta registration (exposed in REST so the future app can read it)
 add_action('init', function () {
-  register_post_meta('post', 'uikit_bs_external_url', array('type' => 'string', 'single' => true, 'show_in_rest' => true, 'sanitize_callback' => 'esc_url_raw', 'auth_callback' => function () { return current_user_can('edit_posts'); }));
+  register_post_meta('post', 'ishf_external_url', array('type' => 'string', 'single' => true, 'show_in_rest' => true, 'sanitize_callback' => 'esc_url_raw', 'auth_callback' => function () { return current_user_can('edit_posts'); }));
   register_post_meta('post', 'ishf_external_date', array('type' => 'string', 'single' => true, 'show_in_rest' => true, 'sanitize_callback' => 'sanitize_text_field', 'auth_callback' => function () { return current_user_can('edit_posts'); }));
   register_post_meta('post', 'ishf_external_source', array('type' => 'string', 'single' => true, 'show_in_rest' => true, 'sanitize_callback' => 'sanitize_text_field', 'auth_callback' => function () { return current_user_can('edit_posts'); }));
   register_post_meta('post', 'ishf_external_lang', array('type' => 'string', 'single' => true, 'show_in_rest' => true, 'sanitize_callback' => 'sanitize_text_field', 'auth_callback' => function () { return current_user_can('edit_posts'); }));
@@ -122,7 +122,7 @@ add_action('init', function () {
 
 // -- Back office: the fields live in the native "Custom Fields" panel of the post editor
 //    (classic editor: Screen Options > Custom Fields; block editor: Options > Preferences > Panels > Custom fields).
-//    Keys: uikit_bs_external_url, ishf_external_lang, ishf_external_date (see the readme).
+//    Keys: ishf_external_url, ishf_external_lang, ishf_external_date (see the readme).
 add_action('init', function () {
   add_post_type_support('post', 'custom-fields');
 });
@@ -143,8 +143,8 @@ add_filter('wp_sitemaps_posts_query_args', function ($args, $post_type) {
   if ($post_type === 'post') {
     $args['meta_query'] = array(
       'relation' => 'OR',
-      array('key' => 'uikit_bs_external_url', 'compare' => 'NOT EXISTS'),
-      array('key' => 'uikit_bs_external_url', 'value' => '', 'compare' => '='),
+      array('key' => 'ishf_external_url', 'compare' => 'NOT EXISTS'),
+      array('key' => 'ishf_external_url', 'value' => '', 'compare' => '='),
     );
   }
   return $args;
