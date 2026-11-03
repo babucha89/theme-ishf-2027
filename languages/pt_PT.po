@@ -1619,3 +1619,67 @@ msgid "Join ISHF 2027 as an official partner. Fill in the form below and our tea
 msgstr "Junte-se ao ISHF 2027 como parceiro oficial. Preencha o formulário abaixo e a nossa equipa entrará em contacto brevemente."
 
 
+
+#: includes/news-card.php, includes/post-meta-clipping.php, single.php (news & clippings)
+msgid "Clipping"
+msgstr "Cobertura"
+
+msgid "Portuguese"
+msgstr "Português"
+
+msgid "English"
+msgstr "Inglês"
+
+msgid "Spanish"
+msgstr "Espanhol"
+
+msgid "French"
+msgstr "Francês"
+
+msgid "In Portuguese"
+msgstr "Em português"
+
+msgid "In English"
+msgstr "Em inglês"
+
+msgid "In Spanish"
+msgstr "Em espanhol"
+
+msgid "In French"
+msgstr "Em francês"
+
+msgid "opens in a new tab"
+msgstr "abre num novo separador"
+
+msgid "(opens in a new tab)"
+msgstr "(abre num novo separador)"
+
+msgid "Clipping / External link"
+msgstr "Cobertura / Ligação externa"
+
+msgid "Fill in the URL only for coverage published on a third-party website. The card then links to it (new tab). Add the publication name as a post tag."
+msgstr "Preencha o URL apenas para cobertura publicada num site de terceiros. O cartão passa a apontar para esse endereço (novo separador). Adicione o nome da publicação como etiqueta (tag) do artigo."
+
+msgid "External URL"
+msgstr "URL externo"
+
+msgid "Publication date at the source"
+msgstr "Data de publicação na fonte"
+
+msgid "Language of the external content"
+msgstr "Idioma do conteúdo externo"
+
+msgid "Read the full article at the source"
+msgstr "Ler o artigo completo na fonte"
+
+msgid "Article content"
+msgstr "Conteúdo do artigo"
+
+msgid "Article navigation"
+msgstr "Navegação do artigo"
+
+msgid "News & articles"
+msgstr "Notícias e artigos"
+
+msgid "All news"
+msgstr "Todas as notícias"

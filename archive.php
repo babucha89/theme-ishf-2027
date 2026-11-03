@@ -32,7 +32,7 @@ get_template_part('includes/sections/header');
           the_post();
         ?>
         <div>
-          <?php get_template_part('includes/article'); ?>
+          <?php get_template_part('includes/news-card'); ?>
         </div>
         <?php endwhile; ?>
       </div>

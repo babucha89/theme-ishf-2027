@@ -435,6 +435,7 @@ endif;
 //------------------------------------------------------------------------------
 //  Include Custom Database Leads Manager & Form Handlers
 //------------------------------------------------------------------------------
+require_once __DIR__ . '/includes/post-meta-clipping.php';
 require_once __DIR__ . '/includes/uikit-walker.php';
 require_once __DIR__ . '/includes/uikit-menus.php';
 

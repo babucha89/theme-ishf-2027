@@ -45,7 +45,7 @@ if ($articles->have_posts()):
       <div>
         <?php
         // -- Block: ARTICLE
-        get_template_part('includes/article');
+        get_template_part('includes/news-card');
         ?>
       </div>
       <?php

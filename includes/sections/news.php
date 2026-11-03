@@ -1,7 +1,8 @@
 <?php
 // -----------------------------------------------------------------------------
 //  Section: NEWS & ARTICLES (Home)
-//  Figma: Home / News. Three latest posts (category, title, date, thumbnail).
+//  Figma: Home / News. Three latest posts rendered with includes/news-card.php
+//  (internal articles and external clippings).
 //  WPML filters the query by the current language automatically.
 //  Base Theme: ISHF 2027 Lisbon
 // -----------------------------------------------------------------------------
@@ -27,23 +28,8 @@ $ishf_posts_page = (int) get_option('page_for_posts');
     </div>
 
     <ul class="news-grid uk-grid uk-grid-medium uk-child-width-1-1 uk-child-width-1-3@m uk-grid-match" data-uk-grid>
-      <?php while ($ishf_news->have_posts()): $ishf_news->the_post();
-        $cats = get_the_category();
-        ?>
-        <li>
-          <article class="news-card">
-            <div class="news-card-media">
-              <?php if (has_post_thumbnail()): ?>
-                <?php the_post_thumbnail('medium_large', array('alt' => '', 'loading' => 'lazy')); ?>
-              <?php endif; ?>
-            </div>
-            <?php if (!empty($cats)): ?>
-              <p class="ishf-eyebrow news-card-cat"><?php echo esc_html($cats[0]->name); ?></p>
-            <?php endif; ?>
-            <h3 class="news-card-title uk-h5"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h3>
-            <p class="news-card-date uk-text-small"><time datetime="<?php echo esc_attr(get_the_date('c')); ?>"><?php echo esc_html(get_the_date()); ?></time></p>
-          </article>
-        </li>
+      <?php while ($ishf_news->have_posts()): $ishf_news->the_post(); ?>
+        <li><?php get_template_part('includes/news-card'); ?></li>
       <?php endwhile; wp_reset_postdata(); ?>
     </ul>
   </div>

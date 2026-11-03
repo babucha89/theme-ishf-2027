@@ -5,8 +5,10 @@
 //  Base Theme: ISHF 2027 Lisbon
 //  Edited: BB, 27-OUT-2026
 // -----------------------------------------------------------------------------
+// Arg 'compact' => true renders a smaller version (single articles): smaller logo, tighter spacing.
+$ishf_header_compact = !empty($args['compact']);
 ?>
-<header class="ishf-simplified-header uk-position-relative uk-overflow-hidden" role="banner">
+<header class="ishf-simplified-header<?php echo $ishf_header_compact ? ' ishf-simplified-header--compact' : ''; ?> uk-position-relative uk-overflow-hidden" role="banner">
   <?php
   // -- Navigation Menu
   get_template_part('includes/navigation-menu');
