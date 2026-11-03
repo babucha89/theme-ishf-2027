@@ -1,12 +1,12 @@
 // -----------------------------------------------------------------------------
-//  Block: BS INTRO (Editor)
+//  Block: ISHF INTRO (Editor)
 //  Edited: 3L, 23-JUL-2026
 // -----------------------------------------------------------------------------
-wp.blocks.registerBlockType('uikit-boostsolutions/bs-intro', {
-	title: 'BS Intro',
-	description: 'Boost Solutions: Intro block.',
+wp.blocks.registerBlockType('ishf/intro', {
+	title: 'ISHF Intro',
+	description: 'ISHF: Intro block.',
 	icon: 'layout',
-	category: 'boost-solutions',
+	category: 'ishf',
 	attributes: {
 		blockId: {
 			type: 'string',
@@ -92,12 +92,12 @@ function EditComponent(props) {
 	}
 	// -- Render
 	return el('div', {
-		className: 'bs-example-editor'
+		className: 'ishf-example-editor'
 	}, [
 		// -- Block Title
 		el('h4', {
 			key: 'block-title'
-		}, 'BS Intro'),
+		}, 'ISHF Intro'),
 		// -- Layout Selector
 		el(SelectControl, {
 			key: 'layout',
@@ -118,7 +118,7 @@ function EditComponent(props) {
 		// -- MediaUpload: Image picker
 		attributes.layout !== 'no-image' && el('div', {
 			key: 'image-upload',
-			className: 'bs-example-editor__media',
+			className: 'ishf-example-editor__media',
 			style: {
 				marginBottom: '20px'
 			}

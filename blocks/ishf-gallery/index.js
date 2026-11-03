@@ -1,12 +1,12 @@
 // -----------------------------------------------------------------------------
-//  Block: BS GALLERY (Editor)
+//  Block: ISHF GALLERY (Editor)
 //  Edited: 3L, 30-JUL-2026
 // -----------------------------------------------------------------------------
-wp.blocks.registerBlockType('uikit-boostsolutions/bs-gallery', {
-	title: 'BS Gallery',
-	description: 'Boost Solutions: Insert a UIkit slideshow/gallery.',
+wp.blocks.registerBlockType('ishf/gallery', {
+	title: 'ISHF Gallery',
+	description: 'ISHF: Insert a UIkit slideshow/gallery.',
 	icon: 'format-gallery',
-	category: 'boost-solutions',
+	category: 'ishf',
 	attributes: {
 		blockId: {
 			type: 'string',
@@ -77,7 +77,7 @@ function EditComponent(props) {
 	}
 	// -- Render
 	return el('div', {
-		className: 'bs-gallery-editor',
+		className: 'ishf-gallery-editor',
 		style: {
 			padding: '20px',
 			border: '1px solid #ccc',
@@ -108,7 +108,7 @@ function EditComponent(props) {
 					margin: 0,
 					color: '#007cba'
 				}
-			}, 'BS Gallery')
+			}, 'ISHF Gallery')
 		]),
 		// -- Image Grid (preview of selected images)
 		images.length > 0 && el('div', {

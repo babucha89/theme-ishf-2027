@@ -1,13 +1,13 @@
 <?php
 // -----------------------------------------------------------------------------
-//  Block: BS VIDEO
+//  Block: ISHF VIDEO
 //  Edited: 3L, 30-JUL-2026
 // -----------------------------------------------------------------------------
 
 //--------------------------------------------
 //  Function that renders the block
 //--------------------------------------------
-function render_bs_video($attributes, $content)
+function render_ishf_video($attributes, $content)
 {
   $platform = $attributes['platform'] ?? 'youtube';
   $id = $attributes['videoId'] ?? '';
@@ -86,10 +86,10 @@ function render_bs_video($attributes, $content)
 //--------------------------------------------
 //  Function that registers the block
 //--------------------------------------------
-function register_bs_video()
+function register_ishf_video()
 {
-  register_block_type('uikit-boostsolutions/bs-video', array(
-    'render_callback' => 'render_bs_video',
+  register_block_type('ishf/video', array(
+    'render_callback' => 'render_ishf_video',
     'attributes' => array(
       'blockId' => array(
         'type' => 'string',
@@ -130,5 +130,5 @@ function register_bs_video()
     ),
   ));
 }
-add_action('init', 'register_bs_video');
+add_action('init', 'register_ishf_video');
 ?>

@@ -2022,3 +2022,236 @@ msgstr "Arquiteto principal e urbanista"
 
 msgid "Lisbon"
 msgstr "Lisboa"
+
+# --- CPTs, blocks, seminar templates ---
+
+msgid "Frequently Asked Questions"
+msgstr "Perguntas frequentes"
+
+msgid "Moderation"
+msgstr "Moderação"
+
+msgid "Attendants"
+msgstr "Participantes"
+
+msgid "Attendant"
+msgstr "Participante"
+
+msgid "Parent attendant"
+msgstr "Participante principal"
+
+msgid "All attendants"
+msgstr "Todos os participantes"
+
+msgid "View attendants"
+msgstr "Ver participantes"
+
+msgid "Add new attendant"
+msgstr "Adicionar novo participante"
+
+msgid "New attendant"
+msgstr "Novo participante"
+
+msgid "Edit attendant"
+msgstr "Editar participante"
+
+msgid "Update attendant"
+msgstr "Atualizar participante"
+
+msgid "Search attendant"
+msgstr "Pesquisar participante"
+
+msgid "Not Found"
+msgstr "Não encontrado"
+
+msgid "Not found in Trash"
+msgstr "Não encontrado no lixo"
+
+msgid "Attendants Categories"
+msgstr "Categorias de participantes"
+
+msgid "Attendant Category"
+msgstr "Categoria de participante"
+
+msgid "Search Attendant Categories"
+msgstr "Pesquisar categorias de participantes"
+
+msgid "All Attendant Categories"
+msgstr "Todas as categorias de participantes"
+
+msgid "Parent Attendant Category"
+msgstr "Categoria de participante principal"
+
+msgid "Parent Attendant Category:"
+msgstr "Categoria de participante principal:"
+
+msgid "Edit Attendant Category"
+msgstr "Editar categoria de participante"
+
+msgid "Update Attendant Category"
+msgstr "Atualizar categoria de participante"
+
+msgid "Add New Attendant Category"
+msgstr "Adicionar nova categoria de participante"
+
+msgid "New Attendant Category"
+msgstr "Nova categoria de participante"
+
+msgid "Attendant Categories"
+msgstr "Categorias de participantes"
+
+msgid "Order"
+msgstr "Ordem"
+
+msgid "FAQs"
+msgstr "Perguntas frequentes"
+
+msgid "FAQ"
+msgstr "Pergunta frequente"
+
+msgid "Parent FAQ"
+msgstr "Pergunta principal"
+
+msgid "All FAQs"
+msgstr "Todas as perguntas"
+
+msgid "View FAQs"
+msgstr "Ver perguntas"
+
+msgid "Add new FAQ"
+msgstr "Adicionar nova pergunta"
+
+msgid "New FAQ"
+msgstr "Nova pergunta"
+
+msgid "Edit FAQ"
+msgstr "Editar pergunta"
+
+msgid "Update FAQ"
+msgstr "Atualizar pergunta"
+
+msgid "Search FAQ"
+msgstr "Pesquisar pergunta"
+
+msgid "Extra Parameters"
+msgstr "Parâmetros adicionais"
+
+msgid "Seminars"
+msgstr "Seminários"
+
+msgid "Seminar"
+msgstr "Seminário"
+
+msgid "Parent seminar"
+msgstr "Seminário principal"
+
+msgid "All seminars"
+msgstr "Todos os seminários"
+
+msgid "View seminars"
+msgstr "Ver seminários"
+
+msgid "Add new seminar"
+msgstr "Adicionar novo seminário"
+
+msgid "New seminar"
+msgstr "Novo seminário"
+
+msgid "Edit seminar"
+msgstr "Editar seminário"
+
+msgid "Update seminar"
+msgstr "Atualizar seminário"
+
+msgid "Search seminar"
+msgstr "Pesquisar seminário"
+
+msgid "Sponsors"
+msgstr "Patrocinadores"
+
+msgid "Sponsor"
+msgstr "Patrocinador"
+
+msgid "Parent sponsor"
+msgstr "Patrocinador principal"
+
+msgid "All sponsors"
+msgstr "Todos os patrocinadores"
+
+msgid "View sponsors"
+msgstr "Ver patrocinadores"
+
+msgid "Add new sponsor"
+msgstr "Adicionar novo patrocinador"
+
+msgid "New sponsor"
+msgstr "Novo patrocinador"
+
+msgid "Edit sponsor"
+msgstr "Editar patrocinador"
+
+msgid "Update sponsor"
+msgstr "Atualizar patrocinador"
+
+msgid "Search sponsor"
+msgstr "Pesquisar patrocinador"
+
+msgid "Search Sponsor Types"
+msgstr "Pesquisar tipos de patrocinador"
+
+msgid "All Sponsor Types"
+msgstr "Todos os tipos de patrocinador"
+
+msgid "Parent Sponsor Type"
+msgstr "Tipo de patrocinador principal"
+
+msgid "Parent Sponsor Type:"
+msgstr "Tipo de patrocinador principal:"
+
+msgid "Edit Sponsor Type"
+msgstr "Editar tipo de patrocinador"
+
+msgid "Update Sponsor Type"
+msgstr "Atualizar tipo de patrocinador"
+
+msgid "Add New Sponsor Type"
+msgstr "Adicionar novo tipo de patrocinador"
+
+msgid "New Sponsor Type"
+msgstr "Novo tipo de patrocinador"
+
+msgid "Sponsor Types"
+msgstr "Tipos de patrocinador"
+
+msgid "Use to order elements from minor to major (defaults to -1)"
+msgstr "Utilize para ordenar os elementos do menor para o maior (por defeito -1)"
+
+msgid "Homepage"
+msgstr "Página inicial"
+
+msgid "start page"
+msgstr "página inicial"
+
+msgid "start"
+msgstr "início"
+
+msgid "j F"
+msgstr "j \\d\\e F"
+
+msgid "Streaming"
+msgstr "Streaming"
+
+msgid "Follow live"
+msgstr "Acompanhe em direto"
+
+msgid "Watch the conference live and find out more about the topics under discussion."
+msgstr "Assista à conferência em direto e descubra mais sobre os temas em discussão."
+
+msgid "Watch the conferences again"
+msgstr "Reveja as conferências"
+
+msgid "Watch the events again and relive the highlights of these conversations."
+msgstr "Assista novamente aos eventos e relembre os momentos altos destas conversas."
+
+msgid "Programme"
+msgstr "Programa"

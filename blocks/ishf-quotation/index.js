@@ -1,6 +1,6 @@
-wp.blocks.registerBlockType('uikit-boostsolutions/bs-quotation', {
-	title: 'BS Quotation',
-	description: 'Boost Solutions: Block for inserting a quotation, its author, function and entity.',
+wp.blocks.registerBlockType('ishf/quotation', {
+	title: 'ISHF Quotation',
+	description: 'ISHF: Block for inserting a quotation, its author, function and entity.',
 	icon: 'format-quote',
 	category: 'common',
 	attributes: {
@@ -57,13 +57,13 @@ function EditComponent(props) {
 
 	return wp.element.createElement(
 		'div',
-		{ className: 'bs-quotation-editor' },
+		{ className: 'ishf-quotation-editor' },
 		[
 			// -- Block Title
 			wp.element.createElement(
 				'h4',
 				null,
-				'BS Quotation'		
+				'ISHF Quotation'		
 			),
 
 			// -- Block Elements

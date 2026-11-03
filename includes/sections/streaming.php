@@ -32,14 +32,14 @@ if (!empty($page_streaming)):
     //    - If the editor placed a Heading block inside the page content, use the first
     //      heading as the section title and remove it from the body content to avoid duplication.
     //    - Otherwise, use the WordPress Page Title (post_title) and the full page content.
-    $headings = function_exists('uikit_cbs_get_post_headings')
-      ? uikit_cbs_get_post_headings($page_id)
+    $headings = function_exists('ishf_get_post_headings')
+      ? ishf_get_post_headings($page_id)
       : array();
 
     if (!empty($headings)) {
       $title   = wp_strip_all_tags($headings[0]);
-      $content = function_exists('uikit_cbs_remove_post_headings')
-        ? uikit_cbs_remove_post_headings($page_id, 0)
+      $content = function_exists('ishf_remove_post_headings')
+        ? ishf_remove_post_headings($page_id, 0)
         : do_blocks($raw_content);
     } else {
       $title   = get_post($page_id)->post_title;
@@ -52,13 +52,13 @@ if (!empty($page_streaming)):
     }
 
     // 2. Extract YouTube ID & Shortcode Attributes from the Streaming Page
-    $youtubes = function_exists('uikit_cbs_get_post_youtubes')
-      ? uikit_cbs_get_post_youtubes($page_id, false)
+    $youtubes = function_exists('ishf_get_post_youtubes')
+      ? ishf_get_post_youtubes($page_id, false)
       : array();
     $extracted_youtube_id = !empty($youtubes) ? trim($youtubes[0]) : '';
 
-    $shortcode_atts = function_exists('uikit_cbs_get_post_youtube_atts')
-      ? uikit_cbs_get_post_youtube_atts($page_id)
+    $shortcode_atts = function_exists('ishf_get_post_youtube_atts')
+      ? ishf_get_post_youtube_atts($page_id)
       : array();
 
     if (empty($shortcode_atts) && preg_match('/\[youtube\b([^\]]*)\]/i', $raw_content, $matches)) {
@@ -80,8 +80,8 @@ if (!empty($page_streaming)):
     }
 
     // 3. Remove [youtube] shortcode from text content so it is not rendered twice
-    if (function_exists('uikit_cbs_strip_shortcode')) {
-      $content = uikit_cbs_strip_shortcode($content, 'youtube');
+    if (function_exists('ishf_strip_shortcode')) {
+      $content = ishf_strip_shortcode($content, 'youtube');
     } else {
       $content = preg_replace('/\[youtube\b[^\]]*\](?:<\/p>)?/i', '', $content);
     }
@@ -229,7 +229,7 @@ if (!empty($page_streaming)):
         </div>
 
         <?php
-        // -- Include YouTube Modal Template (uikit-boostsolutions pattern)
+        // -- Include YouTube Modal Template (base-template pattern)
         global $youtube_id, $modal_id, $auto_fire, $youtube_title;
         $youtube_id    = $extracted_youtube_id;
         $modal_id      = $modal_target_id;
@@ -242,7 +242,7 @@ if (!empty($page_streaming)):
 
         <div class="streaming-video-wrapper uk-position-relative uk-border-rounded uk-overflow-hidden">
           <?php
-          // -- Include YouTube Embed Template (uikit-boostsolutions pattern)
+          // -- Include YouTube Embed Template (base-template pattern)
           global $youtube_id, $autoplay, $youtube_title;
           $youtube_id    = $extracted_youtube_id;
           $autoplay      = $is_autoplay;

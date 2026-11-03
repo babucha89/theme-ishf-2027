@@ -2,14 +2,14 @@
 //----------------------------------------------------------------------------------
 //  Block: VIDEO YOUTUBE (MODAL)
 //  Base Theme: International Social Housing Festival (ISHF) 2027 Lisbon
-//  Reference: uikit-boostsolutions/includes/video-youtube-modal.php
+//  Reference: base template includes/video-youtube-modal.php
 //  Edited: BB, 30-OUT-2026
 //----------------------------------------------------------------------------------
 
 // -- Initializations
 global $youtube_id, $modal_id, $auto_fire, $youtube_title;
 
-// Support both global variables (uikit-boostsolutions standard) and $args array
+// Support both global variables (base-template standard) and $args array
 $yt_id        = !empty($args['youtube_id']) ? $args['youtube_id'] : $youtube_id;
 $yt_modal_id  = !empty($args['modal_id']) ? $args['modal_id'] : (!empty($modal_id) ? $modal_id : 'modal-youtube-video');
 $yt_auto_fire = isset($args['auto_fire']) ? (bool) $args['auto_fire'] : (bool) $auto_fire;

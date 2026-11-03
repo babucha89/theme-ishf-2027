@@ -1,13 +1,13 @@
 <?php
 // -----------------------------------------------------------------------------
-//  Block: BS GALLERY
+//  Block: ISHF GALLERY
 //  Edited: 3L, 30-JUL-2026
 // -----------------------------------------------------------------------------
 
 //--------------------------------------------
 //  Function that renders the block
 //--------------------------------------------
-function render_bs_gallery($attributes, $content)
+function render_ishf_gallery($attributes, $content)
 {
   $images = $attributes['images'] ?? array();
 
@@ -63,10 +63,10 @@ function render_bs_gallery($attributes, $content)
 //--------------------------------------------
 //  Function that registers the block
 //--------------------------------------------
-function register_bs_gallery()
+function register_ishf_gallery()
 {
-  register_block_type('uikit-boostsolutions/bs-gallery', array(
-    'render_callback' => 'render_bs_gallery',
+  register_block_type('ishf/gallery', array(
+    'render_callback' => 'render_ishf_gallery',
     'attributes' => array(
 
       // -- Block ID (for API identification)
@@ -87,5 +87,5 @@ function register_bs_gallery()
     ),
   ));
 }
-add_action('init', 'register_bs_gallery');
+add_action('init', 'register_ishf_gallery');
 ?>

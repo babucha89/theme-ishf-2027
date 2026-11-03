@@ -1,13 +1,13 @@
 // -----------------------------------------------------------------------------
-//  Block: BS VIDEO (Editor)
+//  Block: ISHF VIDEO (Editor)
 //  Edited: 3L, 30-JUL-2026
 // -----------------------------------------------------------------------------
 
-wp.blocks.registerBlockType('uikit-boostsolutions/bs-video', {
-	title: 'BS Video',
-	description: 'Boost Solutions: Insert a YouTube or Brightcove video.',
+wp.blocks.registerBlockType('ishf/video', {
+	title: 'ISHF Video',
+	description: 'ISHF: Insert a YouTube or Brightcove video.',
 	icon: 'video-alt3',
-	category: 'boost-solutions',
+	category: 'ishf',
 	attributes: {
 		blockId: { type: 'string', default: '' },
 		platform: { type: 'string', default: 'youtube' },
@@ -57,11 +57,11 @@ function EditComponent(props) {
 
 	// -- Render
 	return el('div', {
-		className: 'bs-video-editor',
+		className: 'ishf-video-editor',
 		style: { padding: '16px', border: '1px solid #ddd', borderRadius: '4px', background: '#fff' }
 	}, [
 		// -- Block Title
-		el('h4', { key: 'block-title', style: { marginTop: 0 } }, 'BS Video'),
+		el('h4', { key: 'block-title', style: { marginTop: 0 } }, 'ISHF Video'),
 
 		// -- Platform Selector
 		el(SelectControl, {

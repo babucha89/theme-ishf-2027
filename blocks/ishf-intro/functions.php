@@ -1,13 +1,13 @@
 <?php
 // -----------------------------------------------------------------------------
-//  Block: BS INTRO
+//  Block: ISHF INTRO
 //  Edited: 3L, 23-JUL-2026
 // -----------------------------------------------------------------------------
 
 //--------------------------------------------
 //  Function that renders the block
 //--------------------------------------------
-function render_bs_intro($attributes, $content)
+function render_ishf_intro($attributes, $content)
 {
 
   // -- Access block attributes
@@ -18,7 +18,7 @@ function render_bs_intro($attributes, $content)
   $layout = $attributes['layout'] ?? 'no-image';
 
   // -- Build CSS classes
-  $classes = 'bs-intro uk-margin-large-bottom';
+  $classes = 'ishf-intro uk-margin-large-bottom';
 
 
   // -- Generate HTML output
@@ -66,10 +66,10 @@ function render_bs_intro($attributes, $content)
 //--------------------------------------------
 //  Function that registers the block
 //--------------------------------------------
-function register_bs_intro()
+function register_ishf_intro()
 {
-  register_block_type('uikit-boostsolutions/bs-intro', array(
-    'render_callback' => 'render_bs_intro',
+  register_block_type('ishf/intro', array(
+    'render_callback' => 'render_ishf_intro',
     'attributes' => array(
       
       // -- Block ID (for API identification)
@@ -111,5 +111,5 @@ function register_bs_intro()
     ),
   ));
 }
-add_action('init', 'register_bs_intro');
+add_action('init', 'register_ishf_intro');
 ?>

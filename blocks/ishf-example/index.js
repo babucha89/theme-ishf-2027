@@ -1,16 +1,16 @@
 // -----------------------------------------------------------------------------
-//  Block: BS EXAMPLE (Editor)
+//  Block: ISHF EXAMPLE (Editor)
 //  Edited: 3L, 23-JUL-2026
 // -----------------------------------------------------------------------------
-//  TODO: Rename the block slug from "bs-example" to "bs-yourblock".
+//  TODO: Rename the block slug from "ishf-example" to "ishf-yourblock".
 //  This block is a template — duplicate the folder and customise as needed.
 // -----------------------------------------------------------------------------
 
-wp.blocks.registerBlockType('uikit-boostsolutions/bs-example', {
-	title: 'BS Example',
-	description: 'Boost Solutions: Template block — duplicate and customise for new blocks.',
+wp.blocks.registerBlockType('ishf/example', {
+	title: 'ISHF Example',
+	description: 'ISHF: Template block — duplicate and customise for new blocks.',
 	icon: 'layout',
-	category: 'boost-solutions',
+	category: 'ishf',
 	attributes: {
 		title: {
 			type: 'string',
@@ -83,10 +83,10 @@ function EditComponent(props) {
 
 
 	// -- Render
-	return el('div', { className: 'bs-example-editor' }, [
+	return el('div', { className: 'ishf-example-editor' }, [
 
 		// -- Block Title
-		el('h4', { key: 'block-title' }, 'BS Example'),
+		el('h4', { key: 'block-title' }, 'ISHF Example'),
 
 		// -- TextControl: Single-line text field
 		el(TextControl, {
@@ -105,10 +105,10 @@ function EditComponent(props) {
 		}),
 
 		// -- MediaUpload: Image picker
-		el('div', { key: 'image-upload', className: 'bs-example-editor__media' }, [
+		el('div', { key: 'image-upload', className: 'ishf-example-editor__media' }, [
 			el('label', { key: 'image-label', className: 'components-base-control__label' }, 'Image'),
 			attributes.imageUrl
-				? el('div', { key: 'image-preview', className: 'bs-example-editor__preview' }, [
+				? el('div', { key: 'image-preview', className: 'ishf-example-editor__preview' }, [
 					el('img', {
 						key: 'preview-img',
 						src: attributes.imageUrl,

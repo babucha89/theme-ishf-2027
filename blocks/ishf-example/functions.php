@@ -1,9 +1,9 @@
 <?php
 // -----------------------------------------------------------------------------
-//  Block: BS EXAMPLE
+//  Block: ISHF EXAMPLE
 //  Edited: 3L, 23-JUL-2026
 // -----------------------------------------------------------------------------
-//  TODO: Rename this file's functions from "bs_example" to "bs_yourblock".
+//  TODO: Rename this file's functions from "ishf_example" to "ishf_yourblock".
 //  This block is a template — duplicate the folder and customise as needed.
 // -----------------------------------------------------------------------------
 
@@ -11,7 +11,7 @@
 //--------------------------------------------
 //  Function that renders the block
 //--------------------------------------------
-function render_bs_example($attributes, $content)
+function render_ishf_example($attributes, $content)
 {
 
   // -- Access block attributes
@@ -22,26 +22,26 @@ function render_bs_example($attributes, $content)
   $is_featured = $attributes['isFeatured'] ?? false;
 
   // -- Build CSS classes
-  $classes = 'bs-example';
+  $classes = 'ishf-example';
   if ($is_featured) {
-    $classes .= ' bs-example--featured';
+    $classes .= ' ishf-example--featured';
   }
 
   // -- Generate HTML output
   $output = '<div class="' . esc_attr($classes) . '">';
 
   if (!empty($image_url)):
-    $output .= '<div class="bs-example__image">';
+    $output .= '<div class="ishf-example__image">';
     $output .= '<img src="' . esc_url($image_url) . '" alt="' . esc_attr($image_alt) . '" />';
     $output .= '</div>';
   endif;
 
   if (!empty($title)):
-    $output .= '<h3 class="bs-example__title">' . esc_html($title) . '</h3>';
+    $output .= '<h3 class="ishf-example__title">' . esc_html($title) . '</h3>';
   endif;
 
   if (!empty($description)):
-    $output .= '<div class="bs-example__description">' . wp_kses_post($description) . '</div>';
+    $output .= '<div class="ishf-example__description">' . wp_kses_post($description) . '</div>';
   endif;
 
   $output .= '</div>';
@@ -53,10 +53,10 @@ function render_bs_example($attributes, $content)
 //--------------------------------------------
 //  Function that registers the block
 //--------------------------------------------
-function register_bs_example()
+function register_ishf_example()
 {
-  register_block_type('uikit-boostsolutions/bs-example', array(
-    'render_callback' => 'render_bs_example',
+  register_block_type('ishf/example', array(
+    'render_callback' => 'render_ishf_example',
     'attributes' => array(
 
       // -- Text field (single line)
@@ -92,5 +92,5 @@ function register_bs_example()
     ),
   ));
 }
-add_action('init', 'register_bs_example');
+add_action('init', 'register_ishf_example');
 ?>

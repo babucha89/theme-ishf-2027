@@ -60,17 +60,17 @@ defined('SITE_NEWSLETTER_CONSENT_DISCLAIMER') or define('SITE_NEWSLETTER_CONSENT
 defined('RECAPTCHA_SITE_KEY') or define('RECAPTCHA_SITE_KEY', null);
 defined('RECAPTCHA_SECRET_KEY') or define('RECAPTCHA_SECRET_KEY', null);
 
-defined('SITE_USE_ATTENDANTS') or define('SITE_USE_ATTENDANTS', false);
+defined('SITE_USE_ATTENDANTS') or define('SITE_USE_ATTENDANTS', true);
 defined('SITE_USE_BANNERS') or define('SITE_USE_BANNERS', false);
 defined('SITE_USE_COAUTHORS') or define('SITE_USE_COAUTHORS', false);
-defined('SITE_USE_FAQS') or define('SITE_USE_FAQS', false);
+defined('SITE_USE_FAQS') or define('SITE_USE_FAQS', true);
 defined('SITE_USE_HEADER_SLIDES') or define('SITE_USE_HEADER_SLIDES', false);
 defined('SITE_USE_PARTNERSHIPS') or define('SITE_USE_PARTNERSHIPS', false);
 defined('SITE_USE_PODCASTS') or define('SITE_USE_PODCASTS', false);
 defined('SITE_USE_PROJECTS') or define('SITE_USE_PROJECTS', false);
 defined('SITE_USE_QUOTATIONS') or define('SITE_USE_QUOTATIONS', false);
-defined('SITE_USE_SEMINARS') or define('SITE_USE_SEMINARS', false);
-defined('SITE_USE_SPONSORS') or define('SITE_USE_SPONSORS', false);
+defined('SITE_USE_SEMINARS') or define('SITE_USE_SEMINARS', true);
+defined('SITE_USE_SPONSORS') or define('SITE_USE_SPONSORS', true);
 defined('SITE_USE_TALKS') or define('SITE_USE_TALKS', false);
 defined('SITE_USE_VIDEOCASTS') or define('SITE_USE_VIDEOCASTS', false);
 defined('SITE_USE_WINNERS') or define('SITE_USE_WINNERS', false);
@@ -261,13 +261,6 @@ if (!function_exists('ishf_set_post_views')):
   }
 endif;
 
-if (!function_exists('uikit_cbs_set_post_views')):
-  function uikit_cbs_set_post_views($postID)
-  {
-    ishf_set_post_views($postID);
-  }
-endif;
-
 
 //------------------------------------------------------------------------------
 //  Helper: Open Graph Tags
@@ -291,13 +284,6 @@ if (!function_exists('ishf_open_graph_tags')):
     <meta name="twitter:description" content="<?php echo esc_attr($og_description); ?>" />
     <meta name="twitter:image" content="<?php echo esc_url($og_image); ?>" />
     <?php
-  }
-endif;
-
-if (!function_exists('uikit_cbs_open_graph_tags')):
-  function uikit_cbs_open_graph_tags($fixed_og_image = null)
-  {
-    ishf_open_graph_tags($fixed_og_image);
   }
 endif;
 
@@ -483,6 +469,113 @@ require_once __DIR__ . '/includes/form-handlers.php';
 
 
 //------------------------------------------------------------------------------
+//  Adding CPT / Custom Post Types (switches: SITE_USE_* constants above)
+//------------------------------------------------------------------------------
+if (SITE_USE_ATTENDANTS)
+  require_once get_theme_file_path('includes/cpt/attendants.php');
+if (SITE_USE_FAQS)
+  require_once get_theme_file_path('includes/cpt/faqs.php');
+if (SITE_USE_SEMINARS)
+  require_once get_theme_file_path('includes/cpt/seminars.php');
+if (SITE_USE_SPONSORS)
+  require_once get_theme_file_path('includes/cpt/sponsors.php');
+require_once get_theme_file_path('includes/cpt/functions.php'); // custom fields engine (meta boxes ishf_cf_*)
+
+
+//------------------------------------------------------------------------------
+//  Custom BLOCKS (blocks/ishf-*): each folder has functions.php (register + render),
+//  index.js (editor) and style.css. 'ishf-example' is a copy-paste template and is not loaded.
+//------------------------------------------------------------------------------
+function ishf_get_block_folders()
+{
+  $folders = glob(get_template_directory() . '/blocks/ishf-*', GLOB_ONLYDIR);
+  $folders = is_array($folders) ? $folders : array();
+  return array_values(array_filter($folders, function ($folder) {
+    return basename($folder) !== 'ishf-example';
+  }));
+}
+
+foreach (ishf_get_block_folders() as $ishf_block_folder):
+  if (file_exists($ishf_block_folder . '/functions.php')):
+    require_once $ishf_block_folder . '/functions.php';
+  endif;
+endforeach;
+unset($ishf_block_folder);
+
+if (!function_exists('ishf_enqueue_block_assets')):
+  add_action('enqueue_block_editor_assets', 'ishf_enqueue_block_assets');
+  add_action('enqueue_block_assets', 'ishf_enqueue_block_assets');
+  function ishf_enqueue_block_assets()
+  {
+    $deps = array('wp-blocks', 'wp-element', 'wp-editor', 'wp-i18n');
+    foreach (ishf_get_block_folders() as $folder):
+      $name = basename($folder);
+      $uri  = get_template_directory_uri() . '/blocks/' . $name;
+      // Editor script only in the block editor; stylesheet on both editor and front end
+      if (file_exists($folder . '/index.js') && is_admin()):
+        wp_enqueue_script($name, $uri . '/index.js', $deps, filemtime($folder . '/index.js'), true);
+      endif;
+      if (file_exists($folder . '/style.css')):
+        wp_enqueue_style($name, $uri . '/style.css', array(), filemtime($folder . '/style.css'));
+      endif;
+    endforeach;
+  }
+endif;
+
+if (!function_exists('ishf_block_categories')):
+  add_filter('block_categories_all', 'ishf_block_categories', 10, 2);
+  function ishf_block_categories($categories, $post)
+  {
+    return array_merge(array(array('slug' => 'ishf', 'title' => 'ISHF', 'icon' => 'star-filled')), $categories);
+  }
+endif;
+
+
+//------------------------------------------------------------------------------
+//  Helpers used by includes/meta-tags.php and the block / CPT templates
+//------------------------------------------------------------------------------
+if (!function_exists('ishf_meta_keywords_strip')):
+  function ishf_meta_keywords_strip($text)
+  {
+    return str_replace(' ,', ',', (string) $text);
+  }
+endif;
+
+if (!function_exists('ishf_meta_description_strip')):
+  function ishf_meta_description_strip($text, $trim)
+  {
+    $text = strip_tags((string) $text);
+    $text = str_replace(' [&hellip;]', ' (...)', $text);
+    $text = preg_replace('/\r\n+|\r+|\n+|\t+/i', ' ', $text);
+    $text = str_replace('&nbsp;', ' ', $text);
+    if ($trim) {
+      $text = mb_substr($text, 0, 180) . ' (...)';
+    }
+    return $text;
+  }
+endif;
+
+if (!function_exists('ishf_get_post_tags')):
+  /** Tags of a post as 'text' (comma-separated names), 'strings' ('a', 'b') or 'object' (WP_Term[]). */
+  function ishf_get_post_tags($post_id, $format = 'text', $type = 'all')
+  {
+    $tags = get_the_tags($post_id);
+    if (empty($tags)) {
+      return null;
+    }
+    if ($format === 'object') {
+      return $tags;
+    }
+    $names = wp_list_pluck($tags, 'name');
+    if ($format === 'strings') {
+      return "'" . implode("', '", $names) . "'";
+    }
+    return implode(', ', $names);
+  }
+endif;
+
+
+//------------------------------------------------------------------------------
 //  ICS Calendar Generator Query Variables
 //------------------------------------------------------------------------------
 if (!function_exists('ishf_ics_query_vars')):
@@ -503,10 +596,10 @@ endif;
 
 //------------------------------------------------------------------------------
 //  GET the post groups from POST CONTENT (returns an Array)
-//  Reference: uikit-boostsolutions/functions.php
+//  Reference: base template functions.php
 //------------------------------------------------------------------------------
-if (!function_exists('uikit_cbs_get_post_groups')):
-  function uikit_cbs_get_post_groups($postID, $rendered = true)
+if (!function_exists('ishf_get_post_groups')):
+  function ishf_get_post_groups($postID, $rendered = true)
   {
     $groups = array();
     $post = get_post($postID);
@@ -531,20 +624,13 @@ if (!function_exists('uikit_cbs_get_post_groups')):
   }
 endif;
 
-if (!function_exists('ishf_get_post_groups')):
-  function ishf_get_post_groups($postID, $rendered = true)
-  {
-    return uikit_cbs_get_post_groups($postID, $rendered);
-  }
-endif;
-
 
 //------------------------------------------------------------------------------
 //  GET the post headings from POST CONTENT (returns an Array)
-//  Reference: uikit-boostsolutions/functions.php
+//  Reference: base template functions.php
 //------------------------------------------------------------------------------
-if (!function_exists('uikit_cbs_get_post_headings')):
-  function uikit_cbs_get_post_headings($postID)
+if (!function_exists('ishf_get_post_headings')):
+  function ishf_get_post_headings($postID)
   {
     $headings = array();
     $post = get_post($postID);
@@ -560,20 +646,13 @@ if (!function_exists('uikit_cbs_get_post_headings')):
   }
 endif;
 
-if (!function_exists('ishf_get_post_headings')):
-  function ishf_get_post_headings($postID)
-  {
-    return uikit_cbs_get_post_headings($postID);
-  }
-endif;
-
 
 //------------------------------------------------------------------------------
 //  REMOVE the post headings from POST CONTENT
-//  Reference: uikit-boostsolutions/functions.php
+//  Reference: base template functions.php
 //------------------------------------------------------------------------------
-if (!function_exists('uikit_cbs_remove_post_headings')):
-  function uikit_cbs_remove_post_headings($postID, $position = -1)
+if (!function_exists('ishf_remove_post_headings')):
+  function ishf_remove_post_headings($postID, $position = -1)
   {
     $content = null;
     $counter = 0;
@@ -603,20 +682,13 @@ if (!function_exists('uikit_cbs_remove_post_headings')):
   }
 endif;
 
-if (!function_exists('ishf_remove_post_headings')):
-  function ishf_remove_post_headings($postID, $position = -1)
-  {
-    return uikit_cbs_remove_post_headings($postID, $position);
-  }
-endif;
-
 
 //------------------------------------------------------------------------------
 //  REMOVE specific SHORTCODE from POST CONTENT
-//  Reference: uikit-boostsolutions/functions.php
+//  Reference: base template functions.php
 //------------------------------------------------------------------------------
-if (!function_exists('uikit_cbs_strip_shortcode')):
-  function uikit_cbs_strip_shortcode($content, $shortcode_tag)
+if (!function_exists('ishf_strip_shortcode')):
+  function ishf_strip_shortcode($content, $shortcode_tag)
   {
     $matches = null;
     $pos = null;
@@ -635,21 +707,14 @@ if (!function_exists('uikit_cbs_strip_shortcode')):
   }
 endif;
 
-if (!function_exists('ishf_strip_shortcode')):
-  function ishf_strip_shortcode($content, $shortcode_tag)
-  {
-    return uikit_cbs_strip_shortcode($content, $shortcode_tag);
-  }
-endif;
-
 
 //------------------------------------------------------------------------------
 //  GET YouTube SHORTCODES from POST CONTENT
 //  Returns IDs or HTML (processed SHORTCODE)
-//  Reference: uikit-boostsolutions/functions.php
+//  Reference: base template functions.php
 //------------------------------------------------------------------------------
-if (!function_exists('uikit_cbs_get_post_youtubes')):
-  function uikit_cbs_get_post_youtubes($post, $html = true)
+if (!function_exists('ishf_get_post_youtubes')):
+  function ishf_get_post_youtubes($post, $html = true)
   {
     if (!$post = get_post($post))
       return array();
@@ -676,14 +741,7 @@ if (!function_exists('uikit_cbs_get_post_youtubes')):
         endif;
       endforeach;
     endif;
-    return apply_filters('uikit_cbs_get_post_youtubes', $youtubes, $post);
-  }
-endif;
-
-if (!function_exists('ishf_get_post_youtubes')):
-  function ishf_get_post_youtubes($post, $html = true)
-  {
-    return uikit_cbs_get_post_youtubes($post, $html);
+    return apply_filters('ishf_get_post_youtubes', $youtubes, $post);
   }
 endif;
 
@@ -695,28 +753,6 @@ endif;
 if (!function_exists('ishf_get_post_youtube_atts')):
   function ishf_get_post_youtube_atts($post)
   {
-    if (!$post = get_post($post))
-      return array();
-
-    if (!has_shortcode($post->post_content, 'youtube'))
-      return array();
-
-    $matches = null;
-    if (preg_match_all('/' . get_shortcode_regex() . '/s', $post->post_content, $matches, PREG_SET_ORDER)):
-      foreach ($matches as $shortcode):
-        if ('youtube' === $shortcode[2]):
-          $atts = shortcode_parse_atts($shortcode[3]);
-          return is_array($atts) ? $atts : array();
-        endif;
-      endforeach;
-    endif;
-    return array();
-  }
-endif;
-
-if (!function_exists('uikit_cbs_get_post_youtube_atts')):
-  function uikit_cbs_get_post_youtube_atts($post)
-  {
     return ishf_get_post_youtube_atts($post);
   }
 endif;
@@ -725,10 +761,10 @@ endif;
 //------------------------------------------------------------------------------
 //  GET Brightcove SHORTCODES from POST CONTENT
 //  Returns IDs or HTML (processed SHORTCODE)
-//  Reference: uikit-boostsolutions/functions.php
+//  Reference: base template functions.php
 //------------------------------------------------------------------------------
-if (!function_exists('uikit_cbs_get_post_brightcoves')):
-  function uikit_cbs_get_post_brightcoves($post, $html = true)
+if (!function_exists('ishf_get_post_brightcoves')):
+  function ishf_get_post_brightcoves($post, $html = true)
   {
     if (!$post = get_post($post))
       return array();
@@ -755,24 +791,17 @@ if (!function_exists('uikit_cbs_get_post_brightcoves')):
         endif;
       endforeach;
     endif;
-    return apply_filters('uikit_cbs_get_post_brightcoves', $brightcoves, $post);
-  }
-endif;
-
-if (!function_exists('ishf_get_post_brightcoves')):
-  function ishf_get_post_brightcoves($post, $html = true)
-  {
-    return uikit_cbs_get_post_brightcoves($post, $html);
+    return apply_filters('ishf_get_post_brightcoves', $brightcoves, $post);
   }
 endif;
 
 
 //------------------------------------------------------------------------------
 //  Function that adds Referrer Policy to YouTube embeds
-//  Reference: uikit-boostsolutions/functions.php
+//  Reference: base template functions.php
 //------------------------------------------------------------------------------
-if (!function_exists('uikit_cbs_youtube_add_referrerpolicy')):
-  function uikit_cbs_youtube_add_referrerpolicy($html, $url, $attr, $post_id)
+if (!function_exists('ishf_youtube_add_referrerpolicy')):
+  function ishf_youtube_add_referrerpolicy($html, $url, $attr, $post_id)
   {
     if (strpos($html, 'youtube.com') !== false || strpos($html, 'youtu.be') !== false):
       if (strpos($html, 'referrerpolicy=') === false):
@@ -781,14 +810,14 @@ if (!function_exists('uikit_cbs_youtube_add_referrerpolicy')):
     endif;
     return $html;
   }
-  add_filter('embed_oembed_html', 'uikit_cbs_youtube_add_referrerpolicy', 10, 4);
-  add_filter('video_embed_html', 'uikit_cbs_youtube_add_referrerpolicy', 10, 4);
+  add_filter('embed_oembed_html', 'ishf_youtube_add_referrerpolicy', 10, 4);
+  add_filter('video_embed_html', 'ishf_youtube_add_referrerpolicy', 10, 4);
 endif;
 
 
 //------------------------------------------------------------------------------
 //  Defining SHORTCODES
-//  Reference: uikit-boostsolutions/functions.php
+//  Reference: base template functions.php
 //------------------------------------------------------------------------------
 
 // -- VÍDEO YOUTUBE

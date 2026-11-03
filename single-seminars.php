@@ -16,16 +16,16 @@ global $featured_articles;
 $featured_articles = array();
 the_post();
 array_push($featured_articles, get_the_ID());
-uikit_cbs_set_post_views(get_the_ID());
+ishf_set_post_views(get_the_ID());
 
 $post_tags = get_the_tags($post->ID);
 $categories = get_the_category( $post->ID );
-$youtube_id_1 = get_post_meta(get_the_ID(), 'bs_cf_youtube_id_1', true);
-$date_time_1 = get_post_meta(get_the_ID(), 'bs_cf_date_time_1', true);
-$youtube_id_2 = get_post_meta(get_the_ID(), 'bs_cf_youtube_id_2', true);
-$date_time_2 = get_post_meta(get_the_ID(), 'bs_cf_date_time_2', true);
-$date_end_time_1 =get_post_meta(get_the_ID(), 'bs_cf_date_end_time_1', true);
-$date_end_time_2 = get_post_meta(get_the_ID(), 'bs_cf_date_end_time_2', true);
+$youtube_id_1 = get_post_meta(get_the_ID(), 'ishf_cf_youtube_id_1', true);
+$date_time_1 = get_post_meta(get_the_ID(), 'ishf_cf_date_time_1', true);
+$youtube_id_2 = get_post_meta(get_the_ID(), 'ishf_cf_youtube_id_2', true);
+$date_time_2 = get_post_meta(get_the_ID(), 'ishf_cf_date_time_2', true);
+$date_end_time_1 =get_post_meta(get_the_ID(), 'ishf_cf_date_end_time_1', true);
+$date_end_time_2 = get_post_meta(get_the_ID(), 'ishf_cf_date_end_time_2', true);
 
 
 $date_start_broadcast_1 = new DateTime($date_time_1);
@@ -42,12 +42,13 @@ $now = new DateTime('NOW');
 
 <?php
 // -- Block: HEADER
+ishf_use_full_layout(true); // full navigation + footer (inner pages)
 get_header();
 ?>
 
 <?php
 // -- Section: HEADER
-get_template_part('includes/sections/header','premio');
+get_template_part('includes/sections/header', null, array('compact' => true));
 ?>
 
 <?php
@@ -58,15 +59,13 @@ get_template_part('includes/sections/header','premio');
 
 <?php
 // -- Get CUSTOM FIELDS
-$date_time_1 = get_post_meta(get_the_ID(), 'bs_cf_date_time_1', true);
-$date_visible_1 = strftime('%e de %B', strtotime($date_time_1));
-$date_visible_1 = utf8_encode($date_visible_1);
-$time_visible_1 = strftime('%Hh%M', strtotime($date_time_1));
+$date_time_1 = get_post_meta(get_the_ID(), 'ishf_cf_date_time_1', true);
+$date_visible_1 = !empty($date_time_1) ? date_i18n(__('j F', TEXT_DOMAIN), strtotime($date_time_1)) : '';
+$time_visible_1 = !empty($date_time_1) ? date_i18n('H\\hi', strtotime($date_time_1)) : '';
 
-$date_time_2 = get_post_meta(get_the_ID(), 'bs_cf_date_time_2', true);
-$date_visible_2 = strftime('%e de %B', strtotime($date_time_2));
-$date_visible_2 = utf8_encode($date_visible_2);
-$time_visible_2 = strftime('%Hh%M', strtotime($date_time_2));
+$date_time_2 = get_post_meta(get_the_ID(), 'ishf_cf_date_time_2', true);
+$date_visible_2 = !empty($date_time_2) ? date_i18n(__('j F', TEXT_DOMAIN), strtotime($date_time_2)) : '';
+$time_visible_2 = !empty($date_time_2) ? date_i18n('H\\hi', strtotime($date_time_2)) : '';
 
 // -- Get GROUPS
 $groups = array();
@@ -84,7 +83,7 @@ endforeach;
 // -- Section: SEMINAR INTRO
 $shortcodes = array();
 $title = null;
-$content = null;
+$content = '';
 if(!empty($groups[0])):
   $blocks = $groups[0];
   foreach($blocks as $block):
@@ -103,7 +102,7 @@ if(!empty($groups[0])):
     endswitch;
   endforeach;
 $gallery = (sizeof($shortcodes) > 0) ? apply_filters('the_content', do_blocks($shortcodes[0])) : null;
-$content = apply_filters('the_content', do_blocks($content));
+$content = apply_filters('the_content', do_blocks((string) $content));
 ?>
 <section id="seminar-intro" class="uk-section">
   <div class="uk-container uk-container-small">
@@ -153,7 +152,7 @@ $blocks = $groups[1];
     endswitch;
   endforeach;
 
-$content = apply_filters('the_content', do_blocks($content));
+$content = apply_filters('the_content', do_blocks((string) $content));
 
 if(count($youtubes) > 0):
 ?>
@@ -222,9 +221,9 @@ if ((!empty($youtube_id_1)) && (!empty($youtube_id_2)) && ($now >= $date_start_b
   <?php
   // -- STREAMING
   if (($is_streaming_1) || ($is_streaming_2)):
-    $pretitle = 'Streaming';
-    $title = 'Acompanhe em direto';
-    $bodycopy = 'Assista à Conferência em direto e descubra mais sobre os temas em discussão.';
+    $pretitle = __('Streaming', TEXT_DOMAIN);
+    $title = __('Follow live', TEXT_DOMAIN);
+    $bodycopy = __('Watch the conference live and find out more about the topics under discussion.', TEXT_DOMAIN);
   ?>
   <section id="seminar-video" class="uk-section uk-light">
     <div class="uk-container uk-container-large">
@@ -251,8 +250,8 @@ if ((!empty($youtube_id_1)) && (!empty($youtube_id_2)) && ($now >= $date_start_b
   <?php
   // -- POS-STREAMING
   if ((!$has_video_slider) && ($now >= $date_end_broadcast_2)):
-    $title = 'Reveja as Conferências';
-    $bodycopy = 'Assista novamente aos eventos e relembre os momentos altos destas conversas.';
+    $title = __('Watch the conferences again', TEXT_DOMAIN);
+    $bodycopy = __('Watch the events again and relive the highlights of these conversations.', TEXT_DOMAIN);
   ?>
   <section id="seminar-video" class="uk-section uk-light">
     <div class="uk-container uk-container-xlarge">
@@ -296,7 +295,7 @@ if(!empty($date_time_2)):
 <section id="seminar-body" class="uk-section">
   <div class="uk-container">
     <?php
-    $section_name = 'Programa';
+    $section_name = __('Programme', TEXT_DOMAIN);
     $heading_size = 2;
     $text_align = 'center';
     include(locate_template('includes/section-label.php', false, false));
@@ -321,7 +320,7 @@ if(!empty($date_time_2)):
         endswitch;
       endforeach;
       $gallery = (sizeof($shortcodes) > 0) ? apply_filters('the_content', do_blocks($shortcodes[0])) : null;
-      $content = apply_filters('the_content', do_blocks($content));
+      $content = apply_filters('the_content', do_blocks((string) $content));
       ?>
       <div class="uk-text-left uk-text-right@s">
         <div>
@@ -332,12 +331,10 @@ if(!empty($date_time_2)):
         <?php
         // -- Generate ICS Event Button
         if ($now <= $date_start_broadcast_1):
-          $date_start_1 = strftime('%Y-%m-%d %H:%M:%S', strtotime($date_time_1));
-          $date_start_1 = utf8_encode($date_start_1);
-          $date_end_1 = strftime('%Y-%m-%d %H:%M:%S', strtotime($date_end_time_1));
-          $date_end_1 = utf8_encode($date_end_time_1);
+          $date_start_1 = date('Y-m-d H:i:s', strtotime($date_time_1));
+          $date_end_1 = date('Y-m-d H:i:s', strtotime($date_end_time_1));
 
-          $ics_generator_url = '../../ics-generator/?'.esc_attr('ics_start='.$date_start_1.'&ics_end='.$date_end_1.'&ics_name='. get_the_title() .'&ics_location='.str_replace(CHILD_BASE_SITE, REDIRECT_SITE, get_permalink()).'&ics_alert=15');
+          $ics_generator_url = '../../ics-generator/?'.esc_attr('ics_start='.$date_start_1.'&ics_end='.$date_end_1.'&ics_name='. get_the_title() .'&ics_location='.str_replace(BASE_SITE, REDIRECT_SITE, get_permalink()).'&ics_alert=15');
         ?>
         <div class="uk-margin-large-top">
           <a class="uk-button uk-button-large uk-button-danger uk-margin-auto" href="<?php echo $ics_generator_url; ?>" target="_blank" rel="noopener"><span data-uk-icon="calendar"></span> Reservar na Agenda</a>
@@ -365,7 +362,7 @@ if(!empty($date_time_2)):
         endswitch;
       endforeach;
       $gallery = (sizeof($shortcodes) > 0) ? apply_filters('the_content', do_blocks($shortcodes[0])) : null;
-      $content = apply_filters('the_content', do_blocks($content));
+      $content = apply_filters('the_content', do_blocks((string) $content));
       ?>
       <div>
         <div>
@@ -376,12 +373,10 @@ if(!empty($date_time_2)):
         <?php
         // -- Generate ICS Event Button
         if ($now <= $date_start_broadcast_2):
-          $date_start_2 = strftime('%Y-%m-%d %H:%M:%S', strtotime($date_time_2));
-          $date_start_2 = utf8_encode($date_start_2);
-          $date_end_2 = strftime('%Y-%m-%d %H:%M:%S', strtotime($date_end_time_2));
-          $date_end_2 = utf8_encode($date_end_time_2);
+          $date_start_2 = date('Y-m-d H:i:s', strtotime($date_time_2));
+          $date_end_2 = date('Y-m-d H:i:s', strtotime($date_end_time_2));
 
-          $ics_generator_url = '../../ics-generator/?'.esc_attr('ics_start='.$date_start_1.'&ics_end='.$date_end_1.'&ics_name='. get_the_title() .'&ics_location='.str_replace(CHILD_BASE_SITE, REDIRECT_SITE, get_permalink()).'&ics_alert=15');
+          $ics_generator_url = '../../ics-generator/?'.esc_attr('ics_start='.$date_start_1.'&ics_end='.$date_end_1.'&ics_name='. get_the_title() .'&ics_location='.str_replace(BASE_SITE, REDIRECT_SITE, get_permalink()).'&ics_alert=15');
         ?>
         <div class="uk-margin-large-top">
           <a class="uk-button uk-button-large uk-button-danger uk-margin-auto" href="<?php echo $ics_generator_url; ?>" target="_blank" rel="noopener"><span data-uk-icon="calendar"></span> Reservar na Agenda</a>
@@ -405,7 +400,7 @@ else:
       <div id="program-title" class="uk-width-1-1 uk-width-1-3@s">
         <div uk-sticky="end: !#program-title; offset: 80">
         <?php
-        $section_name = 'Programa';
+        $section_name = __('Programme', TEXT_DOMAIN);
         $heading_size = 2;
         $text_align = 'right@s';
         include(locate_template('includes/section-label.php', false, false));
@@ -418,12 +413,10 @@ else:
         <?php
         // -- Generate ICS Event Button
         if ($now <= $date_start_broadcast_1):
-          $date_start_1 = strftime('%Y-%m-%d %H:%M:%S', strtotime($date_time_1));
-          $date_start_1 = utf8_encode($date_start_1);
-          $date_end_1 = strftime('%Y-%m-%d %H:%M:%S', strtotime($date_end_time_1));
-          $date_end_1 = utf8_encode($date_end_time_1);
+          $date_start_1 = date('Y-m-d H:i:s', strtotime($date_time_1));
+          $date_end_1 = date('Y-m-d H:i:s', strtotime($date_end_time_1));
 
-          $ics_generator_url = '../../ics-generator/?'.esc_attr('ics_start='.$date_start_1.'&ics_end='.$date_end_1.'&ics_name='. get_the_title() .'&ics_location='.str_replace(CHILD_BASE_SITE, REDIRECT_SITE, get_permalink()).'&ics_alert=15');
+          $ics_generator_url = '../../ics-generator/?'.esc_attr('ics_start='.$date_start_1.'&ics_end='.$date_end_1.'&ics_name='. get_the_title() .'&ics_location='.str_replace(BASE_SITE, REDIRECT_SITE, get_permalink()).'&ics_alert=15');
         ?>
         <div class="uk-margin-small-top uk-text-right@s">
           <a class="uk-button uk-button-danger uk-margin-auto" href="<?php echo $ics_generator_url; ?>" target="_blank" rel="noopener"><span data-uk-icon="calendar"></span> Reservar na Agenda</a>
@@ -452,7 +445,7 @@ else:
         endswitch;
       endforeach;
       $gallery = (sizeof($shortcodes) > 0) ? apply_filters('the_content', do_blocks($shortcodes[0])) : null;
-      $content = apply_filters('the_content', do_blocks($content));
+      $content = apply_filters('the_content', do_blocks((string) $content));
       ?>
       <div class="uk-width-1-1 uk-width-2-3@s uk-text-left@s programa">
         <?php echo $content; ?>
@@ -466,7 +459,7 @@ endif;
 ?>
 
 <?php
-!empty($post_tags) ? $tag = $post_tags[0]->slug : null;
+$tag = !empty($post_tags) ? $post_tags[0]->slug : '';
 $attendant_categories = $categories;
 if( $tag != 'edicoes-anteriores'):
 // -- Section: ATTENDANTS
@@ -482,11 +475,6 @@ endif;
 <?php
 // -- Section: CONTACT FORM
 get_template_part('includes/sections/contact-form');
-?>
-
-<?php
-// -- Section: FOOTER
-get_template_part('includes/sections/footer');
 ?>
 
 <?php
