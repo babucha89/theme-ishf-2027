@@ -75,7 +75,7 @@ Standalone Base Theme for the official website of the **International Social Hou
 - `single.php`: Article template with metadata, featured image gallery, and article navigation.
 - `category.php` & `archive.php`: Archive listings for categories, tags, authors, and dates.
 - `page.php`: Standard internal content page.
-- `page-google-sitemap.php`: Dynamic XML sitemap generator for SEO.
+- `page-google-sitemap.php`: Dynamic XML sitemap generator (only indexable URLs; see *SEO / Search Console hygiene*).
 - `page-ics-generator.php`: Calendar invite generator (.ics) for festival dates and sessions.
 
 ### 7. Light / Dark Mode Toggle
@@ -447,6 +447,14 @@ Any empty value falls back to the translated string in `languages/pt_PT.po`, so 
 ## Translations
 
 All visitor-facing text goes through `__()` / `_e()` with `TEXT_DOMAIN` (`ishf-2027`). The Portuguese file is `languages/pt_PT.po` (compiled to `.mo`). Editorial content (pages, posts, hero, streaming) is translated in WPML; fixed interface strings come from the `.po` (or WPML > String Translation once it is active).
+
+## SEO / Search Console hygiene (`includes/seo.php`, `page-google-sitemap.php`)
+
+- **Helper pages stay out of Google.** The `sections` page and every sub-page (`sections/hero`, `sections/streaming`, ...), the utility templates (sitemap, ICS generator, maintenance), the pages with slug `widget` / `streaming`, and any page with the custom field `ishf_noindex` = 1 are: left out of the sitemap, sent `noindex, nofollow`, and (for the `sections` tree) redirected with a 301 to the home page for visitors. Editors can still open and preview them.
+- **One sitemap.** The WordPress core sitemap (`wp-sitemap.xml`) is disabled; submit only `/google-sitemap/` in Search Console. It lists home, internal posts, indexable pages and categories with posts, carries real `<lastmod>` dates, and is served with `X-Robots-Tag: noindex`.
+- **Clippings are never listed** (they redirect to third-party sites, which Search Console would report as redirect errors).
+- **WPML:** when active, each language lists its own URLs.
+- Extra rules: `add_filter('ishf_is_noindex_page', fn($flag, $post) => $flag || $post->post_name === 'x', 10, 2);`
 
 ## Agent Rules & Guidelines
 - Architectural guidelines and accessibility standards are codified in `.agents/rules/ishf-uikit-accessibility.md`.

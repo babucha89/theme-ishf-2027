@@ -2,97 +2,83 @@
 // -----------------------------------------------------------------------------
 //  Template Name: Google Sitemap
 //  Page: GOOGLE SITEMAP (XML)
+//  Lists only URLs that should be indexed:
+//   - home, published posts (NOT clippings: they redirect to third-party sites),
+//     published pages (NOT the "sections" tree, utility templates, or pages with
+//     the custom field ishf_noindex), categories with posts.
+//   - Every active WPML language (each language lists its own URLs).
+//   - <lastmod> is the real last modification date (Google ignores priority/changefreq).
+//  Rules live in includes/seo.php.
 //  Base Theme: International Social Housing Festival (ISHF) 2027 Lisbon
-//  Edited: BB, 27-OUT-2026
+//  Edited: BB, 03-NOV-2026
 // -----------------------------------------------------------------------------
 
-header("Content-Type: text/xml; charset=utf-8");
+header('Content-Type: text/xml; charset=utf-8');
+header('X-Robots-Tag: noindex'); // the sitemap itself must not be indexed
 
-echo "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n";
-echo "<urlset xmlns=\"http://www.sitemaps.org/schemas/sitemap/0.9\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:schemaLocation=\"http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd\">\n";
-
-$base_url = home_url('/');
-if (defined('REDIRECT_SITE') && defined('BASE_SITE')) {
-  $homelink = esc_url(str_replace(BASE_SITE, REDIRECT_SITE, $base_url));
-} else {
-  $homelink = esc_url($base_url);
-}
-?>
-<url>
-  <loc><?php echo $homelink; ?></loc>
-  <lastmod><?php echo date('c'); ?></lastmod>
-  <changefreq>daily</changefreq>
-  <priority>1.00</priority>
-</url>
-<?php
-
-// -----------------------------------------------------------------------------
-//  Posts / Articles
-// -----------------------------------------------------------------------------
-$posts = get_posts(array(
-  'posts_per_page' => -1,
-  'post_status'    => 'publish',
-));
-
-foreach ($posts as $post) {
-  $url = get_permalink($post->ID);
+$ishf_map_url = function ($url) {
   if (defined('REDIRECT_SITE') && defined('BASE_SITE')) {
-    $url = esc_url(str_replace(BASE_SITE, REDIRECT_SITE, $url));
+    $url = str_replace(BASE_SITE, REDIRECT_SITE, $url);
   }
-?>
-<url>
-  <loc><?php echo $url; ?></loc>
-  <lastmod><?php echo get_the_modified_date('c', $post->ID); ?></lastmod>
-  <changefreq>weekly</changefreq>
-  <priority>0.80</priority>
-</url>
-<?php
+  return esc_url($url);
+};
+$ishf_map_entry = function ($url, $lastmod = '') use ($ishf_map_url) {
+  echo "<url>\n  <loc>" . $ishf_map_url($url) . "</loc>\n";
+  if ($lastmod) {
+    echo '  <lastmod>' . esc_html($lastmod) . "</lastmod>\n";
+  }
+  echo "</url>\n";
+};
+
+// Languages to list (WPML) or a single pass when WPML is not active
+$ishf_langs = array(null);
+if (has_filter('wpml_active_languages')) {
+  $active = apply_filters('wpml_active_languages', null, array('skip_missing' => 0));
+  if (is_array($active) && count($active) > 1) {
+    $ishf_langs = array_keys($active);
+  }
 }
+$ishf_current_lang = apply_filters('wpml_current_language', null);
 
-// -----------------------------------------------------------------------------
-//  Pages
-// -----------------------------------------------------------------------------
-$pages = get_pages(array(
-  'post_status' => 'publish',
-));
-$excluded_pages = array('google-sitemap', 'manutencao', 'under-maintenance');
+echo '<?xml version="1.0" encoding="UTF-8"?>' . "\n";
+echo '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">' . "\n";
 
-foreach ($pages as $page) {
-  if (!in_array($page->post_name, $excluded_pages)) {
-    $url = get_permalink($page->ID);
-    if (defined('REDIRECT_SITE') && defined('BASE_SITE')) {
-      $url = esc_url(str_replace(BASE_SITE, REDIRECT_SITE, $url));
+foreach ($ishf_langs as $ishf_lang) {
+  if ($ishf_lang) {
+    do_action('wpml_switch_language', $ishf_lang);
+  }
+
+  // -- Home
+  $latest = get_posts(array('posts_per_page' => 1, 'post_status' => 'publish', 'orderby' => 'modified', 'order' => 'DESC', 'suppress_filters' => false));
+  $ishf_map_entry(home_url('/'), $latest ? get_post_modified_time('c', true, $latest[0]) : '');
+
+  // -- Posts (clippings redirect to third-party sites: never listed)
+  $posts = get_posts(array('posts_per_page' => -1, 'post_status' => 'publish', 'suppress_filters' => false));
+  foreach ($posts as $post) {
+    if (function_exists('ishf_get_clipping') && ishf_get_clipping($post->ID)) {
+      continue;
     }
-?>
-<url>
-  <loc><?php echo $url; ?></loc>
-  <lastmod><?php echo get_the_modified_date('c', $page->ID); ?></lastmod>
-  <changefreq>monthly</changefreq>
-  <priority>0.80</priority>
-</url>
-<?php
+    $ishf_map_entry(get_permalink($post->ID), get_post_modified_time('c', true, $post));
   }
-}
 
-// -----------------------------------------------------------------------------
-//  Categories
-// -----------------------------------------------------------------------------
-$categories = get_categories(array('hide_empty' => true));
-foreach ($categories as $category) {
-  if ($category->count > 0 && $category->slug !== 'uncategorized') {
-    $url = get_category_link($category->term_id);
-    if (defined('REDIRECT_SITE') && defined('BASE_SITE')) {
-      $url = esc_url(str_replace(BASE_SITE, REDIRECT_SITE, $url));
+  // -- Pages
+  $pages = get_pages(array('post_status' => 'publish'));
+  foreach ($pages as $page) {
+    if (ishf_is_noindex_page($page) || (int) $page->ID === (int) get_option('page_on_front')) {
+      continue;
     }
-?>
-<url>
-  <loc><?php echo $url; ?></loc>
-  <lastmod><?php echo date('c'); ?></lastmod>
-  <changefreq>weekly</changefreq>
-  <priority>0.60</priority>
-</url>
-<?php
+    $ishf_map_entry(get_permalink($page->ID), get_post_modified_time('c', true, $page));
+  }
+
+  // -- Categories (with at least one internal article)
+  foreach (get_categories(array('hide_empty' => true)) as $category) {
+    if ($category->count > 0 && !in_array($category->slug, array('uncategorized', 'sem-categoria'), true)) {
+      $ishf_map_entry(get_category_link($category->term_id));
+    }
   }
 }
 
-echo "</urlset>";
+if ($ishf_current_lang) {
+  do_action('wpml_switch_language', $ishf_current_lang);
+}
+echo '</urlset>';
