@@ -22,10 +22,10 @@ $hero_file_path  = get_template_directory() . '/img/lisbon/hp-lisbon.jpg';
 $has_hero_file   = file_exists($hero_file_path);
 ?>
 <section id="hero" class="ishf-hero" aria-labelledby="hero-title">
-  <div class="uk-container">
+  <div class="uk-container uk-container-large">
     <div data-uk-grid class="uk-grid-large uk-flex-middle">
 
-      <div class="uk-width-1-1 uk-width-2-5@m">
+      <div class="uk-width-1-1 uk-width-1-3@s">
         <p class="ishf-eyebrow uk-margin-remove-bottom"><?php _e('International Social Housing Festival', TEXT_DOMAIN); ?></p>
         <h1 id="hero-title" class="hero-title uk-margin-small-top"><?php _e('Cities with Soul: It Begins with a Key', TEXT_DOMAIN); ?></h1>
         <p class="hero-date uk-margin-remove-top">
@@ -44,7 +44,7 @@ $has_hero_file   = file_exists($hero_file_path);
         </div>
       </div>
 
-      <div class="uk-width-1-1 uk-width-3-5@m">
+      <div class="uk-width-1-1 uk-width-expand@s">
         <div class="hero-art uk-position-relative" aria-hidden="true">
           <?php if ($hero_image_id && wp_get_attachment_image_url($hero_image_id, 'image-gallery')): ?>
             <picture>

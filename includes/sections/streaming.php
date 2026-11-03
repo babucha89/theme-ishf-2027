@@ -156,8 +156,8 @@ if (!empty($page_streaming)):
           ? sanitize_html_class($shortcode_atts['modal_id'])
           : ($is_default_page ? 'modal-streaming-video' : 'modal-streaming-video-' . $page_id));
 ?>
-<section id="<?php echo esc_attr($section_id); ?>" class="uk-section section-streaming uk-position-relative" aria-labelledby="<?php echo esc_attr($title_id); ?>">
-  <div class="uk-container">
+<section id="<?php echo esc_attr($section_id); ?>" class="uk-section uk-section-small section-streaming uk-position-relative" aria-labelledby="<?php echo esc_attr($title_id); ?>">
+  <div class="uk-container uk-container-expand">
 
     <div class="cta-box cta-box-streaming">
 
@@ -166,7 +166,7 @@ if (!empty($page_streaming)):
 
       <div class="streaming-layout uk-grid-large uk-flex-middle" data-uk-grid>
 
-      <div class="uk-width-1-1 uk-width-1-2@m">
+      <div class="uk-width-1-1 uk-width-1-3@s">
       <!-- Streaming Header (Driven by the Streaming Page Title, Excerpt & Content) -->
       <div class="streaming-header">
         <?php if (!empty($badge_text)): ?>
@@ -201,7 +201,7 @@ if (!empty($page_streaming)):
       <?php endif; ?>
       </div>
 
-      <div class="uk-width-1-1 uk-width-1-2@m">
+      <div class="uk-width-1-1 uk-width-expand@s">
       <!-- Streaming Media Output (Embed or Modal Trigger) -->
       <?php if ($display_mode === 'modal'): ?>
 
