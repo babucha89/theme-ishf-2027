@@ -1,7 +1,8 @@
 <?php
 // -----------------------------------------------------------------------------
 //  File: SINGLE (Single Article / News Post)
-//  Layout: compact header -> ARTICLE HERO section (label, title, lead = excerpt, image 'image-gallery')
+//  Layout: compact header -> ARTICLE HERO section (label, title, lead = excerpt side by side with the
+//  'image-gallery' image; date = small detail under the image, right-aligned)
 //  -> ARTICLE BODY section (narrow container, different background for contrast) -> post navigation.
 //  Clippings (external URL) get a "Read at the source" button, with the content-language note.
 //  Base Theme: ISHF 2027 Lisbon
@@ -20,6 +21,8 @@ get_template_part('includes/sections/header', null, array('compact' => true));
 $ishf_clip     = ishf_get_clipping();
 $ishf_label    = ishf_post_label();
 $ishf_lead     = has_excerpt() ? get_the_excerpt() : '';
+$ishf_date_iso   = $ishf_clip ? $ishf_clip['date_iso'] : get_the_date('c');
+$ishf_date_label = $ishf_clip ? $ishf_clip['date_label'] : get_the_date();
 $ishf_img_alt  = '';
 if (has_post_thumbnail()) {
   $ishf_img_alt = trim((string) get_post_meta(get_post_thumbnail_id(), '_wp_attachment_image_alt', true));
@@ -30,34 +33,41 @@ if (has_post_thumbnail()) {
 <main id="content-start" role="main" class="site-main" tabindex="-1">
   <article <?php post_class('single-article'); ?>>
 
-    <!-- Section 1: label, title, lead, image (container + background A) -->
+    <!-- Section 1: label, title, lead + image side by side (container + background A) -->
     <section class="article-hero" aria-labelledby="article-title">
       <div class="uk-container">
-        <header class="article-header">
-          <p class="article-meta">
-            <?php if ($ishf_label): ?><span class="ishf-eyebrow"><?php echo esc_html($ishf_label); ?></span><?php endif; ?>
-            <?php if ($ishf_clip): ?>
-              <?php foreach ($ishf_clip['sources'] as $source): ?><span class="news-card-tag"><?php echo esc_html($source); ?></span><?php endforeach; ?>
-              <?php if ($ishf_clip['lang_note']): ?><span class="news-card-tag news-card-tag--lang"><?php echo esc_html($ishf_clip['lang_note']); ?></span><?php endif; ?>
-              <time datetime="<?php echo esc_attr($ishf_clip['date_iso']); ?>"><?php echo esc_html($ishf_clip['date_label']); ?></time>
-            <?php else: ?>
-              <time datetime="<?php echo esc_attr(get_the_date('c')); ?>"><?php echo esc_html(get_the_date()); ?></time>
-            <?php endif; ?>
-          </p>
-          <h1 id="article-title" class="article-title"><?php the_title(); ?></h1>
-          <?php if ($ishf_lead): ?>
-            <p class="article-lead uk-text-lead"><?php echo esc_html($ishf_lead); ?></p>
-          <?php endif; ?>
-        </header>
+        <div class="article-hero-grid uk-grid-large uk-flex-middle" data-uk-grid>
 
-        <?php if (has_post_thumbnail()): ?>
-          <figure class="article-featured-image">
-            <?php the_post_thumbnail('image-gallery', array('alt' => $ishf_img_alt, 'loading' => 'eager', 'fetchpriority' => 'high')); ?>
-            <?php $ishf_caption = get_the_post_thumbnail_caption(); if ($ishf_caption): ?>
-              <figcaption class="uk-text-small"><?php echo esc_html($ishf_caption); ?></figcaption>
+          <header class="article-header uk-width-1-1 <?php echo has_post_thumbnail() ? 'uk-width-1-2@m' : ''; ?>">
+            <p class="article-meta">
+              <?php if ($ishf_label): ?><span class="uk-label ishf-label<?php echo ($ishf_clip || has_category(array('clipping', 'cobertura'))) ? ' ishf-label--clipping' : ''; ?>"><?php echo esc_html($ishf_label); ?></span><?php endif; ?>
+              <?php if ($ishf_clip): ?>
+                <?php foreach ($ishf_clip['sources'] as $source): ?><span class="news-card-tag"><?php echo esc_html($source); ?></span><?php endforeach; ?>
+                <?php if ($ishf_clip['lang_note']): ?><span class="news-card-tag news-card-tag--lang"><?php echo esc_html($ishf_clip['lang_note']); ?></span><?php endif; ?>
+              <?php endif; ?>
+            </p>
+            <h1 id="article-title" class="article-title"><?php the_title(); ?></h1>
+            <?php if ($ishf_lead): ?>
+              <p class="article-lead uk-text-lead"><?php echo esc_html($ishf_lead); ?></p>
             <?php endif; ?>
-          </figure>
-        <?php endif; ?>
+            <?php if (!has_post_thumbnail()): ?>
+              <p class="article-date"><time datetime="<?php echo esc_attr($ishf_date_iso); ?>"><?php echo esc_html($ishf_date_label); ?></time></p>
+            <?php endif; ?>
+          </header>
+
+          <?php if (has_post_thumbnail()): ?>
+            <figure class="article-featured-image uk-width-1-1 uk-width-1-2@m">
+              <?php the_post_thumbnail('image-gallery', array('alt' => $ishf_img_alt, 'loading' => 'eager', 'fetchpriority' => 'high')); ?>
+              <figcaption class="article-image-meta">
+                <?php $ishf_caption = get_the_post_thumbnail_caption(); if ($ishf_caption): ?>
+                  <span class="article-image-caption uk-text-small"><?php echo esc_html($ishf_caption); ?></span>
+                <?php endif; ?>
+                <time class="article-date" datetime="<?php echo esc_attr($ishf_date_iso); ?>"><?php echo esc_html($ishf_date_label); ?></time>
+              </figcaption>
+            </figure>
+          <?php endif; ?>
+
+        </div>
       </div>
     </section>
 
@@ -91,10 +101,9 @@ if (has_post_thumbnail()) {
     <!-- Section 3: post navigation -->
     <nav class="article-footer" aria-label="<?php esc_attr_e('Article navigation', TEXT_DOMAIN); ?>">
       <div class="uk-container uk-container-small uk-flex uk-flex-between uk-flex-middle uk-flex-wrap">
-        <a class="uk-button uk-button-text" href="<?php echo esc_url(home_url('/')); ?>">← <?php _e('Back to Home', TEXT_DOMAIN); ?></a>
-        <div>
+        <a class="uk-button uk-button-text article-back" href="<?php echo esc_url(home_url('/')); ?>">← <?php _e('Back to Home', TEXT_DOMAIN); ?></a>
+        <div class="article-pager">
           <?php previous_post_link('%link', '← ' . __('Previous', TEXT_DOMAIN)); ?>
-          <span class="uk-margin-small-left uk-margin-small-right" aria-hidden="true">|</span>
           <?php next_post_link('%link', __('Next', TEXT_DOMAIN) . ' →'); ?>
         </div>
       </div>

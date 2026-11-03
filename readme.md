@@ -445,3 +445,15 @@ Menus are registered in `includes/uikit-menus.php` and rendered with the walkers
 
 After updating the theme, assign the existing menus to these locations (once per language when using WPML).
 `functions.php` adds a `wp_nav_menu_args` filter that changes the navbar breakpoint from `uk-visible@s` to `uk-visible@m` so it matches the burger button.
+
+## News: clippings (external coverage)
+
+Clippings are normal posts with **Custom Fields** (post editor; enable the panel under Screen Options in the classic editor, or Options > Preferences > Panels > Custom fields in the block editor):
+
+| Custom field | Value |
+|---|---|
+| `uikit_bs_external_url` | URL of the article on the third-party site. When set, the post is a clipping: label "Clipping"/"Cobertura", the card links to the URL in a new tab. |
+| `ishf_external_lang` | Language of the external content: `pt`, `en`, `es` or `fr` (default `pt`). The "In Portuguese" tag shows when it differs from the site language. |
+| `ishf_external_date` | Publication date at the source, e.g. `2027-03-15` (optional; falls back to the post date). |
+
+The publication the article comes from is set with **post tags**. Home news cards use the `image-3x2` size (900x600, defined in `functions.php`); the single article uses `image-gallery`.

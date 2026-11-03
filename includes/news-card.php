@@ -15,13 +15,12 @@ $ishf_lang_attr = ($ishf_clip && $ishf_clip['lang_note']) ? ' lang="' . esc_attr
 <article class="news-card<?php echo $ishf_clip ? ' news-card--clipping' : ''; ?>">
   <div class="news-card-media">
     <?php if (has_post_thumbnail()): ?>
-      <?php the_post_thumbnail('medium_large', array('alt' => '', 'loading' => 'lazy')); ?>
+      <?php the_post_thumbnail('image-3x2', array('alt' => '', 'loading' => 'lazy')); ?>
+    <?php endif; ?>
+    <?php if ($ishf_label): ?>
+      <span class="uk-label ishf-label<?php echo $ishf_clip || has_category(array('clipping', 'cobertura')) ? ' ishf-label--clipping' : ''; ?> news-card-label"><?php echo esc_html($ishf_label); ?></span>
     <?php endif; ?>
   </div>
-
-  <?php if ($ishf_label): ?>
-    <p class="ishf-eyebrow news-card-cat"><?php echo esc_html($ishf_label); ?></p>
-  <?php endif; ?>
 
   <h3 class="news-card-title uk-h5">
     <a href="<?php echo esc_url($ishf_href); ?>"<?php echo $ishf_lang_attr; ?><?php echo $ishf_clip ? ' target="_blank" rel="noopener noreferrer"' : ''; ?>>

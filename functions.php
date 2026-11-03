@@ -128,6 +128,7 @@ function ishf_setup()
 
   add_image_size('image-speaker-face', 450, 450, true);
   add_image_size('image-gallery', 1600, 900, true);
+  add_image_size('image-3x2', 900, 600, true); // news cards (3:2)
 }
 
 
