@@ -497,3 +497,22 @@ Clippings are normal posts with **Custom Fields** (post editor; enable the panel
 The publication the article comes from is set with **post tags**. Home news cards use the `image-3x2` size (900x600, defined in `functions.php`); the single article uses `image-gallery`.
 
 Clippings have **no single page**: opening one redirects to the external URL (editor previews excepted) and they are left out of the XML sitemap (the clipping category archive page is still listed). On single articles, the *Related articles* block lists other articles and clippings with the same cards as the home news block. To limit which tags count as a publication, use `add_filter('ishf_publication_tag_slugs', fn() => array('publico', 'expresso'));`.
+
+## Custom post types, Gutenberg blocks and naming (`ishf_`)
+
+Everything declared by the theme uses the `ishf_` prefix (functions, hooks, meta keys, CSS classes, block names). No `bs_` / `uikit_cbs_` declarations remain.
+
+**CPTs** (`includes/cpt/`), each enabled by a flag in `functions.php` (`SITE_USE_ATTENDANTS`, `SITE_USE_FAQS`, `SITE_USE_SEMINARS`, `SITE_USE_SPONSORS`, all `true`):
+
+| CPT | File | Templates / output |
+|---|---|---|
+| `attendants` (+ category taxonomy) | `attendants.php` | `single-attendants.php` |
+| `faqs` | `faqs.php` | `archive-faqs.php` |
+| `seminars` | `seminars.php` | `single-seminars.php` |
+| `sponsors` (+ taxonomy `sponsor_types`) | `sponsors.php` | `includes/sections/sponsors-dynamic.php` (grouped by type) and `includes/sections/sponsors.php` |
+
+- Custom fields are handled by `includes/cpt/functions.php`; meta keys are stored as `ishf_cf_*` (e.g. `ishf_cf_order`, `ishf_cf_url`, `ishf_cf_function`, `ishf_cf_organization`, `ishf_cf_attendants_related`). Sponsor types order: `ishf_cf_sponsor_types_order`. Optional dark-mode logo: `ishf_cf_logo_dark_id`.
+- Helper heading component: `includes/section-label.php` (`$section_name`, `$heading_size`, `$text_align`).
+- `single-seminars.php` calls `includes/sections/attendants-seminars.php`, which is not in the repository yet.
+
+**Blocks** (`blocks/ishf-*`): `gallery`, `intro`, `quotation`, `seminar-program`, `video`, `video-slider`. Each folder has `functions.php` (register + render), `index.js` (editor) and `style.css`; namespace `ishf/…`, category `ishf`. `functions.php` loads every folder matching `blocks/ishf-*` except `ishf-example` (reference scaffold). The seminar-program block reads attendants through the REST route `ishf/v1/attendants` (editors only).

@@ -1,8 +1,0 @@
-/* -- EDITOR / BACKOFFICE -- */
-.bs-quotation-editor { background-color: #F9F9F9; padding: 20px; border: 1px solid #E6E6E6; }
-.bs-quotation-editor h4 { margin-top: 0; }
-
-
-/* -- FRONTEND -- */
-.bs-quotation blockquote, .bs-quotation blockquote p { font-style: normal; font-weight: 500; font-size: 1.5rem; margin-bottom: 5px; }
-.bs-quotation figcaption cite { font-style: normal; }

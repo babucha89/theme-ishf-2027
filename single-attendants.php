@@ -9,17 +9,18 @@ global $featured_articles;
 $featured_articles = array();
 the_post();
 array_push($featured_articles, get_the_ID());
-uikit_cbs_set_post_views(get_the_ID());
+ishf_set_post_views(get_the_ID());
 ?>
 
 <?php
 // -- Block: HEADER
+ishf_use_full_layout(true); // full navigation + footer (inner pages)
 get_header();
 ?>
 
 <?php
 // -- Section: HEADER
-get_template_part('includes/sections/header');
+get_template_part('includes/sections/header', null, array('compact' => true));
 ?>
 
 <?php
@@ -44,8 +45,8 @@ get_template_part('includes/sections/sponsors','header');
         // -- Get the picture
         $image_url = str_replace(BASE_SITE, REDIRECT_SITE, get_the_post_thumbnail_url(get_the_ID(),'image-speaker-face'));
         if (empty($image_url)):
-          $gender = get_post_meta(get_the_ID(), 'bs_cf_gender', true);
-          $image_url = CHILD_BASE_IMAGES.'attendant-placeholder-'.$gender.'.jpg';
+          $gender = get_post_meta(get_the_ID(), 'ishf_cf_gender', true);
+          $image_url = BASE_IMAGES.'attendant-placeholder-'.$gender.'.jpg';
         endif;
         ?>
         <img class="speaker-photo uk-border-rounded" src="<?php echo $image_url; ?>" alt="<?php echo the_title(); ?>" loading="lazy">
@@ -61,9 +62,9 @@ get_template_part('includes/sections/sponsors','header');
           <?php
           // -- Function and Organization
           $attendant_function = array();
-          $function = get_post_meta(get_the_ID(), 'bs_cf_function', true);
+          $function = get_post_meta(get_the_ID(), 'ishf_cf_function', true);
           if (!empty($function)) array_push($attendant_function, $function);
-          $organization = get_post_meta(get_the_ID(), 'bs_cf_organization', true);
+          $organization = get_post_meta(get_the_ID(), 'ishf_cf_organization', true);
           if (!empty($organization)) array_push($attendant_function, $organization);
 
           if (sizeof($attendant_function) > 0):
@@ -106,11 +107,6 @@ get_template_part('includes/sections/sponsors','footer');
 <?php
 // -- Section: CONTACT FORM
 get_template_part('includes/sections/contact-form');
-?>
-
-<?php
-// -- Section: FOOTER
-get_template_part('includes/sections/footer');
 ?>
 
 <?php

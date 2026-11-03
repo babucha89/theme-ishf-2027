@@ -1,4 +1,4 @@
-# BS Example — Block Template
+# ISHF Example — Block Template
 
 This block is a **template**. Do NOT use it in production — duplicate it to create new blocks.
 
@@ -8,7 +8,7 @@ This block is a **template**. Do NOT use it in production — duplicate it to cr
 
 ### 1. Copy the folder
 
-Duplicate `blocks/bs-example/` and rename it to `blocks/bs-yourblock/`.  
+Duplicate `blocks/ishf-example/` and rename it to `blocks/ishf-yourblock/`.  
 The parent theme auto-discovers any folder inside `/blocks/` that contains `functions.php`, `index.js`, and `style.css`.
 
 ### 2. Find and replace
@@ -17,13 +17,13 @@ In all three files, replace:
 
 | Find                | Replace with             |
 |---------------------|--------------------------|
-| `bs-example`        | `bs-yourblock`           |
-| `bs_example`        | `bs_yourblock`           |
-| `BS Example`        | `BS Your Block`          |
+| `ishf-example`        | `ishf-yourblock`           |
+| `ishf_example`        | `ishf_yourblock`           |
+| `ISHF Example`        | `ISHF Your Block`          |
 
 ### 3. Define your attributes
 
-Edit `functions.php` → `register_bs_yourblock()` to declare the attributes your block needs.  
+Edit `functions.php` → `register_ishf_yourblock()` to declare the attributes your block needs.  
 Mirror the same attributes in `index.js` → `registerBlockType()`.
 
 **Common attribute types:**
@@ -39,7 +39,7 @@ Mirror the same attributes in `index.js` → `registerBlockType()`.
 
 ### 4. Update the render callback
 
-Edit `functions.php` → `render_bs_yourblock()` to produce your desired HTML output.  
+Edit `functions.php` → `render_ishf_yourblock()` to produce your desired HTML output.  
 Use `esc_html()`, `esc_attr()`, `esc_url()`, and `wp_kses_post()` for proper escaping.
 
 ### 5. Update editor controls
@@ -56,7 +56,7 @@ Edit `style.css` with your block's CSS classes — both editor and frontend sect
 ## File structure
 
 ```
-blocks/bs-yourblock/
+blocks/ishf-yourblock/
 ├── functions.php   ← Server-side: registration + render callback
 ├── index.js        ← Editor-side: block definition + edit UI
 ├── style.css       ← Styles (editor + frontend)
@@ -65,4 +65,4 @@ blocks/bs-yourblock/
 
 ## Block namespace
 
-All blocks use the namespace `uikit-boostsolutions/bs-*` and the category `boost-solutions`.
+All blocks use the namespace `ishf/*` and the category `ishf`.

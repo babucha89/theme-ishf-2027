@@ -8,7 +8,7 @@
 //--------------------------------------------
 //  Function that renders the block
 //--------------------------------------------
-function render_bs_quotation($attributes, $content) {
+function render_ishf_quotation($attributes, $content) {
   // Access block attributes
   $quotation = $attributes['quotation'] ?? '';
   $author = $attributes['author'] ?? '';
@@ -21,7 +21,7 @@ function render_bs_quotation($attributes, $content) {
   if (!empty($entity)) $meta[] = $entity;
   
   // Generate HTML output
-  $output  = '<figure class="bs-quotation">';
+  $output  = '<figure class="ishf-quotation">';
   $output .= '<blockquote><p>'.$quotation.'</p></blockquote>';
   if (!empty($meta)):
     $output .= '<figcaption><cite>- '.implode(', ', $meta).'</cite></figcaption>';
@@ -34,9 +34,9 @@ function render_bs_quotation($attributes, $content) {
 //--------------------------------------------
 //  Function that registers the block
 //--------------------------------------------
-function register_bs_quotation() {
-  register_block_type('uikit-boostsolutions/bs-quotation', array(
-    'render_callback' => 'render_bs_quotation',
+function register_ishf_quotation() {
+  register_block_type('ishf/quotation', array(
+    'render_callback' => 'render_ishf_quotation',
     'attributes' => array(
       'blockId' => array(
         'type' => 'string',
@@ -61,5 +61,5 @@ function register_bs_quotation() {
     ),
   ));
 }
-add_action('init', 'register_bs_quotation');
+add_action('init', 'register_ishf_quotation');
 ?>

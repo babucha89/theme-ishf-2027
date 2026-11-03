@@ -1,6 +1,6 @@
 <?php
 // -----------------------------------------------------------------------------
-//  Block: BS SEMINAR PROGRAM
+//  Block: ISHF SEMINAR PROGRAM
 //  Edited: 3L, 23-JUL-2026
 // -----------------------------------------------------------------------------
 //  A program block with repeatable sessions. Each session has a time slot,
@@ -12,12 +12,12 @@
 //--------------------------------------------
 //  REST API: Attendants autocomplete endpoint
 //--------------------------------------------
-add_action('rest_api_init', 'bs_seminar_register_attendants_endpoint');
-function bs_seminar_register_attendants_endpoint()
+add_action('rest_api_init', 'ishf_seminar_register_attendants_endpoint');
+function ishf_seminar_register_attendants_endpoint()
 {
-  register_rest_route('bs/v1', '/attendants', array(
+  register_rest_route('ishf/v1', '/attendants', array(
     'methods' => 'GET',
-    'callback' => 'bs_seminar_get_attendants',
+    'callback' => 'ishf_seminar_get_attendants',
     'permission_callback' => function () {
       return current_user_can('edit_posts');
     },
@@ -36,7 +36,7 @@ function bs_seminar_register_attendants_endpoint()
   ));
 }
 
-function bs_seminar_get_attendants($request)
+function ishf_seminar_get_attendants($request)
 {
   $search = $request->get_param('search');
   $post_id = $request->get_param('post_id');
@@ -49,9 +49,9 @@ function bs_seminar_get_attendants($request)
     'order' => 'ASC',
   );
 
-  // -- Filter attendants by the event's related attendants (bs_cf_attendants_related)
+  // -- Filter attendants by the event's related attendants (ishf_cf_attendants_related)
   if (!empty($post_id)) {
-    $related = get_post_meta($post_id, 'bs_cf_attendants_related', true);
+    $related = get_post_meta($post_id, 'ishf_cf_attendants_related', true);
     if (!empty($related)) {
       $related_ids = array_map('intval', array_map('trim', explode(',', $related)));
       $args['post__in'] = $related_ids;
@@ -78,14 +78,14 @@ function bs_seminar_get_attendants($request)
   if ($query->have_posts()):
     while ($query->have_posts()):
       $query->the_post();
-      $function = get_post_meta(get_the_ID(), 'bs_cf_function', true);
-      $organization = get_post_meta(get_the_ID(), 'bs_cf_organization', true);
+      $function = get_post_meta(get_the_ID(), 'ishf_cf_function', true);
+      $organization = get_post_meta(get_the_ID(), 'ishf_cf_organization', true);
 
       $results[] = array(
         'id' => get_the_ID(),
         'name' => get_the_title(),
-        'bs_cf_function' => !empty($function) ? $function : '',
-        'bs_cf_organization' => !empty($organization) ? $organization : '',
+        'ishf_cf_function' => !empty($function) ? $function : '',
+        'ishf_cf_organization' => !empty($organization) ? $organization : '',
       );
     endwhile;
   endif;
@@ -98,15 +98,15 @@ function bs_seminar_get_attendants($request)
 //--------------------------------------------
 //  Helper: Format a speaker/moderator for frontend
 //--------------------------------------------
-function bs_seminar_format_speaker($speaker, $isModerator = false)
+function ishf_seminar_format_speaker($speaker, $isModerator = false)
 {
   $name = esc_html($speaker['name'] ?? '');
   $id = intval($speaker['id'] ?? 0);
 
   if ($id > 0) {
     // Linked speaker: Bold Name, Function, Organization
-    $func = get_post_meta($id, 'bs_cf_function', true);
-    $org = get_post_meta($id, 'bs_cf_organization', true);
+    $func = get_post_meta($id, 'ishf_cf_function', true);
+    $org = get_post_meta($id, 'ishf_cf_organization', true);
 
     $details = array();
     if (!empty($func))
@@ -141,7 +141,7 @@ function bs_seminar_format_speaker($speaker, $isModerator = false)
 //--------------------------------------------
 //  Helper: Render a single session HTML
 //--------------------------------------------
-function bs_seminar_render_session($session) {
+function ishf_seminar_render_session($session) {
   $time = esc_html($session['time'] ?? '');
   $keynote = esc_html($session['keynote'] ?? '');
   $moderator = $session['moderator'] ?? array();
@@ -162,7 +162,7 @@ function bs_seminar_render_session($session) {
       });
     }
     foreach ($speakers as $index => $speaker):
-      $output .= '<div class="uk-margin-small-bottom" data-speaker>' . bs_seminar_format_speaker($speaker) . '</div>';
+      $output .= '<div class="uk-margin-small-bottom" data-speaker>' . ishf_seminar_format_speaker($speaker) . '</div>';
     endforeach;
     $output .= '</div>';
   endif;
@@ -170,9 +170,9 @@ function bs_seminar_render_session($session) {
   // -- Moderator
   if (!empty($moderator)):
     $output .= '<div class="uk-text-small uk-margin-small-top">';
-    $output .= '<div class="uk-margin-small-bottom"><strong>' . __('Moderação', TEXT_DOMAIN) . '</strong>: ';
+    $output .= '<div class="uk-margin-small-bottom"><strong>' . __('Moderation', TEXT_DOMAIN) . '</strong>: ';
     foreach ($moderator as $index => $mod):
-      $output .= bs_seminar_format_speaker($mod, true);
+      $output .= ishf_seminar_format_speaker($mod, true);
     endforeach;
     $output .= '</div>';
   endif;
@@ -187,7 +187,7 @@ function bs_seminar_render_session($session) {
 //--------------------------------------------
 //  Function that renders the block
 //--------------------------------------------
-function render_bs_seminar_program($attributes, $content)
+function render_ishf_seminar_program($attributes, $content)
 {
   $sessions = $attributes['sessions'] ?? array();
   $render_mode = $attributes['renderMode'] ?? 'full';
@@ -217,7 +217,7 @@ function render_bs_seminar_program($attributes, $content)
 
     $output = '<ul class="uk-list uk-margin-medium-bottom">';
     foreach ($sessions_to_render as $session) {
-      $output .= bs_seminar_render_session($session);
+      $output .= ishf_seminar_render_session($session);
     }
     $output .= '</ul>';
     return $output;
@@ -268,7 +268,7 @@ function render_bs_seminar_program($attributes, $content)
   if (count($parts) <= 1) {
     $output .= '<ul class="uk-list uk-margin-medium-bottom">';
     foreach ($grouped_sessions[$parts[0]['id']] as $session) {
-      $output .= bs_seminar_render_session($session);
+      $output .= ishf_seminar_render_session($session);
     }
     $output .= '</ul>';
     return $output;
@@ -286,7 +286,7 @@ function render_bs_seminar_program($attributes, $content)
     $output .= '<li>';
     $output .= '<ul class="uk-list uk-margin-medium-bottom">';
     foreach ($grouped_sessions[$part['id']] as $session) {
-      $output .= bs_seminar_render_session($session);
+      $output .= ishf_seminar_render_session($session);
     }
     $output .= '</ul>';
     $output .= '</li>';
@@ -300,10 +300,10 @@ function render_bs_seminar_program($attributes, $content)
 //--------------------------------------------
 //  Function that registers the block
 //--------------------------------------------
-function register_bs_seminar_program()
+function register_ishf_seminar_program()
 {
-  register_block_type('uikit-boostsolutions/bs-seminar-program', array(
-    'render_callback' => 'render_bs_seminar_program',
+  register_block_type('ishf/seminar-program', array(
+    'render_callback' => 'render_ishf_seminar_program',
     'attributes' => array(
 
       // -- Block ID (for API identification)
@@ -336,5 +336,5 @@ function register_bs_seminar_program()
     ),
   ));
 }
-add_action('init', 'register_bs_seminar_program');
+add_action('init', 'register_ishf_seminar_program');
 

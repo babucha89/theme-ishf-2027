@@ -1,13 +1,13 @@
 <?php
 // -----------------------------------------------------------------------------
-//  Block: BS VIDEO SLIDER
+//  Block: ISHF VIDEO SLIDER
 //  Edited: 3L, 30-JUL-2026
 // -----------------------------------------------------------------------------
 
 //--------------------------------------------
 //  Function that renders the block
 //--------------------------------------------
-function render_bs_video_slider($attributes, $content, $block)
+function render_ishf_video_slider($attributes, $content, $block)
 {
   $title = $attributes['title'] ?? '';
 
@@ -34,7 +34,7 @@ function render_bs_video_slider($attributes, $content, $block)
           <div class="uk-slider-container">
             <ul class="uk-slider-items uk-child-width-1-1 uk-child-width-1-3@s uk-grid">
               <?php
-              // Render inner blocks (bs-video blocks) wrapped in <li>
+              // Render inner blocks (ishf-video blocks) wrapped in <li>
               if (!empty($block->inner_blocks)) {
                 foreach ($block->inner_blocks as $inner_block) {
                   echo '<li>';
@@ -46,7 +46,7 @@ function render_bs_video_slider($attributes, $content, $block)
                 // We just output the content, though it won't be wrapped in <li>
                 // This shouldn't happen in modern WP.
                 if (empty($block->inner_blocks) && !empty(trim($content))) {
-                   // A crude fallback: assume each bs-video outputs a top level <div>, we wrap them.
+                   // A crude fallback: assume each ishf-video outputs a top level <div>, we wrap them.
                    // It's safer to just echo $content and rely on UIkit grid if possible, 
                    // but UIkit slider *requires* <li>. So we rely on $block->inner_blocks.
                 }
@@ -75,10 +75,10 @@ function render_bs_video_slider($attributes, $content, $block)
 //--------------------------------------------
 //  Function that registers the block
 //--------------------------------------------
-function register_bs_video_slider()
+function register_ishf_video_slider()
 {
-  register_block_type('uikit-boostsolutions/bs-video-slider', array(
-    'render_callback' => 'render_bs_video_slider',
+  register_block_type('ishf/video-slider', array(
+    'render_callback' => 'render_ishf_video_slider',
     'attributes' => array(
       'blockId' => array(
         'type' => 'string',
@@ -91,5 +91,5 @@ function register_bs_video_slider()
     ),
   ));
 }
-add_action('init', 'register_bs_video_slider');
+add_action('init', 'register_ishf_video_slider');
 ?>

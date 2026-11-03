@@ -1,0 +1,13 @@
+/* -- EDITOR / BACKOFFICE -- */
+.ishf-example-editor { background-color: #F9F9F9; padding: 20px; border: 1px solid #E6E6E6; }
+.ishf-example-editor h4 { margin-top: 0; font-weight: 600; }
+.ishf-example-editor__media { margin-bottom: 16px; }
+.ishf-example-editor__preview { margin-top: 8px; }
+
+
+/* -- FRONTEND -- */
+.ishf-example { margin-bottom: 30px; }
+.ishf-example__image img { width: 100%; height: auto; display: block; }
+.ishf-example__title { margin-top: 15px; margin-bottom: 5px; }
+.ishf-example__description { font-size: 1rem; line-height: 1.6; }
+.ishf-example--featured { border-left: 4px solid currentColor; padding-left: 15px; }

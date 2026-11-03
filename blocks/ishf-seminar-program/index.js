@@ -1,5 +1,5 @@
 // -----------------------------------------------------------------------------
-//  Block: BS SEMINAR PROGRAM (Editor)
+//  Block: ISHF SEMINAR PROGRAM (Editor)
 //  Edited: 3L, 23-JUL-2026
 // -----------------------------------------------------------------------------
 //  Features:
@@ -52,8 +52,8 @@
 				if (editorStore && editorStore.getCurrentPostId) {
 					postId = editorStore.getCurrentPostId();
 				}
-				console.log('[BS Seminar] postId:', postId);
-				var url = 'bs/v1/attendants';
+				console.log('[ISHF Seminar] postId:', postId);
+				var url = 'ishf/v1/attendants';
 				var params = [];
 				if (search) params.push('search=' + encodeURIComponent(search));
 				if (postId) params.push('post_id=' + postId);
@@ -91,8 +91,8 @@
 			updated.push({
 				id: attendant.id,
 				name: attendant.name,
-				function: attendant.bs_cf_function || '',
-				organization: attendant.bs_cf_organization || '',
+				function: attendant.ishf_cf_function || '',
+				organization: attendant.ishf_cf_organization || '',
 			});
 			onChange(updated);
 			setInputValue('');
@@ -181,20 +181,20 @@
 		}, []);
 		var filteredSuggestions = getFilteredSuggestions();
 		return el('div', {
-			className: 'bs-speaker-autocomplete'
+			className: 'ishf-speaker-autocomplete'
 		}, [
 			// -- Speaker tags (stacked vertically)
 			speakers.length > 0 && el('div', {
 				key: 'tags',
-				className: 'bs-speaker-tags'
+				className: 'ishf-speaker-tags'
 			}, speakers.map(function(speaker, idx) {
 				return el('div', {
 					key: 'speaker-' + idx,
-					className: 'bs-speaker-tag' + (speaker.id > 0 ? ' bs-speaker-tag--linked' : ''),
+					className: 'ishf-speaker-tag' + (speaker.id > 0 ? ' ishf-speaker-tag--linked' : ''),
 				}, [
 					el('span', {
 						key: 'content',
-						className: 'bs-speaker-tag__content'
+						className: 'ishf-speaker-tag__content'
 					}, renderTagContent(speaker)),
 					el(Button, {
 						key: 'up',
@@ -204,7 +204,7 @@
 						onClick: function() {
 							moveSpeakerUp(idx);
 						},
-						className: 'bs-session-row__move-btn',
+						className: 'ishf-session-row__move-btn',
 					}),
 					el(Button, {
 						key: 'down',
@@ -214,12 +214,12 @@
 						onClick: function() {
 							moveSpeakerDown(idx);
 						},
-						className: 'bs-session-row__move-btn',
+						className: 'ishf-session-row__move-btn',
 					}),
 					el('button', {
 						key: 'remove',
 						type: 'button',
-						className: 'bs-speaker-tag__remove',
+						className: 'ishf-speaker-tag__remove',
 						onClick: function() {
 							removeSpeaker(idx);
 						},
@@ -230,13 +230,13 @@
 			// -- Input with suggestions dropdown
 			el('div', {
 				key: 'input-wrapper',
-				className: 'bs-speaker-input-wrapper',
+				className: 'ishf-speaker-input-wrapper',
 				ref: inputRef
 			}, [
 				el('input', {
 					key: 'input',
 					type: 'text',
-					className: 'components-text-control__input bs-speaker-input',
+					className: 'components-text-control__input ishf-speaker-input',
 					placeholder: 'Type a name...',
 					value: inputValue,
 					onChange: function(e) {
@@ -250,19 +250,19 @@
 				}),
 				isLoading && el('span', {
 					key: 'loading',
-					className: 'bs-speaker-loading'
+					className: 'ishf-speaker-loading'
 				}, '...'),
 			]),
 			// -- Suggestions dropdown
 			showSuggestions && filteredSuggestions.length > 0 && el('ul', {
 				key: 'suggestions',
-				className: 'bs-speaker-suggestions',
+				className: 'ishf-speaker-suggestions',
 				ref: suggestionsRef,
 			}, filteredSuggestions.map(function(att) {
-				var details = [att.bs_cf_function, att.bs_cf_organization].filter(Boolean).join(', ');
+				var details = [att.ishf_cf_function, att.ishf_cf_organization].filter(Boolean).join(', ');
 				return el('li', {
 					key: 'att-' + att.id,
-					className: 'bs-speaker-suggestion',
+					className: 'ishf-speaker-suggestion',
 					onMouseDown: function(e) {
 						e.preventDefault();
 						selectSuggestion(att);
@@ -270,11 +270,11 @@
 				}, [
 					el('strong', {
 						key: 'name',
-						className: 'bs-speaker-suggestion__name'
+						className: 'ishf-speaker-suggestion__name'
 					}, att.name),
 					details && el('span', {
 						key: 'details',
-						className: 'bs-speaker-suggestion__details'
+						className: 'ishf-speaker-suggestion__details'
 					}, details),
 				]);
 			})),
@@ -299,12 +299,12 @@
 			return s.id;
 		});
 		return el('div', {
-			className: 'bs-session-row'
+			className: 'ishf-session-row'
 		}, [
 			// -- Drag handle / Move buttons
 			el('div', {
 				key: 'actions',
-				className: 'bs-session-row__actions'
+				className: 'ishf-session-row__actions'
 			}, [
 				el(Button, {
 					key: 'up',
@@ -315,7 +315,7 @@
 					onClick: function() {
 						onMoveUp(index);
 					},
-					className: 'bs-session-row__move-btn',
+					className: 'ishf-session-row__move-btn',
 				}),
 				el(Button, {
 					key: 'down',
@@ -326,21 +326,21 @@
 					onClick: function() {
 						onMoveDown(index);
 					},
-					className: 'bs-session-row__move-btn',
+					className: 'ishf-session-row__move-btn',
 				}),
 				el('span', {
 					key: 'number',
-					className: 'bs-session-row__number'
+					className: 'ishf-session-row__number'
 				}, '#' + (index + 1)),
 			]),
 			// -- Time + Keynote (side by side)
 			el('div', {
 				key: 'fields',
-				className: 'bs-session-row__fields'
+				className: 'ishf-session-row__fields'
 			}, [
 				el('div', {
 					key: 'time',
-					className: 'bs-session-row__time'
+					className: 'ishf-session-row__time'
 				}, el(TextControl, {
 					label: 'Time',
 					placeholder: '09:00',
@@ -351,7 +351,7 @@
 				})),
 				el('div', {
 					key: 'keynote',
-					className: 'bs-session-row__keynote'
+					className: 'ishf-session-row__keynote'
 				}, el(TextControl, {
 					label: 'Keynote Title',
 					placeholder: 'Session title...',
@@ -362,7 +362,7 @@
 				})),
 				renderMode === 'split' && el('div', {
 					key: 'partId',
-					className: 'bs-session-row__part'
+					className: 'ishf-session-row__part'
 				}, el(SelectControl, {
 					label: 'Part (Tab)',
 					value: session.partId || '',
@@ -384,7 +384,7 @@
 			// -- Speakers
 			el('div', {
 				key: 'speakers',
-				className: 'bs-session-row__speakers'
+				className: 'ishf-session-row__speakers'
 			}, [
 				el('div', {
 					key: 'speakers-header',
@@ -423,7 +423,7 @@
 			// -- Moderator
 			el('div', {
 				key: 'moderator',
-				className: 'bs-session-row__moderator'
+				className: 'ishf-session-row__moderator'
 			}, [
 				el('label', {
 					key: 'label',
@@ -448,7 +448,7 @@
 				onClick: function() {
 					onRemove(index);
 				},
-				className: 'bs-session-row__remove',
+				className: 'ishf-session-row__remove',
 			}),
 		]);
 	}
@@ -482,7 +482,7 @@
 			onChange(updated);
 		}
 		return el('div', {
-			className: 'bs-seminar-parts-editor uk-margin-bottom'
+			className: 'ishf-seminar-parts-editor uk-margin-bottom'
 		}, [
 			el('h5', null, 'Program Parts (Tabs)'),
 			parts.map(function(part, index) {
@@ -613,16 +613,16 @@
 			});
 		}
 		return el('div', {
-			className: 'bs-seminar-editor'
+			className: 'ishf-seminar-editor'
 		}, [
 			// -- Block Header
 			el('div', {
 				key: 'header',
-				className: 'bs-seminar-editor__header'
+				className: 'ishf-seminar-editor__header'
 			}, [
 				el('h4', {
 					key: 'title'
-				}, 'BS Seminar Program'),
+				}, 'ISHF Seminar Program'),
 				el(SelectControl, {
 					key: 'mode',
 					label: 'Render Mode',
@@ -639,7 +639,7 @@
 							renderMode: val
 						});
 					},
-					className: 'bs-seminar-editor__mode',
+					className: 'ishf-seminar-editor__mode',
 				}),
 				renderMode === 'split' && el(PartsEditor, {
 					key: 'parts-editor',
@@ -654,7 +654,7 @@
 			// -- Sessions list
 			el('div', {
 				key: 'sessions',
-				className: 'bs-seminar-editor__sessions'
+				className: 'ishf-seminar-editor__sessions'
 			}, sessions.map(function(session, index) {
 				return el(SessionRow, {
 					key: 'session-' + index,
@@ -672,23 +672,23 @@
 			// -- Add session button
 			el('div', {
 				key: 'add-wrapper',
-				className: 'bs-seminar-editor__add'
+				className: 'ishf-seminar-editor__add'
 			}, el(Button, {
 				icon: 'plus-alt2',
 				variant: 'secondary',
 				onClick: addSession,
-				className: 'bs-seminar-editor__add-btn',
+				className: 'ishf-seminar-editor__add-btn',
 			}, 'Add Session')),
 		]);
 	}
 	// =========================================================================
 	//  REGISTER BLOCK
 	// =========================================================================
-	wp.blocks.registerBlockType('uikit-boostsolutions/bs-seminar-program', {
-		title: 'BS Seminar Program',
-		description: 'Boost Solutions: A seminar program with repeatable sessions, time slots, keynote titles, and speaker autocomplete.',
+	wp.blocks.registerBlockType('ishf/seminar-program', {
+		title: 'ISHF Seminar Program',
+		description: 'ISHF: A seminar program with repeatable sessions, time slots, keynote titles, and speaker autocomplete.',
 		icon: 'schedule',
-		category: 'boost-solutions',
+		category: 'ishf',
 		attributes: {
 			blockId: {
 				type: 'string',

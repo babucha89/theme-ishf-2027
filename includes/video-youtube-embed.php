@@ -2,14 +2,14 @@
 //----------------------------------------------------------------------------------
 //  Block: VIDEO YOUTUBE (EMBED)
 //  Base Theme: International Social Housing Festival (ISHF) 2027 Lisbon
-//  Reference: uikit-boostsolutions/includes/video-youtube-embed.php
+//  Reference: base template includes/video-youtube-embed.php
 //  Edited: BB, 30-OUT-2026
 //----------------------------------------------------------------------------------
 
 // -- Initializations
 global $youtube_id, $autoplay, $youtube_title;
 
-// Support both global variables (uikit-boostsolutions standard) and $args array
+// Support both global variables (base-template standard) and $args array
 $yt_id    = !empty($args['youtube_id']) ? $args['youtube_id'] : $youtube_id;
 $yt_auto  = isset($args['autoplay']) ? (bool) $args['autoplay'] : (bool) $autoplay;
 $yt_title = !empty($args['youtube_title']) ? $args['youtube_title'] : $youtube_title;

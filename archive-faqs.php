@@ -7,12 +7,13 @@
 
 <?php
 // -- Block: HEADER
+ishf_use_full_layout(true); // full navigation + footer (inner pages)
 get_header();
 ?>
 
 <?php
 // -- Section: HEADER for PREMIO
-get_template_part('includes/sections/header','premio');
+get_template_part('includes/sections/header', null, array('compact' => true));
 ?>
 
 
@@ -27,7 +28,7 @@ $args = array(
   'post_type' => 'faqs',
   'posts_per_page' => -1,
   // -- Use to order by CPT ORDER field (then by NAME)
-  'meta_key' => 'bs_cf_order',
+  'meta_key' => 'ishf_cf_order',
   'meta_type' => 'NUMERIC',
   'orderby' => [
     'meta_value_num' => 'DESC',
@@ -72,11 +73,6 @@ wp_reset_query();
 <?php
 // -- Section: CONTACT FORM
 get_template_part('includes/sections/contact-form');
-?>
-
-<?php
-// -- Section: SPONSORS for FOOTER
-get_template_part('includes/sections/footer');
 ?>
 
 <?php

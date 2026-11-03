@@ -1,13 +1,13 @@
 // -----------------------------------------------------------------------------
-//  Block: BS VIDEO SLIDER (Editor)
+//  Block: ISHF VIDEO SLIDER (Editor)
 //  Edited: 3L, 30-JUL-2026
 // -----------------------------------------------------------------------------
 
-wp.blocks.registerBlockType('uikit-boostsolutions/bs-video-slider', {
-	title: 'BS Video Slider',
-	description: 'Boost Solutions: A slider containing multiple BS Video blocks.',
+wp.blocks.registerBlockType('ishf/video-slider', {
+	title: 'ISHF Video Slider',
+	description: 'ISHF: A slider containing multiple ISHF Video blocks.',
 	icon: 'slides',
-	category: 'boost-solutions',
+	category: 'ishf',
 	attributes: {
 		blockId: {
 			type: 'string',
@@ -43,11 +43,11 @@ function EditComponent(props) {
 	var TextControl = wp.components.TextControl;
 	var InnerBlocks = wp.blockEditor.InnerBlocks;
 
-	var ALLOWED_BLOCKS = ['uikit-boostsolutions/bs-video'];
+	var ALLOWED_BLOCKS = ['ishf/video'];
 	
 	var TEMPLATE = [
-		['uikit-boostsolutions/bs-video', {}],
-		['uikit-boostsolutions/bs-video', {}]
+		['ishf/video', {}],
+		['ishf/video', {}]
 	];
 
 	// -- Update handlers
@@ -57,13 +57,13 @@ function EditComponent(props) {
 
 	// -- Render
 	return el('div', {
-		className: 'bs-video-slider-editor',
+		className: 'ishf-video-slider-editor',
 		style: { padding: '20px', border: '1px solid #ccc', borderRadius: '4px', background: '#fafafa' }
 	}, [
 		// -- Block Header
 		el('div', { key: 'header', style: { display: 'flex', alignItems: 'center', marginBottom: '20px', gap: '10px' } }, [
 			el('span', { key: 'icon', className: 'dashicons dashicons-video-alt3', style: { color: '#007cba' } }),
-			el('h4', { key: 'title', style: { margin: 0, color: '#007cba' } }, 'BS Video Slider')
+			el('h4', { key: 'title', style: { margin: 0, color: '#007cba' } }, 'ISHF Video Slider')
 		]),
 
 		// -- Section Title
@@ -85,7 +85,7 @@ function EditComponent(props) {
 				background: '#fff'
 			}
 		}, [
-			el('p', { key: 'desc', style: { marginTop: 0, color: '#666', fontSize: '13px', fontWeight: 'bold' } }, 'Slide Items (Only BS Video blocks allowed here):'),
+			el('p', { key: 'desc', style: { marginTop: 0, color: '#666', fontSize: '13px', fontWeight: 'bold' } }, 'Slide Items (Only ISHF Video blocks allowed here):'),
 			el(InnerBlocks, {
 				key: 'blocks',
 				allowedBlocks: ALLOWED_BLOCKS,
