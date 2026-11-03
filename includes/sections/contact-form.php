@@ -66,7 +66,7 @@ if ((!empty(RECAPTCHA_SITE_KEY)) || (!empty(RECAPTCHA_SECRET_KEY))):
         </div>
         <div class="uk-width-1-1 uk-width-1-2@s">
           <div class="uk-margin">
-            <input class="uk-input" type="text" placeholder="E-mail" value="<?php if (isset($email)) echo $email; ?>" name="email" id="email" />
+            <input class="uk-input" type="text" placeholder="<?php esc_attr_e('Email', TEXT_DOMAIN); ?>" value="<?php if (isset($email)) echo $email; ?>" name="email" id="email" />
           </div>
         </div>
         <div class="uk-width-1-1">

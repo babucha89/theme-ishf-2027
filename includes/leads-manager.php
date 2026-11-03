@@ -146,21 +146,21 @@ function ishf2027_insert_partnership_lead(array $data)
   if (empty($nome) || empty($email) || empty($empresa) || empty($cargo)) {
     return array(
       'success' => false,
-      'message' => __('Por favor, preencha todos os campos obrigatórios (*).', TEXT_DOMAIN),
+      'message' => __('Please fill in all required fields (*).', TEXT_DOMAIN),
     );
   }
 
   if (!is_email($email)) {
     return array(
       'success' => false,
-      'message' => __('Por favor, insira um endereço de email válido.', TEXT_DOMAIN),
+      'message' => __('Please enter a valid email address.', TEXT_DOMAIN),
     );
   }
 
   if ($gdpr_consent !== 1) {
     return array(
       'success' => false,
-      'message' => __('É obrigatório autorizar o tratamento de dados pessoais (RGPD).', TEXT_DOMAIN),
+      'message' => __('You must authorise the processing of personal data (GDPR).', TEXT_DOMAIN),
     );
   }
 
@@ -176,7 +176,7 @@ function ishf2027_insert_partnership_lead(array $data)
     return array(
       'success' => true,
       'id'      => (int) $recent_check,
-      'message' => __('O seu pedido de parceria já foi recebido.', TEXT_DOMAIN),
+      'message' => __('Your partnership request has already been received.', TEXT_DOMAIN),
     );
   }
 
@@ -198,14 +198,14 @@ function ishf2027_insert_partnership_lead(array $data)
   if ($inserted === false) {
     return array(
       'success' => false,
-      'message' => __('Erro ao guardar os dados na base de dados. Tente novamente mais tarde.', TEXT_DOMAIN),
+      'message' => __('Error saving your data. Please try again later.', TEXT_DOMAIN),
     );
   }
 
   return array(
     'success' => true,
     'id'      => $wpdb->insert_id,
-    'message' => __('Obrigado pelo seu interesse! O seu pedido de parceria foi registado com sucesso.', TEXT_DOMAIN),
+    'message' => __('Thank you for your interest! Your partnership request has been registered successfully.', TEXT_DOMAIN),
   );
 }
 
@@ -228,21 +228,21 @@ function ishf2027_insert_newsletter_lead(array $data)
   if (empty($nome) || empty($email)) {
     return array(
       'success' => false,
-      'message' => __('Por favor, preencha o seu nome e email.', TEXT_DOMAIN),
+      'message' => __('Please fill in your name and email.', TEXT_DOMAIN),
     );
   }
 
   if (!is_email($email)) {
     return array(
       'success' => false,
-      'message' => __('Por favor, insira um endereço de email válido.', TEXT_DOMAIN),
+      'message' => __('Please enter a valid email address.', TEXT_DOMAIN),
     );
   }
 
   if ($gdpr_consent !== 1) {
     return array(
       'success' => false,
-      'message' => __('É obrigatório autorizar o envio de newsletters (RGPD).', TEXT_DOMAIN),
+      'message' => __('You must authorise the sending of newsletters (GDPR).', TEXT_DOMAIN),
     );
   }
 
@@ -258,7 +258,7 @@ function ishf2027_insert_newsletter_lead(array $data)
     return array(
       'success' => true,
       'id'      => (int) $recent_check,
-      'message' => __('Subscrição já registada.', TEXT_DOMAIN),
+      'message' => __('You are already subscribed.', TEXT_DOMAIN),
     );
   }
 
@@ -276,14 +276,14 @@ function ishf2027_insert_newsletter_lead(array $data)
   if ($inserted === false) {
     return array(
       'success' => false,
-      'message' => __('Erro ao registar a sua subscrição. Tente novamente mais tarde.', TEXT_DOMAIN),
+      'message' => __('Error registering your subscription. Please try again later.', TEXT_DOMAIN),
     );
   }
 
   return array(
     'success' => true,
     'id'      => $wpdb->insert_id,
-    'message' => __('Subscrição efetuada com sucesso! Obrigado por acompanhar o ISHF 2027.', TEXT_DOMAIN),
+    'message' => __('Subscription successful! Thank you for following ISHF 2027.', TEXT_DOMAIN),
   );
 }
 
@@ -329,7 +329,7 @@ function ishf2027_ajax_partnership_submit()
 {
   if (!ishf2027_verify_submission_nonce('ishf2027_form_nonce')) {
     wp_send_json_error(array(
-      'message' => __('Validação de segurança expirada. Por favor, atualize a página.', TEXT_DOMAIN),
+      'message' => __('Security check expired. Please refresh the page.', TEXT_DOMAIN),
     ), 403);
   }
 
@@ -370,7 +370,7 @@ function ishf2027_ajax_newsletter_submit()
 {
   if (!ishf2027_verify_submission_nonce('ishf2027_form_nonce')) {
     wp_send_json_error(array(
-      'message' => __('Validação de segurança expirada. Por favor, atualize a página.', TEXT_DOMAIN),
+      'message' => __('Security check expired. Please refresh the page.', TEXT_DOMAIN),
     ), 403);
   }
 

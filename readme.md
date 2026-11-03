@@ -429,6 +429,25 @@ Following the `uikit-boostsolutions` function library:
 
 ---
 
+## Hero content: page-driven and translatable (`includes/sections/hero.php`)
+
+The home hero reads an optional page with the slug `sections/hero` (a child of the "sections" page, like Streaming). When it exists and is published (in WPML: its translation in the current language):
+
+| Source | Used for |
+|---|---|
+| Page title | H1 claim |
+| Excerpt | Lead paragraph |
+| Featured image | Hero photo (after the `ishf_hero_image_id` filter) |
+| Custom field `ishf_hero_eyebrow` | Small label above the H1 |
+| Custom field `ishf_hero_date` | Date and place line, e.g. `7 – 9 June 2027 · Lisbon, Portugal` |
+| Custom fields `ishf_hero_cta_primary`, `ishf_hero_cta_secondary` | Button labels |
+
+Any empty value falls back to the translated string in `languages/pt_PT.po`, so the hero never renders empty. Pages now support Excerpt and Custom Fields. In WPML > Settings > Custom Fields Translation, set the four `ishf_hero_*` fields to "Translate".
+
+## Translations
+
+All visitor-facing text goes through `__()` / `_e()` with `TEXT_DOMAIN` (`ishf-2027`). The Portuguese file is `languages/pt_PT.po` (compiled to `.mo`). Editorial content (pages, posts, hero, streaming) is translated in WPML; fixed interface strings come from the `.po` (or WPML > String Translation once it is active).
+
 ## Agent Rules & Guidelines
 - Architectural guidelines and accessibility standards are codified in `.agents/rules/ishf-uikit-accessibility.md`.
 

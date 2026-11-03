@@ -129,6 +129,7 @@ function ishf_setup()
   // Modern Theme Features (Explicitly declared <title> in header.php for WAVE / WCAG 2.1 AA compliance)
   remove_action('wp_head', '_wp_render_title_tag', 1);
   add_theme_support('post-thumbnails');
+  add_post_type_support('page', array('excerpt', 'custom-fields')); // sections/hero: lead + labels, translatable via WPML
   add_theme_support('html5', array('comment-list', 'comment-form', 'search-form', 'gallery', 'caption', 'style', 'script'));
   add_theme_support('responsive-embeds');
 

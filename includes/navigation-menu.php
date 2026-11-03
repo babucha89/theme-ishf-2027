@@ -31,7 +31,7 @@
           <span class="nav-brand-text">
             <strong>ISHF 2027</strong>
             <span class="nav-brand-sep" aria-hidden="true">|</span>
-            <span class="nav-brand-city">Lisbon</span>
+            <span class="nav-brand-city"><?php _e('Lisbon', TEXT_DOMAIN); ?></span>
           </span>
         </a>
       </div>

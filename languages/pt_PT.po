@@ -1687,3 +1687,338 @@ msgstr "Todas as notícias"
 #: includes/news-card.php, includes/post-meta-clipping.php, single.php (news & clippings)
 msgid "Related articles"
 msgstr "Artigos relacionados"
+
+# --- Translation sweep (all theme strings) ---
+
+msgid "Page Not Found"
+msgstr "Página não encontrada"
+
+msgid "The page you are looking for does not exist, has been removed or is temporarily unavailable."
+msgstr "A página que procura não existe, foi removida ou está temporariamente indisponível."
+
+msgid "Back to Homepage"
+msgstr "Voltar à página inicial"
+
+msgid "Archive"
+msgstr "Arquivo"
+
+msgid "Previous"
+msgstr "Anterior"
+
+msgid "Next"
+msgstr "Seguinte"
+
+msgid "No Content Found"
+msgstr "Nenhum conteúdo encontrado"
+
+msgid "There are no publications available in this archive at the moment."
+msgstr "Não existem publicações disponíveis neste arquivo de momento."
+
+msgid "Category"
+msgstr "Categoria"
+
+msgid "Load More Articles"
+msgstr "Carregar mais artigos"
+
+msgid "International Social Housing Festival (ISHF) 2027 Lisbon. Cities with Soul: It Begins with a Key."
+msgstr "Festival Internacional de Habitação Social (ISHF) 2027 Lisboa. Cidades com Alma: Tudo Começa com uma Chave."
+
+msgid "Get Your Ticket"
+msgstr "Obtenha o seu bilhete"
+
+msgid "Open to everyone."
+msgstr "Aberto a todos."
+
+msgid "Register as a Professional"
+msgstr "Inscreva-se como profissional"
+
+msgid "Professional registration, open until 31 December 2026."
+msgstr "Inscrição profissional, aberta até 31 de dezembro de 2026."
+
+msgid "I expressly authorize the processing of my personal data for marketing communications by Medialivre, S.A. and its partner entities, via telephone, email, SMS, and postal mail."
+msgstr "Autorizo expressamente o tratamento dos meus dados pessoais para comunicações de marketing por parte da Medialivre, S.A. e das suas entidades parceiras, por telefone, e-mail, SMS e correio postal."
+
+msgid "YouTube Video"
+msgstr "Vídeo YouTube"
+
+msgid "BrightCove Video"
+msgstr "Vídeo BrightCove"
+
+msgid "Search: %s"
+msgstr "Pesquisa: %s"
+
+msgid "Cookies Disclaimer"
+msgstr "Aviso de cookies"
+
+msgid "Festival"
+msgstr "Festival"
+
+msgid "About"
+msgstr "Sobre"
+
+msgid "Join the ISHF 2027 community"
+msgstr "Junte-se à comunidade ISHF 2027"
+
+msgid "Subscribe"
+msgstr "Subscrever"
+
+msgid "Full Name is required."
+msgstr "O nome completo é obrigatório."
+
+msgid "Corporate Email is required."
+msgstr "O e-mail profissional é obrigatório."
+
+msgid "Company / Organization is required."
+msgstr "A empresa / organização é obrigatória."
+
+msgid "Job Title / Role is required."
+msgstr "O cargo / função é obrigatório."
+
+msgid "Please correct the highlighted fields and try again."
+msgstr "Corrija os campos assinalados e tente novamente."
+
+msgid "Email is required."
+msgstr "O e-mail é obrigatório."
+
+msgid "Language"
+msgstr "Idioma"
+
+msgid "Open menu"
+msgstr "Abrir menu"
+
+msgid "Menu"
+msgstr "Menu"
+
+msgid "Close menu"
+msgstr "Fechar menu"
+
+msgid "Close modal"
+msgstr "Fechar janela"
+
+msgid "Submit your proposal for Call for Sessions (opens external form in new tab)"
+msgstr "Submeta a sua proposta para a Chamada de Sessões (abre o formulário externo num novo separador)"
+
+msgid "International Social Housing Festival"
+msgstr "Festival Internacional de Habitação Social"
+
+msgid "The international meeting point for people, ideas and solutions to build more inclusive, sustainable and resilient cities."
+msgstr "O ponto de encontro internacional de pessoas, ideias e soluções para construir cidades mais inclusivas, sustentáveis e resilientes."
+
+msgid "7 – 9 June 2027"
+msgstr "7 – 9 de junho de 2027"
+
+msgid "Choose your journey"
+msgstr "Escolha o seu percurso"
+
+msgid "Contribute to the Programme"
+msgstr "Contribua para o Programa"
+
+msgid "Attend the Festival"
+msgstr "Participe no Festival"
+
+msgid "e.g. Maria Silva"
+msgstr "ex.: Maria Silva"
+
+msgid "e.g. maria@company.com"
+msgstr "ex.: maria@empresa.com"
+
+msgid "e.g. Housing Europe / Lisbon Municipality"
+msgstr "ex.: Housing Europe / Câmara Municipal de Lisboa"
+
+msgid "e.g. Director of Sustainability"
+msgstr "ex.: Diretora de Sustentabilidade"
+
+msgid "Tell us about your organization or preferred areas of collaboration..."
+msgstr "Fale-nos da sua organização ou das áreas de colaboração que prefere..."
+
+msgid "Festival Agenda"
+msgstr "Agenda do Festival"
+
+msgid "Three Days of Exchange, Innovation & Urban Action"
+msgstr "Três dias de troca, inovação e ação urbana"
+
+msgid "Explore high-level international plenaries, practical workshops, site tours of innovative Lisbon housing projects, and policy assemblies."
+msgstr "Descubra plenários internacionais de alto nível, workshops práticos, visitas a projetos inovadores de habitação em Lisboa e sessões de networking."
+
+msgid "Day 1 · 7 Jun"
+msgstr "Dia 1 · 7 jun"
+
+msgid "Day 2 · 8 Jun"
+msgstr "Dia 2 · 8 jun"
+
+msgid "Day 3 · 9 Jun"
+msgstr "Dia 3 · 9 jun"
+
+msgid "Plenary"
+msgstr "Plenário"
+
+msgid "Keynotes by European, Portuguese, and Lisbon leadership on social housing governance."
+msgstr "Intervenções de líderes europeus, portugueses e de Lisboa sobre a governação da habitação social."
+
+msgid "Policy Debate"
+msgstr "Debate de políticas"
+
+msgid "European Financing Models for Affordable Living"
+msgstr "Modelos europeus de financiamento da habitação acessível"
+
+msgid "Unlocking public investment, EIB facilities, and cooperative housing funds."
+msgstr "Mobilizar o investimento público, os instrumentos do BEI e os fundos de habitação cooperativa."
+
+msgid "Site Visits"
+msgstr "Visitas a projetos"
+
+msgid "Lisbon Housing Tour: Regeneration, Co-ops & Heritage"
+msgstr "Roteiro da habitação em Lisboa: regeneração, cooperativas e património"
+
+msgid "Guided field visits across innovative municipal and community housing projects in Greater Lisbon."
+msgstr "Visitas guiadas a projetos municipais e comunitários inovadores na Grande Lisboa."
+
+msgid "Workshops"
+msgstr "Workshops"
+
+msgid "Climate Resilience & Energy Communities in Social Housing"
+msgstr "Resiliência climática e comunidades de energia na habitação social"
+
+msgid "Circular renovation, zero-emission neighborhoods, and combating energy poverty."
+msgstr "Renovação circular, bairros com zero emissões e combate à pobreza energética."
+
+msgid "Mayors Assembly"
+msgstr "Assembleia de Presidentes de Câmara"
+
+msgid "International Mayors & Urban Leaders Roundtable"
+msgstr "Mesa-redonda de presidentes de câmara e líderes urbanos internacionais"
+
+msgid "Closing Plenary"
+msgstr "Plenário de encerramento"
+
+msgid "Handover of the ISHF Key to the 2029 Host City"
+msgstr "Entrega da Chave do ISHF à cidade anfitriã de 2029"
+
+msgid "Celebration of festival achievements, artistic performances, and future outlook."
+msgstr "Celebração das conquistas do festival, atuações artísticas e perspetivas futuras."
+
+msgid "Voices of the Festival"
+msgstr "Vozes do Festival"
+
+msgid "Meet the international policymakers, cooperative housing advocates, architects, and community leaders leading the dialogue in Lisbon."
+msgstr "Conheça os decisores políticos internacionais, defensores da habitação cooperativa, arquitetos e líderes comunitários que lideram a mudança."
+
+msgid "Mayor of Lisbon"
+msgstr "Presidente da Câmara Municipal de Lisboa"
+
+msgid "City of Lisbon"
+msgstr "Cidade de Lisboa"
+
+msgid "President of Housing Europe"
+msgstr "Presidente da Housing Europe"
+
+msgid "Housing Europe"
+msgstr "Housing Europe"
+
+msgid "European Social & Cooperative Housing Federation"
+msgstr "Federação Europeia de Habitação Social e Cooperativa"
+
+msgid "UN Special Rapporteur"
+msgstr "Relator Especial das Nações Unidas"
+
+msgid "United Nations"
+msgstr "Nações Unidas"
+
+msgid "Global Right to Adequate Housing Rapporteur"
+msgstr "Relator Global para o Direito à Habitação Condigna"
+
+msgid "Pritzker Laureate Guest"
+msgstr "Convidado laureado com o Prémio Pritzker"
+
+msgid "Sustainable Public Architecture & Circular Design"
+msgstr "Arquitetura pública sustentável e design circular"
+
+msgid "Partners"
+msgstr "Parceiros"
+
+msgid "Partners and sponsors"
+msgstr "Parceiros e patrocinadores"
+
+msgid "Live Stream"
+msgstr "Transmissão em direto"
+
+msgid "Watch Live Stream"
+msgstr "Ver transmissão em direto"
+
+msgid "Play video: %s"
+msgstr "Reproduzir vídeo: %s"
+
+msgid "Close video modal"
+msgstr "Fechar janela de vídeo"
+
+msgid "We are preparing something special for the International Social Housing Festival 2027. We will be back online soon."
+msgstr "Estamos a preparar algo especial para o Festival Internacional de Habitação Social 2027. Voltaremos em breve."
+
+msgid "Search"
+msgstr "Pesquisar"
+
+msgid "Search Results for: %s"
+msgstr "Resultados da pesquisa por: %s"
+
+msgid "Read More"
+msgstr "Ler mais"
+
+msgid "Nothing Found"
+msgstr "Nada encontrado"
+
+msgid "Sorry, but nothing matched your search terms. Please try again with different keywords."
+msgstr "Lamentamos, mas nada corresponde aos termos pesquisados. Tente novamente com outras palavras-chave."
+
+msgid "Back to Home"
+msgstr "Voltar ao início"
+
+msgid "Please enter a valid email address."
+msgstr "Por favor, insira um endereço de e-mail válido."
+
+msgid "You must authorise the processing of personal data (GDPR)."
+msgstr "É obrigatório autorizar o tratamento de dados pessoais (RGPD)."
+
+msgid "Your partnership request has already been received."
+msgstr "O seu pedido de parceria já foi recebido."
+
+msgid "Error saving your data. Please try again later."
+msgstr "Erro ao guardar os dados. Tente novamente mais tarde."
+
+msgid "Thank you for your interest! Your partnership request has been registered successfully."
+msgstr "Obrigado pelo seu interesse! O seu pedido de parceria foi registado com sucesso."
+
+msgid "Please fill in your name and email."
+msgstr "Por favor, preencha o seu nome e e-mail."
+
+msgid "You must authorise the sending of newsletters (GDPR)."
+msgstr "É obrigatório autorizar o envio de newsletters (RGPD)."
+
+msgid "You are already subscribed."
+msgstr "Subscrição já registada."
+
+msgid "Error registering your subscription. Please try again later."
+msgstr "Erro ao registar a sua subscrição. Tente novamente mais tarde."
+
+msgid "Subscription successful! Thank you for following ISHF 2027."
+msgstr "Subscrição efetuada com sucesso! Obrigado por acompanhar o ISHF 2027."
+
+msgid "Security check expired. Please refresh the page."
+msgstr "Validação de segurança expirada. Por favor, atualize a página."
+
+msgid "Opening Ceremony: Cities with Soul & Right to Housing"
+msgstr "Cerimónia de abertura: Cidades com Alma e o Direito à Habitação"
+
+msgid "Mayors commit to the Lisbon Declaration for Sustainable Public Housing."
+msgstr "Os presidentes de câmara comprometem-se com a Declaração de Lisboa para a Habitação Pública Sustentável."
+
+msgid "Keynote Speakers & Urban Visionaries"
+msgstr "Oradores principais e visionários urbanos"
+
+msgid "Host City Leader & Municipal Housing Champion"
+msgstr "Líder da cidade anfitriã e defensor da habitação municipal"
+
+msgid "Lead Architect & Urban Planner"
+msgstr "Arquiteto principal e urbanista"
+
+msgid "Lisbon"
+msgstr "Lisboa"
