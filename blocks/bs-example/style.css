@@ -1,0 +1,13 @@
+/* -- EDITOR / BACKOFFICE -- */
+.bs-example-editor { background-color: #F9F9F9; padding: 20px; border: 1px solid #E6E6E6; }
+.bs-example-editor h4 { margin-top: 0; font-weight: 600; }
+.bs-example-editor__media { margin-bottom: 16px; }
+.bs-example-editor__preview { margin-top: 8px; }
+
+
+/* -- FRONTEND -- */
+.bs-example { margin-bottom: 30px; }
+.bs-example__image img { width: 100%; height: auto; display: block; }
+.bs-example__title { margin-top: 15px; margin-bottom: 5px; }
+.bs-example__description { font-size: 1rem; line-height: 1.6; }
+.bs-example--featured { border-left: 4px solid currentColor; padding-left: 15px; }

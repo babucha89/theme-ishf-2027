@@ -1,0 +1,244 @@
+/* =============================================================================
+   Block: BS SEMINAR PROGRAM
+   Edited: 3L, 23-JUL-2026
+   ============================================================================= */
+
+
+/* -- EDITOR / BACKOFFICE --------------------------------------------------- */
+
+.bs-seminar-editor {
+  background-color: #F9F9F9;
+  border: 1px solid #E6E6E6;
+  padding: 20px;
+}
+
+.bs-seminar-editor__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 16px;
+  padding-bottom: 12px;
+  border-bottom: 2px solid #E0E0E0;
+}
+
+.bs-seminar-editor__header h4 {
+  margin: 0;
+  font-weight: 600;
+  font-size: 1rem;
+}
+
+.bs-seminar-editor__mode {
+  min-width: 180px;
+}
+
+.bs-seminar-editor__mode .components-base-control__field {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 0;
+}
+
+
+/* -- Session Row ----------------------------------------------------------- */
+
+.bs-session-row {
+  background: #fff;
+  border: 1px solid #DDD;
+  border-radius: 4px;
+  padding: 16px;
+  margin-bottom: 10px;
+  position: relative;
+  transition: box-shadow 0.2s ease;
+}
+
+.bs-session-row:hover {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.bs-session-row__actions {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  margin-bottom: 10px;
+}
+
+.bs-session-row__move-btn {
+  min-width: 28px !important;
+  height: 28px !important;
+  padding: 0 !important;
+}
+
+.bs-session-row__number {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #888;
+  margin-left: 8px;
+}
+
+.bs-session-row__fields {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.bs-session-row__time {
+  flex: 0 0 100px;
+}
+
+.bs-session-row__keynote {
+  flex: 1;
+}
+
+
+.bs-session-row__remove {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+}
+
+
+/* -- Speaker Autocomplete -------------------------------------------------- */
+
+.bs-speaker-autocomplete {
+  position: relative;
+}
+
+.bs-speaker-tags {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-bottom: 8px;
+}
+
+.bs-speaker-tag {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: #E8E8E8;
+  border-radius: 3px;
+  padding: 5px 10px;
+  font-size: 0.8rem;
+  line-height: 1.4;
+}
+
+.bs-speaker-tag--linked {
+  background: #D4EDDA;
+  color: #155724;
+}
+
+.bs-speaker-tag__content {
+  flex: 1;
+}
+
+.bs-speaker-tag__remove {
+  flex-shrink: 0;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 1rem;
+  line-height: 1;
+  padding: 0 2px;
+  color: #888;
+  transition: color 0.15s;
+}
+
+.bs-speaker-tag__remove:hover {
+  color: #C00;
+}
+
+.bs-speaker-input-wrapper {
+  position: relative;
+}
+
+.bs-speaker-input {
+  width: 100%;
+}
+
+.bs-speaker-loading {
+  position: absolute;
+  right: 8px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 0.8rem;
+  color: #999;
+}
+
+.bs-speaker-suggestions {
+  position: absolute;
+  z-index: 100;
+  top: 100%;
+  left: 0;
+  right: 0;
+  max-height: 250px;
+  overflow-y: auto;
+  background: #fff;
+  border: 1px solid #DDD;
+  border-top: none;
+  border-radius: 0 0 4px 4px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.bs-speaker-suggestion {
+  display: flex;
+  flex-direction: column;
+  padding: 8px 12px;
+  cursor: pointer;
+  transition: background-color 0.1s;
+  border-bottom: 1px solid #F0F0F0;
+}
+
+.bs-speaker-suggestion:last-child {
+  border-bottom: none;
+}
+
+.bs-speaker-suggestion:hover {
+  background-color: #F0F0F0;
+}
+
+.bs-speaker-suggestion__name {
+  font-size: 0.85rem;
+}
+
+.bs-speaker-suggestion__details {
+  font-size: 0.75rem;
+  color: #888;
+  margin-top: 2px;
+}
+
+
+/* -- Moderator / Speakers Labels ------------------------------------------- */
+
+.bs-session-row__moderator,
+.bs-session-row__speakers {
+  margin-bottom: 4px;
+}
+
+.bs-session-row__moderator > label,
+.bs-session-row__speakers > label {
+  display: block;
+  margin-bottom: 6px;
+  font-weight: 500;
+}
+
+
+/* -- Add Session Button ---------------------------------------------------- */
+
+.bs-seminar-editor__add {
+  margin-top: 6px;
+}
+
+.bs-seminar-editor__add-btn {
+  width: 100%;
+  justify-content: center;
+  border-style: dashed !important;
+}
+
+
+/* -- FRONTEND -------------------------------------------------------------- */
+/* UIkit handles all frontend styles via utility classes:                      */
+/* uk-list uk-list-divider, uk-grid-small, uk-flex-top, uk-width-auto,        */
+/* uk-width-expand, uk-text-bold, uk-text-small, uk-text-muted, uk-link-muted */
