@@ -159,6 +159,25 @@ endif;
 //------------------------------------------------------------------------------
 //  Loading SCRIPTS and STYLESHEETS
 //------------------------------------------------------------------------------
+//------------------------------------------------------------------------------
+//  WPML helper: returns the post / page / ID translated into the current language.
+//  No-op when WPML is not active (returns the input unchanged).
+//------------------------------------------------------------------------------
+if (!function_exists('ishf_translate_post')):
+  function ishf_translate_post($post, $post_type = 'page')
+  {
+    $id = is_object($post) ? (int) $post->ID : (int) $post;
+    if (!$id) {
+      return $post;
+    }
+    $translated = (int) apply_filters('wpml_object_id', $id, $post_type, true);
+    if (!$translated || $translated === $id) {
+      return $post;
+    }
+    return is_object($post) ? get_post($translated) : $translated;
+  }
+endif;
+
 add_action('wp_enqueue_scripts', 'ishf_load_scripts');
 function ishf_load_scripts()
 {

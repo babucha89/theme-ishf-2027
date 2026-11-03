@@ -9,6 +9,7 @@
 <?php
 // -- Validate if page exists, is published and cookies have not been accepted
 $page_intro = get_page_by_path('cookie-policy', OBJECT, 'page') ?: get_page_by_path('politica-de-cookies', OBJECT, 'page');
+if (!empty($page_intro)) { $page_intro = ishf_translate_post($page_intro); } // current-language version (WPML)
 
 // Allow displaying if cookie has not been accepted yet and not inside widget iframe
 // If page exists in WP database, ensure it is published; if page does not exist yet in DB, allow rendering with fallback URL

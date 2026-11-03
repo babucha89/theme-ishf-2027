@@ -18,6 +18,10 @@ if (empty($page_streaming) && $page_path === 'sections/streaming') {
   $page_streaming = get_page_by_path('streaming');
 }
 
+if (!empty($page_streaming) && empty($args['page_id'])) {
+  $page_streaming = ishf_translate_post($page_streaming); // current-language version (WPML)
+}
+
 if (!empty($page_streaming)):
   if ($page_streaming->post_status == 'publish'):
 

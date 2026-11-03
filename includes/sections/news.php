@@ -16,7 +16,7 @@ if (!$ishf_news->have_posts()) {
   wp_reset_postdata();
   return;
 }
-$ishf_posts_page = (int) get_option('page_for_posts');
+$ishf_posts_page = ishf_translate_post((int) get_option('page_for_posts')); // current-language version (WPML)
 ?>
 <section id="news" class="ishf-news" aria-labelledby="news-title">
   <div class="uk-container">
