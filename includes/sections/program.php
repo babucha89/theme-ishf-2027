@@ -32,6 +32,7 @@ $sessions = ishf_get_programme_sessions();
       $has_filters = !empty($themes) || !empty($speakers);
     ?>
 
+      <div class="programme-toolbar">
       <?php if (count($days) > 1): ?>
       <nav class="programme-days" aria-label="<?php esc_attr_e('Programme days', TEXT_DOMAIN); ?>">
         <ul class="uk-subnav uk-subnav-pill uk-margin-remove-bottom">
@@ -48,9 +49,13 @@ $sessions = ishf_get_programme_sessions();
 
       <?php if ($has_filters): ?>
       <form class="programme-filters" id="programme-filters" aria-label="<?php esc_attr_e('Filter the programme', TEXT_DOMAIN); ?>" onsubmit="return false;" hidden>
+        <p id="programme-count" class="programme-count" role="status" aria-live="polite"
+           data-one="<?php echo esc_attr__('1 session', TEXT_DOMAIN); ?>"
+           data-many="<?php echo esc_attr__('%d sessions', TEXT_DOMAIN); ?>"
+           data-none="<?php echo esc_attr__('No sessions match these filters.', TEXT_DOMAIN); ?>"></p>
         <?php if (!empty($themes)): ?>
           <label class="programme-filter">
-            <span><?php esc_html_e('Theme', TEXT_DOMAIN); ?></span>
+            <span class="uk-visually-hidden"><?php esc_html_e('Theme', TEXT_DOMAIN); ?></span>
             <select class="uk-select" data-filter="theme">
               <option value=""><?php esc_html_e('All themes', TEXT_DOMAIN); ?></option>
               <?php foreach ($themes as $slug => $name): ?>
@@ -61,7 +66,7 @@ $sessions = ishf_get_programme_sessions();
         <?php endif; ?>
         <?php if (!empty($speakers)): ?>
           <label class="programme-filter">
-            <span><?php esc_html_e('Speaker', TEXT_DOMAIN); ?></span>
+            <span class="uk-visually-hidden"><?php esc_html_e('Speaker', TEXT_DOMAIN); ?></span>
             <select class="uk-select" data-filter="speaker">
               <option value=""><?php esc_html_e('All speakers', TEXT_DOMAIN); ?></option>
               <?php foreach ($speakers as $sid => $name): ?>
@@ -70,13 +75,10 @@ $sessions = ishf_get_programme_sessions();
             </select>
           </label>
         <?php endif; ?>
-        <button type="button" class="uk-button uk-button-default" data-programme-reset><?php esc_html_e('Clear filters', TEXT_DOMAIN); ?></button>
+        <button type="button" class="uk-button uk-button-text programme-reset" data-programme-reset><?php esc_html_e('Clear filters', TEXT_DOMAIN); ?></button>
       </form>
-      <p id="programme-count" class="programme-count" role="status" aria-live="polite"
-         data-one="<?php echo esc_attr__('1 session', TEXT_DOMAIN); ?>"
-         data-many="<?php echo esc_attr__('%d sessions', TEXT_DOMAIN); ?>"
-         data-none="<?php echo esc_attr__('No sessions match these filters.', TEXT_DOMAIN); ?>"></p>
       <?php endif; ?>
+      </div>
 
       <div id="programme-list">
       <?php foreach ($days as $day_key => $day_sessions): ?>

@@ -888,14 +888,19 @@ html.dark-mode .article-hero { background-color: var(--colors-night-800); }
 /* ---------- Programme (includes/sections/program.php, program-teaser.php) ---------- */
 .ishf-programme { padding: var(--grids-spacing-32) 0 var(--grids-spacing-64); }
 .ishf-programme-teaser { padding: var(--grids-spacing-64) 0; background-color: var(--colors-background-muted); }
-.programme-days { position: sticky; top: 84px; z-index: 10; padding: 12px 0; margin-bottom: var(--grids-spacing-24); background-color: var(--colors-background-default); }
-.programme-days .uk-subnav > * > a { min-height: 44px; display: inline-flex; align-items: center; color: var(--colors-text-heading); border: 1px solid var(--colors-border-default); border-radius: var(--grids-radius-pill); font-weight: 700; }
+.programme-toolbar { position: sticky; top: 84px; z-index: 10; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px var(--grids-spacing-24); padding: 12px 0; margin-bottom: var(--grids-spacing-24); background-color: var(--colors-background-default); border-bottom: 1px solid var(--colors-border-default); }
+.programme-days .uk-subnav { margin: 0; gap: 8px; }
+.programme-days .uk-subnav > * { padding-left: 0; }
+.programme-days .uk-subnav > * > a { min-height: 40px; display: inline-flex; align-items: center; color: var(--colors-text-heading); border: 1px solid var(--colors-border-default); border-radius: var(--grids-radius-pill); font-weight: 700; }
 .programme-days .uk-subnav > * > a:hover, .programme-days .uk-subnav > * > a:focus { background-color: var(--colors-brand-sunny-yellow); border-color: var(--colors-brand-sunny-yellow); color: var(--colors-brand-blue-sky); }
-.programme-filters { display: flex; flex-wrap: wrap; gap: var(--grids-spacing-16); align-items: flex-end; margin-bottom: var(--grids-spacing-16); }
+.programme-filters { display: flex; flex-wrap: wrap; align-items: center; justify-content: flex-end; gap: 8px 12px; margin: 0 0 0 auto; }
 .programme-filters[hidden], .programme-day[hidden], .programme-item[hidden] { display: none; }
-.programme-filter { display: flex; flex-direction: column; gap: 4px; flex: 1 1 200px; max-width: 320px; font-size: var(--fonts-size-small); font-weight: var(--fonts-weight-semibold); color: var(--colors-text-default); }
-.programme-count { margin: 0 0 var(--grids-spacing-24); font-size: var(--fonts-size-small); color: var(--colors-text-muted); }
-.programme-day { margin-bottom: var(--grids-spacing-48); scroll-margin-top: 180px; }
+.programme-filter { display: block; margin: 0; }
+.programme-filter .uk-select { height: 40px; min-width: 170px; font-size: var(--fonts-size-small); }
+.programme-reset { height: 40px; padding: 0 8px; font-size: var(--fonts-size-small); }
+.programme-count { margin: 0; font-size: var(--fonts-size-small); color: var(--colors-text-muted); white-space: nowrap; }
+@media (max-width: 959px) { .programme-toolbar { position: static; } .programme-filters { width: 100%; justify-content: flex-start; margin-left: 0; } .programme-filter { flex: 1 1 160px; } }
+.programme-day { margin-bottom: var(--grids-spacing-48); scroll-margin-top: 170px; }
 .programme-day-title { margin: 0 0 var(--grids-spacing-16); padding-bottom: 8px; font-size: var(--fonts-size-heading-4); border-bottom: 2px solid var(--colors-brand-sunny-yellow); }
 .programme-items { list-style: none; margin: 0; padding: 0; }
 .programme-item { display: grid; grid-template-columns: 1fr; gap: var(--grids-spacing-12); padding: var(--grids-spacing-20, 20px); margin-bottom: var(--grids-spacing-12); background-color: var(--colors-background-card); border: 1px solid var(--colors-border-default); border-radius: var(--grids-radius-lg); }
