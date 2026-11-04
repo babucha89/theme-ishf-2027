@@ -20,7 +20,7 @@ get_header();
 
 <?php
 // -- Section: HEADER
-get_template_part('includes/sections/header', null, array('compact' => true));
+get_template_part('includes/sections/header');
 ?>
 
 <?php
@@ -85,15 +85,25 @@ get_template_part('includes/sections/sponsors','header');
           <span class="separator bottom"></span>
         </div>
         <?php
-        // -- Link back to HOMEPAGE
-        // $url_return = str_replace(BASE_SITE, REDIRECT_SITE, get_permalink(get_page_by_path('conferencia')));
-        $url_return = REDIRECT_SITE;
-        if (!empty($url_return)):
+        // -- Link back to the PREVIOUS page (falls back to the Programme when opened directly)
+        $url_return = ishf_get_programme_url();
         ?>
-        <a class="uk-button uk-button-large uk-button-default uk-margin-large-top" href="<?php echo $url_return; ?>#conference-attendants"><span data-uk-icon="chevron-left"></span> <?php _e('Back to Homepage',TEXT_DOMAIN); ?></a>
-        <?php
-        endif;
-        ?>
+        <a class="uk-button uk-button-large uk-button-default uk-margin-large-top" href="<?php echo esc_url($url_return); ?>" data-ishf-back><span data-uk-icon="chevron-left"></span> <?php _e('Back', TEXT_DOMAIN); ?></a>
+        <script>
+        (function () {
+          var link = document.querySelector('[data-ishf-back]');
+          if (!link) { return; }
+          link.addEventListener('click', function (e) {
+            // Only go "back" when the visitor really came from this site
+            var sameSite = false;
+            try { sameSite = document.referrer !== '' && new URL(document.referrer).host === location.host; } catch (err) {}
+            if (sameSite && history.length > 1) {
+              e.preventDefault();
+              history.back();
+            }
+          });
+        })();
+        </script>
       </div>
     </div>
   </div>

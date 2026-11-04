@@ -20,21 +20,16 @@ $sessions = ishf_get_programme_sessions();
     <?php else:
       // -- Group by day and collect filter options
       $days     = array();
-      $rooms    = array();
       $themes   = array();
       $speakers = array();
       foreach ($sessions as $s) {
         $days[$s['day']][] = $s;
-        if ($s['location'] !== '') {
-          $rooms[$s['location']] = $s['location'];
-        }
         $themes   += $s['themes'];
         $speakers += $s['speakers'];
       }
-      asort($rooms);
       asort($themes);
       asort($speakers);
-      $has_filters = !empty($rooms) || !empty($themes) || !empty($speakers);
+      $has_filters = !empty($themes) || !empty($speakers);
     ?>
 
       <?php if (count($days) > 1): ?>
@@ -53,17 +48,6 @@ $sessions = ishf_get_programme_sessions();
 
       <?php if ($has_filters): ?>
       <form class="programme-filters" id="programme-filters" aria-label="<?php esc_attr_e('Filter the programme', TEXT_DOMAIN); ?>" onsubmit="return false;" hidden>
-        <?php if (!empty($rooms)): ?>
-          <label class="programme-filter">
-            <span><?php esc_html_e('Room', TEXT_DOMAIN); ?></span>
-            <select class="uk-select" data-filter="room">
-              <option value=""><?php esc_html_e('All rooms', TEXT_DOMAIN); ?></option>
-              <?php foreach ($rooms as $room): ?>
-                <option value="<?php echo esc_attr($room); ?>"><?php echo esc_html($room); ?></option>
-              <?php endforeach; ?>
-            </select>
-          </label>
-        <?php endif; ?>
         <?php if (!empty($themes)): ?>
           <label class="programme-filter">
             <span><?php esc_html_e('Theme', TEXT_DOMAIN); ?></span>
@@ -109,7 +93,6 @@ $sessions = ishf_get_programme_sessions();
               $ics = ishf_programme_ics_url($s);
             ?>
               <li class="programme-item"
-                  data-room="<?php echo esc_attr($s['location']); ?>"
                   data-themes="<?php echo esc_attr(implode(' ', array_keys($s['themes']))); ?>"
                   data-speakers="<?php echo esc_attr(implode(' ', array_keys($s['speakers']))); ?>">
                 <div class="programme-time">
@@ -171,8 +154,7 @@ $sessions = ishf_get_programme_sessions();
           form.querySelectorAll('select[data-filter]').forEach(function (s) { f[s.getAttribute('data-filter')] = s.value; });
           var shown = 0;
           items.forEach(function (li) {
-            var ok = (!f.room || li.getAttribute('data-room') === f.room) &&
-                     (!f.theme || (' ' + li.getAttribute('data-themes') + ' ').indexOf(' ' + f.theme + ' ') > -1) &&
+            var ok = (!f.theme || (' ' + li.getAttribute('data-themes') + ' ').indexOf(' ' + f.theme + ' ') > -1) &&
                      (!f.speaker || (' ' + li.getAttribute('data-speakers') + ' ').indexOf(' ' + f.speaker + ' ') > -1);
             li.hidden = !ok;
             if (ok) { shown++; }

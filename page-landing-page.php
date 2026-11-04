@@ -20,7 +20,7 @@ get_header();
 
 <?php
 // -- Section: HEADER (Sticky Nav, Project Logo & Claim Side-by-Side)
-get_template_part('includes/sections/header');
+get_template_part('includes/sections/header', null, array('compact' => false));
 ?>
 
 <?php

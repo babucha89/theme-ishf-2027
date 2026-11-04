@@ -507,7 +507,7 @@ if (!function_exists('ishf_enqueue_block_assets')):
   add_action('enqueue_block_assets', 'ishf_enqueue_block_assets');
   function ishf_enqueue_block_assets()
   {
-    $deps = array('wp-blocks', 'wp-element', 'wp-editor', 'wp-i18n');
+    $deps = array('wp-blocks', 'wp-element', 'wp-editor', 'wp-i18n', 'wp-components', 'wp-data', 'wp-api-fetch', 'wp-block-editor');
     foreach (ishf_get_block_folders() as $folder):
       $name = basename($folder);
       $uri  = get_template_directory_uri() . '/blocks/' . $name;

@@ -27,11 +27,6 @@ function ishf_seminar_register_attendants_endpoint()
         'type' => 'string',
         'sanitize_callback' => 'sanitize_text_field',
       ),
-      'post_id' => array(
-        'required' => false,
-        'type' => 'integer',
-        'sanitize_callback' => 'absint',
-      ),
     ),
   ));
 }
@@ -39,56 +34,29 @@ function ishf_seminar_register_attendants_endpoint()
 function ishf_seminar_get_attendants($request)
 {
   $search = $request->get_param('search');
-  $post_id = $request->get_param('post_id');
 
   $args = array(
     'post_type' => 'attendants',
-    'posts_per_page' => 20,
+    'posts_per_page' => 50,
     'post_status' => 'publish',
     'orderby' => 'title',
     'order' => 'ASC',
+    'no_found_rows' => true,
   );
-
-  // -- Filter attendants by the event's related attendants (ishf_cf_attendants_related)
-  if (!empty($post_id)) {
-    $related = get_post_meta($post_id, 'ishf_cf_attendants_related', true);
-    if (!empty($related)) {
-      $related_ids = array_map('intval', array_map('trim', explode(',', $related)));
-      $args['post__in'] = $related_ids;
-    } else {
-      // DEBUG: Return diagnostic info instead of empty array
-      return rest_ensure_response(array(
-        '_debug' => array(
-          'post_id' => $post_id,
-          'post_type' => get_post_type($post_id),
-          'meta_raw' => $related,
-          'all_meta_keys' => array_keys(get_post_meta($post_id)),
-        ),
-      ));
-    }
-  }
-
   if (!empty($search)) {
     $args['s'] = $search;
   }
 
   $query = new WP_Query($args);
   $results = array();
-
-  if ($query->have_posts()):
-    while ($query->have_posts()):
-      $query->the_post();
-      $function = get_post_meta(get_the_ID(), 'ishf_cf_function', true);
-      $organization = get_post_meta(get_the_ID(), 'ishf_cf_organization', true);
-
-      $results[] = array(
-        'id' => get_the_ID(),
-        'name' => get_the_title(),
-        'ishf_cf_function' => !empty($function) ? $function : '',
-        'ishf_cf_organization' => !empty($organization) ? $organization : '',
-      );
-    endwhile;
-  endif;
+  foreach ($query->posts as $post) {
+    $results[] = array(
+      'id' => (int) $post->ID,
+      'name' => get_the_title($post),
+      'ishf_cf_function' => (string) get_post_meta($post->ID, 'ishf_cf_function', true),
+      'ishf_cf_organization' => (string) get_post_meta($post->ID, 'ishf_cf_organization', true),
+    );
+  }
   wp_reset_postdata();
 
   return rest_ensure_response($results);
@@ -96,46 +64,67 @@ function ishf_seminar_get_attendants($request)
 
 
 //--------------------------------------------
-//  Helper: Format a speaker/moderator for frontend
+//  Helper: Render one speaker / moderator (face, name, function, organisation)
 //--------------------------------------------
 function ishf_seminar_format_speaker($speaker, $isModerator = false)
 {
-  $name = esc_html($speaker['name'] ?? '');
   $id = intval($speaker['id'] ?? 0);
+  $name = trim((string) ($speaker['name'] ?? ''));
+  $function = '';
+  $organization = '';
+  $permalink = '';
+  $image_url = '';
 
   if ($id > 0) {
-    // Linked speaker: Bold Name, Function, Organization
-    $func = get_post_meta($id, 'ishf_cf_function', true);
-    $org = get_post_meta($id, 'ishf_cf_organization', true);
-
-    $details = array();
-    if (!empty($func))
-      $details[] = $func;
-    if (!empty($org))
-      $details[] = $org;
-    $details_str = !empty($details) ? ', ' . implode(', ', $details) : '';
-
-    $permalink = get_permalink($id);
-    if ($isModerator) {
-      return '<a href="' . esc_url($permalink) . '" class="">' . $name . '</a>' . $details_str;
-    } else {
-      return '<a href="' . esc_url($permalink) . '" class=""><strong>' . $name . '</strong></a>' . $details_str;
-    }
-  } else {
-    // Manual speaker: bold before first comma
-    $comma_idx = strpos($name, ',');
-    if ($comma_idx !== false) {
-      $bold_part = substr($name, 0, $comma_idx);
-      $rest_part = substr($name, $comma_idx);
-      if ($isModerator) {
-        return $name;
-      } else {
-        return '<strong>' . $bold_part . '</strong>' . $rest_part;
+    // -- Linked attendant (CPT): current-language version when WPML is active
+    $id = function_exists('ishf_translate_post') ? ishf_translate_post($id, 'attendants') : $id;
+    if (get_post_status($id) === 'publish') {
+      $name = get_the_title($id);
+      $function = (string) get_post_meta($id, 'ishf_cf_function', true);
+      $organization = (string) get_post_meta($id, 'ishf_cf_organization', true);
+      $permalink = get_permalink($id);
+      $image_url = (string) get_the_post_thumbnail_url($id, 'image-speaker-face');
+      if ($image_url === '') {
+        $gender = get_post_meta($id, 'ishf_cf_gender', true) === 'female' ? 'female' : 'male';
+        $image_url = CHILD_BASE_IMAGES . 'attendant-placeholder-' . $gender . '.jpg';
       }
     } else {
-      return '<strong>' . $name . '</strong>';
+      $id = 0;
     }
   }
+
+  if ($id === 0) {
+    // -- Manual entry: "Name, role, organisation" (first part is the name)
+    $parts = array_map('trim', explode(',', $name, 2));
+    $name = $parts[0];
+    $function = $parts[1] ?? '';
+  }
+
+  if ($name === '') {
+    return '';
+  }
+
+  $details = implode(', ', array_filter(array($function, $organization)));
+  $initials = '';
+  foreach (array_slice(preg_split('/\s+/', $name), 0, 2) as $word) {
+    $initials .= mb_strtoupper(mb_substr($word, 0, 1));
+  }
+
+  $tag = $permalink !== '' ? 'a' : 'div';
+  $out = '<' . $tag . ' class="ishf-speaker' . ($isModerator ? ' ishf-speaker--moderator' : '') . '"' . ($permalink !== '' ? ' href="' . esc_url($permalink) . '"' : '') . '>';
+  $out .= '<span class="ishf-speaker__face">';
+  if ($image_url !== '') {
+    $out .= '<img src="' . esc_url($image_url) . '" alt="" loading="lazy" width="96" height="96" />';
+  } else {
+    $out .= '<span class="ishf-speaker__initials" aria-hidden="true">' . esc_html($initials) . '</span>';
+  }
+  $out .= '</span>';
+  $out .= '<span class="ishf-speaker__text"><strong class="ishf-speaker__name">' . esc_html($name) . '</strong>';
+  if ($details !== '') {
+    $out .= '<span class="ishf-speaker__details">' . esc_html($details) . '</span>';
+  }
+  $out .= '</span></' . $tag . '>';
+  return $out;
 }
 
 //--------------------------------------------
@@ -147,39 +136,35 @@ function ishf_seminar_render_session($session) {
   $moderator = $session['moderator'] ?? array();
   $speakers = $session['speakers'] ?? array();
 
-  $output = '<li>';
-  $output .= '<div data-uk-grid class="uk-grid-small uk-flex-top">';
-  $output .= '  <div class="uk-width-auto"><p class="uk-text-bold uk-h4" data-time>' . $time . ' |</p></div>';
-  $output .= '  <div class="uk-width-expand">';
-  $output .= '    <p class="uk-text-bold uk-margin-remove-bottom uk-h4" data-keynote>' . $keynote . '</p>';
+  $output = '<li class="ishf-session">';
+  $output .= '<div class="ishf-session__time"><time>' . $time . '</time></div>';
+  $output .= '<div class="ishf-session__body">';
+  $output .= '<h3 class="ishf-session__title">' . $keynote . '</h3>';
+
+  // -- Moderator
+  if (!empty($moderator)):
+    $output .= '<div class="ishf-session__group"><p class="ishf-session__label">' . esc_html__('Moderation', TEXT_DOMAIN) . '</p><div class="ishf-speakers">';
+    foreach ($moderator as $mod):
+      $output .= ishf_seminar_format_speaker($mod, true);
+    endforeach;
+    $output .= '</div></div>';
+  endif;
 
   // -- Speakers
   if (!empty($speakers)):
-    $output .= '<div class="uk-text-small uk-margin-small-top">';
     if (!isset($session['speakersAlphabetical']) || $session['speakersAlphabetical'] !== false) {
       usort($speakers, function ($a, $b) {
         return strcasecmp($a['name'] ?? '', $b['name'] ?? '');
       });
     }
-    foreach ($speakers as $index => $speaker):
-      $output .= '<div class="uk-margin-small-bottom" data-speaker>' . ishf_seminar_format_speaker($speaker) . '</div>';
+    $output .= '<div class="ishf-session__group"><p class="ishf-session__label">' . esc_html__('Speakers', TEXT_DOMAIN) . '</p><div class="ishf-speakers">';
+    foreach ($speakers as $speaker):
+      $output .= ishf_seminar_format_speaker($speaker);
     endforeach;
-    $output .= '</div>';
+    $output .= '</div></div>';
   endif;
 
-  // -- Moderator
-  if (!empty($moderator)):
-    $output .= '<div class="uk-text-small uk-margin-small-top">';
-    $output .= '<div class="uk-margin-small-bottom"><strong>' . __('Moderation', TEXT_DOMAIN) . '</strong>: ';
-    foreach ($moderator as $index => $mod):
-      $output .= ishf_seminar_format_speaker($mod, true);
-    endforeach;
-    $output .= '</div>';
-  endif;
-
-  $output .= '  </div>';
-  $output .= '</div>';
-  $output .= '</li>';
+  $output .= '</div></li>';
 
   return $output;
 }
@@ -215,7 +200,7 @@ function render_ishf_seminar_program($attributes, $content)
       }
     }
 
-    $output = '<ul class="uk-list uk-margin-medium-bottom">';
+    $output = '<ul class="ishf-sessions">';
     foreach ($sessions_to_render as $session) {
       $output .= ishf_seminar_render_session($session);
     }
@@ -266,7 +251,7 @@ function render_ishf_seminar_program($attributes, $content)
 
   // If only 1 part, render simple list
   if (count($parts) <= 1) {
-    $output .= '<ul class="uk-list uk-margin-medium-bottom">';
+    $output .= '<ul class="ishf-sessions">';
     foreach ($grouped_sessions[$parts[0]['id']] as $session) {
       $output .= ishf_seminar_render_session($session);
     }
@@ -284,7 +269,7 @@ function render_ishf_seminar_program($attributes, $content)
   $output .= '<ul class="uk-switcher uk-margin">';
   foreach ($parts as $part) {
     $output .= '<li>';
-    $output .= '<ul class="uk-list uk-margin-medium-bottom">';
+    $output .= '<ul class="ishf-sessions">';
     foreach ($grouped_sessions[$part['id']] as $session) {
       $output .= ishf_seminar_render_session($session);
     }
@@ -310,6 +295,12 @@ function register_ishf_seminar_program()
       'blockId' => array(
         'type' => 'string',
         'default' => '',
+      ),
+
+      // -- Render mode: full | split (tabs)
+      'renderMode' => array(
+        'type' => 'string',
+        'default' => 'full',
       ),
 
       // -- Array of parts

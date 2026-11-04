@@ -2472,3 +2472,11 @@ msgstr "Ver o programa completo"
 
 msgid "We are building three days of sessions, workshops and site visits for 7‑9 June 2027 in Lisbon. The full programme will be published here as soon as it is confirmed."
 msgstr "Estamos a preparar três dias de sessões, workshops e visitas técnicas para 7‑9 de junho de 2027, em Lisboa. O programa completo será publicado aqui assim que estiver confirmado."
+
+# --- Seminar page, program block, header ---
+
+msgid "Back"
+msgstr "Voltar"
+
+msgid "Know more"
+msgstr "Saber mais"

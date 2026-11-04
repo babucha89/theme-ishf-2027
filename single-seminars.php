@@ -1,15 +1,11 @@
 <?php
 // -----------------------------------------------------------------------------
 //  File: SINGLE for SEMINARS
-//  Edited: 3L, 12-FEV-2026
+//  The page content is built in the editor with the ISHF blocks (ISHF Intro,
+//  ISHF Video Slider, ISHF Seminar Program, ISHF Gallery, ISHF Quotation, ...)
+//  and rendered as they are, in the order they were added. No "groups" needed.
+//  Base Theme: ISHF 2027 Lisbon
 // -----------------------------------------------------------------------------
-
-
-// Block[0]: Intro
-// Block[1]: Video Slider
-// Block[2]: Program / Agenda
-// Block[3]: Program / Agenda (if day 2 exists)
-
 
 // -- Initializations
 global $featured_articles;
@@ -18,466 +14,126 @@ the_post();
 array_push($featured_articles, get_the_ID());
 ishf_set_post_views(get_the_ID());
 
-$post_tags = get_the_tags($post->ID);
-$categories = get_the_category( $post->ID );
+$post_tags = get_the_tags(get_the_ID());
 $youtube_id_1 = get_post_meta(get_the_ID(), 'ishf_cf_youtube_id_1', true);
-$date_time_1 = get_post_meta(get_the_ID(), 'ishf_cf_date_time_1', true);
 $youtube_id_2 = get_post_meta(get_the_ID(), 'ishf_cf_youtube_id_2', true);
-$date_time_2 = get_post_meta(get_the_ID(), 'ishf_cf_date_time_2', true);
-$date_end_time_1 =get_post_meta(get_the_ID(), 'ishf_cf_date_end_time_1', true);
-$date_end_time_2 = get_post_meta(get_the_ID(), 'ishf_cf_date_end_time_2', true);
+$has_video_slider = has_block('ishf/video-slider', get_the_content());
 
+// -- Broadcast window (live / replay) from the date fields
+$tz = new DateTimeZone('Europe/Lisbon');
+$ishf_dt = function ($value, $minus = '') use ($tz) {
+  $value = trim((string) $value);
+  if ($value === '') {
+    return null;
+  }
+  try {
+    $dt = new DateTime($value, $tz);
+    if ($minus !== '') {
+      $dt->sub(new DateInterval($minus));
+    }
+    return $dt;
+  } catch (Exception $e) {
+    return null;
+  }
+};
+$date_start_broadcast_1 = $ishf_dt(get_post_meta(get_the_ID(), 'ishf_cf_date_time_1', true), 'PT10M');
+$date_end_broadcast_1 = $ishf_dt(get_post_meta(get_the_ID(), 'ishf_cf_date_end_time_1', true));
+$date_start_broadcast_2 = $ishf_dt(get_post_meta(get_the_ID(), 'ishf_cf_date_time_2', true), 'PT10M');
+$date_end_broadcast_2 = $ishf_dt(get_post_meta(get_the_ID(), 'ishf_cf_date_end_time_2', true));
+$now = new DateTime('now', $tz);
 
-$date_start_broadcast_1 = new DateTime($date_time_1);
-$date_start_broadcast_1->sub(new DateInterval('PT10M'));
-$date_end_broadcast_1 = new DateTime($date_end_time_1);
+// -- This seminar's sessions (dates, calendar links)
+$seminar_sessions = array_values(array_filter(ishf_get_programme_sessions(), function ($s) {
+  return $s['id'] === get_the_ID() && !empty($s['start']);
+}));
 
-$date_start_broadcast_2 = new DateTime($date_time_2);
-$date_start_broadcast_2->sub(new DateInterval('PT10M'));
-$date_end_broadcast_2 = new DateTime($date_end_time_2);
-
-$now = new DateTime('NOW');
-// $now = new DateTime('2022-04-08 11:10:00');
-?>
-
-<?php
-// -- Block: HEADER
 ishf_use_full_layout(true); // full navigation + footer (inner pages)
 get_header();
+
+// -- Section: HEADER (compact on every inner page)
+get_template_part('includes/sections/header');
 ?>
 
-<?php
-// -- Section: HEADER
-get_template_part('includes/sections/header', null, array('compact' => true));
-?>
+<main id="content-start" role="main" class="site-main" tabindex="-1">
 
-<?php
-// -- Content Starter (for sticky elements)
-?>
-<div id="content-start"></div>
-
-
-<?php
-// -- Get CUSTOM FIELDS
-$date_time_1 = get_post_meta(get_the_ID(), 'ishf_cf_date_time_1', true);
-$date_visible_1 = !empty($date_time_1) ? date_i18n(__('j F', TEXT_DOMAIN), strtotime($date_time_1)) : '';
-$time_visible_1 = !empty($date_time_1) ? date_i18n('H\\hi', strtotime($date_time_1)) : '';
-
-$date_time_2 = get_post_meta(get_the_ID(), 'ishf_cf_date_time_2', true);
-$date_visible_2 = !empty($date_time_2) ? date_i18n(__('j F', TEXT_DOMAIN), strtotime($date_time_2)) : '';
-$time_visible_2 = !empty($date_time_2) ? date_i18n('H\\hi', strtotime($date_time_2)) : '';
-
-// -- Get GROUPS
-$groups = array();
-$blocks = parse_blocks(get_the_content());
-foreach($blocks as $block):
-  switch ($block['blockName']):
-    case 'core/group':
-      array_push($groups, $block['innerBlocks']);
-      break;
-  endswitch;
-endforeach;
-?>
-
-<?php
-// -- Section: SEMINAR INTRO
-$shortcodes = array();
-$title = null;
-$content = '';
-if(!empty($groups[0])):
-  $blocks = $groups[0];
-  foreach($blocks as $block):
-    switch ($block['blockName']):
-      case 'core/shortcode':
-        $shortcode = render_block($block);
-        array_push($shortcodes, $shortcode);
-        break;
-      case 'core/heading':
-          $title = (empty($title)) ? wp_strip_all_tags(render_block($block), true) : $title;
-      default:
-        if ($title != wp_strip_all_tags(render_block($block), true)):
-          $content .= render_block($block);
-        endif;
-        break;
-    endswitch;
-  endforeach;
-$gallery = (sizeof($shortcodes) > 0) ? apply_filters('the_content', do_blocks($shortcodes[0])) : null;
-$content = apply_filters('the_content', do_blocks((string) $content));
-?>
-<section id="seminar-intro" class="uk-section">
-  <div class="uk-container uk-container-small">
-    <?php
-    // -- Block: SECTION LABEL
-    $section_name = get_the_title();
-    $heading_size = 2;
-    include(locate_template('includes/section-label.php', false, false));
-    ?>
-
-    <?php
-    if (has_excerpt()):
-    ?>
-    <p class="text-featured"><?php echo get_the_excerpt(); ?></p>
-    <?php
-    endif;
-    ?>
-    <h2 class="title"><?php echo $title; ?></h2>
-    <?php echo $content; ?>
-  </div>
-</section>
-<?php
-endif;
-?>
-
-
-<?php
-// -- Section: SEMINAR VIDEO SLIDER
-$has_video_slider = true;
-$youtubes = array();
-$title = null;
-$content = null;
-if(!empty($groups[1])):
-$blocks = $groups[1];
-  foreach($blocks as $block):
-    switch ($block['blockName']):
-      case 'core/heading':
-        $title = (empty($title)) ? wp_strip_all_tags(render_block($block)) : $title;
-        break;
-      case 'core/shortcode':
-        $shortcode = wp_strip_all_tags(render_block($block));
-        array_push($youtubes, $shortcode);
-        break;
-      default:
-        $content .= render_block($block);
-        break;
-    endswitch;
-  endforeach;
-
-$content = apply_filters('the_content', do_blocks((string) $content));
-
-if(count($youtubes) > 0):
-?>
-<section id="seminar-video-slider" class="uk-section">
-  <div class="uk-container uk-container-xlarge">
-    <?php
-    // -- Block: SECTION LABEL
-    if (!empty($title)):
-      $section_name = $title;
-      $heading_size = 2;
-      $text_align = 'center';
-      include(locate_template('includes/section-label.php', false, false));
-    endif;
-    ?>
-
-    <?php
-    // -- Show content
-    if (!empty($content)):
-      echo $content;
-    endif;
-    ?>
-
-    <div data-uk-slider="sets: true;" class="uk-margin-medium-top">
-      <div class="uk-position-relative">
-        <div class="uk-slider-container">
-          <ul class="uk-slider-items uk-grid uk-grid-small uk-child-width-1-2@s uk-child-width-1-3@l">
-            <?php
-            foreach ($youtubes as $youtube):
-              $youtube = do_shortcode(do_blocks($youtube));
-            ?>
+  <section id="seminar-heading" class="uk-section uk-section-small">
+    <div class="seminar-head-inner">
+      <p class="ishf-eyebrow"><?php esc_html_e('Seminar', TEXT_DOMAIN); ?></p>
+      <h1 class="uk-article-title"><?php the_title(); ?></h1>
+      <?php if (has_excerpt()): ?>
+        <p class="text-featured"><?php echo esc_html(get_the_excerpt()); ?></p>
+      <?php endif; ?>
+      <?php if (!empty($seminar_sessions)): ?>
+        <ul class="seminar-when">
+          <?php foreach ($seminar_sessions as $s):
+            $ics = ishf_programme_ics_url($s);
+          ?>
             <li>
-              <?php echo $youtube; ?>
+              <span data-uk-icon="icon: calendar; ratio: .9" aria-hidden="true"></span>
+              <time datetime="<?php echo esc_attr($s['start']->format('c')); ?>"><?php echo esc_html(ishf_programme_when_label($s)); ?></time>
+              <?php if ($ics && $now <= $s['start']): ?>
+                <a class="uk-button uk-button-text uk-button-small" href="<?php echo esc_url($ics); ?>" rel="nofollow"><?php esc_html_e('Add to calendar', TEXT_DOMAIN); ?></a>
+              <?php endif; ?>
             </li>
-            <?php
-            endforeach;
-            ?>
-          </ul>
-        </div>
-        <div class="uk-visible@s">
-          <a class="uk-position-center-left-out uk-slidenav-large uk-position-small" href="#" uk-slidenav-previous uk-slider-item="previous"></a>
-          <a class="uk-position-center-right-out uk-slidenav-large uk-position-small" href="#" uk-slidenav-next uk-slider-item="next"></a>
-        </div>
-      </div>
-      <div class="uk-hidden@s">
-        <a class="" href="#" data-uk-slidenav-previous uk-slider-item="previous"></a>
-        <a class="" href="#" uk-slidenav-next uk-slider-item="next"></a>
-      </div>
-      <ul class="uk-slider-nav uk-dotnav uk-flex-center uk-margin"></ul>
+          <?php endforeach; ?>
+        </ul>
+      <?php endif; ?>
     </div>
-
-  </div>
-</section>
-<?php
-endif;
-endif;
-?>
-
-<?php
-// -- Section: SEMINAR VIDEO
-if ((!empty($youtube_id_1)) && (!empty($youtube_id_2)) && ($now >= $date_start_broadcast_1)):
-  // -- Validating if IS STREAMING
-  $is_streaming_1 = (($now >= $date_start_broadcast_1) && ($now < $date_end_broadcast_1)) ? true : false;
-  $is_streaming_2 = (($now >= $date_start_broadcast_2) && ($now < $date_end_broadcast_2)) ? true : false;
-?>
+  </section>
 
   <?php
-  // -- STREAMING
-  if (($is_streaming_1) || ($is_streaming_2)):
-    $pretitle = __('Streaming', TEXT_DOMAIN);
-    $title = __('Follow live', TEXT_DOMAIN);
-    $bodycopy = __('Watch the conference live and find out more about the topics under discussion.', TEXT_DOMAIN);
+  // -- LIVE STREAMING (only while one of the sessions is on air)
+  $is_streaming_1 = $date_start_broadcast_1 && $date_end_broadcast_1 && $now >= $date_start_broadcast_1 && $now < $date_end_broadcast_1;
+  $is_streaming_2 = $date_start_broadcast_2 && $date_end_broadcast_2 && $now >= $date_start_broadcast_2 && $now < $date_end_broadcast_2;
+  if (!empty($youtube_id_1) && ($is_streaming_1 || $is_streaming_2)):
+    $youtube_id = $is_streaming_2 && !$is_streaming_1 && !empty($youtube_id_2) ? $youtube_id_2 : $youtube_id_1;
   ?>
   <section id="seminar-video" class="uk-section uk-light">
     <div class="uk-container uk-container-large">
       <div data-uk-grid>
         <div class="uk-width-1-1 uk-width-1-4@s">
-          <h6 class="uk-margin-small-bottom uk-margin-remove-adjacent uk-text-uppercase"><?php echo $pretitle; ?></h6>
-          <h1><?php echo $title; ?></h1>
-          <p><?php echo $bodycopy; ?></p>
+          <h6 class="uk-margin-small-bottom uk-text-uppercase"><?php esc_html_e('Streaming', TEXT_DOMAIN); ?></h6>
+          <h2 class="uk-h1"><?php esc_html_e('Follow live', TEXT_DOMAIN); ?></h2>
+          <p><?php esc_html_e('Watch the conference live and find out more about the topics under discussion.', TEXT_DOMAIN); ?></p>
         </div>
         <div class="uk-width-1-1 uk-width-expand@s">
-          <?php
-          // -- Block: VIDEO YOUTUBE
-          $youtube_id = $youtube_id_1;
-          get_template_part('includes/video-youtube','embed');
-          ?>
+          <?php get_template_part('includes/video-youtube', 'embed', array('youtube_id' => $youtube_id, 'youtube_title' => get_the_title(), 'autoplay' => false)); ?>
         </div>
       </div>
     </div>
   </section>
   <?php
-  endif;
-  ?>
-
-  <?php
-  // -- POS-STREAMING
-  if ((!$has_video_slider) && ($now >= $date_end_broadcast_2)):
-    $title = __('Watch the conferences again', TEXT_DOMAIN);
-    $bodycopy = __('Watch the events again and relive the highlights of these conversations.', TEXT_DOMAIN);
+  // -- REPLAY (after the last session, when no ISHF Video Slider block is used)
+  elseif (!empty($youtube_id_1) && !empty($youtube_id_2) && !$has_video_slider && $date_end_broadcast_2 && $now >= $date_end_broadcast_2):
   ?>
   <section id="seminar-video" class="uk-section uk-light">
     <div class="uk-container uk-container-xlarge">
       <div class="uk-text-center">
-        <h1><?php echo $title; ?></h1>
-        <p><?php echo $bodycopy; ?></p>
+        <h2 class="uk-h1"><?php esc_html_e('Watch the conferences again', TEXT_DOMAIN); ?></h2>
+        <p><?php esc_html_e('Watch the events again and relive the highlights of these conversations.', TEXT_DOMAIN); ?></p>
       </div>
       <div data-uk-grid>
-        <div class="uk-width-1-1 uk-width-1-2@m uk-text-left uk-text-right@s">
-          <h4><?php echo $date_visible_1; ?></h4>
-          <?php
-          // -- Block: VIDEO YOUTUBE #1
-          $youtube_id = $youtube_id_1;
-          get_template_part('includes/video-youtube','embed');
-          ?>
-        </div>
-        <div class="uk-width-1-1 uk-width-expand@s">
-          <h4><?php echo $date_visible_2; ?></h4>
-          <?php
-          // -- Block: VIDEO YOUTUBE #2
-          $youtube_id = $youtube_id_2;
-          get_template_part('includes/video-youtube','embed');
-          ?>
-        </div>
+        <?php foreach (array($youtube_id_1, $youtube_id_2) as $youtube_id): ?>
+          <div class="uk-width-1-1 uk-width-1-2@m"><?php get_template_part('includes/video-youtube', 'embed', array('youtube_id' => $youtube_id, 'youtube_title' => get_the_title(), 'autoplay' => false)); ?></div>
+        <?php endforeach; ?>
       </div>
     </div>
   </section>
+  <?php endif; ?>
+
   <?php
-  endif;
+  // -- CONTENT: the ISHF blocks (and any core block), exactly as built in the editor
+  $seminar_content = trim((string) get_the_content());
+  if ($seminar_content !== ''):
   ?>
-
-<?php
-endif;
-?>
-
-<?php
-// -- Section: SEMINAR BODY (Group #3 + #4)
-// Checks if there is a second date
-if(!empty($date_time_2)):
-?>
-<section id="seminar-body" class="uk-section">
-  <div class="uk-container">
-    <?php
-    $section_name = __('Programme', TEXT_DOMAIN);
-    $heading_size = 2;
-    $text_align = 'center';
-    include(locate_template('includes/section-label.php', false, false));
-    ?>
-
-    <div data-uk-grid class="uk-margin-large-top uk-grid-divider uk-child-width-1-1 uk-child-width-1-2@s">
-      <?php
-      // -- Program #1: Contents
-      $shortcodes = array();
-      $title = null;
-      $content = null;
-      $blocks = $groups[2];
-      foreach($blocks as $block):
-        switch ($block['blockName']):
-          case 'core/shortcode':
-            $shortcode = render_block($block);
-            array_push($shortcodes, $shortcode);
-            break;
-          default:
-            $content .= render_block($block);
-            break;
-        endswitch;
-      endforeach;
-      $gallery = (sizeof($shortcodes) > 0) ? apply_filters('the_content', do_blocks($shortcodes[0])) : null;
-      $content = apply_filters('the_content', do_blocks((string) $content));
-      ?>
-      <div class="uk-text-left uk-text-right@s">
-        <div>
-          <span class="uk-label uk-label-primary"><?php echo $date_visible_1; ?></span>
-          <span class="uk-label uk-label-primary"><?php echo $time_visible_1; ?></span>
-        </div>
-        <?php echo $content; ?>
-        <?php
-        // -- Generate ICS Event Button
-        if ($now <= $date_start_broadcast_1):
-          $date_start_1 = date('Y-m-d H:i:s', strtotime($date_time_1));
-          $date_end_1 = date('Y-m-d H:i:s', strtotime($date_end_time_1));
-
-          $ics_generator_url = '../../ics-generator/?'.esc_attr('ics_start='.$date_start_1.'&ics_end='.$date_end_1.'&ics_name='. get_the_title() .'&ics_location='.str_replace(BASE_SITE, REDIRECT_SITE, get_permalink()).'&ics_alert=15');
-        ?>
-        <div class="uk-margin-large-top">
-          <a class="uk-button uk-button-large uk-button-danger uk-margin-auto" href="<?php echo $ics_generator_url; ?>" target="_blank" rel="noopener"><span data-uk-icon="calendar"></span> Reservar na Agenda</a>
-        </div>
-        <?php
-        endif;
-        ?>
-      </div>
-
-      <?php
-      // -- Program #2: Contents
-      $shortcodes = array();
-      $title = null;
-      $content = null;
-      $blocks = $groups[3];
-      foreach($blocks as $block):
-        switch ($block['blockName']):
-          case 'core/shortcode':
-            $shortcode = render_block($block);
-            array_push($shortcodes, $shortcode);
-            break;
-          default:
-            $content .= render_block($block);
-            break;
-        endswitch;
-      endforeach;
-      $gallery = (sizeof($shortcodes) > 0) ? apply_filters('the_content', do_blocks($shortcodes[0])) : null;
-      $content = apply_filters('the_content', do_blocks((string) $content));
-      ?>
-      <div>
-        <div>
-          <span class="uk-label uk-label-primary"><?php echo $date_visible_2; ?></span>
-          <span class="uk-label uk-label-primary"><?php echo $time_visible_2; ?></span>
-        </div>
-        <?php echo $content; ?>
-        <?php
-        // -- Generate ICS Event Button
-        if ($now <= $date_start_broadcast_2):
-          $date_start_2 = date('Y-m-d H:i:s', strtotime($date_time_2));
-          $date_end_2 = date('Y-m-d H:i:s', strtotime($date_end_time_2));
-
-          $ics_generator_url = '../../ics-generator/?'.esc_attr('ics_start='.$date_start_1.'&ics_end='.$date_end_1.'&ics_name='. get_the_title() .'&ics_location='.str_replace(BASE_SITE, REDIRECT_SITE, get_permalink()).'&ics_alert=15');
-        ?>
-        <div class="uk-margin-large-top">
-          <a class="uk-button uk-button-large uk-button-danger uk-margin-auto" href="<?php echo $ics_generator_url; ?>" target="_blank" rel="noopener"><span data-uk-icon="calendar"></span> Reservar na Agenda</a>
-        </div>
-        <?php
-        endif;
-        ?>
-      </div>
-    </div>
+  <div class="ishf-seminar-content">
+    <?php the_content(); ?>
   </div>
-</section>
-<?php
-// if it's only one day
-else:
-?>
+  <?php endif; ?>
 
-<section id="seminar-body" class="uk-section section-light-gray">
-  <div class="uk-container">
+  <?php
+  // -- Section: SPEAKERS are inside the ISHF Seminar Program block. Sponsors are rendered by the footer.
+  ?>
+</main>
 
-    <div data-uk-grid class="uk-grid-divider uk-grid uk-grid-large">
-      <div id="program-title" class="uk-width-1-1 uk-width-1-3@s">
-        <div uk-sticky="end: !#program-title; offset: 80">
-        <?php
-        $section_name = __('Programme', TEXT_DOMAIN);
-        $heading_size = 2;
-        $text_align = 'right@s';
-        include(locate_template('includes/section-label.php', false, false));
-        ?>
-
-        <div class="uk-text-left uk-text-right@s uk-margin-top">
-          <span class="uk-label uk-label-primary"><?php echo $date_visible_1; ?></span>
-          <span class="uk-label uk-label-primary"><?php echo $time_visible_1; ?></span>
-        </div>
-        <?php
-        // -- Generate ICS Event Button
-        if ($now <= $date_start_broadcast_1):
-          $date_start_1 = date('Y-m-d H:i:s', strtotime($date_time_1));
-          $date_end_1 = date('Y-m-d H:i:s', strtotime($date_end_time_1));
-
-          $ics_generator_url = '../../ics-generator/?'.esc_attr('ics_start='.$date_start_1.'&ics_end='.$date_end_1.'&ics_name='. get_the_title() .'&ics_location='.str_replace(BASE_SITE, REDIRECT_SITE, get_permalink()).'&ics_alert=15');
-        ?>
-        <div class="uk-margin-small-top uk-text-right@s">
-          <a class="uk-button uk-button-danger uk-margin-auto" href="<?php echo $ics_generator_url; ?>" target="_blank" rel="noopener"><span data-uk-icon="calendar"></span> Reservar na Agenda</a>
-        </div>
-        <?php
-        endif;
-        ?>
-      </div>
-    </div>
-
-      <?php
-      // -- Program #1: Contents
-      $shortcodes = array();
-      $title = null;
-      $content = null;
-      $blocks = $groups[2];
-      foreach($blocks as $block):
-        switch ($block['blockName']):
-          case 'core/shortcode':
-            $shortcode = render_block($block);
-            array_push($shortcodes, $shortcode);
-            break;
-          default:
-            $content .= render_block($block);
-            break;
-        endswitch;
-      endforeach;
-      $gallery = (sizeof($shortcodes) > 0) ? apply_filters('the_content', do_blocks($shortcodes[0])) : null;
-      $content = apply_filters('the_content', do_blocks((string) $content));
-      ?>
-      <div class="uk-width-1-1 uk-width-2-3@s uk-text-left@s programa">
-        <?php echo $content; ?>
-    </div>
-    </div>
-    </div>
-</section>
-
-<?php
-endif;
-?>
-
-<?php
-$tag = !empty($post_tags) ? $post_tags[0]->slug : '';
-$attendant_categories = $categories;
-if( $tag != 'edicoes-anteriores'):
-// -- Section: ATTENDANTS
-get_template_part('includes/sections/attendants');
-?>
-
-<?php
-// -- Section: SPONSORS
-get_template_part('includes/sections/sponsors');
-endif;
-?>
-
-<?php
-// -- Section: CONTACT FORM
-get_template_part('includes/sections/contact-form');
-?>
-
-<?php
-// -- Block: FOOTER
-get_footer();
-?>
+<?php get_footer(); ?>

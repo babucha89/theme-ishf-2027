@@ -19,7 +19,7 @@
       
       <!-- Brand Logo: icon-key + "ISHF 2027 | Lisbon" -->
       <div class="uk-navbar-left">
-        <a class="uk-navbar-item uk-logo nav-brand-link uk-flex uk-flex-middle" href="<?php echo esc_url(home_url('/')); ?>" aria-label="<?php echo esc_attr(SITE_NAME); ?>">
+        <a class="uk-navbar-item uk-logo nav-brand-link uk-flex uk-flex-middle" href="<?php echo esc_url(home_url('/')); ?>" aria-label="<?php echo esc_attr(SITE_NAME . ' - ' . __('Back to Homepage', TEXT_DOMAIN)); ?>" title="<?php esc_attr_e('Back to Homepage', TEXT_DOMAIN); ?>" data-uk-tooltip="title: <?php echo esc_attr__('Back to Homepage', TEXT_DOMAIN); ?>; pos: bottom-left">
           <img class="light-mode-img nav-key-icon" 
                src="<?php echo esc_url(BASE_ASSETS . 'icon-key-light.svg'); ?>" 
                alt="" 

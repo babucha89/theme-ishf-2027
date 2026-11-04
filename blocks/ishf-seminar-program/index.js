@@ -46,22 +46,12 @@
 			if (debounceRef.current) clearTimeout(debounceRef.current);
 			debounceRef.current = setTimeout(function() {
 				setIsLoading(true);
-				// -- Get current post ID (with fallback)
-				var postId = null;
-				var editorStore = wp.data.select('core/editor');
-				if (editorStore && editorStore.getCurrentPostId) {
-					postId = editorStore.getCurrentPostId();
-				}
-				console.log('[ISHF Seminar] postId:', postId);
 				var url = 'ishf/v1/attendants';
-				var params = [];
-				if (search) params.push('search=' + encodeURIComponent(search));
-				if (postId) params.push('post_id=' + postId);
-				if (params.length) url += '?' + params.join('&');
+				if (search) url += '?search=' + encodeURIComponent(search);
 				wp.apiFetch({
 					path: url
 				}).then(function(results) {
-					setSuggestions(results);
+					setSuggestions(Array.isArray(results) ? results : []);
 					setShowSuggestions(true);
 					setIsLoading(false);
 				}).catch(function() {

@@ -5,8 +5,9 @@
 //  Base Theme: ISHF 2027 Lisbon
 //  Edited: BB, 27-OUT-2026
 // -----------------------------------------------------------------------------
-// Arg 'compact' => true renders a smaller version (single articles): smaller logo, tighter spacing.
-$ishf_header_compact = !empty($args['compact']);
+// Inner pages use the compact version (smaller logo, tighter spacing). Only the home page has the big hero (sections/hero)
+// and the landing page opts out with 'compact' => false.
+$ishf_header_compact = !isset($args['compact']) || !empty($args['compact']);
 ?>
 <header class="ishf-simplified-header<?php echo $ishf_header_compact ? ' ishf-simplified-header--compact' : ''; ?> uk-position-relative uk-overflow-hidden" role="banner">
   <?php
@@ -20,12 +21,14 @@ $ishf_header_compact = !empty($args['compact']);
       <!-- Project Logo (Adaptive Light / Dark) -->
       <div class="uk-width-1-1 uk-width-1-2@m header-logo-col uk-flex uk-flex-center uk-flex-right@m">
         <div class="header-logo-container">
+          <a class="header-logo-link" href="<?php echo esc_url(home_url('/')); ?>" title="<?php esc_attr_e('Back to Homepage', TEXT_DOMAIN); ?>" data-uk-tooltip="title: <?php echo esc_attr__('Back to Homepage', TEXT_DOMAIN); ?>; pos: bottom">
           <img class="light-mode-img header-project-logo" 
                src="<?php echo esc_url(BASE_BRANDING . 'logo-project-horizontal-dark.svg'); ?>" 
                alt="<?php echo esc_attr(SITE_NAME); ?>" />
           <img class="dark-mode-img header-project-logo" 
                src="<?php echo esc_url(BASE_BRANDING . 'logo-project-horizontal-light.svg'); ?>" 
                alt="<?php echo esc_attr(SITE_NAME); ?>" />
+          </a>
         </div>
       </div>
 

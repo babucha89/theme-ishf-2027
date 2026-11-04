@@ -161,7 +161,8 @@ function ishf_get_programme_sessions()
 }
 
 /**
- * "10:30 - 12:00" (or just the start time).
+ * "10:30 - 12:00". When the end falls on another day the end date is added
+ * ("10:30 - 8 Jun 12:00"). Only the start time when there is no end.
  *
  * @param  array $session
  * @return string
@@ -171,33 +172,80 @@ function ishf_programme_time_label(array $session)
   if (empty($session['start'])) {
     return '';
   }
+  $tz    = new DateTimeZone('Europe/Lisbon');
   $label = $session['start']->format('H:i');
-  if (!empty($session['end']) && $session['end']->format('Y-m-d') === $session['start']->format('Y-m-d')) {
-    $label .= ' - ' . $session['end']->format('H:i');
+  if (!empty($session['end'])) {
+    $label .= ' - ';
+    if ($session['end']->format('Y-m-d') !== $session['start']->format('Y-m-d')) {
+      $label .= wp_date('j M', $session['end']->getTimestamp(), $tz) . ' ';
+    }
+    $label .= $session['end']->format('H:i');
   }
   return $label;
 }
 
 /**
- * "Programme coming soon" panel, shared by the Programme page and the Home
- * block. Shown whenever no seminar is published yet.
+ * "Mon 7 Jun, 09:30 - 11:00" (day + start and end time).
+ *
+ * @param  array $session
+ * @return string
+ */
+function ishf_programme_when_label(array $session)
+{
+  if (empty($session['start'])) {
+    return __('Date to be announced', TEXT_DOMAIN);
+  }
+  $day = wp_date('D j M', $session['start']->getTimestamp(), new DateTimeZone('Europe/Lisbon'));
+  return $day . ', ' . ishf_programme_time_label($session);
+}
+
+/**
+ * Home panel of the programme. Same size and layout in both states:
+ *  - no seminar published: "Programme coming soon" + newsletter button, dashed border;
+ *  - seminars published: the next sessions (start and end) + "Know more" button, solid border.
  *
  * @param  string $heading_tag h2 or h3
+ * @param  array  $sessions    Sessions to list (empty = coming soon)
+ * @param  string $url         Programme URL (live state)
  * @return void
  */
-function ishf_programme_coming_soon($heading_tag = 'h3')
+function ishf_programme_panel($heading_tag = 'h3', array $sessions = array(), $url = '')
 {
   $heading_tag = in_array($heading_tag, array('h2', 'h3'), true) ? $heading_tag : 'h3';
+  $live        = !empty($sessions);
   ?>
-  <div class="programme-soon">
+  <div class="programme-soon<?php echo $live ? ' programme-soon--live' : ''; ?>">
     <span class="programme-soon-icon" data-uk-icon="icon: calendar; ratio: 2" aria-hidden="true"></span>
-    <<?php echo $heading_tag; ?> class="programme-soon-title"><?php esc_html_e('Programme coming soon', TEXT_DOMAIN); ?></<?php echo $heading_tag; ?>>
-    <p class="programme-soon-text">
-      <?php esc_html_e('We are building three days of sessions, workshops and site visits for 7‑9 June 2027 in Lisbon. The full programme will be published here as soon as it is confirmed.', TEXT_DOMAIN); ?>
-    </p>
-    <button type="button" class="uk-button uk-button-primary" data-uk-toggle="target: #modal-newsletter" aria-haspopup="dialog" aria-controls="modal-newsletter">
-      <?php esc_html_e('Get notified when it is published', TEXT_DOMAIN); ?>
-    </button>
+    <?php if ($live): ?>
+      <<?php echo $heading_tag; ?> class="programme-soon-title"><?php esc_html_e('Programme', TEXT_DOMAIN); ?></<?php echo $heading_tag; ?>>
+      <ul class="programme-soon-list">
+        <?php foreach ($sessions as $s): ?>
+          <li>
+            <?php if ($s['start']): ?>
+              <time datetime="<?php echo esc_attr($s['start']->format('c')); ?>"><?php echo esc_html(ishf_programme_when_label($s)); ?></time>
+            <?php else: ?>
+              <span><?php esc_html_e('Date to be announced', TEXT_DOMAIN); ?></span>
+            <?php endif; ?>
+            <strong><?php echo esc_html($s['title']); ?></strong>
+          </li>
+        <?php endforeach; ?>
+      </ul>
+      <a class="uk-button uk-button-primary" href="<?php echo esc_url($url); ?>"><?php esc_html_e('Know more', TEXT_DOMAIN); ?></a>
+    <?php else: ?>
+      <<?php echo $heading_tag; ?> class="programme-soon-title"><?php esc_html_e('Programme coming soon', TEXT_DOMAIN); ?></<?php echo $heading_tag; ?>>
+      <p class="programme-soon-text">
+        <?php esc_html_e('We are building three days of sessions, workshops and site visits for 7‑9 June 2027 in Lisbon. The full programme will be published here as soon as it is confirmed.', TEXT_DOMAIN); ?>
+      </p>
+      <button type="button" class="uk-button uk-button-primary" data-uk-toggle="target: #modal-newsletter" aria-haspopup="dialog" aria-controls="modal-newsletter">
+        <?php esc_html_e('Get notified when it is published', TEXT_DOMAIN); ?>
+      </button>
+    <?php endif; ?>
   </div>
   <?php
+}
+
+/** Backwards-compatible alias (empty state only). */
+function ishf_programme_coming_soon($heading_tag = 'h3')
+{
+  ishf_programme_panel($heading_tag);
 }

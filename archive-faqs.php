@@ -13,7 +13,7 @@ get_header();
 
 <?php
 // -- Section: HEADER for PREMIO
-get_template_part('includes/sections/header', null, array('compact' => true));
+get_template_part('includes/sections/header');
 ?>
 
 

@@ -215,8 +215,8 @@
   --btn-primary-bg: var(--colors-action-primary);
   --btn-primary-bg-hover: var(--colors-action-primary-hover);
   --btn-primary-color: var(--colors-brand-blue-sky);
-  --btn-primary-shadow: 0 6px 18px rgba(var(--colors-brand-sunny-yellow-rgb), 0.35);
-  --btn-primary-shadow-hover: 0 8px 24px rgba(var(--colors-brand-sunny-yellow-rgb), 0.45);
+  --btn-primary-shadow: none;
+  --btn-primary-shadow-hover: none;
 
   --btn-secondary-bg: var(--colors-action-success);
   --btn-secondary-bg-hover: var(--colors-action-success-hover);
@@ -443,8 +443,8 @@ html.dark-mode .ishf-badge-pill { background-color: rgba(var(--colors-brand-sunn
 /* --- Buttons ------------------------------------------------------------------------- */
 .uk-button { font-family: var(--fonts-family-headings); font-weight: var(--fonts-weight-bold); font-size: var(--fonts-size-button); height: 48px; line-height: 46px; padding: 0 30px; border-radius: var(--grids-radius-pill); box-sizing: border-box; text-decoration: none !important; cursor: pointer; display: inline-flex; align-items: center; justify-content: center; gap: 10px; border: 1px solid transparent; transition: transform 0.2s ease, background-color 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease, color 0.2s ease; }
 .uk-button:hover, .uk-button:focus { text-decoration: none !important; }
-.uk-button-primary, .btn-partnership-submit { background-color: var(--btn-primary-bg) !important; color: var(--btn-primary-color) !important; border: none; box-shadow: var(--btn-primary-shadow); }
-.uk-button-primary:hover, .uk-button-primary:focus, .btn-partnership-submit:hover, .btn-partnership-submit:focus { background-color: var(--btn-primary-bg-hover) !important; color: var(--btn-primary-color) !important; transform: translateY(-2px); box-shadow: var(--btn-primary-shadow-hover); }
+.uk-button-primary, .btn-partnership-submit { background-color: var(--btn-primary-bg) !important; color: var(--btn-primary-color) !important; border: none; box-shadow: none; }
+.uk-button-primary:hover, .uk-button-primary:focus, .btn-partnership-submit:hover, .btn-partnership-submit:focus { background-color: var(--btn-primary-bg-hover) !important; color: var(--btn-primary-color) !important; transform: translateY(-2px); box-shadow: none; }
 .uk-button-secondary { background-color: var(--btn-secondary-bg) !important; color: var(--btn-secondary-color) !important; border: none; box-shadow: var(--btn-secondary-shadow); }
 .uk-button-secondary:hover, .uk-button-secondary:focus { background-color: var(--btn-secondary-bg-hover) !important; color: var(--btn-secondary-color) !important; transform: translateY(-2px); box-shadow: var(--btn-secondary-shadow-hover); }
 .uk-button-default { background-color: var(--btn-default-bg); color: var(--btn-default-color); border: 1.5px solid var(--btn-default-border); }
@@ -591,6 +591,7 @@ html.dark-mode .theme-toggle-icon-moon { opacity: 1; transform: translate(-50%, 
 .header-content-wrapper { padding-top: 55px; padding-bottom: 60px; }
 .header-hero-grid { max-width: 1160px; margin-left: auto; margin-right: auto; }
 .header-logo-container { display: flex; justify-content: center; align-items: center; width: 100%; }
+.header-logo-link { display: block; width: 100%; line-height: 0; }
 .header-project-logo { max-width: 480px; width: 100%; height: auto; display: block; transition: transform 0.25s ease; }
 .header-claim-inner { width: 100%; border-left: 4px solid var(--colors-brand-sunny-yellow); padding-left: 32px; text-align: left; }
 .header-claim { font-size: clamp(28px, 2.9vw, 42px); font-weight: 800; line-height: 1.16; letter-spacing: -0.025em; color: var(--colors-text-heading); max-width: 520px; transition: color 0.3s ease; }
@@ -911,6 +912,11 @@ html.dark-mode .article-hero { background-color: var(--colors-night-800); }
   .programme-actions { flex-direction: column; align-items: flex-end; }
 }
 .programme-soon { max-width: 720px; margin: var(--grids-spacing-32) auto 0; padding: var(--grids-spacing-48) var(--grids-spacing-24); text-align: center; background-color: var(--colors-background-card); border: 1px dashed var(--colors-border-default); border-radius: var(--grids-radius-lg); }
+.programme-soon--live { border-style: solid; }
+.programme-soon-list { list-style: none; max-width: 540px; margin: 0 auto var(--grids-spacing-24); padding: 0; text-align: left; }
+.programme-soon-list li { display: flex; flex-direction: column; gap: 2px; padding: 8px 0; border-bottom: 1px solid var(--colors-border-default); }
+.programme-soon-list li:last-child { border-bottom: 0; }
+.programme-soon-list time, .programme-soon-list li > span { font-family: var(--fonts-family-headings); font-weight: 700; font-size: var(--fonts-size-small); text-transform: uppercase; letter-spacing: .06em; color: var(--colors-text-eyebrow); }
 .programme-soon-icon { display: inline-block; color: var(--colors-brand-sunny-yellow); }
 .programme-soon-title { margin: 12px 0 8px; }
 .programme-soon-text { max-width: 540px; margin: 0 auto var(--grids-spacing-24); color: var(--colors-text-muted); }
@@ -920,3 +926,10 @@ html.dark-mode .article-hero { background-color: var(--colors-night-800); }
 .programme-teaser-title a { color: var(--colors-text-heading); text-decoration: none; }
 .programme-teaser-title a:hover, .programme-teaser-title a:focus { text-decoration: underline; }
 .programme-teaser-where { margin: 0; font-size: var(--fonts-size-small); color: var(--colors-text-muted); }
+
+/* ---------- Single seminar ---------- */
+.seminar-when { list-style: none; margin: var(--grids-spacing-16) 0 0; padding: 0; display: flex; flex-direction: column; gap: 6px; }
+.seminar-when li { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 12px; font-weight: var(--fonts-weight-semibold); color: var(--colors-text-eyebrow); }
+.ishf-seminar-content { padding-bottom: var(--grids-spacing-48); }
+.seminar-head-inner, .ishf-seminar-content > * { max-width: 1100px; margin-left: auto; margin-right: auto; padding-left: var(--grids-spacing-24); padding-right: var(--grids-spacing-24); box-sizing: border-box; }
+.ishf-seminar-content > section, .ishf-seminar-content > .alignfull { max-width: none; padding-left: 0; padding-right: 0; }

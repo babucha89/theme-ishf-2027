@@ -242,3 +242,27 @@
 /* UIkit handles all frontend styles via utility classes:                      */
 /* uk-list uk-list-divider, uk-grid-small, uk-flex-top, uk-width-auto,        */
 /* uk-width-expand, uk-text-bold, uk-text-small, uk-text-muted, uk-link-muted */
+
+
+/* -- FRONT END: sessions with speaker faces ------------------------------- */
+
+.ishf-sessions { list-style: none; margin: 0 0 var(--grids-spacing-32, 32px); padding: 0; }
+.ishf-session { display: grid; grid-template-columns: 1fr; gap: 12px; padding: 24px 0; border-bottom: 1px solid var(--colors-border-default, #D5DCE1); }
+.ishf-session:last-child { border-bottom: 0; }
+.ishf-session__time { font-family: var(--fonts-family-headings, inherit); font-weight: 700; font-size: 1.25rem; white-space: nowrap; color: var(--colors-text-eyebrow, #2E6B5F); }
+.ishf-session__title { margin: 0 0 12px; font-size: var(--fonts-size-heading-4, 26px); line-height: 1.2; }
+.ishf-session__group { margin-top: 16px; }
+.ishf-session__label { margin: 0 0 8px; font-size: 0.8125rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--colors-text-muted, #46586A); }
+.ishf-speakers { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 16px; }
+.ishf-speaker { display: flex; align-items: center; gap: 14px; color: inherit; text-decoration: none; }
+a.ishf-speaker:hover .ishf-speaker__name, a.ishf-speaker:focus .ishf-speaker__name { text-decoration: underline; }
+.ishf-speaker__face { flex: 0 0 72px; width: 72px; height: 72px; border-radius: 50%; overflow: hidden; display: block; background-color: var(--colors-background-tint, #E9F3F6); }
+.ishf-speaker--moderator .ishf-speaker__face { flex-basis: 56px; width: 56px; height: 56px; }
+.ishf-speaker__face img { display: block; width: 100%; height: 100%; object-fit: cover; }
+.ishf-speaker__initials { display: flex; align-items: center; justify-content: center; width: 100%; height: 100%; font-weight: 700; font-size: 1.25rem; color: var(--colors-brand-blue-sky, #023256); }
+.ishf-speaker__text { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+.ishf-speaker__name { font-size: 1rem; line-height: 1.25; }
+.ishf-speaker__details { font-size: 0.875rem; line-height: 1.35; color: var(--colors-text-muted, #46586A); }
+@media (min-width: 960px) {
+  .ishf-session { grid-template-columns: 140px 1fr; gap: 32px; }
+}
