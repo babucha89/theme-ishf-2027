@@ -73,6 +73,119 @@ function ishf_programme_ics_url(array $session)
 }
 
 /**
+ * Finds every block called $name in a block tree (also inside groups/columns).
+ *
+ * @param  array  $blocks parse_blocks() output
+ * @param  string $name   e.g. 'ishf/seminar-program'
+ * @return array
+ */
+function ishf_programme_find_blocks(array $blocks, $name)
+{
+  $found = array();
+  foreach ($blocks as $block) {
+    if (($block['blockName'] ?? '') === $name) {
+      $found[] = $block;
+    }
+    if (!empty($block['innerBlocks'])) {
+      $found = array_merge($found, ishf_programme_find_blocks($block['innerBlocks'], $name));
+    }
+  }
+  return $found;
+}
+
+/**
+ * Attendants taking part in a seminar, from BOTH places they can be set:
+ * the "Associated Attendants" field and the speakers / moderators of the
+ * ISHF Seminar Program block.
+ *
+ * Returns array(
+ *   'people' => array(attendant_id => name),
+ *   'panels' => array(attendant_id => array(array('time', 'title', 'role'), ...)),
+ * ) with IDs already in the current language (WPML).
+ *
+ * @param  int $post_id Seminar ID
+ * @return array
+ */
+function ishf_programme_seminar_people($post_id)
+{
+  $people = array();
+  $panels = array();
+  $tr = function ($id) {
+    return function_exists('ishf_translate_post') ? (int) ishf_translate_post((int) $id, 'attendants') : (int) $id;
+  };
+  $add = function ($id) use (&$people, $tr) {
+    $id = $tr($id);
+    if ($id > 0 && get_post_status($id) === 'publish') {
+      $people[$id] = get_the_title($id);
+      return $id;
+    }
+    return 0;
+  };
+
+  // -- 1) "Associated Attendants" field
+  foreach (array_filter(array_map('intval', explode(',', (string) get_post_meta($post_id, 'ishf_cf_attendants_related', true)))) as $id) {
+    $add($id);
+  }
+
+  // -- 2) ISHF Seminar Program block(s)
+  $post = get_post($post_id);
+  if ($post && has_block('ishf/seminar-program', $post)) {
+    foreach (ishf_programme_find_blocks(parse_blocks($post->post_content), 'ishf/seminar-program') as $block) {
+      foreach ((array) ($block['attrs']['sessions'] ?? array()) as $session) {
+        foreach (array('speakers' => 'speaker', 'moderator' => 'moderator') as $key => $role) {
+          foreach ((array) ($session[$key] ?? array()) as $person) {
+            $id = $add((int) ($person['id'] ?? 0));
+            if ($id) {
+              $panels[$id][] = array(
+                'time'  => (string) ($session['time'] ?? ''),
+                'title' => (string) ($session['keynote'] ?? ''),
+                'role'  => $role,
+              );
+            }
+          }
+        }
+      }
+    }
+  }
+
+  asort($people);
+  return array('people' => $people, 'panels' => $panels);
+}
+
+/**
+ * Sessions (seminars) an attendant takes part in, grouped by seminar.
+ * Each entry: id, title, url, slots (list of sessions with a start), panels
+ * (time/title/role of the attendant inside the ISHF Seminar Program block).
+ *
+ * @param  int $attendant_id Attendant ID (current language)
+ * @return array
+ */
+function ishf_get_attendant_sessions($attendant_id)
+{
+  $attendant_id = (int) $attendant_id;
+  $out = array();
+  foreach (ishf_get_programme_sessions() as $s) {
+    if (!isset($s['speakers'][$attendant_id])) {
+      continue;
+    }
+    if (!isset($out[$s['id']])) {
+      $out[$s['id']] = array(
+        'id'     => $s['id'],
+        'title'  => $s['title'],
+        'url'    => $s['url'],
+        'slots'  => array(),
+        'panels' => isset($s['panels'][$attendant_id]) ? $s['panels'][$attendant_id] : array(),
+        'first'  => $s['start'],
+      );
+    }
+    if ($s['start']) {
+      $out[$s['id']]['slots'][] = $s;
+    }
+  }
+  return array_values($out);
+}
+
+/**
  * All published seminars as programme sessions, sorted by start time.
  *
  * Each entry: id, title, url, excerpt, start, end (DateTimeImmutable|null),
@@ -109,15 +222,8 @@ function ishf_get_programme_sessions()
       }
     }
 
-    $speakers = array();
-    $related  = (string) get_post_meta($id, 'ishf_cf_attendants_related', true);
-    foreach (array_filter(array_map('intval', explode(',', $related))) as $att_id) {
-      $att_id = function_exists('ishf_translate_post') ? ishf_translate_post($att_id, 'attendants') : $att_id;
-      if (get_post_status($att_id) === 'publish') {
-        $speakers[$att_id] = get_the_title($att_id);
-      }
-    }
-
+    $people   = ishf_programme_seminar_people($id);
+    $speakers = $people['people'];
     $slots = array(
       array(get_post_meta($id, 'ishf_cf_date_time_1', true), get_post_meta($id, 'ishf_cf_date_end_time_1', true)),
       array(get_post_meta($id, 'ishf_cf_date_time_2', true), get_post_meta($id, 'ishf_cf_date_end_time_2', true)),
@@ -140,6 +246,7 @@ function ishf_get_programme_sessions()
         'location'    => $location,
         'themes'      => $themes,
         'speakers'    => $speakers,
+        'panels'      => $people['panels'],
         'provisional' => (bool) get_post_meta($id, 'ishf_cf_is_provisional', true),
         'order'       => (int) get_post_meta($id, 'ishf_cf_order', true),
       );

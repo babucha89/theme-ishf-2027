@@ -84,6 +84,7 @@ get_template_part('includes/sections/sponsors','header');
           <?php the_content(); ?>
           <span class="separator bottom"></span>
         </div>
+        <?php get_template_part('includes/sections/attendant-sessions'); ?>
         <?php
         // -- Link back to the PREVIOUS page (falls back to the Programme when opened directly)
         $url_return = ishf_get_programme_url();

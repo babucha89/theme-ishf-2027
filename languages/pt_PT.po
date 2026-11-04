@@ -2480,3 +2480,10 @@ msgstr "Voltar"
 
 msgid "Know more"
 msgstr "Saber mais"
+
+#: includes/news-card.php, includes/post-meta-clipping.php, single.php (news & clippings)
+msgid "Sessions"
+msgstr "Sessões"
+
+msgid "Moderator"
+msgstr "Moderador(a)"

@@ -938,3 +938,14 @@ html.dark-mode .article-hero { background-color: var(--colors-night-800); }
 .ishf-seminar-content { padding-bottom: var(--grids-spacing-48); }
 .seminar-head-inner, .ishf-seminar-content > * { max-width: 1100px; margin-left: auto; margin-right: auto; padding-left: var(--grids-spacing-24); padding-right: var(--grids-spacing-24); box-sizing: border-box; }
 .ishf-seminar-content > section, .ishf-seminar-content > .alignfull { max-width: none; padding-left: 0; padding-right: 0; }
+
+/* ---------- Attendant sessions (includes/sections/attendant-sessions.php) ---------- */
+.attendant-sessions { margin-top: var(--grids-spacing-32); }
+.attendant-sessions-title { margin: 0 0 var(--grids-spacing-16); font-size: var(--fonts-size-heading-4); }
+.attendant-sessions-list { list-style: none; margin: 0; padding: 0; display: grid; gap: var(--grids-spacing-12); }
+.attendant-session-link { display: flex; flex-direction: column; gap: 4px; padding: var(--grids-spacing-16) var(--grids-spacing-24); color: var(--colors-text-default); text-decoration: none; background-color: var(--colors-background-card); border: 1px solid var(--colors-border-default); border-radius: var(--grids-radius-lg); transition: border-color .2s ease, transform .2s ease; }
+.attendant-session-link:hover, .attendant-session-link:focus { border-color: var(--colors-brand-sunny-yellow); transform: translateY(-2px); text-decoration: none; color: var(--colors-text-default); }
+.attendant-session-when { display: flex; flex-wrap: wrap; gap: 2px 16px; font-family: var(--fonts-family-headings); font-weight: 700; font-size: var(--fonts-size-small); text-transform: uppercase; letter-spacing: .06em; color: var(--colors-text-eyebrow); }
+.attendant-session-title { font-size: var(--fonts-size-heading-5); line-height: var(--fonts-line-height-headings); color: var(--colors-text-heading); }
+.attendant-session-panel { font-size: var(--fonts-size-small); color: var(--colors-text-muted); }
+.attendant-session-cta { margin-top: 4px; font-weight: 700; font-size: var(--fonts-size-small); color: var(--colors-text-heading); }
