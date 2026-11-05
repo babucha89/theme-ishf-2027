@@ -183,7 +183,9 @@ function ishf_load_scripts()
 {
   // -- ENQUEUE STYLESHEETS
   wp_enqueue_style('uikit', 'https://cdn.jsdelivr.net/npm/uikit@' . CDN_UIKIT_VERSION . '/dist/css/uikit.min.css', array(), CDN_UIKIT_VERSION);
-  wp_enqueue_style('googlefonts', add_query_arg(array('family' => 'Plus+Jakarta+Sans:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900', 'display' => 'swap'), 'https://fonts.googleapis.com/css2'), array(), null);
+  // Plus Jakarta Sans has only the axes ital + wght (200-800); no opsz. The URL is written as is on purpose:
+  // add_query_arg() would url-encode the ":" "@" ";" "+" characters and Google would reject the request.
+  wp_enqueue_style('googlefonts', 'https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap', array(), null);
 
   $deps = array('uikit');
   if (!ISHF_IS_LOCAL):
