@@ -1,13 +1,14 @@
 <?php
 // -----------------------------------------------------------------------------
 //  Block: LANGUAGE SWITCH (WPML)
+//  Order follows WPML > Settings > Language Switchers > Order of languages.
 //  Renders EN / PT pills (flag + 2-letter code, even when WPML uses pt-pt / en-us) from WPML's active languages. Prints nothing when WPML
 //  is not active, so the theme works before the plugin is installed.
 //  WCAG: lang + hreflang on each link, aria-current on the active language,
 //  visible text ("EN") is contained in the accessible name.
 //  Base Theme: ISHF 2027 Lisbon
 // -----------------------------------------------------------------------------
-$ishf_languages = apply_filters('wpml_active_languages', null, array('skip_missing' => 0, 'orderby' => 'code', 'order' => 'desc'));
+$ishf_languages = apply_filters('wpml_active_languages', null, array('skip_missing' => 0, 'orderby' => 'custom'));
 if (empty($ishf_languages) || !is_array($ishf_languages)) {
   return;
 }
