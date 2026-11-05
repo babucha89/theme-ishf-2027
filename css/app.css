@@ -806,7 +806,7 @@ html.dark-mode .article-hero { background-color: var(--colors-night-800); }
 .maintenance-cog { display: inline-block !important; transform-origin: 50% 50% !important; animation: ishf-rotate 20s linear infinite !important; color: var(--colors-brand-sunny-yellow) !important; }
 .maintenance-title { color: var(--colors-text-heading); transition: color 0.3s ease; }
 .maintenance-lead { color: var(--colors-text-muted); max-width: 620px; margin-left: auto; margin-right: auto; line-height: 1.65; transition: color 0.3s ease; }
-.error-number { font-family: var(--fonts-family-headings); font-size: clamp(80px, 12vw, 140px); font-weight: 900; line-height: 1; letter-spacing: -0.04em; background: linear-gradient(135deg, var(--colors-brand-sunny-yellow) 0%, var(--colors-brand-lisbon-red) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; display: inline-block; margin-bottom: 10px; }
+.error-number { font-family: var(--fonts-family-headings); font-size: clamp(80px, 12vw, 140px); font-weight: 800; line-height: 1; letter-spacing: -0.04em; background: linear-gradient(135deg, var(--colors-brand-sunny-yellow) 0%, var(--colors-brand-lisbon-red) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; display: inline-block; margin-bottom: 10px; }
 .error-title { color: var(--colors-text-heading); font-size: clamp(26px, 3.2vw, 40px); font-weight: 800; letter-spacing: -0.02em; margin-top: 0; transition: color 0.3s ease; }
 .error-lead { color: var(--colors-text-muted); max-width: 560px; margin-left: auto; margin-right: auto; font-size: 17px; line-height: 1.6; transition: color 0.3s ease; }
 
