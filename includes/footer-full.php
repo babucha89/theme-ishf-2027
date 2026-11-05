@@ -1,8 +1,8 @@
 <?php
 // -----------------------------------------------------------------------------
 //  Block: FOOTER (full variant)
-//  Logo, menu columns, newsletter shortcut, legal line, WPML language switch and
-//  theme toggle (Design System v2). Sponsor logos live in their own section.
+//  Logo, menu columns, newsletter shortcut and legal line (Design System v2).
+//  The language switch lives in the navbar next to the theme toggle. Sponsor logos live in their own section.
 //  Menus: Appearance > Menus > locations "Footer: Festival" / "Footer: About".
 //  Base Theme: ISHF 2027 Lisbon
 // -----------------------------------------------------------------------------
@@ -41,9 +41,6 @@
         <span class="footer-legal-sep" aria-hidden="true">|</span>
         <span><?php echo sprintf(esc_html__('Developed by %s', TEXT_DOMAIN), 'Medialivre Boost Solutions'); ?></span>
       </p>
-      <div class="footer-tools">
-        <?php get_template_part('includes/language-switcher'); ?>
-      </div>
     </div>
   </div>
 </footer>

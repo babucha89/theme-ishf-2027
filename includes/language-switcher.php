@@ -1,7 +1,7 @@
 <?php
 // -----------------------------------------------------------------------------
 //  Block: LANGUAGE SWITCH (WPML)
-//  Renders EN / PT pills from WPML's active languages. Prints nothing when WPML
+//  Renders EN / PT pills (flag + code) from WPML's active languages. Prints nothing when WPML
 //  is not active, so the theme works before the plugin is installed.
 //  WCAG: lang + hreflang on each link, aria-current on the active language,
 //  visible text ("EN") is contained in the accessible name.
@@ -25,7 +25,10 @@ if (empty($ishf_languages) || !is_array($ishf_languages)) {
            lang="<?php echo esc_attr($code); ?>"
            hreflang="<?php echo esc_attr($code); ?>"
            <?php echo $active ? 'aria-current="true"' : ''; ?>>
-          <?php echo esc_html(strtoupper($code)); ?><span class="sr-only"> – <?php echo esc_html($name); ?></span>
+          <?php if (!empty($ishf_lang['country_flag_url'])): ?>
+            <img class="lang-flag" src="<?php echo esc_url($ishf_lang['country_flag_url']); ?>" width="18" height="12" alt="" aria-hidden="true" loading="lazy" />
+          <?php endif; ?>
+          <span class="lang-code"><?php echo esc_html(strtoupper($code)); ?></span><span class="sr-only"> – <?php echo esc_html($name); ?></span>
         </a>
       </li>
     <?php endforeach; ?>

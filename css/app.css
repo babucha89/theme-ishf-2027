@@ -582,6 +582,8 @@ html.dark-mode .theme-toggle-icon-moon { opacity: 1; transform: translate(-50%, 
 .on-inverse .nav-tools-divider { background-color: rgba(var(--colors-neutral-white-rgb), 0.35); }
 .lang-switch { display: flex; align-items: center; gap: 8px; list-style: none; margin: 0; padding: 0; }
 .lang-switch a { display: inline-flex; align-items: center; justify-content: center; min-width: 44px; height: 32px; box-sizing: border-box; padding: 0 12px; border-radius: var(--grids-radius-pill); border: 1.5px solid var(--lang-border); color: var(--lang-color); font-family: var(--fonts-family-headings); font-weight: 700; font-size: var(--fonts-size-xsmall); letter-spacing: 0.04em; text-decoration: none; transition: background-color 0.2s ease, color 0.2s ease; }
+.lang-switch a { gap: 6px; }
+.lang-flag { display: block; width: 18px; height: 12px; object-fit: cover; border-radius: 2px; }
 .lang-switch a:hover { background-color: var(--colors-background-tint); color: var(--lang-color); }
 .lang-switch [aria-current="true"] { background-color: var(--lang-active-bg); border-color: var(--lang-active-bg); color: var(--lang-active-color); }
 .on-inverse .lang-switch a:hover { background-color: rgba(var(--colors-neutral-white-rgb), 0.12); color: var(--colors-neutral-white); }
@@ -949,3 +951,6 @@ html.dark-mode .article-hero { background-color: var(--colors-night-800); }
 .attendant-session-title { font-size: var(--fonts-size-heading-5); line-height: var(--fonts-line-height-headings); color: var(--colors-text-heading); }
 .attendant-session-panel { font-size: var(--fonts-size-small); color: var(--colors-text-muted); }
 .attendant-session-cta { margin-top: 4px; font-weight: 700; font-size: var(--fonts-size-small); color: var(--colors-text-heading); }
+
+/* WPML "development site" notice (printed by the plugin in the footer): hidden. It disappears for good with a production site key. */
+.otgs-development-site-front-end { display: none !important; }
