@@ -204,6 +204,7 @@ function ishf_load_scripts()
     wp_enqueue_script('cookies', BASE_JS . 'cookies.js', array('jquery', 'uikit'), SITE_VERSION, true);
   endif;
 
+  wp_enqueue_script('ishf-form-submit', BASE_JS . 'form-submit.js', array(), SITE_VERSION, true);
   wp_enqueue_script('light-dark-switch', BASE_JS . 'light-dark-switch.js', array('jquery'), false, true);
 
 }

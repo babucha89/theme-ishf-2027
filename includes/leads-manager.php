@@ -128,6 +128,24 @@ add_action('admin_init', 'ishf2027_check_custom_tables_version');
 // =============================================================================
 
 /**
+ * Whether an e-mail already submitted one of the forms (case-insensitive).
+ *
+ * @param  string $email
+ * @param  string $type  'partnerships' | 'newsletter'
+ * @return bool
+ */
+function ishf2027_email_exists($email, $type = 'partnerships')
+{
+  global $wpdb;
+  $email = strtolower(trim((string) $email));
+  if ($email === '') {
+    return false;
+  }
+  $table = ishf2027_get_table_name($type);
+  return (bool) $wpdb->get_var($wpdb->prepare("SELECT id FROM {$table} WHERE LOWER(email) = %s LIMIT 1", $email));
+}
+
+/**
  * Inserts a partnership lead into the database.
  *
  * @param  array $data Raw submission array.

@@ -129,7 +129,7 @@ $nl_errors = ($has_nl_result && !empty($newsletter_result['field_errors'])) ? $n
 
           <!-- Submit Button -->
           <div class="uk-margin-small-top">
-            <button type="submit" id="btn-newsletter-landing-submit" class="uk-button uk-button-secondary uk-border-pill uk-width-1-1">
+            <button type="submit" id="btn-newsletter-landing-submit" class="uk-button uk-button-secondary uk-border-pill uk-width-1-1" data-sending="<?php echo esc_attr__('Sending...', TEXT_DOMAIN); ?>">
               <?php _e('Subscribe to Newsletter', TEXT_DOMAIN); ?>
             </button>
           </div>

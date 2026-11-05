@@ -2487,3 +2487,22 @@ msgstr "Sessões"
 
 msgid "Moderator"
 msgstr "Moderador(a)"
+
+#: includes/news-card.php, includes/post-meta-clipping.php, single.php (news & clippings)
+msgid "Sending..."
+msgstr "A enviar..."
+
+msgid "This email address has already submitted a partnership request."
+msgstr "Este endereço de email já submeteu um pedido de parceria."
+
+msgid "This email address is already subscribed to the newsletter."
+msgstr "Este endereço de email já está subscrito na newsletter."
+
+msgid "You are subscribed to the %s newsletter"
+msgstr "Está subscrito(a) na newsletter de %s"
+
+msgid "We received your partnership request - %s"
+msgstr "Recebemos o seu pedido de parceria - %s"
+
+msgid "Hello %s,"
+msgstr "Olá %s,"

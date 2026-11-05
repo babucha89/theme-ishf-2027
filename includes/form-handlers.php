@@ -5,6 +5,47 @@
 //  Edited: BB, 27-OUT-2026
 // -----------------------------------------------------------------------------
 
+
+/**
+ * Confirmation e-mail sent to the person who submitted a form.
+ *
+ * @param string $email Recipient
+ * @param string $name  Recipient name
+ * @param string $type  'partnership' | 'newsletter'
+ */
+function ishf_send_submission_confirmation($email, $name, $type)
+{
+  if (!is_email($email)) {
+    return;
+  }
+  $site_name = defined('SITE_NAME') ? SITE_NAME : 'ISHF 2027';
+  $from      = defined('SITE_CONTACT_EMAIL') && SITE_CONTACT_EMAIL ? SITE_CONTACT_EMAIL : get_option('admin_email');
+
+  if ($type === 'newsletter') {
+    $subject = sprintf(__('You are subscribed to the %s newsletter', TEXT_DOMAIN), $site_name);
+    $title   = __('Thank you for subscribing!', TEXT_DOMAIN);
+    $text    = sprintf(__('You are now registered to receive all the latest news from %s.', TEXT_DOMAIN), $site_name);
+  } else {
+    $subject = sprintf(__('We received your partnership request - %s', TEXT_DOMAIN), $site_name);
+    $title   = __('Thank you for your interest!', TEXT_DOMAIN);
+    $text    = __('Your partnership inquiry has been received. Our team will contact you shortly.', TEXT_DOMAIN);
+  }
+
+  $body  = '<div style="font-family: Arial, sans-serif; line-height: 1.6; color: #1e293b; max-width: 600px; margin: 0 auto; border: 1px solid #e2e8f0; border-radius: 8px; padding: 24px;">';
+  $body .= '<h2 style="color: #023256; margin-top: 0;">' . esc_html($title) . '</h2>';
+  $body .= '<p>' . sprintf(esc_html__('Hello %s,', TEXT_DOMAIN), esc_html($name)) . '</p>';
+  $body .= '<p>' . esc_html($text) . '</p>';
+  $body .= '<hr style="border: 0; border-top: 1px solid #e2e8f0; margin: 20px 0;" />';
+  $body .= '<p style="font-size: 13px; color: #94a3b8;">' . esc_html($site_name) . '</p>';
+  $body .= '</div>';
+
+  @wp_mail($email, $subject, $body, array(
+    'Content-Type: text/html; charset=UTF-8',
+    'From: ' . $site_name . ' <' . $from . '>',
+    'Reply-To: ' . $from,
+  ));
+}
+
 add_action('wp_loaded', 'ishf_process_landing_forms');
 function ishf_process_landing_forms() {
   if (($_SERVER['REQUEST_METHOD'] ?? '') !== 'POST') {
@@ -63,6 +104,10 @@ function ishf_process_landing_forms() {
 
     if (empty($consent)) {
       $field_errors['partnership_consent'] = __('You must authorize data processing to submit this form.', TEXT_DOMAIN);
+    }
+
+    if (empty($field_errors) && function_exists('ishf2027_email_exists') && ishf2027_email_exists($email, 'partnerships')) {
+      $field_errors['partnership_email'] = __('This email address has already submitted a partnership request.', TEXT_DOMAIN);
     }
 
     if (!empty($field_errors)) {
@@ -216,6 +261,8 @@ function ishf_process_landing_forms() {
       ));
     }
 
+    ishf_send_submission_confirmation($email, $name, 'partnership');
+
     $result['success'] = true;
     $result['fields']  = array(); // Clear on success
 
@@ -263,6 +310,10 @@ function ishf_process_landing_forms() {
 
     if (empty($consent)) {
       $field_errors['newsletter_consent'] = __('You must authorize data processing to subscribe.', TEXT_DOMAIN);
+    }
+
+    if (empty($field_errors) && function_exists('ishf2027_email_exists') && ishf2027_email_exists($email, 'newsletter')) {
+      $field_errors['newsletter_email'] = __('This email address is already subscribed to the newsletter.', TEXT_DOMAIN);
     }
 
     if (!empty($field_errors)) {
@@ -376,6 +427,8 @@ function ishf_process_landing_forms() {
         'webhook_message' => $webhook_message,
       ));
     }
+
+    ishf_send_submission_confirmation($email, $name, 'newsletter');
 
     $result['success'] = true;
     $result['fields']  = array(); // Clear on success

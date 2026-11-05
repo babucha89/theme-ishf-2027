@@ -541,3 +541,8 @@ The programme is built from the CPT **Seminars** (nothing is hard-coded).
 - **Attendant page**: the *Back* button returns to the page the visitor came from (history), falling back to the Programme.
 - **Speaker filter fix**: a session's speakers are now the union of *Associated Attendants* and every speaker/moderator chosen in the **ISHF Seminar Program** block (nested blocks included; only published attendants, WPML-translated). Previously only *Associated Attendants* was read, so the Speaker filter matched nothing.
 - **Attendant page > Sessions**: `includes/sections/attendant-sessions.php` (via `ishf_get_attendant_sessions()`) lists the seminars the attendant takes part in, with day/time, the panel line (and *Moderator* role) and a link to the seminar page. Hidden when there are none.
+
+### Forms: Partnership & Newsletter (Nov 2026)
+- **Submit button**: `js/form-submit.js` disables the button on a valid submit (label "Sending..." from `data-sending`), blocks double submissions and unlocks it if the visitor returns with the browser Back button.
+- **No duplicates**: before anything is sent or stored, `ishf2027_email_exists()` checks the e-mail (case-insensitive) in its own table (`wp_ishf_partnerships` / `wp_ishf_newsletter`). A repeated e-mail shows an inline error on the e-mail field and nothing is mailed, posted to the webhook or saved. The two forms are independent (the same e-mail may do both).
+- **Confirmation e-mail**: after a successful submission `ishf_send_submission_confirmation()` e-mails the person (language of the page, via WPML) from `SITE_CONTACT_EMAIL`. The on-page success message and the secretariat notification are unchanged.

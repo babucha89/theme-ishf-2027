@@ -220,7 +220,7 @@ if ($has_result && !empty($partnership_result['fields'])) {
 
                 <!-- Submit Button -->
                 <div class="uk-margin-top">
-                  <button type="submit" id="btn-partnership-submit" class="uk-button uk-button-primary uk-border-pill uk-width-1-1">
+                  <button type="submit" id="btn-partnership-submit" class="uk-button uk-button-primary uk-border-pill uk-width-1-1" data-sending="<?php echo esc_attr__('Sending...', TEXT_DOMAIN); ?>">
                     <span class="uk-margin-small-right" data-uk-icon="icon: check"></span>
                     <?php _e('Send Partnership Request', TEXT_DOMAIN); ?>
                   </button>
