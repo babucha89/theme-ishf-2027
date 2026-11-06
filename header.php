@@ -49,10 +49,19 @@
   get_template_part('includes/favicons');
   ?>
 
+  <?php
+  // -- Block: GTM
+  get_template_part('includes/gtm');
+  ?>
+
   <?php wp_head(); ?>
 </head>
 
 <body <?php body_class(); ?>>
+  <?php
+  // -- Block: GTM (No Script)
+  get_template_part('includes/gtm', 'noscript');
+  ?>
   <?php wp_body_open(); ?>
 
   <!-- Accessibility: Skip Link (WCAG 2.1 AA) -->

@@ -20,7 +20,7 @@
   <footer class="ishf-footer-simple uk-section uk-section-xsmall uk-text-center" role="contentinfo">
     <div class="uk-container">
       <p class="uk-margin-remove footer-legal-text uk-text-small">
-        © <?php echo date('Y'); ?> <?php echo esc_html(defined('SITE_SHORT_NAME') ? SITE_SHORT_NAME : SITE_NAME); ?>. <?php _e('All rights reserved.', TEXT_DOMAIN); ?>
+        © <?php echo date('Y'); ?> <?php echo esc_html(defined('SITE_NAME') ? SITE_NAME : 'International Social Housing Festival'); ?>. 
         <span class="footer-legal-sep" aria-hidden="true">|</span>
         <span><?php echo sprintf(esc_html__('Developed by %s', TEXT_DOMAIN), 'Medialivre Boost Solutions'); ?></span>
       </p>
@@ -42,6 +42,11 @@
       get_template_part('includes/cookies-disclaimer');
     endif;
   endif;
+  ?>
+
+  <?php
+  // -- Block: SHARE THIS Sticky buttons
+  echo '<div class="sharethis-sticky-share-buttons"></div>';
   ?>
 
   <?php wp_footer(); ?>
