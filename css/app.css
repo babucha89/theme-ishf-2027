@@ -919,11 +919,6 @@ html.dark-mode .article-hero { background-color: var(--colors-night-800); }
   .programme-actions { flex-direction: column; align-items: flex-end; }
 }
 .programme-soon { max-width: 720px; margin: var(--grids-spacing-32) auto 0; padding: var(--grids-spacing-48) var(--grids-spacing-24); text-align: center; background-color: var(--colors-background-card); border: 1px dashed var(--colors-border-default); border-radius: var(--grids-radius-lg); }
-.programme-soon--live { border-style: solid; }
-.programme-soon-list { list-style: none; max-width: 540px; margin: 0 auto var(--grids-spacing-24); padding: 0; text-align: left; }
-.programme-soon-list li { display: flex; flex-direction: column; gap: 2px; padding: 8px 0; border-bottom: 1px solid var(--colors-border-default); }
-.programme-soon-list li:last-child { border-bottom: 0; }
-.programme-soon-list time, .programme-soon-list li > span { font-family: var(--fonts-family-headings); font-weight: 700; font-size: var(--fonts-size-small); text-transform: uppercase; letter-spacing: .06em; color: var(--colors-text-eyebrow); }
 .programme-soon-icon { display: inline-block; color: var(--colors-brand-sunny-yellow); }
 .programme-soon-title { margin: 12px 0 8px; }
 .programme-soon-text { max-width: 540px; margin: 0 auto var(--grids-spacing-24); color: var(--colors-text-muted); }
