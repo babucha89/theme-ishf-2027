@@ -927,6 +927,17 @@ html.dark-mode .article-hero { background-color: var(--colors-night-800); }
 .programme-soon-icon { display: inline-block; color: var(--colors-brand-sunny-yellow); }
 .programme-soon-title { margin: 12px 0 8px; }
 .programme-soon-text { max-width: 540px; margin: 0 auto var(--grids-spacing-24); color: var(--colors-text-muted); }
+/* Home teaser, live state: outlined panel with one tinted card per day */
+.programme-live { max-width: 1200px; margin: 0 auto; padding: var(--grids-spacing-48) var(--grids-spacing-24); text-align: center; background-color: var(--colors-background-card); border: 1px solid var(--colors-border-strong); border-radius: var(--grids-radius-lg); }
+.programme-live-eyebrow { margin: 0 0 var(--grids-spacing-12); font-family: var(--fonts-family-headings); font-weight: 700; font-size: var(--fonts-size-small); letter-spacing: .1em; text-transform: uppercase; color: var(--colors-text-eyebrow); }
+.programme-live-title { margin: 0 0 var(--grids-spacing-32); }
+.programme-live-grid { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: 1fr; gap: var(--grids-spacing-24); text-align: left; }
+.programme-live-card { display: flex; flex-direction: column; align-items: flex-start; box-sizing: border-box; min-height: 236px; padding: var(--grids-spacing-24); background-color: var(--colors-background-tint); border-radius: var(--grids-radius-md); }
+.programme-live-day { margin: 0 0 8px; font-family: var(--fonts-family-headings); font-weight: 700; font-size: var(--fonts-size-small); letter-spacing: .08em; text-transform: uppercase; color: var(--colors-text-eyebrow); }
+.programme-live-time { margin: 0 0 8px; font-size: var(--fonts-size-small); color: var(--colors-text-muted); }
+.programme-live-session { margin: 0 0 var(--grids-spacing-24); font-size: var(--fonts-size-heading-5); line-height: var(--fonts-line-height-headings); }
+.programme-live-card .uk-button { margin-top: auto; }
+@media (min-width: 960px) { .programme-live { padding: var(--grids-spacing-48); } .programme-live-grid { grid-template-columns: repeat(3, 1fr); } }
 .programme-teaser-card { height: 100%; box-sizing: border-box; padding: var(--grids-spacing-24); background-color: var(--colors-background-card); border: 1px solid var(--colors-border-default); border-radius: var(--grids-radius-lg); }
 .programme-teaser-when { margin: 0 0 8px; font-family: var(--fonts-family-headings); font-weight: 700; font-size: var(--fonts-size-small); text-transform: uppercase; letter-spacing: .06em; color: var(--colors-text-eyebrow); }
 .programme-teaser-title { margin: 0 0 8px; font-size: var(--fonts-size-heading-5); line-height: var(--fonts-line-height-headings); }

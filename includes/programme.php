@@ -307,9 +307,39 @@ function ishf_programme_when_label(array $session)
 }
 
 /**
+ * Sessions shown in the Home teaser: the first session of each day (up to $limit
+ * days, chronological), each with its day number ("day_number" = position of the
+ * day in the whole programme). Undated sessions are only used when nothing is dated.
+ *
+ * @param  array $sessions Output of ishf_get_programme_sessions() (already sorted)
+ * @param  int   $limit
+ * @return array
+ */
+function ishf_programme_teaser_sessions(array $sessions, $limit = 3)
+{
+  $days = array();
+  foreach ($sessions as $s) {
+    if ($s['day'] !== 'tba' && !isset($days[$s['day']])) {
+      $days[$s['day']] = $s;
+    }
+  }
+  if (!$days) {
+    return array_slice($sessions, 0, (int) $limit);
+  }
+  $out = array();
+  $n   = 0;
+  foreach ($days as $s) {
+    $n++;
+    $s['day_number'] = $n;
+    $out[]           = $s;
+  }
+  return array_slice($out, 0, (int) $limit);
+}
+
+/**
  * Home panel of the programme. Same size and layout in both states:
  *  - no seminar published: "Programme coming soon" + newsletter button, dashed border;
- *  - seminars published: the next sessions (start and end) + "Know more" button, solid border.
+ *  - seminars published: one card per day (time, title, "Know more" to the session).
  *
  * @param  string $heading_tag h2 or h3
  * @param  array  $sessions    Sessions to list (empty = coming soon)
@@ -321,24 +351,37 @@ function ishf_programme_panel($heading_tag = 'h3', array $sessions = array(), $u
   $heading_tag = in_array($heading_tag, array('h2', 'h3'), true) ? $heading_tag : 'h3';
   $live        = !empty($sessions);
   ?>
-  <div class="programme-soon<?php echo $live ? ' programme-soon--live' : ''; ?>">
+  <?php if ($live): ?>
+  <div class="programme-live">
+    <p class="programme-live-eyebrow"><?php esc_html_e('Programme', TEXT_DOMAIN); ?></p>
+    <<?php echo $heading_tag; ?> class="programme-live-title"><?php esc_html_e('Programme 7–9 June 2027', TEXT_DOMAIN); ?></<?php echo $heading_tag; ?>>
+    <ul class="programme-live-grid">
+      <?php foreach ($sessions as $s): ?>
+        <li class="programme-live-card">
+          <?php if ($s['start']):
+            $day_label = wp_date('D j F', $s['start']->getTimestamp(), new DateTimeZone('Europe/Lisbon'));
+            if (!empty($s['day_number'])) {
+              /* translators: 1: day number, 2: weekday and date, e.g. "Mon 7 June" */
+              $day_label = sprintf(__('Day %1$d · %2$s', TEXT_DOMAIN), (int) $s['day_number'], $day_label);
+            }
+            ?>
+            <p class="programme-live-day"><time datetime="<?php echo esc_attr($s['start']->format('c')); ?>"><?php echo esc_html($day_label); ?></time></p>
+            <p class="programme-live-time"><?php echo esc_html(str_replace(' - ', ' – ', ishf_programme_time_label($s))); ?></p>
+          <?php else: ?>
+            <p class="programme-live-day"><?php esc_html_e('Date to be announced', TEXT_DOMAIN); ?></p>
+          <?php endif; ?>
+          <h3 class="programme-live-session"><?php echo esc_html($s['title']); ?></h3>
+          <a class="uk-button uk-button-primary" href="<?php echo esc_url(!empty($s['url']) ? $s['url'] : $url); ?>">
+            <?php esc_html_e('Know more', TEXT_DOMAIN); ?>
+            <span class="uk-hidden-visually"> – <?php echo esc_html($s['title']); ?></span>
+          </a>
+        </li>
+      <?php endforeach; ?>
+    </ul>
+  </div>
+  <?php else: ?>
+  <div class="programme-soon">
     <span class="programme-soon-icon" data-uk-icon="icon: calendar; ratio: 2" aria-hidden="true"></span>
-    <?php if ($live): ?>
-      <<?php echo $heading_tag; ?> class="programme-soon-title"><?php esc_html_e('Programme', TEXT_DOMAIN); ?></<?php echo $heading_tag; ?>>
-      <ul class="programme-soon-list">
-        <?php foreach ($sessions as $s): ?>
-          <li>
-            <?php if ($s['start']): ?>
-              <time datetime="<?php echo esc_attr($s['start']->format('c')); ?>"><?php echo esc_html(ishf_programme_when_label($s)); ?></time>
-            <?php else: ?>
-              <span><?php esc_html_e('Date to be announced', TEXT_DOMAIN); ?></span>
-            <?php endif; ?>
-            <strong><?php echo esc_html($s['title']); ?></strong>
-          </li>
-        <?php endforeach; ?>
-      </ul>
-      <a class="uk-button uk-button-primary" href="<?php echo esc_url($url); ?>"><?php esc_html_e('Know more', TEXT_DOMAIN); ?></a>
-    <?php else: ?>
       <<?php echo $heading_tag; ?> class="programme-soon-title"><?php esc_html_e('Programme coming soon', TEXT_DOMAIN); ?></<?php echo $heading_tag; ?>>
       <p class="programme-soon-text">
         <?php esc_html_e('We are building three days of sessions, workshops and site visits for 7‑9 June 2027 in Lisbon. The full programme will be published here as soon as it is confirmed.', TEXT_DOMAIN); ?>
@@ -346,8 +389,8 @@ function ishf_programme_panel($heading_tag = 'h3', array $sessions = array(), $u
       <button type="button" class="uk-button uk-button-primary" data-uk-toggle="target: #modal-newsletter" aria-haspopup="dialog" aria-controls="modal-newsletter">
         <?php esc_html_e('Get notified when it is published', TEXT_DOMAIN); ?>
       </button>
-    <?php endif; ?>
   </div>
+  <?php endif; ?>
   <?php
 }
 

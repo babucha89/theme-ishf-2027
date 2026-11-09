@@ -2506,3 +2506,10 @@ msgstr "Recebemos o seu pedido de parceria - %s"
 
 msgid "Hello %s,"
 msgstr "Olá %s,"
+
+#: includes/programme.php (Home programme teaser)
+msgid "Programme 7–9 June 2027"
+msgstr "Programa 7–9 de junho de 2027"
+
+msgid "Day %1$d · %2$s"
+msgstr "Dia %1$d · %2$s"
