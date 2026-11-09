@@ -34,7 +34,8 @@ defined('CDN_UIKIT_VERSION') or define('CDN_UIKIT_VERSION', '3.25.28');
 defined('SITE_VERSION') or define('SITE_VERSION', '1.0.0');
 defined('SITE_LATEST_UPDATE') or define('SITE_LATEST_UPDATE', '27-OUT-2026');
 defined('SITE_GTM_ID') or define('SITE_GTM_ID', 'GTM-WKBFD6MJ');
-defined('SITE_NAME') or define('SITE_NAME', 'International Social Housing Festival 2027');
+defined('SITE_SHARETHIS_PROPERTY') or define('SITE_SHARETHIS_PROPERTY', '6ae11d95204704d053d4d751');
+defined('SITE_NAME') or define('SITE_NAME', 'International Social Housing Festival');
 defined('SITE_SHORT_NAME') or define('SITE_SHORT_NAME', 'ISHF 2027');
 defined('SITE_CLIENT_NAME') or define('SITE_CLIENT_NAME', 'ISHF 2027 Lisbon');
 defined('SITE_CONTACT_NAME') or define('SITE_CONTACT_NAME', 'Medialivre Boost Activate');
@@ -209,7 +210,28 @@ function ishf_load_scripts()
   wp_enqueue_script('ishf-form-submit', BASE_JS . 'form-submit.js', array(), SITE_VERSION, true);
   wp_enqueue_script('light-dark-switch', BASE_JS . 'light-dark-switch.js', array('jquery'), false, true);
 
+  // -- ShareThis Sticky Buttons
+  if (defined('SITE_SHARETHIS_PROPERTY') && !empty(SITE_SHARETHIS_PROPERTY)):
+    wp_enqueue_script('sharethis', 'https://platform-api.sharethis.com/js/sharethis.js#property=' . SITE_SHARETHIS_PROPERTY . '&product=sop', array(), null, false);
+  endif;
+
 }
+
+//------------------------------------------------------------------------------
+//  ShareThis: add async attribute to script tag
+//------------------------------------------------------------------------------
+if (!function_exists('ishf_add_async_to_sharethis')):
+  add_filter('script_loader_tag', 'ishf_add_async_to_sharethis', 10, 2);
+  function ishf_add_async_to_sharethis($tag, $handle)
+  {
+    if ('sharethis' === $handle) {
+      if (strpos($tag, ' async') === false) {
+        $tag = str_replace('<script ', '<script async ', $tag);
+      }
+    }
+    return $tag;
+  }
+endif;
 
 
 //------------------------------------------------------------------------------
