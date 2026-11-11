@@ -46,6 +46,49 @@ function ishf_send_submission_confirmation($email, $name, $type)
   ));
 }
 
+/**
+ * Verifies Google reCAPTCHA v3 response token.
+ *
+ * @param  string $token Token from $_POST['g-recaptcha-response']
+ * @return bool True if valid, false if bot/failed.
+ */
+function ishf_verify_recaptcha($token = '')
+{
+  $is_local = defined('ISHF_IS_LOCAL') ? ISHF_IS_LOCAL : in_array(($_SERVER['SERVER_NAME'] ?? ''), array('localhost', '127.0.0.1'));
+  if ($is_local || !defined('RECAPTCHA_SITE_KEY') || empty(RECAPTCHA_SITE_KEY) || !defined('RECAPTCHA_SECRET_KEY') || empty(RECAPTCHA_SECRET_KEY)) {
+    return true; // Safe bypass on local environments or if keys are not defined
+  }
+
+  if (empty($token)) {
+    return false;
+  }
+
+  $verify = wp_remote_post('https://www.google.com/recaptcha/api/siteverify', array(
+    'timeout' => 10,
+    'body'    => array(
+      'secret'   => RECAPTCHA_SECRET_KEY,
+      'response' => $token,
+      'remoteip' => $_SERVER['REMOTE_ADDR'] ?? '',
+    ),
+  ));
+
+  if (is_wp_error($verify)) {
+    error_log('[ISHF reCAPTCHA] Verification error: ' . $verify->get_error_message());
+    return true; // Fail open on server network error so users are not blocked
+  }
+
+  $verify_data = json_decode(wp_remote_retrieve_body($verify), true);
+  if (empty($verify_data['success'])) {
+    return false;
+  }
+
+  if (isset($verify_data['score']) && (float) $verify_data['score'] < 0.5) {
+    return false;
+  }
+
+  return true;
+}
+
 add_action('wp_loaded', 'ishf_process_landing_forms');
 function ishf_process_landing_forms() {
   if (($_SERVER['REQUEST_METHOD'] ?? '') !== 'POST') {
@@ -118,27 +161,13 @@ function ishf_process_landing_forms() {
       return;
     }
 
-    // Optional reCAPTCHA v3 check if keys defined
-    $is_local = in_array(($_SERVER['SERVER_NAME'] ?? ''), array('localhost', '127.0.0.1'));
-    if (!$is_local && defined('RECAPTCHA_SITE_KEY') && !empty(RECAPTCHA_SITE_KEY) && defined('RECAPTCHA_SECRET_KEY') && !empty(RECAPTCHA_SECRET_KEY)) {
-      $token = isset($_POST['g-recaptcha-response']) ? sanitize_text_field(wp_unslash($_POST['g-recaptcha-response'])) : '';
-      if (!empty($token)) {
-        $verify = wp_remote_post('https://www.google.com/recaptcha/api/siteverify', array(
-          'timeout' => 10,
-          'body' => array(
-            'secret'   => RECAPTCHA_SECRET_KEY,
-            'response' => $token,
-            'remoteip' => $_SERVER['REMOTE_ADDR'] ?? '',
-          ),
-        ));
-        $verify_data = is_wp_error($verify) ? array() : json_decode(wp_remote_retrieve_body($verify), true);
-        if (empty($verify_data['success']) || (isset($verify_data['score']) && $verify_data['score'] < 0.5)) {
-          $result['success'] = false;
-          $result['error'] = __('Security validation failed. Please confirm you are not a robot.', TEXT_DOMAIN);
-          $GLOBALS['partnership_result'] = $result;
-          return;
-        }
-      }
+    // reCAPTCHA v3 anti-bot verification
+    $token = isset($_POST['g-recaptcha-response']) ? sanitize_text_field(wp_unslash($_POST['g-recaptcha-response'])) : '';
+    if (!ishf_verify_recaptcha($token)) {
+      $result['success'] = false;
+      $result['error']   = __('Security validation failed. Please confirm you are not a robot.', TEXT_DOMAIN);
+      $GLOBALS['partnership_result'] = $result;
+      return;
     }
 
     // Compose notification email
@@ -321,6 +350,16 @@ function ishf_process_landing_forms() {
       $result['field_errors'] = $field_errors;
       $result['error']        = __('Please correct the highlighted fields and try again.', TEXT_DOMAIN);
       $GLOBALS['newsletter_landing_result'] = $result;
+      return;
+    }
+
+    // reCAPTCHA v3 anti-bot verification
+    $token = isset($_POST['g-recaptcha-response']) ? sanitize_text_field(wp_unslash($_POST['g-recaptcha-response'])) : '';
+    if (!ishf_verify_recaptcha($token)) {
+      $result['success'] = false;
+      $result['error']   = __('Security validation failed. Please confirm you are not a robot.', TEXT_DOMAIN);
+      $GLOBALS['newsletter_landing_result'] = $result;
+      $GLOBALS['newsletter_result']         = $result;
       return;
     }
 

@@ -26,7 +26,7 @@ function render_ishf_intro($attributes, $content)
 
   if ($layout === 'no-image') {
     if (!empty($title)):
-      $output .= '<p class="uk-h2 uk-text-bold uk-margin-remove-bottom">' . esc_html($title) . '</p>';
+      $output .= '<h1 class="uk-h2 uk-text-bold uk-margin-remove-bottom">' . esc_html($title) . '</h1>';
     endif;
     if (!empty($description)):
       $output .= '<div class="uk-text-default uk-margin-small-top">' . wp_kses_post($description) . '</div>';
@@ -36,14 +36,14 @@ function render_ishf_intro($attributes, $content)
     $output .= '<div data-uk-grid class="uk-grid-large uk-flex-middle">';
     
     // Image column (1/3)
-    $image_col = '<div class="uk-width-1-3@m' . ($layout === 'image-right' ? ' uk-flex-last@m' : '') . '">';
+    $image_col = '<div class="uk-width-1-1 uk-width-expand@s' . ($layout === 'image-right' ? ' uk-flex-last@m' : '') . '">';
     if (!empty($image_url)):
       $image_col .= '<img class="uk-border-rounded" src="' . esc_url($image_url) . '" alt="' . esc_attr($image_alt) . '" />';
     endif;
     $image_col .= '</div>';
     
     // Text column (2/3)
-    $text_col = '<div class="uk-width-2-3@m">';
+    $text_col = '<div class="uk-width-1-1 uk-width-1-3@s">';
     if (!empty($title)):
       $text_col .= '<p class="uk-h2 uk-text-bold uk-margin-remove-bottom">' . esc_html($title) . '</p>';
     endif;
