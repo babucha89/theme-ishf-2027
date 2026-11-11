@@ -375,7 +375,8 @@ html.dark-mode {
    5. Site chrome: cookies, navigation, header, footer
    6. Shared components: CTA box, badges, news card
    7. Page sections, in page order: hero, journeys, live event, news, CTAs,
-      partners, newsletter, content blocks, single article, maintenance, 404
+      partners, newsletter, content blocks, single article, maintenance, 404,
+      past editions (timeline, modal, About CTA)
    8. Media queries (UIkit breakpoints 640 / 960 / 1200 / 1600)
    9. Reduced motion
    Dark mode: tokens switch in `html.dark-mode` above; `html.dark-mode` selectors
@@ -818,6 +819,64 @@ html.dark-mode .article-hero { background-color: var(--colors-night-800); }
 .error-lead { color: var(--colors-text-muted); max-width: 560px; margin-left: auto; margin-right: auto; font-size: 17px; line-height: 1.6; transition: color 0.3s ease; }
 
 
+/* --- Past editions: timeline + modal (page-past-editions.php, includes/sections/past-editions.php) ------- */
+.ishf-editions { padding: 0 0 var(--grids-spacing-80); }
+.editions-intro .uk-article-content { max-width: 760px; }
+.editions-empty { max-width: 720px; margin: 0 auto; padding: var(--grids-spacing-48) var(--grids-spacing-24); text-align: center; color: var(--colors-text-muted); background-color: var(--colors-background-card); border: 1px dashed var(--colors-border-default); border-radius: var(--grids-radius-lg); }
+.editions-timeline { position: relative; list-style: none; margin: 0; padding: 0; }
+.editions-timeline::before { content: ""; position: absolute; top: 28px; bottom: 28px; left: 27px; width: 2px; background-color: var(--colors-brand-blue-tejo); }
+.edition-item { position: relative; display: grid; grid-template-columns: 56px minmax(0, 1fr); column-gap: var(--grids-spacing-16); margin: 0 0 var(--grids-spacing-32); }
+.edition-item:last-child { margin-bottom: 0; }
+.edition-marker { grid-column: 1; grid-row: 1; position: relative; z-index: 1; display: flex; align-items: center; justify-content: center; width: 56px; height: 56px; border-radius: 50%; font-family: var(--fonts-family-headings); font-weight: 800; font-size: var(--fonts-size-small); color: var(--colors-brand-blue-sky); background-color: var(--colors-brand-sunny-yellow); box-shadow: 0 0 0 6px var(--colors-background-default); }
+.edition-item--next .edition-marker { color: var(--colors-neutral-white); background-color: var(--colors-brand-lisbon-red); }
+.edition-card { grid-column: 2; grid-row: 1; display: flex; flex-direction: column; gap: var(--grids-spacing-16); box-sizing: border-box; padding: var(--grids-spacing-24); background-color: var(--colors-background-card); border: 1px solid var(--colors-border-default); border-radius: var(--grids-radius-lg); transition: transform 0.25s ease, box-shadow 0.25s ease, background-color 0.3s ease, border-color 0.3s ease; }
+html.dark-mode .edition-card { background-color: var(--colors-night-800); border-color: var(--colors-night-700); }
+.edition-card:hover, .edition-card:focus-within { transform: translateY(-4px); box-shadow: 0 14px 32px rgba(var(--colors-neutral-black-rgb), 0.12); }
+html.dark-mode .edition-card:hover, html.dark-mode .edition-card:focus-within { box-shadow: 0 14px 32px rgba(var(--colors-neutral-black-rgb), 0.5); }
+.edition-card--next { background-color: var(--colors-background-tint); border-style: dashed; border-color: var(--colors-border-strong); }
+html.dark-mode .edition-card--next { background-color: var(--colors-night-900); border-color: var(--colors-brand-blue-tejo); }
+/* Logos are designed for a light background: white panel in both modes, unless a dark-mode logo exists */
+.edition-card-logo, .edition-modal-logo-box { display: flex; align-items: center; justify-content: center; box-sizing: border-box; background-color: var(--colors-neutral-white); border: 1px solid var(--colors-border-default); border-radius: var(--grids-radius-md); }
+html.dark-mode .edition-card-logo, html.dark-mode .edition-modal-logo-box { border-color: var(--colors-night-700); }
+html.dark-mode .edition-card-logo.has-dark-logo, html.dark-mode .edition-modal-logo-box.has-dark-logo { background-color: var(--colors-night-700); }
+.edition-card-logo { height: 128px; padding: var(--grids-spacing-16); }
+.edition-logo, .edition-modal-logo { display: block; width: auto; height: auto; max-width: 100%; object-fit: contain; }
+.edition-logo { max-height: 96px; }
+.edition-card-eyebrow, .edition-modal-eyebrow { margin: 0 0 4px; font-family: var(--fonts-family-headings); font-weight: 700; font-size: var(--fonts-size-small); letter-spacing: .08em; text-transform: uppercase; color: var(--colors-text-eyebrow); }
+.edition-card-title { margin: 0 0 8px; font-size: var(--fonts-size-heading-4); line-height: var(--fonts-line-height-headings); color: var(--colors-text-heading); }
+.edition-card-dates { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 8px; margin: 0 0 var(--grids-spacing-16); font-weight: var(--fonts-weight-semibold); color: var(--colors-text-eyebrow); }
+.edition-card-button { display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-height: 44px; padding-top: 10px; padding-bottom: 10px; line-height: 1.3; white-space: normal; text-align: center; }
+.modal-ishf-edition .uk-modal-dialog { width: 880px; max-width: calc(100vw - 32px); box-sizing: border-box; padding: 40px 36px; color: var(--modal-color); background-color: var(--modal-bg); border: var(--modal-border); border-radius: var(--grids-radius-lg); box-shadow: 0 20px 50px rgba(var(--colors-neutral-black-rgb), 0.20); transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease; }
+.modal-ishf-edition .uk-modal-close-default { top: 20px; right: 20px; color: var(--modal-muted-color); }
+.modal-ishf-edition .uk-modal-close-default:hover, .modal-ishf-edition .uk-modal-close-default:focus { color: var(--modal-title-color); }
+.edition-modal-header { display: flex; flex-wrap: wrap; align-items: center; gap: var(--grids-spacing-16) var(--grids-spacing-24); margin: 0 0 var(--grids-spacing-24); padding-right: var(--grids-spacing-32); }
+.edition-modal-logo-box { flex: 0 0 auto; width: 140px; height: 104px; padding: var(--grids-spacing-12); }
+.edition-modal-logo { max-height: 80px; }
+.edition-modal-title { margin: 0; font-family: var(--fonts-family-headings); font-weight: 800; font-size: clamp(26px, 3vw, 36px); line-height: 1.15; color: var(--modal-title-color); }
+.edition-modal-facts { list-style: none; display: grid; gap: var(--grids-spacing-12); margin: 0 0 var(--grids-spacing-24); padding: 0; }
+.edition-modal-facts li { display: flex; align-items: flex-start; gap: var(--grids-spacing-12); }
+.edition-fact-icon { flex: 0 0 auto; color: var(--colors-text-eyebrow); }
+.edition-venue { display: block; color: var(--modal-title-color); }
+.edition-address { display: block; color: var(--modal-muted-color); }
+.edition-map { height: 340px; overflow: hidden; border: 1px solid var(--colors-border-default); border-radius: var(--grids-radius-md); background-color: var(--colors-background-tint); }
+html.dark-mode .edition-map { border-color: var(--colors-night-700); background-color: var(--colors-night-800); }
+.edition-map-link { display: inline-flex; align-items: center; gap: 6px; margin-top: var(--grids-spacing-8); font-size: var(--fonts-size-small); font-weight: 700; }
+.edition-modal-content { margin-top: var(--grids-spacing-24); padding-top: var(--grids-spacing-24); border-top: 1px solid var(--colors-border-default); }
+html.dark-mode .edition-modal-content { border-top-color: var(--colors-night-700); }
+.edition-modal-content > :last-child { margin-bottom: 0; }
+
+/* --- Past editions CTA (About page, includes/sections/past-editions-cta.php) ----------------------- */
+.editions-cta { display: grid; gap: var(--grids-spacing-24); align-items: center; padding: var(--grids-spacing-32) var(--grids-spacing-24); background-color: var(--colors-background-tint); border-left: 6px solid var(--colors-brand-sunny-yellow); border-radius: var(--grids-radius-lg); }
+html.dark-mode .editions-cta { background-color: var(--colors-night-800); }
+.editions-cta-eyebrow { margin: 0 0 8px; font-family: var(--fonts-family-headings); font-weight: 700; font-size: var(--fonts-size-small); letter-spacing: .1em; text-transform: uppercase; color: var(--colors-text-eyebrow); }
+.editions-cta-title { margin: 0 0 var(--grids-spacing-12); font-size: var(--fonts-size-heading-3); }
+.editions-cta-intro { max-width: 640px; margin: 0; color: var(--colors-text-muted); }
+.editions-cta-chips { list-style: none; display: flex; flex-wrap: wrap; gap: 8px; margin: var(--grids-spacing-16) 0 0; padding: 0; }
+.editions-cta-chips a { display: inline-flex; align-items: center; min-height: 36px; padding: 0 14px; font-size: var(--fonts-size-small); font-weight: 600; color: var(--colors-text-heading); text-decoration: none; background-color: var(--colors-background-card); border: 1px solid var(--colors-border-default); border-radius: var(--grids-radius-pill); transition: background-color 0.2s ease, border-color 0.2s ease; }
+html.dark-mode .editions-cta-chips a { background-color: var(--colors-night-900); border-color: var(--colors-night-700); }
+.editions-cta-chips a:hover, .editions-cta-chips a:focus { background-color: var(--colors-brand-sunny-yellow); border-color: var(--colors-brand-sunny-yellow); color: var(--colors-brand-blue-sky); text-decoration: none; }
+.editions-cta-action .uk-button { display: inline-flex; align-items: center; gap: 8px; }
+
 /* =============================================================================
    8. MEDIA QUERIES (UIkit breakpoints: s 640 / m 960 / l 1200 / xl 1600)
    Overrides sit at the end of the file by project convention.
@@ -831,6 +890,9 @@ html.dark-mode .article-hero { background-color: var(--colors-night-800); }
   .cta-box { padding: 24px 18px; }
   .maintenance-project-logo { max-width: 290px; }
   .footer-bottom { flex-direction: column; align-items: flex-start; }
+  .modal-ishf-edition .uk-modal-dialog { padding: 28px 20px; }
+  .edition-map { height: 260px; }
+  .edition-card-button { width: 100%; }
 }
 
 /* --- s only: 640px to 959px (tablet) ------------------------------------------------------- */
@@ -863,6 +925,16 @@ html.dark-mode .article-hero { background-color: var(--colors-night-800); }
   .streaming-wave { right: var(--grids-spacing-64); width: 150px; }
   .article-hero { padding: var(--grids-spacing-64) 0; }
   .article-title { font-size: var(--fonts-size-heading-1); }
+  /* Past editions: centred line, cards alternate left / right */
+  .editions-timeline::before { left: 50%; margin-left: -1px; }
+  .edition-item { grid-template-columns: minmax(0, 1fr) 96px minmax(0, 1fr); column-gap: 0; margin-bottom: var(--grids-spacing-48); }
+  .edition-marker { grid-column: 2; justify-self: center; width: 72px; height: 72px; font-size: var(--fonts-size-regular); }
+  .edition-item:nth-child(odd) .edition-card { grid-column: 1; }
+  .edition-item:nth-child(even) .edition-card { grid-column: 3; }
+  .edition-card { flex-direction: row; align-items: center; gap: var(--grids-spacing-24); }
+  .edition-card-logo { flex: 0 0 160px; height: 136px; }
+  .edition-card-body { min-width: 0; }
+  .editions-cta { grid-template-columns: minmax(0, 1fr) auto; gap: var(--grids-spacing-48); padding: var(--grids-spacing-48); }
 }
 
 /* --- l and up: >= 1200px ----------------------------------------------------------------------- */
@@ -884,7 +956,8 @@ html.dark-mode .article-hero { background-color: var(--colors-night-800); }
   .btn-partnership-submit:hover, .btn-partnership-submit:focus,
   .streaming-play-btn:hover, .streaming-play-btn:focus,
   .streaming-poster-wrapper:hover .streaming-poster-img,
-  .news-card, .news-card:hover, .news-card:focus-within { transform: none !important; transition: none !important; }
+  .news-card, .news-card:hover, .news-card:focus-within,
+  .edition-card, .edition-card:hover, .edition-card:focus-within { transform: none !important; transition: none !important; }
 }
 
 /* ---------- Attendants slider (includes/sections/attendants.php) ---------- */

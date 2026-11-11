@@ -1,785 +1,400 @@
 <?php
 // -----------------------------------------------------------------------------
-//  File: FUNCTIONS for CPT
-//  Edited: 3L, 12-FEV-2025
+//  File: CUSTOM FIELDS for the CPT (meta box "Extra Parameters")
+//  Values are stored in the postmeta table as "ishf_cf_" + field name
+//  (e.g. ishf_cf_order, ishf_cf_url, ishf_cf_date_start).
+//  The meta box is added to every post type named in a field "scope".
+//
+//  Field types: text (default), number, date, checkbox, radio, image,
+//  posts_checkboxes (list of posts of 'post_type_target', saved comma-separated).
+//
+//  Base Theme: ISHF 2027 Lisbon
+//  Edited: BB, 11-NOV-2026
 // -----------------------------------------------------------------------------
 
-// Note: use $child_customFields on CHILD THEME to declare specific VARS
+// Field definitions (a function, so the labels are translated after 'init')
+function ishf_get_custom_fields()
+{
+  return array(
+
+    // -- ATTENDANTS
+    array(
+      'name'        => 'organization',
+      'title'       => __('Organization', TEXT_DOMAIN),
+      'description' => __('Name of the Association or Company', TEXT_DOMAIN),
+      'type'        => 'text',
+      'scope'       => array('attendants'),
+    ),
+    array(
+      'name'        => 'function',
+      'title'       => __('Function', TEXT_DOMAIN),
+      'description' => null,
+      'type'        => 'text',
+      'scope'       => array('attendants'),
+    ),
+    array(
+      'name'        => 'gender',
+      'title'       => __('Gender', TEXT_DOMAIN),
+      'description' => null,
+      'type'        => 'radio',
+      'labels'      => array('F', 'M'),
+      'values'      => array('female', 'male'),
+      'scope'       => array('attendants'),
+    ),
+
+    // -- SEMINARS
+    array(
+      'name'             => 'attendants_related',
+      'title'            => __('Associated Attendants', TEXT_DOMAIN),
+      'description'      => __('Select the speakers associated with this event.', TEXT_DOMAIN),
+      'type'             => 'posts_checkboxes',
+      'post_type_target' => 'attendants',
+      'scope'            => array('seminars'),
+    ),
+    array(
+      'name'        => 'is_provisional',
+      'title'       => __('Is event provisional?', TEXT_DOMAIN),
+      'description' => __('Check if event is provisional (can restrict how it is shown)', TEXT_DOMAIN),
+      'type'        => 'checkbox',
+      'scope'       => array('seminars'),
+    ),
+    array(
+      'name'        => 'date_time_1',
+      'title'       => __('Date / Time #1', TEXT_DOMAIN),
+      'description' => __('Schedule the date and time (yyyy-mm-dd hh:mm:ss) for start', TEXT_DOMAIN),
+      'type'        => 'text',
+      'scope'       => array('seminars'),
+    ),
+    array(
+      'name'        => 'date_time_2',
+      'title'       => __('Date / Time #2', TEXT_DOMAIN),
+      'description' => __('Schedule the date and time (yyyy-mm-dd hh:mm:ss) for start', TEXT_DOMAIN),
+      'type'        => 'text',
+      'scope'       => array('seminars'),
+    ),
+    array(
+      'name'        => 'date_end_time_1',
+      'title'       => __('Date / Time End #1', TEXT_DOMAIN),
+      'description' => __('Schedule the date and time (yyyy-mm-dd hh:mm:ss) for end', TEXT_DOMAIN),
+      'type'        => 'text',
+      'scope'       => array('seminars'),
+    ),
+    array(
+      'name'        => 'date_end_time_2',
+      'title'       => __('Date / Time End #2', TEXT_DOMAIN),
+      'description' => __('Schedule the date and time (yyyy-mm-dd hh:mm:ss) for end', TEXT_DOMAIN),
+      'type'        => 'text',
+      'scope'       => array('seminars'),
+    ),
+    array(
+      'name'        => 'youtube_id_1',
+      'title'       => __('Video ID #1', TEXT_DOMAIN),
+      'description' => null,
+      'type'        => 'text',
+      'scope'       => array('seminars'),
+    ),
+    array(
+      'name'        => 'youtube_id_2',
+      'title'       => __('Video ID #2', TEXT_DOMAIN),
+      'description' => null,
+      'type'        => 'text',
+      'scope'       => array('seminars'),
+    ),
+    array(
+      'name'        => 'event_local',
+      'title'       => __('Event Location', TEXT_DOMAIN),
+      'description' => null,
+      'type'        => 'text',
+      'scope'       => array('seminars'),
+    ),
+
+    // -- SPONSORS (logo = featured image)
+    array(
+      'name'        => 'url',
+      'title'       => __('Remote URL', TEXT_DOMAIN),
+      'description' => null,
+      'type'        => 'text',
+      'scope'       => array('sponsors'),
+    ),
+
+    // -- EDITIONS (past festivals; logo = featured image)
+    array(
+      'name'        => 'date_start',
+      'title'       => __('Date Start', TEXT_DOMAIN),
+      'description' => __('First day of the festival.', TEXT_DOMAIN),
+      'type'        => 'date',
+      'scope'       => array('editions'),
+    ),
+    array(
+      'name'        => 'date_end',
+      'title'       => __('Date End', TEXT_DOMAIN),
+      'description' => __('Last day of the festival (leave empty for a one-day event).', TEXT_DOMAIN),
+      'type'        => 'date',
+      'scope'       => array('editions'),
+    ),
+    array(
+      'name'        => 'venue',
+      'title'       => __('Venue', TEXT_DOMAIN),
+      'description' => __('Name of the venue, e.g. "Centro de Congressos de Lisboa".', TEXT_DOMAIN),
+      'type'        => 'text',
+      'scope'       => array('editions'),
+    ),
+    array(
+      'name'        => 'address',
+      'title'       => __('Address', TEXT_DOMAIN),
+      'description' => __('Street, postcode and city. The map is placed from this address.', TEXT_DOMAIN),
+      'type'        => 'text',
+      'scope'       => array('editions'),
+    ),
+    array(
+      'name'        => 'geolocation',
+      'title'       => __('Map coordinates', TEXT_DOMAIN),
+      'description' => __('Latitude, longitude (e.g. 38.6966, -9.2032). Filled in automatically from the address when you save; type your own to move the pin.', TEXT_DOMAIN),
+      'type'        => 'text',
+      'scope'       => array('editions'),
+    ),
+
+    // -- SHARED
+    array(
+      'name'        => 'logo_dark_id',
+      'title'       => __('Logo for dark mode', TEXT_DOMAIN),
+      'description' => __('Optional. Light version of the logo, shown when the site is in dark mode.', TEXT_DOMAIN),
+      'type'        => 'image',
+      'scope'       => array('sponsors', 'editions'),
+    ),
+    array(
+      'name'        => 'order',
+      'title'       => __('Order', TEXT_DOMAIN),
+      'description' => __('Use to order elements from minor to major (defaults to -1)', TEXT_DOMAIN),
+      'type'        => 'number',
+      'scope'       => array('attendants', 'faqs', 'seminars', 'sponsors'),
+    ),
+  );
+}
 
 
-// TODO: add support for SELECT / DROPDOWN type, change declaration for RADIO (using unique ARRAY) and format code to remove extra spaces
+if (!class_exists('ISHF_Custom_Fields')):
 
-// array(
-//   'name'          => 'action_scale',
-//   'title'         => __('Action Scale', TEXT_DOMAIN),
-//   'description'   => __('Select the action scale for this project', TEXT_DOMAIN),
-//   'type'          => 'select',
-//   'options'       => array(
-//     array('label' => __('National', TEXT_DOMAIN), 'value' => 'national'),
-//     array('label' => __('Regional', TEXT_DOMAIN), 'value' => 'regional'),
-//     array('label' => __('Local', TEXT_DOMAIN), 'value' => 'local'),
-//   ),
-//   'scope'         => array('project'),
-//   'capability'    => 'edit_posts',
-// ),
+  class ISHF_Custom_Fields
+  {
+    /** @var string Prefix of the meta keys */
+    const PREFIX = 'ishf_cf_';
 
+    /** @var array Field definitions */
+    private $fields = array();
 
+    /** @var array Post types that get the meta box (every post type found in a field scope) */
+    private $post_types = array();
 
-$theme_customFields = array(
-  array(
-    'name'          => 'author',
-    'title'         => __('Author', TEXT_DOMAIN),
-    'description'   => null,
-    'type'          => 'text',
-    'scope'         => array('quotations'),
-    'capability'    => 'edit_posts',
-    'origin'        => TEXT_DOMAIN,
-  ),
+    public function __construct()
+    {
+      add_action('init', array($this, 'load_fields'), 20);
+      add_action('add_meta_boxes', array($this, 'add_meta_box'));
+      add_action('save_post', array($this, 'save'), 1, 2);
+      add_action('do_meta_boxes', array($this, 'remove_default_meta_box'), 10, 3);
+      add_action('admin_enqueue_scripts', array($this, 'enqueue_media'));
+    }
 
-
-  // -- EVENTS fields
-  array(
-    'name'          => 'is_featured',
-    'title'         => __('Is event featured?', TEXT_DOMAIN),
-    'description'   => __('Check if event is featured (can restrict how it is shown)', TEXT_DOMAIN),
-    'type'          => 'checkbox',
-    'scope'         => array('events'),
-    'capability'    => 'edit_posts',
-    'origin'        => TEXT_DOMAIN,
-  ),
-  array(
-    'name'          => 'id_event',
-    'title'         => __('ID of Event', TEXT_DOMAIN),
-    'description'   => null,
-    'type'          => 'text',
-    'scope'         => array('events'),
-    'capability'    => 'edit_posts',
-    'origin'        => TEXT_DOMAIN,
-  ),
-  array(
-    'name'          => 'dates',
-    'title'         => __('Date(s) of Event', TEXT_DOMAIN),
-    'description'   => __('The date or interval for the event. This text is displayed as inserted.', TEXT_DOMAIN),
-    'type'          => 'text',
-    'scope'         => array('events'),
-    'capability'    => 'edit_posts',
-    'origin'        => TEXT_DOMAIN,
-  ),
-  array(
-    'name'          => 'date_start',
-    'title'         => __('Date Start', TEXT_DOMAIN),
-    'description'   => __('The date for the start of the event. Use format yyyy-mm-dd hh:mm:ss.', TEXT_DOMAIN),
-    'type'          => 'text',
-    'scope'         => array('events'),
-    'capability'    => 'edit_posts',
-    'origin'        => TEXT_DOMAIN,
-  ),
-  array(
-    'name'          => 'date_end',
-    'title'         => __('Date End', TEXT_DOMAIN),
-    'description'   => __('The date for the end of the event. Use format yyyy-mm-dd hh:mm:ss.', TEXT_DOMAIN),
-    'type'          => 'text',
-    'scope'         => array('events'),
-    'capability'    => 'edit_posts',
-    'origin'        => TEXT_DOMAIN,
-  ),
-  array(
-    'name'          => 'address',
-    'title'         => __('Address', TEXT_DOMAIN),
-    'description'   => null,
-    'type'          => 'text',
-    'scope'         => array('events'),
-    'capability'    => 'edit_posts',
-    'origin'        => TEXT_DOMAIN,
-  ),
-  array(
-    'name'          => 'geolocation',
-    'title'         => __('Geolocation', TEXT_DOMAIN),
-    'description'   => __('Use coordinates from Google Maps (separated by ",")', TEXT_DOMAIN),
-    'type'          => 'text',
-    'scope'         => array('events'),
-    'capability'    => 'edit_posts',
-    'origin'        => TEXT_DOMAIN,
-  ),
-  array(
-    'name'          => 'extra_information',
-    'title'         => __('Extra Information', TEXT_DOMAIN),
-    'description'   => __('Insert additional information, useful for the event.', TEXT_DOMAIN),
-    'type'          => 'textarea',
-    'scope'         => array('events'),
-    'capability'    => 'edit_posts',
-    'origin'        => TEXT_DOMAIN,
-  ),
-  array(
-    'name'          => 'original_image_url',
-    'title'         => __('Original Image URL', TEXT_DOMAIN),
-    'description'   => __('The original image URL for the event, possibly from the import process.', TEXT_DOMAIN),
-    'type'          => 'text',
-    'scope'         => array('events'),
-    'capability'    => 'edit_posts',
-    'origin'        => TEXT_DOMAIN,
-  ),
-
-  array(
-    'name'          => 'hide_title',
-    'title'         => __('Hide the Title?', TEXT_DOMAIN),
-    'description'   => null,
-    'type'          => 'checkbox',
-    'scope'         => array('header_slides','banners'),
-    'capability'    => 'edit_posts',
-    'origin'        => TEXT_DOMAIN,
-  ),
-  array(
-    'name'          => 'url',
-    'title'         => __('Remote URL', TEXT_DOMAIN),
-    'description'   => null,
-    'type'          => 'text',
-    'scope'         => array('events','header_slides','banners','partnerships','podcasts','sponsors','videocasts'),
-    'capability'    => 'edit_posts',
-    'origin'        => TEXT_DOMAIN,
-  ),
-  array(
-    'name'          => 'external_link',
-    'title'         => __('Open in New Window?', TEXT_DOMAIN),
-    'description'   => null,
-    'type'          => 'checkbox',
-    'scope'         => array('events','header_slides','banners','partnerships','podcasts','sponsors','videocasts'),
-    'capability'    => 'edit_posts',
-    'origin'        => TEXT_DOMAIN,
-  ),
-
-  // -- SEMINARS fields
-  array(
-    'name'          => 'attendants_related',
-    'title'         => __('Associated Attendants', TEXT_DOMAIN),
-    'description'   => __('Select the speakers associated with this event.', TEXT_DOMAIN),
-    'type'          => 'posts_checkboxes',
-    'post_type_target' => 'attendants',
-    'scope'         => array('seminars'),
-    'capability'    => 'edit_posts',
-    'origin'        => TEXT_DOMAIN,
-  ),
-  array(
-    'name'          => 'is_provisional',
-    'title'         => __('Is event provisional?', TEXT_DOMAIN),
-    'description'   => __('Check if event is provisional (can restrict how it is shown)', TEXT_DOMAIN),
-    'type'          => 'checkbox',
-    'scope'         => array('seminars'),
-    'capability'    => 'edit_posts',
-    'origin'        => TEXT_DOMAIN,
-  ),
-  array(
-    'name'          => 'date_time_1',
-    'title'         => __('Date / Time #1', TEXT_DOMAIN),
-    'description'   => __('Schedule the date and time (yyyy-mm-dd hh:mm:ss) for start', TEXT_DOMAIN),
-    'type'          => 'text',
-    'scope'         => array('seminars'),
-    'capability'    => 'edit_posts',
-    'origin'        => TEXT_DOMAIN,
-  ),
-  array(
-    'name'          => 'date_time_2',
-    'title'         => __('Date / Time #2', TEXT_DOMAIN),
-    'description'   => __('Schedule the date and time (yyyy-mm-dd hh:mm:ss) for start', TEXT_DOMAIN),
-    'type'          => 'text',
-    'scope'         => array('seminars'),
-    'capability'    => 'edit_posts',
-    'origin'        => TEXT_DOMAIN,
-  ),
-  array(
-    'name'          => 'date_end_time_1',
-    'title'         => __('Date / Time End #1', TEXT_DOMAIN),
-    'description'   => __('Schedule the date and time (yyyy-mm-dd hh:mm:ss) for end', TEXT_DOMAIN),
-    'type'          => 'text',
-    'scope'         => array('seminars'),
-    'capability'    => 'edit_posts',
-    'origin'        => TEXT_DOMAIN,
-  ),
-  array(
-    'name'          => 'date_end_time_2',
-    'title'         => __('Date / Time End #2', TEXT_DOMAIN),
-    'description'   => __('Schedule the date and time (yyyy-mm-dd hh:mm:ss) for end', TEXT_DOMAIN),
-    'type'          => 'text',
-    'scope'         => array('seminars'),
-    'capability'    => 'edit_posts',
-    'origin'        => TEXT_DOMAIN,
-  ),
-
-  // TODO: adjust field name from "youtube" to "video"
-  array(
-    'name'          => 'youtube_id_1',
-    'title'         => __('Video ID #1', TEXT_DOMAIN),
-    'description'   => null,
-    'type'          => 'text',
-    'scope'         => array('seminars'),
-    'capability'    => 'edit_posts',
-    'origin'        => TEXT_DOMAIN,
-  ),
-  array(
-    'name'          => 'streaming_server_1',
-    'title'         => __('Streaming Server #1', TEXT_DOMAIN),
-    'description'   => null,
-    'labels'        => array('Youtube', 'Brightcove'),
-    'values'        => array('youtube','brightcove'),
-    'type'          => 'radio',
-    'scope'         => array('seminars'),
-    'capability'    => 'edit_posts',
-    'origin'        => TEXT_DOMAIN,
-  ),
-
-  // TODO: adjust field name from "youtube" to "video"
-  array(
-    'name'          => 'youtube_id_2',
-    'title'         => __('Video ID #2', TEXT_DOMAIN),
-    'description'   => null,
-    'type'          => 'text',
-    'scope'         => array('seminars'),
-    'capability'    => 'edit_posts',
-    'origin'        => TEXT_DOMAIN,
-  ),
-  array(
-    'name'          => 'streaming_server_2',
-    'title'         => __('Streaming Server #2', TEXT_DOMAIN),
-    'description'   => null,
-    'labels'        => array('Youtube', 'Brightcove'),
-    'values'        => array('youtube','brightcove'),
-    'type'          => 'radio',
-    'scope'         => array('seminars'),
-    'capability'    => 'edit_posts',
-    'origin'        => TEXT_DOMAIN,
-  ),
-  array(
-    'name'          => 'event_local',
-    'title'         => __('Event Location', TEXT_DOMAIN),
-    'description'   => null,
-    'type'          => 'text',
-    'scope'         => array('seminars'),
-    'capability'    => 'edit_posts',
-    'origin'        => TEXT_DOMAIN,
-  ),
-  array(
-    'name'          => 'sponsor_name',
-    'title'         => __('Sponsor Name', TEXT_DOMAIN),
-    'description'   => __('Insert a sponsor name for this event', TEXT_DOMAIN),
-    'type'          => 'text',
-    'scope'         => array('seminars'),
-    'capability'    => 'edit_posts',
-    'origin'        => TEXT_DOMAIN,
-  ),
-  array(
-    'name'          => 'sponsor_url',
-    'title'         => __('Sponsor URL', TEXT_DOMAIN),
-    'description'   => __('The sponsor URL (needs to have a sponsor name declared also)', TEXT_DOMAIN),
-    'type'          => 'text',
-    'scope'         => array('seminars'),
-    'capability'    => 'edit_posts',
-    'origin'        => TEXT_DOMAIN,
-  ),
-  
-
-  // TODO: Possible future addings: ICS files
-
-
-  // -- CO-AUTHOR fields
-  array(
-    'name'          => 'profile_url',
-    'title'         => __('Profile URL', TEXT_DOMAIN),
-    'description'   => null,
-    'type'          => 'text',
-    'scope'         => array('coauthors'),
-    'capability'    => 'edit_posts',
-    'origin'        => TEXT_DOMAIN,
-  ),
-  array(
-    'name'          => 'linkedin_url',
-    'title'         => __('LinkedIn URL', TEXT_DOMAIN),
-    'description'   => null,
-    'type'          => 'text',
-    'scope'         => array('coauthors'),
-    'capability'    => 'edit_posts',
-    'origin'        => TEXT_DOMAIN,
-  ),
-
-  // -- ATTENDANTS fields
-  array(
-    'name'          => 'organization',
-    'title'         => __('Organization', TEXT_DOMAIN),
-    'description'   => __('Name of the Association or Company', TEXT_DOMAIN),
-    'type'          => 'text',
-    'scope'         => array('attendants','coauthors'),
-    'capability'    => 'edit_posts',
-    'origin'        => TEXT_DOMAIN,
-  ),
-  array(
-    'name'          => 'function',
-    'title'         => __('Function', TEXT_DOMAIN),
-    'description'   => null,
-    'type'          => 'text',
-    'scope'         => array('attendants','coauthors'),
-    'capability'    => 'edit_posts',
-    'origin'        => TEXT_DOMAIN,
-  ),
-  array(
-    'name'          => 'gender',
-    'title'         => __('Gender', TEXT_DOMAIN),
-    'description'   => null,
-    'labels'        => array('F', 'M'),
-    'values'        => array('female','male'),
-    'type'          => 'radio',
-    'scope'         => array('attendants','coauthors'),
-    'capability'    => 'edit_posts',
-    'origin'        => TEXT_DOMAIN,
-  ),
-
-  array(
-    'name'          => 'order',
-    'title'         => __('Order', TEXT_DOMAIN),
-    'description'   => __('Use to order elements from minor to major (defaults to -1)', TEXT_DOMAIN),
-    'type'          => 'number',
-    'scope'         => array('attendants','coauthors','events','faqs','header_slides','seminars','sponsors','winners'),
-    'capability'    => 'edit_posts',
-    'origin'        => TEXT_DOMAIN,
-  ),
-
-
-  // -- VIDEOCASTS and PODCASTS fields
-  array(
-    'name'          => 'video_id',
-    'title'         => __('Video ID', TEXT_DOMAIN),
-    'description'   => __('Declare the ID for video (please define Youtube or Brightcove)', TEXT_DOMAIN),
-    'type'          => 'text',
-    'scope'         => array('videocasts','winners'),
-    'capability'    => 'edit_posts',
-    'origin'        => TEXT_DOMAIN,
-  ),
-  array(
-    'name'          => 'audio_id',
-    'title'         => __('Audio ID', TEXT_DOMAIN),
-    'description'   => __('Declare the Brightcove ID for audio file', TEXT_DOMAIN),
-    'type'          => 'text',
-    'scope'         => array('podcasts'),
-    'capability'    => 'edit_posts',
-    'origin'        => TEXT_DOMAIN,
-  ),
-  array(
-    'name'          => 'streaming_server',
-    'title'         => __('Streaming Server', TEXT_DOMAIN),
-    'description'   => null,
-    'labels'        => array('Youtube', 'Brightcove'),
-    'values'        => array('youtube','brightcove'),
-    'type'          => 'radio',
-    'scope'         => array('videocasts','winners'),
-    'capability'    => 'edit_posts',
-    'origin'        => TEXT_DOMAIN,
-  ),
-  array(
-    'name'          => 'spotify_podcasts_url',
-    'title'         => __('Spotify Podcasts URL', TEXT_DOMAIN),
-    'description'   => null,
-    'type'          => 'text',
-    'scope'         => array('videocasts','podcasts'),
-    'capability'    => 'edit_posts',
-    'origin'        => TEXT_DOMAIN,
-  ),
-  array(
-    'name'          => 'google_podcasts_url',
-    'title'         => __('Google Podcasts URL', TEXT_DOMAIN),
-    'description'   => null,
-    'type'          => 'text',
-    'scope'         => array('videocasts','podcasts'),
-    'capability'    => 'edit_posts',
-    'origin'        => TEXT_DOMAIN,
-  ),
-  array(
-    'name'          => 'apple_podcasts_url',
-    'title'         => __('Apple Podcasts URL', TEXT_DOMAIN),
-    'description'   => null,
-    'type'          => 'text',
-    'scope'         => array('videocasts','podcasts'),
-    'capability'    => 'edit_posts',
-    'origin'        => TEXT_DOMAIN,
-  ),
-  array(
-    'name'          => 'season_number',
-    'title'         => __('Season Number', TEXT_DOMAIN),
-    'description'   => null,
-    'type'          => 'number',
-    'scope'         => array('videocasts','podcasts'),
-    'capability'    => 'edit_posts',
-    'origin'        => TEXT_DOMAIN,
-  ),
-  array(
-    'name'          => 'episode_number',
-    'title'         => __('Episode Number', TEXT_DOMAIN),
-    'description'   => null,
-    'type'          => 'number',
-    'scope'         => array('videocasts','podcasts'),
-    'capability'    => 'edit_posts',
-    'origin'        => TEXT_DOMAIN,
-  ),
-);
-
-if (!class_exists('cbsCustomFields')):
-
-  class cbsCustomFields {
-      /**
-      * @var  string  $prefix  The prefix for storing custom fields in the postmeta table
-      */
-      var $prefix = 'ishf_cf_';
-
-      /**
-      * @var  array  $postTypes  An array of public custom post types, plus the standard "post" and "page" - add the custom types you want to include here
-      */
-      var $postTypes = array(
-        'attendants',
-        'banners',
-        'coauthors',
-        'events',
-        'faqs',
-        'header_slides',
-        'partnerships',
-        'podcasts',
-        'projects',
-        'quotations',
-        'seminars',
-        'sponsors',
-        'videocasts',
-        'winners',
-      );
-
-      /**
-      * @var  array  $customFields  Defines the custom fields available
-      */
-      var $customFields = array(
-        /*
-        array(
-          "name"          => "short-text",
-          "title"         => "A short bit of text",
-          "description"   => "",
-          "type"          => "text",
-          "scope"         => array('post', 'page', 'slides'),
-          "capability"    => "edit_posts"
-        ),
-        */
-      );
-
-      /**
-      * PHP 5 Constructor
-      */
-      function __construct() {
-        global $child_postTypes,$theme_customFields,$child_customFields;
-
-        // -- Adding CPT from CHILD THEME
-        if (!empty($child_postTypes)) $this->postTypes = array_merge($child_postTypes,$this->postTypes);
-
-        // -- Adding CUSTOM FIELDS from several sources
-        
-        //  Combine items from $child_customFields and $theme_customFields (if name is equal, merge scope arrays else keep both)
-        if (!empty($child_customFields)):
-          foreach ($theme_customFields as $key => $value):
-            foreach ($child_customFields as $key2 => $value2):
-              if ($value['name'] === $value2['name']):
-                $theme_customFields[$key]['scope'] = array_merge($value['scope'], $value2['scope']);
-                unset($child_customFields[$key2]);
-              endif;
-            endforeach;
-          endforeach;
-        endif;
-        // Adding items to THIS customFields
-        if (!empty($theme_customFields)) $this->customFields = array_merge($this->customFields,$theme_customFields);
-        if (!empty($child_customFields)) $this->customFields = array_merge($this->customFields,$child_customFields);
-
-        add_action('admin_menu', array(&$this, 'createCustomFields'));
-        add_action('save_post', array(&$this, 'saveCustomFields'), 1, 2);
-        // Comment this line out if you want to keep default custom fields meta box
-        add_action('do_meta_boxes', array(&$this, 'removeDefaultCustomFields'), 10, 3);
+    public function load_fields()
+    {
+      foreach (ishf_get_custom_fields() as $field) {
+        $this->fields[] = wp_parse_args($field, array('description' => null, 'type' => 'text', 'scope' => array(), 'capability' => 'edit_posts'));
+        $this->post_types = array_merge($this->post_types, (array) $field['scope']);
       }
-      /**
-      * Remove the default Custom Fields meta box
-      */
-      function removeDefaultCustomFields($type, $context, $post){
-        foreach(array('normal', 'advanced', 'side') as $context):
-          foreach($this->postTypes as $postType):
-            remove_meta_box('postcustom', $postType, $context);
-          endforeach;
-        endforeach;
-      }
-      /**
-      * Create the new Custom Fields meta box
-      */
-      function createCustomFields(){
-        if (function_exists('add_meta_box')):
-          foreach ($this->postTypes as $postType):
-            add_meta_box('my-custom-fields', __('Extra Parameters',TEXT_DOMAIN), array(&$this, 'displayCustomFields'), $postType, 'normal', 'high');
-          endforeach;
-        endif;
-      }
-      /**
-      * Display the new Custom Fields meta box
-      */
-      function displayCustomFields(){
-        global $post;
-        ?>
-        <div class="form-wrap">
-          <?php
-          wp_nonce_field('my-custom-fields', 'my-custom-fields_wpnonce', false, true);
-          foreach($this->customFields as $customField):
-              // Check scope
-              $scope = $customField['scope'];
-              $output = false;
-              foreach($scope as $scopeItem):
-                switch($scopeItem):
-                  default:
-                    if ($post->post_type == $scopeItem) $output = true;
-                    break;
-                endswitch;
-                if ($output) break;
-              endforeach;
+      $this->post_types = array_values(array_unique($this->post_types));
+    }
 
-              // Check capability
-              if (!current_user_can($customField['capability'], $post->ID)) $output = false;
-              
-              // Output if allowed
-              if ($output) {
-              ?>
-              <div class="form-field form-required">
-                <?php
-                switch ($customField['type']):
-                  case "posts_checkboxes":
-                    // A list of checkboxes populated by a specific CPT
-                    $custom_text_domain = (!empty($customField['origin'])) ? $customField['origin'] : TEXT_DOMAIN;
-                    echo '<label><b>'.__($customField['title'],$custom_text_domain).'</b></label><br>';
-                    
-                    // Fetch target posts
-                    $target_pt = isset($customField['post_type_target']) ? $customField['post_type_target'] : 'post';
-                    
-                    $query_args = array('post_type' => $target_pt, 'numberposts' => -1, 'orderby' => 'title', 'order' => 'ASC');
-                    
-                    $target_posts = get_posts($query_args);
-                    
-                    // Get current saved values (comma separated)
-                    $saved_val = get_post_meta($post->ID, $this->prefix.$customField['name'], true);
-                    $saved_array = array();
-                    if (!empty($saved_val)) {
-                        $saved_array = explode(',', $saved_val);
-                    }
-                    
-                    echo '<div style="max-height: 200px; overflow-y: auto; padding: 10px; border: 1px solid #ddd; background: #fff; margin-top: 5px;">';
-                    foreach ($target_posts as $t_post) {
-                        $checked = in_array($t_post->ID, $saved_array) ? 'checked="checked"' : '';
-                        $org = get_post_meta($t_post->ID, $this->prefix . 'organization', true);
-                        $label_text = $t_post->post_title;
-                        if (!empty($org)) {
-                            $label_text .= ', ' . $org;
-                        }
-                        echo '<label style="display:block; margin-bottom: 5px; font-weight:normal;">';
-                        echo '<input type="checkbox" name="'.$this->prefix.$customField['name'].'[]" value="'.$t_post->ID.'" '.$checked.' style="width: auto;" /> ';
-                        echo esc_html($label_text);
-                        echo '</label>';
-                    }
-                    echo '</div>';
-                    break;
-
-                  case "checkbox":
-                    // Checkbox
-                    $custom_text_domain = (!empty($customField['origin'])) ? $customField['origin'] : TEXT_DOMAIN;
-                    echo '<label for="'.$this->prefix.$customField['name'].'" style="display:inline;"><b>'.__($customField['title'],$custom_text_domain).'</b></label>&nbsp;&nbsp;';
-                    echo '<input type="checkbox" name="'.$this->prefix.$customField['name'].'" id="'.$this->prefix.$customField['name'].'" value="yes"';
-                    if (get_post_meta($post->ID, $this->prefix.$customField['name'], true ) == "yes")
-                        echo ' checked="checked"';
-                    echo '" style="width: auto;" />';
-                    break;
-                  
-                  case "radio":
-                    // Radio
-                    $custom_text_domain = (!empty($customField['origin'])) ? $customField['origin'] : TEXT_DOMAIN;
-                    echo '<label><b>'.__($customField['title'],$custom_text_domain).'</b>&nbsp;&nbsp;';
-                    $i = 0;
-                    foreach ($customField['values'] as $value):
-                      echo '<input type="radio" name="'.$this->prefix.$customField['name'].'" id="'.$value.'" value="'.$value.'"';
-                      if (get_post_meta($post->ID, $this->prefix.$customField['name'], true) == $value)
-                          echo ' checked="checked"';
-                      echo ' style="width: auto;" />';
-                      echo '<label for="'.$this->prefix.$customField['name'].'" style="display:inline;">'.$customField['labels'][$i].'</label>&nbsp;&nbsp;';
-                      $i++;
-                    endforeach;
-                    echo '</label>';
-                    break;
-                  
-                  case "textarea":
-                  case "wysiwyg":
-                    // Text area
-                    $custom_text_domain = (!empty($customField['origin'])) ? $customField['origin'] : TEXT_DOMAIN;
-                    echo '<label for="'.$this->prefix.$customField['name'] .'"><b>'.__($customField['title'],$custom_text_domain).'</b></label>';
-                    echo '<textarea name="'.$this->prefix.$customField['name'].'" id="'.$this->prefix.$customField['name'].'" columns="30" rows="3">'.htmlspecialchars(get_post_meta($post->ID, $this->prefix.$customField['name'], true)).'</textarea>';
-                    // WYSIWYG
-                    if ($customField['type'] == "wysiwyg"):
-                    ?>
-                    <script type="text/javascript">
-                    jQuery(document).ready(function(){
-                      jQuery("<?php echo $this->prefix.$customField['name']; ?>").addClass("mceEditor");
-                      if (typeof(tinyMCE) == "object" &amp;&amp; typeof(tinyMCE.execCommand) == "function") {
-                        tinyMCE.execCommand("mceAddControl", false, "<?php echo $this->prefix.$customField['name']; ?>");
-                      }
-                    });
-                  </script>
-                    <?php
-                    endif;
-                    break;
-                  
-                  case "number":
-                    // Number
-                    $custom_text_domain = (!empty($customField['origin'])) ? $customField['origin'] : TEXT_DOMAIN;
-                    echo '<label for="' . $this->prefix . $customField['name'] .'"><b>'.__($customField['title'],$custom_text_domain).'</b></label>';
-                    $value = htmlspecialchars(get_post_meta($post->ID, $this->prefix.$customField['name'], true));
-                    if (empty($value)) $value = '-1';
-                    echo '<input type="text" width="100%" name="' . $this->prefix.$customField['name'].'" id="'.$this->prefix.$customField['name'].'" value="'.$value.'" />';
-                    break;
-
-                  case "dropdown":
-                    // Select or Dropdown
-                    $custom_text_domain = (!empty($customField['origin'])) ? $customField['origin'] : TEXT_DOMAIN;
-                    echo '<label for="'.$this->prefix.$customField['name'].'"><b>'.__($customField['title'],$custom_text_domain).'</b></label>';
-                    echo '<select name="'.$this->prefix.$customField['name'].'" id="'.$this->prefix.$customField['name'].'" style="width: 100%;">';
-                    $i = 0;
-                    foreach ($customField['options'] as $option):
-                      echo '<option value="'.$option['value'].'"';
-                      if (get_post_meta($post->ID, $this->prefix.$customField['name'], true) == $option['value'])
-                          echo ' selected="selected"';
-                      echo '>'.__($option['label'],TEXT_DOMAIN).'</option>';
-                      $i++;
-                    endforeach;
-                    echo '</select>';
-                    break;
-
-                  case "image":
-                    // Image from Multimedia
-                    $custom_text_domain = (!empty($customField['origin'])) ? $customField['origin'] : TEXT_DOMAIN;
-                    echo '<label for="'.$this->prefix.$customField['name'].'"><b>'.__($customField['title'],$custom_text_domain).'</b></label>';
-                    $image_id = get_post_meta($post->ID, $this->prefix.$customField['name'], true);
-                    $image_url = $image_id ? wp_get_attachment_url($image_id) : '';
-                    
-                    echo '<div class="image-field">';
-                    echo '<input type="hidden" name="'.$this->prefix.$customField['name'].'" id="'.$this->prefix.$customField['name'].'" value="'.$image_id.'" />';
-                    echo '<img src="'.$image_url.'" style="max-width:25%; display:block; margin-bottom:10px;" />';
-                    echo '<button type="button" class="button upload-image-button" id="upload-image-button-'.$this->prefix.$customField['name'].'">'.__('Select Image', $custom_text_domain).'</button>&nbsp;';
-                    echo '<button type="button" class="button remove-image-button" id="remove-image-button-'.$this->prefix.$customField['name'].'" style="'.($image_url ? '' : 'display:none;').'">'.__('Remove Image', $custom_text_domain).'</button>';
-                    echo '</div>';
-                    ?>
-                    <script type="text/javascript">
-                    jQuery(document).ready(function($){
-                      
-                      $('#upload-image-button-<?php echo $this->prefix.$customField['name'];?>').on('click', function(e){
-                        e.preventDefault();
-                        var frame;
-                        var $button = $(this);
-                        console.log ($button);
-                        var $input = $button.siblings('input[type="hidden"]');
-                        var $image = $button.siblings('img');
-                        var $remove = $button.siblings('.remove-image-button');
-                        if (frame) {
-                          frame.off('select');
-                          frame = null;
-                        }
-                        frame = wp.media({
-                          title: '<?php _e("Select or Upload Image", $custom_text_domain); ?>',
-                          button: {
-                            text: '<?php _e("Use this image", $custom_text_domain); ?>'
-                          },
-                          multiple: false
-                        });
-                        frame.on('select', function(){
-                          var attachment = frame.state().get('selection').first().toJSON();
-                          $input.val(attachment.id);
-                          $image.attr('src', attachment.url).show();
-                          $remove.show();
-                          frame.close(); // Force close the frame after selection
-                        });
-                        frame.open();
-                      });
-
-                      $('#remove-image-button-<?php echo $this->prefix.$customField['name'];?>').on('click', function(){
-                        var $button = $(this);
-                        var $input = $button.siblings('input[type="hidden"]');
-                        var $image = $button.siblings('img');
-                        $input.val('');
-                        $image.hide();
-                        $button.hide();
-                      });
-                    });
-                    </script>
-                    <?php
-                    break;
-  
-    
-                  default:
-                    // Plain text field
-                    $custom_text_domain = (!empty($customField['origin'])) ? $customField['origin'] : TEXT_DOMAIN;
-                    echo '<label for="'.$this->prefix.$customField['name'].'"><b>'.__($customField['title'],$custom_text_domain).'</b></label>';
-                    echo '<input type="text" width="100%" name="'.$this->prefix.$customField['name'].'" id="'.$this->prefix.$customField['name'].'" value="'.htmlspecialchars(get_post_meta($post->ID, $this->prefix.$customField['name'], true)).'" />';
-                    break;
-                    
-                endswitch;
-                ?>
-                
-                <?php
-                if ($customField['description']):
-                  $custom_text_domain = (!empty($customField['origin'])) ? $customField['origin'] : TEXT_DOMAIN;
-                  echo '<p>'.__($customField['description'], $custom_text_domain).'</p>';
-                endif;
-                ?>
-              </div>
-              <?php
-              }
-          endforeach;
-          ?>
-        </div>
-        <?php
-      }
-
-      /**
-      * Save the new Custom Fields values
-      */
-      function saveCustomFields( $post_id, $post ) {
-        global $theme_customFields,$child_customFields;
-        // if (!empty($theme_customFields)) $this->customFields = array_merge($this->customFields,$theme_customFields);
-        // if (!empty($child_customFields)) $this->customFields = array_merge($this->customFields,$child_customFields);
-
-        if ( !isset( $_POST[ 'my-custom-fields_wpnonce' ] ) || !wp_verify_nonce( $_POST[ 'my-custom-fields_wpnonce' ], 'my-custom-fields' ) )
-          return;
-        if ( !current_user_can( 'edit_post', $post_id ) )
-          return;
-        if ( ! in_array( $post->post_type, $this->postTypes ) )
-          return;
-        foreach ( $this->customFields as $customField ) {
-          if ( current_user_can( $customField['capability'], $post_id ) ) {
-            $value = isset($_POST[$this->prefix.$customField['name']]) ? $_POST[$this->prefix.$customField['name']] : null;
-            
-            // Handle array values from checkboxes
-            if (is_array($value)) {
-                $value = implode(',', $value);
-            }
-
-            // Numeric fields, check for empty values
-            if ($customField['type'] == "number"):
-              if (empty($value)) $value = '-1';
-            endif;
-
-            if (isset($value) && trim((string)$value) !== ''):
-              // Auto-paragraphs for any WYSIWYG
-              if ($customField['type'] == "wysiwyg") $value = wpautop($value);
-              update_post_meta( $post_id, $this->prefix . $customField['name'], $value );
-            else:
-              delete_post_meta( $post_id, $this->prefix . $customField['name'] );
-            endif;
-          }
+    /** Hide WordPress's own "Custom Fields" box: the values are edited here */
+    public function remove_default_meta_box($type, $context, $post)
+    {
+      foreach (array('normal', 'advanced', 'side') as $box_context) {
+        foreach ($this->post_types as $post_type) {
+          remove_meta_box('postcustom', $post_type, $box_context);
         }
       }
+    }
 
-  } // End Class
+    public function add_meta_box()
+    {
+      foreach ($this->post_types as $post_type) {
+        add_meta_box('ishf-custom-fields', __('Extra Parameters', TEXT_DOMAIN), array($this, 'render'), $post_type, 'normal', 'high');
+      }
+    }
+
+    /** The image field opens the media library */
+    public function enqueue_media($hook)
+    {
+      if (!in_array($hook, array('post.php', 'post-new.php'), true)) {
+        return;
+      }
+      $screen = get_current_screen();
+      if ($screen && in_array($screen->post_type, $this->post_types, true)) {
+        wp_enqueue_media();
+      }
+    }
+
+    private function fields_for($post_type)
+    {
+      return array_filter($this->fields, function ($field) use ($post_type) {
+        return in_array($post_type, $field['scope'], true);
+      });
+    }
+
+    public function render($post)
+    {
+      wp_nonce_field('ishf-custom-fields', 'ishf-custom-fields_wpnonce');
+      echo '<div class="form-wrap">';
+      foreach ($this->fields_for($post->post_type) as $field) {
+        if (!current_user_can($field['capability'], $post->ID)) {
+          continue;
+        }
+        $key   = self::PREFIX . $field['name'];
+        $value = get_post_meta($post->ID, $key, true);
+        $title = esc_html($field['title']);
+
+        echo '<div class="form-field">';
+        switch ($field['type']) {
+          case 'posts_checkboxes':
+            $saved   = $value !== '' ? array_map('intval', explode(',', $value)) : array();
+            $targets = get_posts(array('post_type' => $field['post_type_target'], 'numberposts' => -1, 'orderby' => 'title', 'order' => 'ASC'));
+            echo '<label><b>' . $title . '</b></label>';
+            echo '<div style="max-height:200px; overflow-y:auto; padding:10px; border:1px solid #ddd; background:#fff; margin-top:5px;">';
+            foreach ($targets as $target) {
+              $org   = get_post_meta($target->ID, self::PREFIX . 'organization', true);
+              $label = $target->post_title . ($org ? ', ' . $org : '');
+              echo '<label style="display:block; margin-bottom:5px; font-weight:normal;">';
+              echo '<input type="checkbox" name="' . esc_attr($key) . '[]" value="' . (int) $target->ID . '"' . checked(in_array($target->ID, $saved, true), true, false) . ' style="width:auto;" /> ';
+              echo esc_html($label) . '</label>';
+            }
+            echo '</div>';
+            break;
+
+          case 'checkbox':
+            echo '<label for="' . esc_attr($key) . '" style="display:inline;"><b>' . $title . '</b></label>&nbsp;&nbsp;';
+            echo '<input type="checkbox" name="' . esc_attr($key) . '" id="' . esc_attr($key) . '" value="yes"' . checked($value, 'yes', false) . ' style="width:auto;" />';
+            break;
+
+          case 'radio':
+            echo '<fieldset><legend><b>' . $title . '</b></legend>';
+            foreach ($field['values'] as $i => $option) {
+              $id = $key . '_' . $option;
+              echo '<input type="radio" name="' . esc_attr($key) . '" id="' . esc_attr($id) . '" value="' . esc_attr($option) . '"' . checked($value, $option, false) . ' style="width:auto;" />';
+              echo '<label for="' . esc_attr($id) . '" style="display:inline;">' . esc_html($field['labels'][$i]) . '</label>&nbsp;&nbsp;';
+            }
+            echo '</fieldset>';
+            break;
+
+          case 'number':
+            echo '<label for="' . esc_attr($key) . '"><b>' . $title . '</b></label>';
+            echo '<input type="number" step="1" name="' . esc_attr($key) . '" id="' . esc_attr($key) . '" value="' . esc_attr($value === '' ? '-1' : $value) . '" />';
+            break;
+
+          case 'date':
+            echo '<label for="' . esc_attr($key) . '"><b>' . $title . '</b></label>';
+            echo '<input type="date" name="' . esc_attr($key) . '" id="' . esc_attr($key) . '" value="' . esc_attr($value) . '" style="width:auto;" />';
+            break;
+
+          case 'image':
+            $image_url = $value ? wp_get_attachment_image_url((int) $value, 'medium') : '';
+            echo '<label><b>' . $title . '</b></label>';
+            echo '<div class="ishf-image-field">';
+            echo '<input type="hidden" name="' . esc_attr($key) . '" value="' . esc_attr($value) . '" />';
+            echo '<img src="' . esc_url($image_url) . '" alt="" style="max-width:200px; max-height:120px; margin:8px 0; padding:8px; background:#555;' . ($image_url ? '' : ' display:none;') . '" />';
+            echo '<p style="margin:0;"><button type="button" class="button ishf-image-select">' . esc_html__('Select Image', TEXT_DOMAIN) . '</button> ';
+            echo '<button type="button" class="button ishf-image-remove"' . ($image_url ? '' : ' style="display:none;"') . '>' . esc_html__('Remove Image', TEXT_DOMAIN) . '</button></p>';
+            echo '</div>';
+            break;
+
+          default:
+            echo '<label for="' . esc_attr($key) . '"><b>' . $title . '</b></label>';
+            echo '<input type="text" name="' . esc_attr($key) . '" id="' . esc_attr($key) . '" value="' . esc_attr($value) . '" />';
+            break;
+        }
+        if (!empty($field['description'])) {
+          echo '<p>' . esc_html($field['description']) . '</p>';
+        }
+        echo '</div>';
+      }
+      echo '</div>';
+      $this->image_field_script();
+    }
+
+    /** One script for every image field in the box */
+    private function image_field_script()
+    {
+      ?>
+      <script>
+      jQuery(function ($) {
+        $('.ishf-image-field').each(function () {
+          var $box = $(this), $input = $box.find('input[type="hidden"]'), $img = $box.find('img'), $remove = $box.find('.ishf-image-remove');
+          $box.find('.ishf-image-select').on('click', function (e) {
+            e.preventDefault();
+            var frame = wp.media({ title: <?php echo wp_json_encode(__('Select or Upload Image', TEXT_DOMAIN)); ?>, button: { text: <?php echo wp_json_encode(__('Use this image', TEXT_DOMAIN)); ?> }, library: { type: 'image' }, multiple: false });
+            frame.on('select', function () {
+              var file = frame.state().get('selection').first().toJSON();
+              $input.val(file.id);
+              $img.attr('src', (file.sizes && file.sizes.medium ? file.sizes.medium.url : file.url)).show();
+              $remove.show();
+            });
+            frame.open();
+          });
+          $remove.on('click', function (e) {
+            e.preventDefault();
+            $input.val('');
+            $img.hide();
+            $remove.hide();
+          });
+        });
+      });
+      </script>
+      <?php
+    }
+
+    public function save($post_id, $post)
+    {
+      if (!isset($_POST['ishf-custom-fields_wpnonce']) || !wp_verify_nonce($_POST['ishf-custom-fields_wpnonce'], 'ishf-custom-fields')) {
+        return;
+      }
+      if ((defined('DOING_AUTOSAVE') && DOING_AUTOSAVE) || wp_is_post_revision($post_id) || !current_user_can('edit_post', $post_id)) {
+        return;
+      }
+      foreach ($this->fields_for($post->post_type) as $field) {
+        if (!current_user_can($field['capability'], $post_id)) {
+          continue;
+        }
+        $key   = self::PREFIX . $field['name'];
+        $value = isset($_POST[$key]) ? wp_unslash($_POST[$key]) : '';
+
+        switch ($field['type']) {
+          case 'posts_checkboxes':
+            $value = is_array($value) ? implode(',', array_filter(array_map('intval', $value))) : '';
+            break;
+          case 'number':
+            $value = is_numeric($value) ? (string) (int) $value : '-1';
+            break;
+          case 'image':
+            $value = absint($value) ? (string) absint($value) : '';
+            break;
+          case 'date':
+            $value = preg_match('/^\d{4}-\d{2}-\d{2}$/', (string) $value) ? $value : '';
+            break;
+          case 'checkbox':
+            $value = $value === 'yes' ? 'yes' : '';
+            break;
+          default:
+            $value = sanitize_text_field((string) $value);
+            break;
+        }
+
+        if ($value !== '') {
+          update_post_meta($post_id, $key, $value);
+        } else {
+          delete_post_meta($post_id, $key);
+        }
+      }
+    }
+  }
+
+  new ISHF_Custom_Fields();
 
 endif;
-
-// Instantiate the class
-if (class_exists('cbsCustomFields')) $cbsCustomFields_var = new cbsCustomFields();
-?>
