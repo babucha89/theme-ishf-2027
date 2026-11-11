@@ -506,7 +506,7 @@ Clippings have **no single page**: opening one redirects to the external URL (ed
 
 Everything declared by the theme uses the `ishf_` prefix (functions, hooks, meta keys, CSS classes, block names). No `bs_` / `uikit_cbs_` declarations remain.
 
-**CPTs** (`includes/cpt/`), each enabled by a flag in `functions.php` (`SITE_USE_ATTENDANTS`, `SITE_USE_FAQS`, `SITE_USE_SEMINARS`, `SITE_USE_SPONSORS`, all `true`):
+**CPTs** (`includes/cpt/`), each enabled by a flag in `functions.php` (`SITE_USE_ATTENDANTS`, `SITE_USE_FAQS`, `SITE_USE_SEMINARS`, `SITE_USE_SPONSORS`, `SITE_USE_EDITIONS`, all `true`):
 
 | CPT | File | Templates / output |
 |---|---|---|
@@ -514,10 +514,17 @@ Everything declared by the theme uses the `ishf_` prefix (functions, hooks, meta
 | `faqs` | `faqs.php` | `archive-faqs.php` |
 | `seminars` | `seminars.php` | `single-seminars.php` |
 | `sponsors` (+ taxonomy `sponsor_types`) | `sponsors.php` | `includes/sections/sponsors-dynamic.php` (grouped by type) and `includes/sections/sponsors.php` |
+| `editions` (past festivals, no single pages) | `editions.php` | `page-past-editions.php` + `includes/sections/past-editions.php`; About CTA `includes/sections/past-editions-cta.php` |
 
-- Custom fields are handled by `includes/cpt/functions.php`; meta keys are stored as `ishf_cf_*` (e.g. `ishf_cf_order`, `ishf_cf_url`, `ishf_cf_function`, `ishf_cf_organization`, `ishf_cf_attendants_related`). Sponsor types order: `ishf_cf_sponsor_types_order`. Optional dark-mode logo: `ishf_cf_logo_dark_id`.
+- Custom fields are handled by `includes/cpt/functions.php` (class `ISHF_Custom_Fields`, field list in `ishf_get_custom_fields()`): one "Extra Parameters" box per post type named in a field scope; meta keys are stored as `ishf_cf_*` (e.g. `ishf_cf_order`, `ishf_cf_url`, `ishf_cf_function`, `ishf_cf_organization`, `ishf_cf_attendants_related`). Field types: text, number, date, checkbox, radio, image, posts_checkboxes. Only fields the theme reads are declared (the events / coauthors / podcasts / videocasts / banners fields of the base template were removed, with their `SITE_USE_*` flags). Sponsor types order: `ishf_cf_sponsor_types_order`. Optional dark-mode logo (sponsors and editions): `ishf_cf_logo_dark_id`, an image field in the box.
 - Helper heading component: `includes/section-label.php` (`$section_name`, `$heading_size`, `$text_align`).
 - `includes/sections/attendants.php` is the speakers slider used by `single-seminars.php`. It lists every published attendant (all attendants are speakers), ordered by `ishf_cf_order` (optional) then title, optionally filtered by the global `$current_category`. Attendant fields: `organization`, `function`, `gender`, `order`. There is no jury, talks or per-seminar flag any more: seminars are the only event type (`talks` CPT/flag removed).
+
+### Past editions (Nov 2026)
+- **CPT `editions`** (admin menu "Past Editions"): name = title, logo = featured image ("Edition logo"; optional `ishf_cf_logo_dark_id`), dates = `ishf_cf_date_start` / `ishf_cf_date_end` (date pickers, shown combined by `ishf_edition_dates()`: "9–11 June 2025", "28 June – 1 July 2022"; PT formats in `languages/pt_PT.po`), venue = `ishf_cf_venue`, address = `ishf_cf_address`, map pin = `ishf_cf_geolocation` ("lat, lng"), body = content. Not public: editions only exist inside the page below. Admin list shows logo, dates and venue, newest first.
+- **Map**: on save, an address without coordinates (or a changed address whose pin was automatic) is placed with the Mapbox Geocoding API; coordinates typed by hand are kept. Needs `SITE_MAPBOX_TOKEN` (public `pk.` token, restricted to the site URLs; the save request sends the site URL as Referer). Without the token: admin notice, no map, the modal keeps the address and a "View on Google Maps" link. Mapbox GL JS (`CDN_MAPBOX_GL_VERSION`) is only downloaded when a visitor opens a modal with a map (`js/past-editions.js`); map style follows light / dark mode; scroll is not captured (cooperative gestures).
+- **Page** `page-past-editions.php` (automatic for the slug `past-editions`, or template "Past Editions" for translations): page content as intro, then a vertical timeline (oldest first, alternating on desktop) with one card per edition (logo, title, dates, "Discover this edition") and a closing "Lisbon 2027" card. Each card opens a UIkit modal (logo, dates, venue, address, map, content). Deep link: `/past-editions/#edition-{slug}`.
+- **About** `page-about.php` (automatic for the slug `about`, or template "About"): page content, then the Past Editions CTA (one chip per edition linking to its modal, and "Explore past editions"). The CTA is hidden until the Past Editions page is published. The page goes in the menu through Appearance → Menus ("Top Navbar / Right").
 
 **Blocks** (`blocks/ishf-*`): `gallery`, `intro`, `quotation`, `seminar-program`, `video`, `video-slider`. Each folder has `functions.php` (register + render), `index.js` (editor) and `style.css`; namespace `ishf/…`, category `ishf`. `functions.php` loads every folder matching `blocks/ishf-*` except `ishf-example` (reference scaffold). The seminar-program block reads attendants through the REST route `ishf/v1/attendants` (editors only).
 

@@ -1,3 +1,4 @@
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: Theme Starter\n"
@@ -12,11 +13,11 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Poedit 3.4.2\n"
 "X-Poedit-Basepath: ..\n"
-"X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-KeywordsList: __;_e;_x;esc_attr_x\n"
 "X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SearchPathExcluded-0: languages\n"
 "X-Poedit-SearchPathExcluded-1: resources\n"
+"X-Poedit-SourceCharset: UTF-8\n"
 
 #: includes/cookies-disclaimer.php:19
 #, php-format
@@ -59,7 +60,8 @@ msgstr ""
 
 #: includes/sections/contact-form.php:56
 msgid "<strong>Message not sent</strong><br/> Please try again later."
-msgstr "<strong>Messagem não enviada</strong><br/> Por favor tente mais tarde."
+msgstr ""
+"<strong>Messagem não enviada</strong><br/> Por favor tente mais tarde."
 
 #: includes/sections/contact-form.php:64
 msgid "Name"
@@ -114,13 +116,17 @@ msgid "Partner with Us"
 msgstr "Seja Nosso Parceiro"
 
 #: includes/sections/ctas.php:65
-msgid "Join ISHF 2027 as an official partner. Connect your organization with key decision-makers and urban housing pioneers shaping the future of affordable living."
-msgstr "Junte-se ao ISHF 2027 como parceiro oficial. Ligue a sua organização a decisores de referência e pioneiros da habitação urbana que moldam o futuro do acesso à habitação."
+msgid ""
+"Join ISHF 2027 as an official partner. Connect your organization with key "
+"decision-makers and urban housing pioneers shaping the future of affordable "
+"living."
+msgstr ""
+"Junte-se ao ISHF 2027 como parceiro oficial. Ligue a sua organização a "
+"decisores de referência e pioneiros da habitação urbana que moldam o futuro "
+"do acesso à habitação."
 
-#: includes/sections/ctas.php:73
-#: includes/sections/ctas.php:86
-#: includes/sections/ctas.php:234
-#: includes/sections/ctas.php:247
+#: includes/sections/ctas.php:73 includes/sections/ctas.php:86
+#: includes/sections/ctas.php:234 includes/sections/ctas.php:247
 msgid "Close notification"
 msgstr "Fechar notificação"
 
@@ -129,8 +135,12 @@ msgid "Thank you for reaching out!"
 msgstr "Obrigado pelo seu contacto!"
 
 #: includes/sections/ctas.php:79
-msgid "Your partnership inquiry has been received. Our team will contact you shortly."
-msgstr "O seu pedido de parceria foi recebido. A nossa equipa entrará em contacto consigo brevemente."
+msgid ""
+"Your partnership inquiry has been received. Our team will contact you "
+"shortly."
+msgstr ""
+"O seu pedido de parceria foi recebido. A nossa equipa entrará em contacto "
+"consigo brevemente."
 
 #: includes/sections/ctas.php:107
 msgid "Full Name *"
@@ -181,11 +191,14 @@ msgid "Briefly describe your partnership interest..."
 msgstr "Descreva brevemente o seu interesse na parceria..."
 
 #: includes/sections/ctas.php:182
-msgid "I authorize the processing of my personal data for the purpose of receiving partnership information regarding ISHF 2027."
-msgstr "Autorizo o tratamento dos meus dados pessoais para efeitos de receção de informações sobre parcerias do ISHF 2027."
+msgid ""
+"I authorize the processing of my personal data for the purpose of receiving "
+"partnership information regarding ISHF 2027."
+msgstr ""
+"Autorizo o tratamento dos meus dados pessoais para efeitos de receção de "
+"informações sobre parcerias do ISHF 2027."
 
-#: includes/sections/ctas.php:188
-#: includes/sections/ctas.php:300
+#: includes/sections/ctas.php:188 includes/sections/ctas.php:300
 msgid "All fields marked with * are required."
 msgstr "Todos os campos marcados com * são obrigatórios."
 
@@ -206,16 +219,22 @@ msgid "Stay Informed"
 msgstr "Mantenha-se Informado"
 
 #: includes/sections/ctas.php:226
-msgid "Subscribe to our newsletter to receive the latest updates, announcements, calls for proposals, and festival news directly in your inbox."
-msgstr "Subscreva a nossa newsletter para receber as novidades mais recentes, anúncios, convocatórias e notícias do festival diretamente no seu e-mail."
+msgid ""
+"Subscribe to our newsletter to receive the latest updates, announcements, "
+"calls for proposals, and festival news directly in your inbox."
+msgstr ""
+"Subscreva a nossa newsletter para receber as novidades mais recentes, "
+"anúncios, convocatórias e notícias do festival diretamente no seu e-mail."
 
 #: includes/sections/ctas.php:238
 msgid "Thank you for subscribing!"
 msgstr "Obrigado pela sua subscrição!"
 
 #: includes/sections/ctas.php:240
-msgid "You are now registered to receive all the latest news from ISHF 2027 Lisbon."
-msgstr "Ficou registado(a) para receber todas as novidades do ISHF 2027 Lisboa."
+msgid ""
+"You are now registered to receive all the latest news from ISHF 2027 Lisbon."
+msgstr ""
+"Ficou registado(a) para receber todas as novidades do ISHF 2027 Lisboa."
 
 #: includes/sections/ctas.php:267
 msgid "Your Name *"
@@ -234,8 +253,12 @@ msgid "your.email@domain.com"
 msgstr "o.seu.email@dominio.pt"
 
 #: includes/sections/ctas.php:294
-msgid "I agree to receive the ISHF 2027 newsletter and updates in accordance with the privacy policy."
-msgstr "Concordo em receber a newsletter e novidades do ISHF 2027 de acordo com a política de privacidade."
+msgid ""
+"I agree to receive the ISHF 2027 newsletter and updates in accordance with "
+"the privacy policy."
+msgstr ""
+"Concordo em receber a newsletter e novidades do ISHF 2027 de acordo com a "
+"política de privacidade."
 
 #: includes/sections/ctas.php:305
 msgid "Subscribe to Newsletter"
@@ -250,6 +273,1799 @@ msgstr "Todos os direitos reservados."
 msgid "Developed by %s"
 msgstr "Desenvolvido por %s"
 
+#: includes/theme-toggle.php:7
+msgid "Toggle dark / light mode"
+msgstr "Alternar modo claro / escuro"
+
+#: includes/theme-toggle.php:7
+msgid "Toggle theme"
+msgstr "Alternar tema"
+
+#: includes/navigation-menu.php:38
+msgid "About the Festival"
+msgstr "Sobre o Festival"
+
+#: includes/navigation-menu.php:39
+msgid "Partnership"
+msgstr "Parcerias"
+
+#: includes/navigation-menu.php:40
+msgid "Newsletter"
+msgstr "Newsletter"
+
+#: includes/navigation-menu.php:47
+msgid "Partner with Us"
+msgstr "Seja Nosso Parceiro"
+
+#: includes/navigation-menu.php:72
+msgid "Theme"
+msgstr "Tema"
+
+#: includes/sections/header.php:24
+msgid "Cities with Soul: It Begins with a Key"
+msgstr "Cidades com Alma: Tudo Começa com uma Chave"
+
+#: includes/sections/ctas.php:57
+msgid ""
+"Join ISHF 2027 as an official partner. Connect your organization with key "
+"decision-makers and urban housing pioneers shaping the future of affordable "
+"living."
+msgstr ""
+"Junte-se ao ISHF 2027 como parceiro oficial. Conecte a sua organização com "
+"decisores e pioneiros da habitação urbana que moldam o futuro da habitação "
+"acessível."
+
+#: includes/sections/ctas.php:70
+msgid "Thank you for reaching out!"
+msgstr "Obrigado pelo seu contacto!"
+
+#: includes/sections/ctas.php:143
+msgid "Briefly describe your partnership interest..."
+msgstr "Descreva brevemente o seu interesse de parceria..."
+
+#: includes/sections/ctas.php:152
+msgid ""
+"I authorize the processing of my personal data for the purpose of receiving "
+"partnership information regarding ISHF 2027."
+msgstr ""
+"Autorizo o tratamento dos meus dados pessoais para efeito de receção de "
+"informações de parceria relativas ao ISHF 2027."
+
+#: includes/sections/header.php:26
+msgid "International Social Housing Festival • Lisbon 2027"
+msgstr "International Social Housing Festival • Lisboa 2027"
+
+#: includes/sections/header.php:30
+msgid "Shaping the Future of Social & Affordable Housing"
+msgstr "Construir o Futuro da Habitação Social e Acessível"
+
+#: includes/sections/header.php:34
+msgid ""
+"From 7 to 9 June 2027, Lisbon welcomes housing providers, city leaders, "
+"researchers, and communities from across the globe to build inclusive, "
+"resilient, and sustainable neighborhoods together."
+msgstr ""
+"De 7 a 9 de junho de 2027, Lisboa acolhe promotores de habitação, líderes "
+"municipais, investigadores e comunidades de todo o mundo para construir "
+"bairros inclusivos, resilientes e sustentáveis."
+
+#: includes/sections/header.php:40
+msgid "Dates:"
+msgstr "Datas:"
+
+#: includes/sections/header.php:40
+msgid "7–9 June 2027"
+msgstr "7–9 de Junho de 2027"
+
+#: includes/sections/header.php:44
+msgid "Host City:"
+msgstr "Cidade Anfitriã:"
+
+#: includes/sections/header.php:44
+msgid "Lisbon, Portugal"
+msgstr "Lisboa, Portugal"
+
+#: includes/sections/header.php:48
+msgid "Format:"
+msgstr "Formato:"
+
+#: includes/sections/header.php:48
+msgid "Conferences & City Visits"
+msgstr "Conferências e Visitas à Cidade"
+
+#: includes/sections/header.php:61
+msgid "Subscribe to Newsletter"
+msgstr "Subscrever Newsletter"
+
+#: includes/sections/header.php:73
+msgid "Lisbon 2027"
+msgstr "Lisboa 2027"
+
+#: includes/sections/header.php:78
+msgid "Sustainable Living"
+msgstr "Habitação Sustentável"
+
+#: includes/sections/about.php:12
+msgid "The 2027 Lisbon Edition"
+msgstr "A Edição Lisboa 2027"
+
+#: includes/sections/about.php:15
+msgid "A Global Gathering for Social & Sustainable Living"
+msgstr "Um Encontro Global para a Habitação Social e Sustentável"
+
+#: includes/sections/about.php:18
+msgid ""
+"The International Social Housing Festival (ISHF) is the premier global event"
+" dedicated to affordable, public, and cooperative housing. After Amsterdam, "
+"Lyon, Helsinki, and Barcelona, Lisbon will host the next biennial edition in"
+" June 2027."
+msgstr ""
+"O International Social Housing Festival (ISHF) é o principal evento global "
+"dedicado à habitação acessível, pública e cooperativa. Após Amesterdão, "
+"Lyon, Helsínquia e Barcelona, Lisboa acolherá a próxima edição bienal em "
+"junho de 2027."
+
+#: includes/sections/about.php:31
+msgid "Affordable Housing"
+msgstr "Habitação Acessível"
+
+#: includes/sections/about.php:34
+msgid ""
+"Showcasing best practices in public and non-profit housing delivery, long-"
+"term financing, and cooperative tenure models."
+msgstr ""
+"Apresentação de boas práticas em promoção pública e cooperativa, "
+"financiamento de longo prazo e modelos de posse partilhada."
+
+#: includes/sections/about.php:45
+msgid "Green Transition"
+msgstr "Transição Ecológica"
+
+#: includes/sections/about.php:48
+msgid ""
+"Decarbonizing neighborhoods through circular renovation, renewable energy "
+"communities, and climate-resilient architecture."
+msgstr ""
+"Descarbonização de bairros através da renovação circular, comunidades de "
+"energia renovável e arquitetura resiliente ao clima."
+
+#: includes/sections/about.php:59
+msgid "Social Inclusion"
+msgstr "Inclusão Social"
+
+#: includes/sections/about.php:62
+msgid ""
+"Connecting communities, championing tenant democracy, combating spatial "
+"segregation, and fostering inclusive cities for all generations."
+msgstr ""
+"Unir comunidades, promover a participação dos moradores, combater a "
+"segregação espacial e criar cidades inclusivas para todas as gerações."
+
+#: includes/sections/about.php:73
+msgid "Lisbon & Beyond"
+msgstr "Lisboa e Além"
+
+#: includes/sections/about.php:76
+msgid ""
+"Immerse in field visits, site tours, and international debates hosted in "
+"historic and revitalized venues across the Portuguese capital."
+msgstr ""
+"Participe em visitas de estudo no terreno e debates internacionais acolhidos"
+" em espaços históricos e revitalizados por toda a capital portuguesa."
+
+#: includes/sections/partnership.php:33
+msgid "Collaboration & Sponsorship"
+msgstr "Colaboração e Patrocínios"
+
+#: includes/sections/partnership.php:37
+msgid "Become an Official Partner of ISHF 2027"
+msgstr "Torne-se Parceiro Oficial do ISHF 2027"
+
+#: includes/sections/partnership.php:41
+msgid ""
+"Position your organization at the center of the European conversation on "
+"affordable and sustainable living. As a festival partner, you will connect "
+"with international policymakers, municipal leaders, housing federations, and"
+" urban innovators."
+msgstr ""
+"Posicione a sua organização no centro do debate europeu sobre habitação "
+"acessível e sustentável. Como parceiro do festival, conecte-se com decisores"
+" políticos internacionais, líderes municipais, federações de habitação e "
+"inovadores urbanos."
+
+#: includes/sections/partnership.php:48
+msgid "Global Visibility:"
+msgstr "Visibilidade Global:"
+
+#: includes/sections/partnership.php:49
+msgid ""
+"Showcase your brand and vision before 2,000+ delegates and hundreds of "
+"participating organizations from over 40 countries."
+msgstr ""
+"Destaque a sua marca e visão perante mais de 2.000 delegados e centenas de "
+"organizações participantes de mais de 40 países."
+
+#: includes/sections/partnership.php:56
+msgid "Thought Leadership:"
+msgstr "Liderança e Conhecimento:"
+
+#: includes/sections/partnership.php:57
+msgid ""
+"Co-host dedicated thematic workshops, present innovative projects, and "
+"contribute to policy recommendations."
+msgstr ""
+"Co-organize workshops temáticos dedicados, apresente projetos inovadores e "
+"contribua para recomendações de políticas públicas."
+
+#: includes/sections/partnership.php:64
+msgid "Strategic Networking:"
+msgstr "Networking Estratégico:"
+
+#: includes/sections/partnership.php:65
+msgid ""
+"Engage in exclusive B2B and institutional sessions, bilateral meetings, and "
+"site visit roundtables across Lisbon."
+msgstr ""
+"Participe em sessões exclusivas B2B e institucionais, reuniões bilaterais e "
+"mesas-redondas por toda a cidade de Lisboa."
+
+#: includes/sections/partnership.php:72
+msgid "Have specific sponsorship requirements?"
+msgstr "Tem requisitos específicos de patrocínio?"
+
+#: includes/sections/partnership.php:74
+msgid "Contact our team directly at"
+msgstr "Contacte diretamente a nossa equipa em"
+
+#: includes/sections/partnership.php:87
+msgid "Request Partnership Package"
+msgstr "Solicitar Pacote de Parceria"
+
+#: includes/sections/partnership.php:90
+msgid ""
+"Fill in your details below and our partnerships secretariat will get in "
+"touch with you promptly."
+msgstr ""
+"Preencha os seus dados abaixo e o nosso secretariado de parcerias entrará em"
+" contacto com a maior brevidade."
+
+#: includes/sections/partnership.php:100
+msgid "Thank you for your interest!"
+msgstr "Obrigado pelo seu interesse!"
+
+#: includes/sections/partnership.php:102
+msgid ""
+"Your partnership inquiry has been received. Our team will contact you "
+"shortly."
+msgstr ""
+"O seu pedido de parceria foi recebido. A nossa equipa entrará em contacto "
+"brevemente."
+
+#: includes/sections/partnership.php:127
+msgid "Full Name *"
+msgstr "Nome Completo *"
+
+#: includes/sections/partnership.php:137
+msgid "Corporate Email *"
+msgstr "Email Institucional / Profissional *"
+
+#: includes/sections/partnership.php:148
+msgid "Company / Organization *"
+msgstr "Empresa / Organização *"
+
+#: includes/sections/partnership.php:158
+msgid "Job Title / Role *"
+msgstr "Cargo / Função *"
+
+#: includes/sections/partnership.php:169
+msgid "Phone Number (Optional)"
+msgstr "Telefone (Opcional)"
+
+#: includes/sections/partnership.php:179
+msgid "Message / Partnership Interests (Optional)"
+msgstr "Mensagem / Áreas de Interesse (Opcional)"
+
+#: includes/sections/partnership.php:194
+msgid ""
+"I authorize the processing of my personal data for the purpose of receiving "
+"partnership information and communications regarding the International "
+"Social Housing Festival 2027."
+msgstr ""
+"Autorizo o tratamento dos meus dados pessoais para efeito de receção de "
+"informações de parceria e comunicações relativas ao International Social "
+"Housing Festival 2027."
+
+#: includes/sections/partnership.php:203
+msgid "Send Partnership Request"
+msgstr "Enviar Pedido de Parceria"
+
+#: includes/sections/partnership.php:210
+msgid "Send Another Message"
+msgstr "Enviar Outra Mensagem"
+
+#: includes/sections/newsletter.php:29
+msgid "Stay Informed"
+msgstr "Mantenha-se Informado"
+
+#: includes/sections/newsletter.php:33
+msgid "Subscribe to the ISHF 2027 Newsletter"
+msgstr "Subscreva a Newsletter do ISHF 2027"
+
+#: includes/sections/newsletter.php:37
+msgid ""
+"Join a growing global community of housing innovators. Receive official "
+"updates, call for sessions and speakers, program releases, and registration "
+"announcements."
+msgstr ""
+"Junte-se a uma comunidade global em crescimento. Receba atualizações "
+"oficiais, chamadas para comunicações, divulgação do programa e abertura de "
+"inscrições."
+
+#: includes/sections/newsletter.php:43
+msgid "Curated festival milestones and thematic insights"
+msgstr "Marcos do festival e perspetivas temáticas selecionadas"
+
+#: includes/sections/newsletter.php:47
+msgid "Zero spam. Unsubscribe anytime with one click."
+msgstr "Sem spam. Cancele a subscrição a qualquer momento com um clique."
+
+#: includes/sections/newsletter.php:59
+msgid "Thank you for subscribing!"
+msgstr "Obrigado por subscrever!"
+
+#: includes/sections/newsletter.php:60
+msgid ""
+"You are now registered to receive all the latest news from ISHF 2027 Lisbon."
+msgstr ""
+"O seu registo foi concluído com sucesso para receber todas as novidades do "
+"ISHF 2027 Lisboa."
+
+#: includes/sections/newsletter.php:79
+msgid "Your Name *"
+msgstr "O Seu Nome *"
+
+#: includes/sections/newsletter.php:89
+msgid "Email Address *"
+msgstr "Endereço de Email *"
+
+#: includes/sections/newsletter.php:101
+msgid ""
+"I agree to receive the ISHF 2027 newsletter and updates in accordance with "
+"the privacy policy."
+msgstr ""
+"Concordo em receber a newsletter e comunicações do ISHF 2027 de acordo com a"
+" política de privacidade."
+
+#: includes/sections/newsletter.php:112
+msgid "Subscribe Now"
+msgstr "Subscrever Agora"
+
+#: includes/sections/footer.php:22
+msgid ""
+"The International Social Housing Festival (ISHF) is an initiative "
+"celebrating public, social, and cooperative housing as a fundamental pillar "
+"of thriving and sustainable societies."
+msgstr ""
+"O International Social Housing Festival (ISHF) é uma iniciativa que celebra "
+"a habitação pública, social e cooperativa como um pilar fundamental de "
+"sociedades dinâmicas e sustentáveis."
+
+#: includes/sections/footer.php:26
+msgid "Lisbon, Portugal • 7–9 June 2027"
+msgstr "Lisboa, Portugal • 7–9 de Junho de 2027"
+
+#: includes/sections/footer.php:32
+msgid "Quick Links"
+msgstr "Ligações Rápidas"
+
+#: includes/sections/footer.php:34
+msgid "Partnership Opportunities"
+msgstr "Oportunidades de Parceria"
+
+#: includes/sections/footer.php:35
+msgid "Newsletter Subscription"
+msgstr "Subscrição da Newsletter"
+
+#: includes/sections/footer.php:41
+msgid "Secretariat & Inquiries"
+msgstr "Secretariado e Contactos"
+
+#: includes/sections/footer.php:43
+msgid "Email:"
+msgstr "Email:"
+
+#: includes/sections/footer.php:49
+msgid "Organization:"
+msgstr "Organização:"
+
+#: includes/sections/footer.php:54
+msgid "Back to top"
+msgstr "Voltar ao topo"
+
+#: includes/sections/footer.php:65
+msgid "All rights reserved."
+msgstr "Todos os direitos reservados."
+
+#: includes/sections/footer.php:68
+msgid "Developed by %s"
+msgstr "Desenvolvido por %s"
+
+#: includes/form-handlers.php:27 includes/form-handlers.php:165
+msgid "Security validation failed. Please refresh the page and try again."
+msgstr ""
+"Validação de segurança falhou. Por favor recarregue a página e tente "
+"novamente."
+
+#: includes/form-handlers.php:41
+msgid "You must authorize data processing to submit this form."
+msgstr ""
+"É necessário autorizar o tratamento de dados para submeter este formulário."
+
+#: includes/form-handlers.php:48 includes/form-handlers.php:185
+msgid "Please fill in all required fields (*)."
+msgstr "Por favor, preencha todos os campos obrigatórios (*)."
+
+#: includes/form-handlers.php:55 includes/form-handlers.php:192
+msgid "Please provide a valid email address."
+msgstr "Por favor, introduza um endereço de email válido."
+
+#: includes/form-handlers.php:74
+msgid "Security validation failed. Please confirm you are not a robot."
+msgstr "Validação de segurança falhou. Por favor confirme que não é um robô."
+
+#: includes/form-handlers.php:82
+msgid "New Partnership Inquiry"
+msgstr "Novo Pedido de Parceria"
+
+#: includes/form-handlers.php:98
+msgid "Partnership Inquiry"
+msgstr "Pedido de Parceria"
+
+#: includes/form-handlers.php:99
+msgid "A new partnership inquiry was submitted through %s."
+msgstr "Foi submetido um novo pedido de parceria através do site %s."
+
+#: includes/form-handlers.php:101
+msgid "Name"
+msgstr "Nome"
+
+#: includes/form-handlers.php:102
+msgid "Company / Organization"
+msgstr "Empresa / Organização"
+
+#: includes/form-handlers.php:103
+msgid "Job Title / Role"
+msgstr "Cargo / Função"
+
+#: includes/form-handlers.php:104
+msgid "Email"
+msgstr "Email"
+
+#: includes/form-handlers.php:106
+msgid "Phone Number"
+msgstr "Telefone"
+
+#: includes/form-handlers.php:109
+msgid "Message / Areas of Interest"
+msgstr "Mensagem / Áreas de Interesse"
+
+#: includes/form-handlers.php:112
+msgid "Direct reply will be sent to the contact email address."
+msgstr "A resposta direta será enviada para o endereço de email do contacto."
+
+#: includes/form-handlers.php:129
+msgid ""
+"An error occurred while sending your request. Please try again later or "
+"contact us directly."
+msgstr ""
+"Ocorreu um erro ao enviar o seu pedido. Por favor tente mais tarde ou "
+"contacte-nos diretamente."
+
+#: includes/form-handlers.php:178
+msgid "You must authorize data processing to subscribe."
+msgstr "É necessário autorizar o tratamento de dados para subscrever."
+
+#: includes/form-handlers.php:230 includes/form-handlers.php:244
+msgid "New Newsletter Subscription"
+msgstr "Nova Subscrição de Newsletter"
+
+#: includes/form-handlers.php:245
+msgid "A new visitor subscribed to the %s newsletter."
+msgstr "Um novo visitante subscreveu a newsletter de %s."
+
+#: includes/form-handlers.php:248
+msgid "Date"
+msgstr "Data"
+
+#: includes/sections/ctas.php:48
+msgid "Call for Sessions"
+msgstr "Call for Sessions"
+
+#: includes/sections/ctas.php:54
+msgid ""
+"Help shape the programme of ISHF Lisbon 2027: submit your proposal for a "
+"session, debate or workshop and share your ideas on the future of social and"
+" affordable housing."
+msgstr ""
+"Ajude a construir o programa do ISHF Lisboa 2027: submeta a sua proposta "
+"para uma sessão, debate ou workshop e partilhe as suas ideias sobre o futuro"
+" da habitação social e acessível."
+
+#: includes/sections/ctas.php:63
+msgid "Sessions & Debates"
+msgstr "Sessões e Debates"
+
+#: includes/sections/ctas.php:64
+msgid ""
+"Lead thought-provoking discussions, thematic panels, and policy roundtables."
+msgstr ""
+"Lidere discussões inspiradoras, painéis temáticos e mesas-redondas "
+"estratégicas."
+
+#: includes/sections/ctas.php:70
+msgid "Workshops & Labs"
+msgstr "Workshops e Laboratórios"
+
+#: includes/sections/ctas.php:71
+msgid ""
+"Host collaborative sessions, participatory workshops, and co-creation labs."
+msgstr ""
+"Conduza sessões colaborativas, workshops participativos e laboratórios de "
+"cocriação."
+
+#: includes/sections/ctas.php:77
+msgid "Projects & Ideas"
+msgstr "Projetos e Ideias"
+
+#: includes/sections/ctas.php:78
+msgid ""
+"Showcase innovative housing solutions, research breakthroughs, and field "
+"case studies."
+msgstr ""
+"Apresente soluções inovadoras de habitação, avanços de investigação e "
+"estudos de caso práticos."
+
+#: includes/sections/ctas.php:92
+msgid "Submit Your Proposal"
+msgstr "Submeter Proposta"
+
+#: includes/sections/ctas.php:96
+msgid "External application form opens in a new tab."
+msgstr "O formulário externo de candidatura abre num novo separador."
+
+#: includes/sections/ctas.php:94
+msgid "Become a Partner"
+msgstr "Tornar-se Parceiro"
+
+#: includes/sections/ctas.php:98
+msgid "Opens partnership inquiry form in a popup window."
+msgstr "Abre o formulário de contacto para parcerias numa janela popup."
+
+#: includes/sections/ctas.php:127
+msgid ""
+"Join ISHF 2027 as an official partner. Fill in the form below and our team "
+"will get in touch shortly."
+msgstr ""
+"Junte-se ao ISHF 2027 como parceiro oficial. Preencha o formulário abaixo e "
+"a nossa equipa entrará em contacto brevemente."
+
+#: includes/news-card.php, includes/post-meta-clipping.php, single.php (news &
+#: clippings)
+msgid "Clipping"
+msgstr "Cobertura"
+
+msgid "Portuguese"
+msgstr "Português"
+
+msgid "English"
+msgstr "Inglês"
+
+msgid "Spanish"
+msgstr "Espanhol"
+
+msgid "French"
+msgstr "Francês"
+
+msgid "In Portuguese"
+msgstr "Em português"
+
+msgid "In English"
+msgstr "Em inglês"
+
+msgid "In Spanish"
+msgstr "Em espanhol"
+
+msgid "In French"
+msgstr "Em francês"
+
+msgid "opens in a new tab"
+msgstr "abre num novo separador"
+
+msgid "(opens in a new tab)"
+msgstr "(abre num novo separador)"
+
+msgid "Clipping / External link"
+msgstr "Cobertura / Ligação externa"
+
+msgid ""
+"Fill in the URL only for coverage published on a third-party website. The "
+"card then links to it (new tab). Add the publication name as a post tag."
+msgstr ""
+"Preencha o URL apenas para cobertura publicada num site de terceiros. O "
+"cartão passa a apontar para esse endereço (novo separador). Adicione o nome "
+"da publicação como etiqueta (tag) do artigo."
+
+msgid "External URL"
+msgstr "URL externo"
+
+msgid "Publication date at the source"
+msgstr "Data de publicação na fonte"
+
+msgid "Language of the external content"
+msgstr "Idioma do conteúdo externo"
+
+msgid "Read the full article at the source"
+msgstr "Ler o artigo completo na fonte"
+
+msgid "Article content"
+msgstr "Conteúdo do artigo"
+
+msgid "Article navigation"
+msgstr "Navegação do artigo"
+
+msgid "News & articles"
+msgstr "Notícias e artigos"
+
+msgid "All news"
+msgstr "Todas as notícias"
+
+#: includes/news-card.php, includes/post-meta-clipping.php, single.php (news &
+#: clippings)
+msgid "Related articles"
+msgstr "Artigos relacionados"
+
+# --- Translation sweep (all theme strings) ---
+msgid "Page Not Found"
+msgstr "Página não encontrada"
+
+msgid ""
+"The page you are looking for does not exist, has been removed or is "
+"temporarily unavailable."
+msgstr ""
+"A página que procura não existe, foi removida ou está temporariamente "
+"indisponível."
+
+msgid "Back to Homepage"
+msgstr "Voltar à página inicial"
+
+msgid "Archive"
+msgstr "Arquivo"
+
+msgid "Previous"
+msgstr "Anterior"
+
+msgid "Next"
+msgstr "Seguinte"
+
+msgid "No Content Found"
+msgstr "Nenhum conteúdo encontrado"
+
+msgid "There are no publications available in this archive at the moment."
+msgstr "Não existem publicações disponíveis neste arquivo de momento."
+
+msgid "Category"
+msgstr "Categoria"
+
+msgid "Load More Articles"
+msgstr "Carregar mais artigos"
+
+msgid ""
+"International Social Housing Festival (ISHF) 2027 Lisbon. Cities with Soul: "
+"It Begins with a Key."
+msgstr ""
+"Festival Internacional de Habitação Social (ISHF) 2027 Lisboa. Cidades com "
+"Alma: Tudo Começa com uma Chave."
+
+msgid "Get Your Ticket"
+msgstr "Obtenha o seu bilhete"
+
+msgid "Open to everyone."
+msgstr "Aberto a todos."
+
+msgid "Register as a Professional"
+msgstr "Inscreva-se como profissional"
+
+msgid "Professional registration, open until 31 December 2026."
+msgstr "Inscrição profissional, aberta até 31 de dezembro de 2026."
+
+msgid ""
+"I expressly authorize the processing of my personal data for marketing "
+"communications by Medialivre, S.A. and its partner entities, via telephone, "
+"email, SMS, and postal mail."
+msgstr ""
+"Autorizo expressamente o tratamento dos meus dados pessoais para "
+"comunicações de marketing por parte da Medialivre, S.A. e das suas entidades"
+" parceiras, por telefone, e-mail, SMS e correio postal."
+
+msgid "YouTube Video"
+msgstr "Vídeo YouTube"
+
+msgid "BrightCove Video"
+msgstr "Vídeo BrightCove"
+
+msgid "Search: %s"
+msgstr "Pesquisa: %s"
+
+msgid "Cookies Disclaimer"
+msgstr "Aviso de cookies"
+
+msgid "Festival"
+msgstr "Festival"
+
+msgid "About"
+msgstr "Sobre"
+
+msgid "Join the ISHF 2027 community"
+msgstr "Junte-se à comunidade ISHF 2027"
+
+msgid "Subscribe"
+msgstr "Subscrever"
+
+msgid "Full Name is required."
+msgstr "O nome completo é obrigatório."
+
+msgid "Corporate Email is required."
+msgstr "O e-mail profissional é obrigatório."
+
+msgid "Company / Organization is required."
+msgstr "A empresa / organização é obrigatória."
+
+msgid "Job Title / Role is required."
+msgstr "O cargo / função é obrigatório."
+
+msgid "Please correct the highlighted fields and try again."
+msgstr "Corrija os campos assinalados e tente novamente."
+
+msgid "Email is required."
+msgstr "O e-mail é obrigatório."
+
+msgid "Language"
+msgstr "Idioma"
+
+msgid "Open menu"
+msgstr "Abrir menu"
+
+msgid "Menu"
+msgstr "Menu"
+
+msgid "Close menu"
+msgstr "Fechar menu"
+
+msgid "Close modal"
+msgstr "Fechar janela"
+
+msgid ""
+"Submit your proposal for Call for Sessions (opens external form in new tab)"
+msgstr ""
+"Submeta a sua proposta para a Chamada de Sessões (abre o formulário externo "
+"num novo separador)"
+
+msgid "International Social Housing Festival"
+msgstr "Festival Internacional de Habitação Social"
+
+msgid ""
+"The international meeting point for people, ideas and solutions to build "
+"more inclusive, sustainable and resilient cities."
+msgstr ""
+"O ponto de encontro internacional de pessoas, ideias e soluções para "
+"construir cidades mais inclusivas, sustentáveis e resilientes."
+
+msgid "7 – 9 June 2027"
+msgstr "7 – 9 de junho de 2027"
+
+msgid "Choose your journey"
+msgstr "Escolha o seu percurso"
+
+msgid "Contribute to the Programme"
+msgstr "Contribua para o Programa"
+
+msgid "Attend the Festival"
+msgstr "Participe no Festival"
+
+msgid "e.g. Maria Silva"
+msgstr "ex.: Maria Silva"
+
+msgid "e.g. maria@company.com"
+msgstr "ex.: maria@empresa.com"
+
+msgid "e.g. Housing Europe / Lisbon Municipality"
+msgstr "ex.: Housing Europe / Câmara Municipal de Lisboa"
+
+msgid "e.g. Director of Sustainability"
+msgstr "ex.: Diretora de Sustentabilidade"
+
+msgid "Tell us about your organization or preferred areas of collaboration..."
+msgstr ""
+"Fale-nos da sua organização ou das áreas de colaboração que prefere..."
+
+msgid "Festival Agenda"
+msgstr "Agenda do Festival"
+
+msgid "Three Days of Exchange, Innovation & Urban Action"
+msgstr "Três dias de troca, inovação e ação urbana"
+
+msgid ""
+"Explore high-level international plenaries, practical workshops, site tours "
+"of innovative Lisbon housing projects, and policy assemblies."
+msgstr ""
+"Descubra plenários internacionais de alto nível, workshops práticos, visitas"
+" a projetos inovadores de habitação em Lisboa e sessões de networking."
+
+msgid "Day 1 · 7 Jun"
+msgstr "Dia 1 · 7 jun"
+
+msgid "Day 2 · 8 Jun"
+msgstr "Dia 2 · 8 jun"
+
+msgid "Day 3 · 9 Jun"
+msgstr "Dia 3 · 9 jun"
+
+msgid "Plenary"
+msgstr "Plenário"
+
+msgid ""
+"Keynotes by European, Portuguese, and Lisbon leadership on social housing "
+"governance."
+msgstr ""
+"Intervenções de líderes europeus, portugueses e de Lisboa sobre a governação"
+" da habitação social."
+
+msgid "Policy Debate"
+msgstr "Debate de políticas"
+
+msgid "European Financing Models for Affordable Living"
+msgstr "Modelos europeus de financiamento da habitação acessível"
+
+msgid ""
+"Unlocking public investment, EIB facilities, and cooperative housing funds."
+msgstr ""
+"Mobilizar o investimento público, os instrumentos do BEI e os fundos de "
+"habitação cooperativa."
+
+msgid "Site Visits"
+msgstr "Visitas a projetos"
+
+msgid "Lisbon Housing Tour: Regeneration, Co-ops & Heritage"
+msgstr ""
+"Roteiro da habitação em Lisboa: regeneração, cooperativas e património"
+
+msgid ""
+"Guided field visits across innovative municipal and community housing "
+"projects in Greater Lisbon."
+msgstr ""
+"Visitas guiadas a projetos municipais e comunitários inovadores na Grande "
+"Lisboa."
+
+msgid "Workshops"
+msgstr "Workshops"
+
+msgid "Climate Resilience & Energy Communities in Social Housing"
+msgstr "Resiliência climática e comunidades de energia na habitação social"
+
+msgid ""
+"Circular renovation, zero-emission neighborhoods, and combating energy "
+"poverty."
+msgstr ""
+"Renovação circular, bairros com zero emissões e combate à pobreza "
+"energética."
+
+msgid "Mayors Assembly"
+msgstr "Assembleia de Presidentes de Câmara"
+
+msgid "International Mayors & Urban Leaders Roundtable"
+msgstr ""
+"Mesa-redonda de presidentes de câmara e líderes urbanos internacionais"
+
+msgid "Closing Plenary"
+msgstr "Plenário de encerramento"
+
+msgid "Handover of the ISHF Key to the 2029 Host City"
+msgstr "Entrega da Chave do ISHF à cidade anfitriã de 2029"
+
+msgid ""
+"Celebration of festival achievements, artistic performances, and future "
+"outlook."
+msgstr ""
+"Celebração das conquistas do festival, atuações artísticas e perspetivas "
+"futuras."
+
+msgid "Voices of the Festival"
+msgstr "Vozes do Festival"
+
+msgid ""
+"Meet the international policymakers, cooperative housing advocates, "
+"architects, and community leaders leading the dialogue in Lisbon."
+msgstr ""
+"Conheça os decisores políticos internacionais, defensores da habitação "
+"cooperativa, arquitetos e líderes comunitários que lideram a mudança."
+
+msgid "Mayor of Lisbon"
+msgstr "Presidente da Câmara Municipal de Lisboa"
+
+msgid "City of Lisbon"
+msgstr "Cidade de Lisboa"
+
+msgid "President of Housing Europe"
+msgstr "Presidente da Housing Europe"
+
+msgid "Housing Europe"
+msgstr "Housing Europe"
+
+msgid "European Social & Cooperative Housing Federation"
+msgstr "Federação Europeia de Habitação Social e Cooperativa"
+
+msgid "UN Special Rapporteur"
+msgstr "Relator Especial das Nações Unidas"
+
+msgid "United Nations"
+msgstr "Nações Unidas"
+
+msgid "Global Right to Adequate Housing Rapporteur"
+msgstr "Relator Global para o Direito à Habitação Condigna"
+
+msgid "Pritzker Laureate Guest"
+msgstr "Convidado laureado com o Prémio Pritzker"
+
+msgid "Sustainable Public Architecture & Circular Design"
+msgstr "Arquitetura pública sustentável e design circular"
+
+msgid "Partners"
+msgstr "Parceiros"
+
+msgid "Partners and sponsors"
+msgstr "Parceiros e patrocinadores"
+
+msgid "Live Stream"
+msgstr "Transmissão em direto"
+
+msgid "Watch Live Stream"
+msgstr "Ver transmissão em direto"
+
+msgid "Play video: %s"
+msgstr "Reproduzir vídeo: %s"
+
+msgid "Close video modal"
+msgstr "Fechar janela de vídeo"
+
+msgid ""
+"We are preparing something special for the International Social Housing "
+"Festival 2027. We will be back online soon."
+msgstr ""
+"Estamos a preparar algo especial para o Festival Internacional de Habitação "
+"Social 2027. Voltaremos em breve."
+
+msgid "Search"
+msgstr "Pesquisar"
+
+msgid "Search Results for: %s"
+msgstr "Resultados da pesquisa por: %s"
+
+msgid "Read More"
+msgstr "Ler mais"
+
+msgid "Nothing Found"
+msgstr "Nada encontrado"
+
+msgid ""
+"Sorry, but nothing matched your search terms. Please try again with "
+"different keywords."
+msgstr ""
+"Lamentamos, mas nada corresponde aos termos pesquisados. Tente novamente com"
+" outras palavras-chave."
+
+msgid "Back to Home"
+msgstr "Voltar ao início"
+
+msgid "Please enter a valid email address."
+msgstr "Por favor, insira um endereço de e-mail válido."
+
+msgid "You must authorise the processing of personal data (GDPR)."
+msgstr "É obrigatório autorizar o tratamento de dados pessoais (RGPD)."
+
+msgid "Your partnership request has already been received."
+msgstr "O seu pedido de parceria já foi recebido."
+
+msgid "Error saving your data. Please try again later."
+msgstr "Erro ao guardar os dados. Tente novamente mais tarde."
+
+msgid ""
+"Thank you for your interest! Your partnership request has been registered "
+"successfully."
+msgstr ""
+"Obrigado pelo seu interesse! O seu pedido de parceria foi registado com "
+"sucesso."
+
+msgid "Please fill in your name and email."
+msgstr "Por favor, preencha o seu nome e e-mail."
+
+msgid "You must authorise the sending of newsletters (GDPR)."
+msgstr "É obrigatório autorizar o envio de newsletters (RGPD)."
+
+msgid "You are already subscribed."
+msgstr "Subscrição já registada."
+
+msgid "Error registering your subscription. Please try again later."
+msgstr "Erro ao registar a sua subscrição. Tente novamente mais tarde."
+
+msgid "Subscription successful! Thank you for following ISHF 2027."
+msgstr "Subscrição efetuada com sucesso! Obrigado por acompanhar o ISHF 2027."
+
+msgid "Security check expired. Please refresh the page."
+msgstr "Validação de segurança expirada. Por favor, atualize a página."
+
+msgid "Opening Ceremony: Cities with Soul & Right to Housing"
+msgstr "Cerimónia de abertura: Cidades com Alma e o Direito à Habitação"
+
+msgid ""
+"Mayors commit to the Lisbon Declaration for Sustainable Public Housing."
+msgstr ""
+"Os presidentes de câmara comprometem-se com a Declaração de Lisboa para a "
+"Habitação Pública Sustentável."
+
+msgid "Keynote Speakers & Urban Visionaries"
+msgstr "Oradores principais e visionários urbanos"
+
+msgid "Host City Leader & Municipal Housing Champion"
+msgstr "Líder da cidade anfitriã e defensor da habitação municipal"
+
+msgid "Lead Architect & Urban Planner"
+msgstr "Arquiteto principal e urbanista"
+
+msgid "Lisbon"
+msgstr "Lisboa"
+
+# --- CPTs, blocks, seminar templates ---
+msgid "Frequently Asked Questions"
+msgstr "Perguntas frequentes"
+
+msgid "Moderation"
+msgstr "Moderação"
+
+msgid "Attendants"
+msgstr "Participantes"
+
+msgid "Attendant"
+msgstr "Participante"
+
+msgid "Parent attendant"
+msgstr "Participante principal"
+
+msgid "All attendants"
+msgstr "Todos os participantes"
+
+msgid "View attendants"
+msgstr "Ver participantes"
+
+msgid "Add new attendant"
+msgstr "Adicionar novo participante"
+
+msgid "New attendant"
+msgstr "Novo participante"
+
+msgid "Edit attendant"
+msgstr "Editar participante"
+
+msgid "Update attendant"
+msgstr "Atualizar participante"
+
+msgid "Search attendant"
+msgstr "Pesquisar participante"
+
+msgid "Not Found"
+msgstr "Não encontrado"
+
+msgid "Not found in Trash"
+msgstr "Não encontrado no lixo"
+
+msgid "Attendants Categories"
+msgstr "Categorias de participantes"
+
+msgid "Attendant Category"
+msgstr "Categoria de participante"
+
+msgid "Search Attendant Categories"
+msgstr "Pesquisar categorias de participantes"
+
+msgid "All Attendant Categories"
+msgstr "Todas as categorias de participantes"
+
+msgid "Parent Attendant Category"
+msgstr "Categoria de participante principal"
+
+msgid "Parent Attendant Category:"
+msgstr "Categoria de participante principal:"
+
+msgid "Edit Attendant Category"
+msgstr "Editar categoria de participante"
+
+msgid "Update Attendant Category"
+msgstr "Atualizar categoria de participante"
+
+msgid "Add New Attendant Category"
+msgstr "Adicionar nova categoria de participante"
+
+msgid "New Attendant Category"
+msgstr "Nova categoria de participante"
+
+msgid "Attendant Categories"
+msgstr "Categorias de participantes"
+
+msgid "Order"
+msgstr "Ordem"
+
+msgid "FAQs"
+msgstr "Perguntas frequentes"
+
+msgid "FAQ"
+msgstr "Pergunta frequente"
+
+msgid "Parent FAQ"
+msgstr "Pergunta principal"
+
+msgid "All FAQs"
+msgstr "Todas as perguntas"
+
+msgid "View FAQs"
+msgstr "Ver perguntas"
+
+msgid "Add new FAQ"
+msgstr "Adicionar nova pergunta"
+
+msgid "New FAQ"
+msgstr "Nova pergunta"
+
+msgid "Edit FAQ"
+msgstr "Editar pergunta"
+
+msgid "Update FAQ"
+msgstr "Atualizar pergunta"
+
+msgid "Search FAQ"
+msgstr "Pesquisar pergunta"
+
+msgid "Extra Parameters"
+msgstr "Parâmetros adicionais"
+
+msgid "Seminars"
+msgstr "Seminários"
+
+msgid "Seminar"
+msgstr "Seminário"
+
+msgid "Parent seminar"
+msgstr "Seminário principal"
+
+msgid "All seminars"
+msgstr "Todos os seminários"
+
+msgid "View seminars"
+msgstr "Ver seminários"
+
+msgid "Add new seminar"
+msgstr "Adicionar novo seminário"
+
+msgid "New seminar"
+msgstr "Novo seminário"
+
+msgid "Edit seminar"
+msgstr "Editar seminário"
+
+msgid "Update seminar"
+msgstr "Atualizar seminário"
+
+msgid "Search seminar"
+msgstr "Pesquisar seminário"
+
+msgid "Sponsors"
+msgstr "Patrocinadores"
+
+msgid "Sponsor"
+msgstr "Patrocinador"
+
+msgid "Parent sponsor"
+msgstr "Patrocinador principal"
+
+msgid "All sponsors"
+msgstr "Todos os patrocinadores"
+
+msgid "View sponsors"
+msgstr "Ver patrocinadores"
+
+msgid "Add new sponsor"
+msgstr "Adicionar novo patrocinador"
+
+msgid "New sponsor"
+msgstr "Novo patrocinador"
+
+msgid "Edit sponsor"
+msgstr "Editar patrocinador"
+
+msgid "Update sponsor"
+msgstr "Atualizar patrocinador"
+
+msgid "Search sponsor"
+msgstr "Pesquisar patrocinador"
+
+msgid "Search Sponsor Types"
+msgstr "Pesquisar tipos de patrocinador"
+
+msgid "All Sponsor Types"
+msgstr "Todos os tipos de patrocinador"
+
+msgid "Parent Sponsor Type"
+msgstr "Tipo de patrocinador principal"
+
+msgid "Parent Sponsor Type:"
+msgstr "Tipo de patrocinador principal:"
+
+msgid "Edit Sponsor Type"
+msgstr "Editar tipo de patrocinador"
+
+msgid "Update Sponsor Type"
+msgstr "Atualizar tipo de patrocinador"
+
+msgid "Add New Sponsor Type"
+msgstr "Adicionar novo tipo de patrocinador"
+
+msgid "New Sponsor Type"
+msgstr "Novo tipo de patrocinador"
+
+msgid "Sponsor Types"
+msgstr "Tipos de patrocinador"
+
+msgid "Use to order elements from minor to major (defaults to -1)"
+msgstr ""
+"Utilize para ordenar os elementos do menor para o maior (por defeito -1)"
+
+msgid "Homepage"
+msgstr "Página inicial"
+
+msgid "start page"
+msgstr "página inicial"
+
+msgid "start"
+msgstr "início"
+
+msgid "j F"
+msgstr "j \\d\\e F"
+
+msgid "Streaming"
+msgstr "Streaming"
+
+msgid "Follow live"
+msgstr "Acompanhe em direto"
+
+msgid ""
+"Watch the conference live and find out more about the topics under "
+"discussion."
+msgstr ""
+"Assista à conferência em direto e descubra mais sobre os temas em discussão."
+
+msgid "Watch the conferences again"
+msgstr "Reveja as conferências"
+
+msgid ""
+"Watch the events again and relive the highlights of these conversations."
+msgstr ""
+"Assista novamente aos eventos e relembre os momentos altos destas conversas."
+
+msgid "Programme"
+msgstr "Programa"
+
+msgid "Jury"
+msgstr "Júri"
+
+msgid "Speakers"
+msgstr "Oradores"
+
+# --- ISHF Contacts admin ---
+msgid "%d contact(s) deleted."
+msgstr "%d contacto(s) eliminado(s)."
+
+msgid "%d items"
+msgstr "%d itens"
+
+msgid "(filtered)"
+msgstr "(filtrado)"
+
+msgid "API"
+msgstr "API"
+
+msgid "Actions"
+msgstr "Ações"
+
+msgid "Clear filters"
+msgstr "Limpar filtros"
+
+msgid "Contact deleted."
+msgstr "Contacto eliminado."
+
+msgid "Data retention"
+msgstr "Retenção de dados"
+
+msgid "Delete"
+msgstr "Eliminar"
+
+msgid "Delete contacts received before"
+msgstr "Eliminar contactos recebidos antes de"
+
+msgid "Delete this contact permanently? This cannot be undone."
+msgstr ""
+"Eliminar este contacto definitivamente? Esta ação não pode ser revertida."
+
+msgid "Export all to CSV"
+msgstr "Exportar tudo para CSV"
+
+msgid "Export filtered results to CSV"
+msgstr "Exportar resultados filtrados para CSV"
+
+msgid "Failed"
+msgstr "Falhou"
+
+msgid "Filter"
+msgstr "Filtrar"
+
+msgid "From"
+msgstr "De"
+
+msgid "ISHF Contacts"
+msgstr "Contactos ISHF"
+
+msgid "ISHF Contacts - Lisbon 2027"
+msgstr "Contactos ISHF - Lisboa 2027"
+
+msgid "No contacts match these filters."
+msgstr "Nenhum contacto corresponde a estes filtros."
+
+msgid "No contacts received yet."
+msgstr "Ainda não foram recebidos contactos."
+
+msgid "Not configured"
+msgstr "Não configurado"
+
+msgid "Per page"
+msgstr "Por página"
+
+msgid ""
+"Permanently delete all contacts of this tab received before the chosen date?"
+" This cannot be undone."
+msgstr ""
+"Eliminar definitivamente todos os contactos deste separador recebidos antes "
+"da data escolhida? Esta ação não pode ser revertida."
+
+msgid ""
+"Permanently delete the contacts of the selected tab received before a given "
+"date (for example after the event, once the team has the data). Export a CSV"
+" first."
+msgstr ""
+"Elimina definitivamente os contactos do separador selecionado recebidos "
+"antes de uma data (por exemplo, após o evento, quando a equipa já tiver os "
+"dados). Exporte primeiro um CSV."
+
+msgid "Restricted to site administrators."
+msgstr "Acesso restrito aos administradores do site."
+
+msgid "Search name, email, company..."
+msgstr "Pesquisar nome, email, empresa..."
+
+msgid "Sent"
+msgstr "Enviado"
+
+msgid "Showing %1$d of %2$d contacts"
+msgstr "A apresentar %1$d de %2$d contactos"
+
+msgid "To"
+msgstr "Até"
+
+msgid "Unauthorised access."
+msgstr "Acesso não autorizado."
+
+# --- ISHF Contacts: English base strings ---
+msgid "API delivery"
+msgstr "Envio para a API"
+
+msgid "API detail"
+msgstr "Detalhe da API"
+
+msgid "Company / Organisation"
+msgstr "Empresa / Organização"
+
+msgid "GDPR"
+msgstr "RGPD"
+
+msgid "GDPR consent"
+msgstr "Consentimento RGPD"
+
+msgid "Institutional Partnerships"
+msgstr "Parcerias Institucionais"
+
+msgid "New Partnership Request"
+msgstr "Novo Pedido de Parceria"
+
+msgid "Newsletter Subscriptions"
+msgstr "Subscrições Newsletter"
+
+msgid "No"
+msgstr "Não"
+
+msgid "Phone"
+msgstr "Telefone"
+
+msgid "Record saved in the ISHF Contacts database."
+msgstr "Registo guardado na base de dados ISHF Contacts."
+
+msgid "Registered"
+msgstr "Data de registo"
+
+msgid ""
+"Safety copy of everyone who submits the Partnership or Newsletter form. Data"
+" is stored in the website database; the contacts are worked on outside "
+"WordPress. Contacts are personal data (GDPR): export what is needed and "
+"delete what is no longer required. Phone numbers are masked on screen; the "
+"full number is only included in the CSV export."
+msgstr ""
+"Cópia de segurança de todas as pessoas que submetem o formulário de "
+"Parcerias ou de Newsletter. Os dados ficam guardados na base de dados do "
+"site; os contactos são trabalhados fora do WordPress. Os contactos são dados"
+" pessoais (RGPD): exporte o necessário e elimine o que já não for preciso. "
+"Os números de telefone estão ocultados no ecrã; o número completo só consta "
+"da exportação CSV."
+
+msgid "Subscribed"
+msgstr "Data de subscrição"
+
+msgid "Yes"
+msgstr "Sim"
+
+# --- Programme ---
+msgid "%d sessions"
+msgstr "%d sessões"
+
+msgid "1 session"
+msgstr "1 sessão"
+
+msgid "Add to calendar"
+msgstr "Adicionar ao calendário"
+
+msgid "All rooms"
+msgstr "Todas as salas"
+
+msgid "All speakers"
+msgstr "Todos os oradores"
+
+msgid "All themes"
+msgstr "Todos os temas"
+
+msgid "Date to be announced"
+msgstr "Data por anunciar"
+
+msgid "Filter the programme"
+msgstr "Filtrar o programa"
+
+msgid "Full programme"
+msgstr "Programa completo"
+
+msgid "Get notified when it is published"
+msgstr "Seja notificado quando for publicado"
+
+msgid "No sessions match these filters."
+msgstr "Nenhuma sessão corresponde a estes filtros."
+
+msgid "Programme coming soon"
+msgstr "Programa em breve"
+
+msgid "Programme days"
+msgstr "Dias do programa"
+
+msgid "Provisional"
+msgstr "Provisório"
+
+msgid "Room"
+msgstr "Sala"
+
+msgid "Room:"
+msgstr "Sala:"
+
+msgid "Speaker"
+msgstr "Orador"
+
+msgid "Speakers:"
+msgstr "Oradores:"
+
+msgid "TBA"
+msgstr "Por anunciar"
+
+msgid "To be announced"
+msgstr "Por anunciar"
+
+msgid "View session"
+msgstr "Ver sessão"
+
+msgid "View the full programme"
+msgstr "Ver o programa completo"
+
+msgid ""
+"We are building three days of sessions, workshops and site visits for 7‑9 "
+"June 2027 in Lisbon. The full programme will be published here as soon as it"
+" is confirmed."
+msgstr ""
+"Estamos a preparar três dias de sessões, workshops e visitas técnicas para "
+"7‑9 de junho de 2027, em Lisboa. O programa completo será publicado aqui "
+"assim que estiver confirmado."
+
+# --- Seminar page, program block, header ---
+msgid "Back"
+msgstr "Voltar"
+
+msgid "Know more"
+msgstr "Saber mais"
+
+#: includes/news-card.php, includes/post-meta-clipping.php, single.php (news &
+#: clippings)
+msgid "Sessions"
+msgstr "Sessões"
+
+msgid "Moderator"
+msgstr "Moderador(a)"
+
+#: includes/news-card.php, includes/post-meta-clipping.php, single.php (news &
+#: clippings)
+msgid "Sending..."
+msgstr "A enviar..."
+
+msgid "This email address has already submitted a partnership request."
+msgstr "Este endereço de email já submeteu um pedido de parceria."
+
+msgid "This email address is already subscribed to the newsletter."
+msgstr "Este endereço de email já está subscrito na newsletter."
+
+msgid "You are subscribed to the %s newsletter"
+msgstr "Está subscrito(a) na newsletter de %s"
+
+msgid "We received your partnership request - %s"
+msgstr "Recebemos o seu pedido de parceria - %s"
+
+msgid "Hello %s,"
+msgstr "Olá %s,"
+
+#: includes/programme.php (Home programme teaser)
+msgid "Programme 7–9 June 2027"
+msgstr "Programa 7–9 de junho de 2027"
+
+msgid "Day %1$d · %2$s"
+msgstr "Dia %1$d · %2$s"
+
+msgid "%s logo"
+msgstr "Logótipo %s"
+
+msgid "Add new edition"
+msgstr "Adicionar nova edição"
+
+msgid "Address"
+msgstr "Morada"
+
+msgid "All editions"
+msgstr "Todas as edições"
+
+msgid "Associated Attendants"
+msgstr "Participantes associados"
+
+msgid "Check if event is provisional (can restrict how it is shown)"
+msgstr ""
+"Assinale se o evento é provisório (pode restringir a forma como é "
+"apresentado)"
+
+msgid "Date / Time #1"
+msgstr "Data / Hora #1"
+
+msgid "Date / Time #2"
+msgstr "Data / Hora #2"
+
+msgid "Date / Time End #1"
+msgstr "Data / Hora de fim #1"
+
+msgid "Date / Time End #2"
+msgstr "Data / Hora de fim #2"
+
+msgid "Date End"
+msgstr "Data de fim"
+
+msgid "Date Start"
+msgstr "Data de início"
+
+msgid "Dates"
+msgstr "Datas"
+
+msgid "Discover ISHF 2027"
+msgstr "Conhecer o ISHF 2027"
+
+msgid "Discover this edition"
+msgstr "Conhecer esta edição"
+
+msgid "Edit edition"
+msgstr "Editar edição"
+
+msgid "Edition"
+msgstr "Edição"
+
+msgid "Edition logo"
+msgstr "Logótipo da edição"
+
+msgid "Event Location"
+msgstr "Local do evento"
+
+msgid ""
+"Every edition takes the festival to a new city. Look back at where ISHF has "
+"been and what each edition brought to the conversation on social and "
+"affordable housing."
+msgstr ""
+"Cada edição leva o festival a uma nova cidade. Reveja por onde o ISHF já "
+"passou e o que cada edição trouxe ao debate sobre habitação social e "
+"acessível."
+
+msgid "Explore past editions"
+msgstr "Explorar edições anteriores"
+
+msgid "First day of the festival."
+msgstr "Primeiro dia do festival."
+
+msgid "Function"
+msgstr "Função"
+
+msgid "Gender"
+msgstr "Género"
+
+msgid "ISHF %s"
+msgstr "ISHF %s"
+
+msgid "Is event provisional?"
+msgstr "O evento é provisório?"
+
+msgid "Last day of the festival (leave empty for a one-day event)."
+msgstr "Último dia do festival (deixe vazio para um evento de um só dia)."
+
+msgid ""
+"Latitude, longitude (e.g. 38.6966, -9.2032). Filled in automatically from "
+"the address when you save; type your own to move the pin."
+msgstr ""
+"Latitude, longitude (ex.: 38.6966, -9.2032). Preenchido automaticamente a "
+"partir da morada ao guardar; escreva as suas para mover o marcador."
+
+msgid "Location"
+msgstr "Local"
+
+msgid "Logo"
+msgstr "Logótipo"
+
+msgid "Logo for dark mode"
+msgstr "Logótipo para o modo escuro"
+
+msgid "Map coordinates"
+msgstr "Coordenadas do mapa"
+
+msgid "Map: %s"
+msgstr "Mapa: %s"
+
+msgid "Name of the Association or Company"
+msgstr "Nome da associação ou empresa"
+
+msgid "Name of the venue, e.g. \"Centro de Congressos de Lisboa\"."
+msgstr "Nome do local, ex.: \"Centro de Congressos de Lisboa\"."
+
+msgid "New edition"
+msgstr "Nova edição"
+
+msgid "Next edition"
+msgstr "Próxima edição"
+
+msgid "On the map"
+msgstr "No mapa"
+
+msgid ""
+"Optional. Light version of the logo, shown when the site is in dark mode."
+msgstr ""
+"Opcional. Versão clara do logótipo, apresentada quando o site está em modo "
+"escuro."
+
+msgid "Organization"
+msgstr "Organização"
+
+msgid "Past Editions"
+msgstr "Edições Anteriores"
+
+msgid "Past editions"
+msgstr "Edições anteriores"
+
+msgid "Remote URL"
+msgstr "URL externo"
+
+msgid "Remove Image"
+msgstr "Remover imagem"
+
+msgid "Remove edition logo"
+msgstr "Remover logótipo da edição"
+
+msgid "Schedule the date and time (yyyy-mm-dd hh:mm:ss) for end"
+msgstr "Indique a data e hora (aaaa-mm-dd hh:mm:ss) de fim"
+
+msgid "Schedule the date and time (yyyy-mm-dd hh:mm:ss) for start"
+msgstr "Indique a data e hora (aaaa-mm-dd hh:mm:ss) de início"
+
+msgid "Search edition"
+msgstr "Pesquisar edição"
+
+msgid "Select Image"
+msgstr "Selecionar imagem"
+
+msgid "Select or Upload Image"
+msgstr "Selecionar ou carregar imagem"
+
+msgid "Select the speakers associated with this event."
+msgstr "Selecione os oradores associados a este evento."
+
+msgid "Set edition logo"
+msgstr "Definir logótipo da edição"
+
+msgid "Since %s"
+msgstr "Desde %s"
+
+msgid "Street, postcode and city. The map is placed from this address."
+msgstr ""
+"Rua, código postal e cidade. O mapa é posicionado a partir desta morada."
+
+msgid ""
+"The address could not be found on the map. Check the address or type the "
+"coordinates by hand."
+msgstr ""
+"Não foi possível encontrar a morada no mapa. Verifique a morada ou escreva "
+"as coordenadas manualmente."
+
+msgid ""
+"The map pin was not placed: the Mapbox token (SITE_MAPBOX_TOKEN) is not set."
+" Type the coordinates by hand or add the token."
+msgstr ""
+"O marcador não foi colocado: o token do Mapbox (SITE_MAPBOX_TOKEN) não está "
+"definido. Escreva as coordenadas manualmente ou adicione o token."
+
+msgid "The past editions will be published soon."
+msgstr "As edições anteriores serão publicadas em breve."
+
+msgid "Timeline of past editions"
+msgstr "Cronologia das edições anteriores"
+
+msgid "Update edition"
+msgstr "Atualizar edição"
+
+msgid "Use as edition logo"
+msgstr "Usar como logótipo da edição"
+
+msgid "Use this image"
+msgstr "Usar esta imagem"
+
+msgid "Venue"
+msgstr "Local"
+
+msgid "Video ID #1"
+msgstr "ID do vídeo #1"
+
+msgid "Video ID #2"
+msgstr "ID do vídeo #2"
+
+msgid "View on Google Maps"
+msgstr "Ver no Google Maps"
+
+msgid "j F Y"
+msgstr "j \\d\\e F \\d\\e Y"
 
 #~ msgid "Agenda"
 #~ msgstr "Programa"
@@ -483,37 +2299,30 @@ msgstr "Desenvolvido por %s"
 #~ msgstr "Pesquisar citação"
 
 #, fuzzy
-#~| msgid "Parent slide"
 #~ msgid "Parent case study"
 #~ msgstr "Slide pai"
 
 #, fuzzy
-#~| msgid "All slides"
 #~ msgid "All case studies"
 #~ msgstr "Todos os slides"
 
 #, fuzzy
-#~| msgid "View slides"
 #~ msgid "View case studies"
 #~ msgstr "Ver slides"
 
 #, fuzzy
-#~| msgid "Add New Header Slide"
 #~ msgid "Add New Case Study"
 #~ msgstr "Adicionar Novo Slide Header"
 
 #, fuzzy
-#~| msgid "New password"
 #~ msgid "New case study"
 #~ msgstr "Nova senha"
 
 #, fuzzy
-#~| msgid "Update slide"
 #~ msgid "Update case study"
 #~ msgstr "Actualizar slide"
 
 #, fuzzy
-#~| msgid "Search slide"
 #~ msgid "Search case study"
 #~ msgstr "Pesquisar slide"
 
@@ -758,8 +2567,8 @@ msgstr "Desenvolvido por %s"
 #~ msgstr "Calcular custos de envio"
 
 #~ msgid ""
-#~ "There are some issues with the items in your cart (shown above). Please "
-#~ "go back to the cart page and resolve these issues before checking out."
+#~ "There are some issues with the items in your cart (shown above). Please go "
+#~ "back to the cart page and resolve these issues before checking out."
 #~ msgstr ""
 #~ "Ocorreu um problema com algum item no seu carrinho (exibido em cima). Por "
 #~ "favor, volte para a página de carrinho e resolva estes problemas antes de "
@@ -796,12 +2605,12 @@ msgstr "Desenvolvido por %s"
 #~ msgstr "Clique aqui para entrar"
 
 #~ msgid ""
-#~ "If you have shopped with us before, please enter your details in the "
-#~ "boxes below. If you are a new customer, please proceed to the Billing "
-#~ "&amp; Shipping section."
+#~ "If you have shopped with us before, please enter your details in the boxes "
+#~ "below. If you are a new customer, please proceed to the Billing &amp; "
+#~ "Shipping section."
 #~ msgstr ""
-#~ "Se já comprou na nossa loja anteriormente (e criou conta), indique os "
-#~ "seus dados de acesso em baixo. Se é um novo cliente, avance para a secção "
+#~ "Se já comprou na nossa loja anteriormente (e criou conta), indique os seus "
+#~ "dados de acesso em baixo. Se é um novo cliente, avance para a secção "
 #~ "\"Detalhes de Faturação\"."
 
 #~ msgid ""
@@ -809,9 +2618,9 @@ msgstr "Desenvolvido por %s"
 #~ "location. Please contact us if you require assistance or wish to make "
 #~ "alternate arrangements."
 #~ msgstr ""
-#~ "Desculpe, parece que não existem métodos de pagamento disponíveis para a "
-#~ "sua região. Entre em contato connosco se precisar de ajuda ou quiser "
-#~ "negociar outra forma de pagamento."
+#~ "Desculpe, parece que não existem métodos de pagamento disponíveis para a sua"
+#~ " região. Entre em contato connosco se precisar de ajuda ou quiser negociar "
+#~ "outra forma de pagamento."
 
 #~ msgid "Ship to a different address?"
 #~ msgstr "Enviar para uma morada diferente?"
@@ -850,11 +2659,11 @@ msgstr "Desenvolvido por %s"
 #~ msgstr "Recebeu uma encomenda de %s. A encomenda é a seguinte:"
 
 #~ msgid ""
-#~ "Hi there. Your recent order on %s has been completed. Your order details "
-#~ "are shown below for your reference:"
+#~ "Hi there. Your recent order on %s has been completed. Your order details are"
+#~ " shown below for your reference:"
 #~ msgstr ""
-#~ "Olá. A sua recente encomenda em %s foi concluída. Os detalhes da "
-#~ "encomenda são exibidos em baixo para sua referência:"
+#~ "Olá. A sua recente encomenda em %s foi concluída. Os detalhes da encomenda "
+#~ "são exibidos em baixo para sua referência:"
 
 #~ msgid "Your password has been automatically generated: %s"
 #~ msgstr "A sua palavra-chave foi automaticamente gerada: %s"
@@ -870,23 +2679,22 @@ msgstr "Desenvolvido por %s"
 #~ msgstr "Olá, uma nova nota foi adicionada à sua encomenda:"
 
 #~ msgid "For your reference, your order details are shown below."
-#~ msgstr ""
-#~ "Para sua referência, os dados da encomenda são mostrados de seguida."
+#~ msgstr "Para sua referência, os dados da encomenda são mostrados de seguida."
 
 #~ msgid ""
-#~ "Your order is on-hold until we confirm payment has been received. Your "
-#~ "order details are shown below for your reference:"
+#~ "Your order is on-hold until we confirm payment has been received. Your order"
+#~ " details are shown below for your reference:"
 #~ msgstr ""
-#~ "A sua ordem está em espera até que seja possível confirmar o recebimento "
-#~ "do seu pagamento. Os detalhes da sua onde são mostrados abaixo para sua "
+#~ "A sua ordem está em espera até que seja possível confirmar o recebimento do "
+#~ "seu pagamento. Os detalhes da sua onde são mostrados abaixo para sua "
 #~ "referência:"
 
 #~ msgid ""
-#~ "Your order has been received and is now being processed. Your order "
-#~ "details are shown below for your reference:"
+#~ "Your order has been received and is now being processed. Your order details "
+#~ "are shown below for your reference:"
 #~ msgstr ""
-#~ "A sua encomenda foi recebida. Os detalhes da encomenda são exibidos em "
-#~ "baixo para sua referência:"
+#~ "A sua encomenda foi recebida. Os detalhes da encomenda são exibidos em baixo"
+#~ " para sua referência:"
 
 #~ msgid "Hi there. Your order on %s has been partially refunded."
 #~ msgstr "Olá. A sua ordem %s foi parcialmente devolvida."
@@ -901,8 +2709,7 @@ msgstr "Desenvolvido por %s"
 #~ msgid "Username: %s"
 #~ msgstr "Utilizador: %s"
 
-#~ msgid ""
-#~ "If this was a mistake, just ignore this email and nothing will happen."
+#~ msgid "If this was a mistake, just ignore this email and nothing will happen."
 #~ msgstr "Se isto é um erro, ignore este email e nada acontecerá."
 
 #~ msgid "To reset your password, visit the following address:"
@@ -941,8 +2748,7 @@ msgstr "Desenvolvido por %s"
 #~ msgid "Password reset email has been sent."
 #~ msgstr "Foi enviado um email para reset da senha"
 
-#~ msgid ""
-#~ "The following addresses will be used on the checkout page by default."
+#~ msgid "The following addresses will be used on the checkout page by default."
 #~ msgstr ""
 #~ "As seguintes moradas serão utilizadas na página de pagamento como moradas "
 #~ "padrão."
@@ -1011,15 +2817,13 @@ msgstr "Desenvolvido por %s"
 #~ msgstr "Enviar"
 
 #~ msgid "You must be <a href=\"%s\">logged in</a> to post a review."
-#~ msgstr ""
-#~ "Tem que estar <a href=\"%s\">autenticado</a> para deixar uma avaliação."
+#~ msgstr "Tem que estar <a href=\"%s\">autenticado</a> para deixar uma avaliação."
 
 #~ msgid ""
-#~ "Only logged in customers who have purchased this product may leave a "
-#~ "review."
+#~ "Only logged in customers who have purchased this product may leave a review."
 #~ msgstr ""
-#~ "Apenas clientes com sessão iniciada que compraram este produto podem "
-#~ "deixar opinião."
+#~ "Apenas clientes com sessão iniciada que compraram este produto podem deixar "
+#~ "opinião."
 
 #~ msgid "This product is currently out of stock and unavailable."
 #~ msgstr "Este produto está fora de stock e indisponível."
@@ -1027,8 +2831,8 @@ msgstr "Desenvolvido por %s"
 #~ msgid ""
 #~ "Sorry, this product is unavailable. Please choose a different combination."
 #~ msgstr ""
-#~ "Desculpe, este produto não está disponível. Por favor escolha uma "
-#~ "combinação diferente."
+#~ "Desculpe, este produto não está disponível. Por favor escolha uma combinação"
+#~ " diferente."
 
 #~ msgid "Weight"
 #~ msgstr "Peso"
@@ -1058,13 +2862,13 @@ msgstr "Desenvolvido por %s"
 #~ msgstr "Total"
 
 #~ msgid ""
-#~ "Sorry, it seems that there are no available payment methods for your "
-#~ "state. Please contact us if you require assistance or wish to make "
-#~ "alternate arrangements."
+#~ "Sorry, it seems that there are no available payment methods for your state. "
+#~ "Please contact us if you require assistance or wish to make alternate "
+#~ "arrangements."
 #~ msgstr ""
-#~ "Desculpe, parece que não existem métodos de pagamento disponíveis para a "
-#~ "sua região. Entre em contato connosco se precisar de ajuda ou quiser "
-#~ "negociar outra forma de pagamento."
+#~ "Desculpe, parece que não existem métodos de pagamento disponíveis para a sua"
+#~ " região. Entre em contato connosco se precisar de ajuda ou quiser negociar "
+#~ "outra forma de pagamento."
 
 #~ msgid "Please fill in your details above to see available payment methods."
 #~ msgstr ""
@@ -1074,12 +2878,12 @@ msgstr "Desenvolvido por %s"
 #~ msgid ""
 #~ "Since your browser does not support JavaScript, or it is disabled, please "
 #~ "ensure you click the <em>Update Totals</em> button before placing your "
-#~ "order. You may be charged more than the amount stated above if you fail "
-#~ "to do so."
+#~ "order. You may be charged more than the amount stated above if you fail to "
+#~ "do so."
 #~ msgstr ""
 #~ "Dado que o seu navegador não suporta JavaScript ou está desativado, por "
-#~ "favor clique no botão <em>Atualizar</em> antes de finalizar a sua "
-#~ "encomenda. Se não o fizer, pode pagar mais do que o valor acima indicado."
+#~ "favor clique no botão <em>Atualizar</em> antes de finalizar a sua encomenda."
+#~ " Se não o fizer, pode pagar mais do que o valor acima indicado."
 
 #~ msgid "pay"
 #~ msgstr "pagar"
@@ -1142,9 +2946,9 @@ msgstr "Desenvolvido por %s"
 #~ "confirmation email you should have received."
 #~ msgstr ""
 #~ "Para fazer o acompanhamento da sua encomenda, por favor indique o "
-#~ "identificador do pedido na caixa abaixo e pressione o botão "
-#~ "\"Acompanhar\". Este número ter-lhe-á sido indicado no recibo e na "
-#~ "mensagem de confirmação que recebeu."
+#~ "identificador do pedido na caixa abaixo e pressione o botão \"Acompanhar\". "
+#~ "Este número ter-lhe-á sido indicado no recibo e na mensagem de confirmação "
+#~ "que recebeu."
 
 #~ msgid "Order ID"
 #~ msgstr "Nº de Encomenda"
@@ -1157,1359 +2961,3 @@ msgstr "Desenvolvido por %s"
 
 #~ msgid "Newer %s"
 #~ msgstr "Recentes %s"
-
-#: includes/theme-toggle.php:7
-msgid "Toggle dark / light mode"
-msgstr "Alternar modo claro / escuro"
-
-#: includes/theme-toggle.php:7
-msgid "Toggle theme"
-msgstr "Alternar tema"
-
-#: includes/navigation-menu.php:38
-msgid "About the Festival"
-msgstr "Sobre o Festival"
-
-#: includes/navigation-menu.php:39
-msgid "Partnership"
-msgstr "Parcerias"
-
-#: includes/navigation-menu.php:40
-msgid "Newsletter"
-msgstr "Newsletter"
-
-#: includes/navigation-menu.php:47
-msgid "Partner with Us"
-msgstr "Seja Nosso Parceiro"
-
-#: includes/navigation-menu.php:72
-msgid "Theme"
-msgstr "Tema"
-
-#: includes/sections/header.php:24
-msgid "Cities with Soul: It Begins with a Key"
-msgstr "Cidades com Alma: Tudo Começa com uma Chave"
-
-#: includes/sections/ctas.php:57
-msgid "Join ISHF 2027 as an official partner. Connect your organization with key decision-makers and urban housing pioneers shaping the future of affordable living."
-msgstr "Junte-se ao ISHF 2027 como parceiro oficial. Conecte a sua organização com decisores e pioneiros da habitação urbana que moldam o futuro da habitação acessível."
-
-#: includes/sections/ctas.php:70
-msgid "Thank you for reaching out!"
-msgstr "Obrigado pelo seu contacto!"
-
-#: includes/sections/ctas.php:143
-msgid "Briefly describe your partnership interest..."
-msgstr "Descreva brevemente o seu interesse de parceria..."
-
-#: includes/sections/ctas.php:152
-msgid "I authorize the processing of my personal data for the purpose of receiving partnership information regarding ISHF 2027."
-msgstr "Autorizo o tratamento dos meus dados pessoais para efeito de receção de informações de parceria relativas ao ISHF 2027."
-
-#: includes/sections/header.php:26
-msgid "International Social Housing Festival • Lisbon 2027"
-msgstr "International Social Housing Festival • Lisboa 2027"
-
-#: includes/sections/header.php:30
-msgid "Shaping the Future of Social & Affordable Housing"
-msgstr "Construir o Futuro da Habitação Social e Acessível"
-
-#: includes/sections/header.php:34
-msgid "From 7 to 9 June 2027, Lisbon welcomes housing providers, city leaders, researchers, and communities from across the globe to build inclusive, resilient, and sustainable neighborhoods together."
-msgstr "De 7 a 9 de junho de 2027, Lisboa acolhe promotores de habitação, líderes municipais, investigadores e comunidades de todo o mundo para construir bairros inclusivos, resilientes e sustentáveis."
-
-#: includes/sections/header.php:40
-msgid "Dates:"
-msgstr "Datas:"
-
-#: includes/sections/header.php:40
-msgid "7–9 June 2027"
-msgstr "7–9 de Junho de 2027"
-
-#: includes/sections/header.php:44
-msgid "Host City:"
-msgstr "Cidade Anfitriã:"
-
-#: includes/sections/header.php:44
-msgid "Lisbon, Portugal"
-msgstr "Lisboa, Portugal"
-
-#: includes/sections/header.php:48
-msgid "Format:"
-msgstr "Formato:"
-
-#: includes/sections/header.php:48
-msgid "Conferences & City Visits"
-msgstr "Conferências e Visitas à Cidade"
-
-#: includes/sections/header.php:61
-msgid "Subscribe to Newsletter"
-msgstr "Subscrever Newsletter"
-
-#: includes/sections/header.php:73
-msgid "Lisbon 2027"
-msgstr "Lisboa 2027"
-
-#: includes/sections/header.php:78
-msgid "Sustainable Living"
-msgstr "Habitação Sustentável"
-
-#: includes/sections/about.php:12
-msgid "The 2027 Lisbon Edition"
-msgstr "A Edição Lisboa 2027"
-
-#: includes/sections/about.php:15
-msgid "A Global Gathering for Social & Sustainable Living"
-msgstr "Um Encontro Global para a Habitação Social e Sustentável"
-
-#: includes/sections/about.php:18
-msgid "The International Social Housing Festival (ISHF) is the premier global event dedicated to affordable, public, and cooperative housing. After Amsterdam, Lyon, Helsinki, and Barcelona, Lisbon will host the next biennial edition in June 2027."
-msgstr "O International Social Housing Festival (ISHF) é o principal evento global dedicado à habitação acessível, pública e cooperativa. Após Amesterdão, Lyon, Helsínquia e Barcelona, Lisboa acolherá a próxima edição bienal em junho de 2027."
-
-#: includes/sections/about.php:31
-msgid "Affordable Housing"
-msgstr "Habitação Acessível"
-
-#: includes/sections/about.php:34
-msgid "Showcasing best practices in public and non-profit housing delivery, long-term financing, and cooperative tenure models."
-msgstr "Apresentação de boas práticas em promoção pública e cooperativa, financiamento de longo prazo e modelos de posse partilhada."
-
-#: includes/sections/about.php:45
-msgid "Green Transition"
-msgstr "Transição Ecológica"
-
-#: includes/sections/about.php:48
-msgid "Decarbonizing neighborhoods through circular renovation, renewable energy communities, and climate-resilient architecture."
-msgstr "Descarbonização de bairros através da renovação circular, comunidades de energia renovável e arquitetura resiliente ao clima."
-
-#: includes/sections/about.php:59
-msgid "Social Inclusion"
-msgstr "Inclusão Social"
-
-#: includes/sections/about.php:62
-msgid "Connecting communities, championing tenant democracy, combating spatial segregation, and fostering inclusive cities for all generations."
-msgstr "Unir comunidades, promover a participação dos moradores, combater a segregação espacial e criar cidades inclusivas para todas as gerações."
-
-#: includes/sections/about.php:73
-msgid "Lisbon & Beyond"
-msgstr "Lisboa e Além"
-
-#: includes/sections/about.php:76
-msgid "Immerse in field visits, site tours, and international debates hosted in historic and revitalized venues across the Portuguese capital."
-msgstr "Participe em visitas de estudo no terreno e debates internacionais acolhidos em espaços históricos e revitalizados por toda a capital portuguesa."
-
-#: includes/sections/partnership.php:33
-msgid "Collaboration & Sponsorship"
-msgstr "Colaboração e Patrocínios"
-
-#: includes/sections/partnership.php:37
-msgid "Become an Official Partner of ISHF 2027"
-msgstr "Torne-se Parceiro Oficial do ISHF 2027"
-
-#: includes/sections/partnership.php:41
-msgid "Position your organization at the center of the European conversation on affordable and sustainable living. As a festival partner, you will connect with international policymakers, municipal leaders, housing federations, and urban innovators."
-msgstr "Posicione a sua organização no centro do debate europeu sobre habitação acessível e sustentável. Como parceiro do festival, conecte-se com decisores políticos internacionais, líderes municipais, federações de habitação e inovadores urbanos."
-
-#: includes/sections/partnership.php:48
-msgid "Global Visibility:"
-msgstr "Visibilidade Global:"
-
-#: includes/sections/partnership.php:49
-msgid "Showcase your brand and vision before 2,000+ delegates and hundreds of participating organizations from over 40 countries."
-msgstr "Destaque a sua marca e visão perante mais de 2.000 delegados e centenas de organizações participantes de mais de 40 países."
-
-#: includes/sections/partnership.php:56
-msgid "Thought Leadership:"
-msgstr "Liderança e Conhecimento:"
-
-#: includes/sections/partnership.php:57
-msgid "Co-host dedicated thematic workshops, present innovative projects, and contribute to policy recommendations."
-msgstr "Co-organize workshops temáticos dedicados, apresente projetos inovadores e contribua para recomendações de políticas públicas."
-
-#: includes/sections/partnership.php:64
-msgid "Strategic Networking:"
-msgstr "Networking Estratégico:"
-
-#: includes/sections/partnership.php:65
-msgid "Engage in exclusive B2B and institutional sessions, bilateral meetings, and site visit roundtables across Lisbon."
-msgstr "Participe em sessões exclusivas B2B e institucionais, reuniões bilaterais e mesas-redondas por toda a cidade de Lisboa."
-
-#: includes/sections/partnership.php:72
-msgid "Have specific sponsorship requirements?"
-msgstr "Tem requisitos específicos de patrocínio?"
-
-#: includes/sections/partnership.php:74
-msgid "Contact our team directly at"
-msgstr "Contacte diretamente a nossa equipa em"
-
-#: includes/sections/partnership.php:87
-msgid "Request Partnership Package"
-msgstr "Solicitar Pacote de Parceria"
-
-#: includes/sections/partnership.php:90
-msgid "Fill in your details below and our partnerships secretariat will get in touch with you promptly."
-msgstr "Preencha os seus dados abaixo e o nosso secretariado de parcerias entrará em contacto com a maior brevidade."
-
-#: includes/sections/partnership.php:100
-msgid "Thank you for your interest!"
-msgstr "Obrigado pelo seu interesse!"
-
-#: includes/sections/partnership.php:102
-msgid "Your partnership inquiry has been received. Our team will contact you shortly."
-msgstr "O seu pedido de parceria foi recebido. A nossa equipa entrará em contacto brevemente."
-
-#: includes/sections/partnership.php:127
-msgid "Full Name *"
-msgstr "Nome Completo *"
-
-#: includes/sections/partnership.php:137
-msgid "Corporate Email *"
-msgstr "Email Institucional / Profissional *"
-
-#: includes/sections/partnership.php:148
-msgid "Company / Organization *"
-msgstr "Empresa / Organização *"
-
-#: includes/sections/partnership.php:158
-msgid "Job Title / Role *"
-msgstr "Cargo / Função *"
-
-#: includes/sections/partnership.php:169
-msgid "Phone Number (Optional)"
-msgstr "Telefone (Opcional)"
-
-#: includes/sections/partnership.php:179
-msgid "Message / Partnership Interests (Optional)"
-msgstr "Mensagem / Áreas de Interesse (Opcional)"
-
-#: includes/sections/partnership.php:194
-msgid "I authorize the processing of my personal data for the purpose of receiving partnership information and communications regarding the International Social Housing Festival 2027."
-msgstr "Autorizo o tratamento dos meus dados pessoais para efeito de receção de informações de parceria e comunicações relativas ao International Social Housing Festival 2027."
-
-#: includes/sections/partnership.php:203
-msgid "Send Partnership Request"
-msgstr "Enviar Pedido de Parceria"
-
-#: includes/sections/partnership.php:210
-msgid "Send Another Message"
-msgstr "Enviar Outra Mensagem"
-
-#: includes/sections/newsletter.php:29
-msgid "Stay Informed"
-msgstr "Mantenha-se Informado"
-
-#: includes/sections/newsletter.php:33
-msgid "Subscribe to the ISHF 2027 Newsletter"
-msgstr "Subscreva a Newsletter do ISHF 2027"
-
-#: includes/sections/newsletter.php:37
-msgid "Join a growing global community of housing innovators. Receive official updates, call for sessions and speakers, program releases, and registration announcements."
-msgstr "Junte-se a uma comunidade global em crescimento. Receba atualizações oficiais, chamadas para comunicações, divulgação do programa e abertura de inscrições."
-
-#: includes/sections/newsletter.php:43
-msgid "Curated festival milestones and thematic insights"
-msgstr "Marcos do festival e perspetivas temáticas selecionadas"
-
-#: includes/sections/newsletter.php:47
-msgid "Zero spam. Unsubscribe anytime with one click."
-msgstr "Sem spam. Cancele a subscrição a qualquer momento com um clique."
-
-#: includes/sections/newsletter.php:59
-msgid "Thank you for subscribing!"
-msgstr "Obrigado por subscrever!"
-
-#: includes/sections/newsletter.php:60
-msgid "You are now registered to receive all the latest news from ISHF 2027 Lisbon."
-msgstr "O seu registo foi concluído com sucesso para receber todas as novidades do ISHF 2027 Lisboa."
-
-#: includes/sections/newsletter.php:79
-msgid "Your Name *"
-msgstr "O Seu Nome *"
-
-#: includes/sections/newsletter.php:89
-msgid "Email Address *"
-msgstr "Endereço de Email *"
-
-#: includes/sections/newsletter.php:101
-msgid "I agree to receive the ISHF 2027 newsletter and updates in accordance with the privacy policy."
-msgstr "Concordo em receber a newsletter e comunicações do ISHF 2027 de acordo com a política de privacidade."
-
-#: includes/sections/newsletter.php:112
-msgid "Subscribe Now"
-msgstr "Subscrever Agora"
-
-#: includes/sections/footer.php:22
-msgid "The International Social Housing Festival (ISHF) is an initiative celebrating public, social, and cooperative housing as a fundamental pillar of thriving and sustainable societies."
-msgstr "O International Social Housing Festival (ISHF) é uma iniciativa que celebra a habitação pública, social e cooperativa como um pilar fundamental de sociedades dinâmicas e sustentáveis."
-
-#: includes/sections/footer.php:26
-msgid "Lisbon, Portugal • 7–9 June 2027"
-msgstr "Lisboa, Portugal • 7–9 de Junho de 2027"
-
-#: includes/sections/footer.php:32
-msgid "Quick Links"
-msgstr "Ligações Rápidas"
-
-#: includes/sections/footer.php:34
-msgid "Partnership Opportunities"
-msgstr "Oportunidades de Parceria"
-
-#: includes/sections/footer.php:35
-msgid "Newsletter Subscription"
-msgstr "Subscrição da Newsletter"
-
-#: includes/sections/footer.php:41
-msgid "Secretariat & Inquiries"
-msgstr "Secretariado e Contactos"
-
-#: includes/sections/footer.php:43
-msgid "Email:"
-msgstr "Email:"
-
-#: includes/sections/footer.php:49
-msgid "Organization:"
-msgstr "Organização:"
-
-#: includes/sections/footer.php:54
-msgid "Back to top"
-msgstr "Voltar ao topo"
-
-#: includes/sections/footer.php:65
-msgid "All rights reserved."
-msgstr "Todos os direitos reservados."
-
-#: includes/sections/footer.php:68
-msgid "Developed by %s"
-msgstr "Desenvolvido por %s"
-
-#: includes/form-handlers.php:27
-#: includes/form-handlers.php:165
-msgid "Security validation failed. Please refresh the page and try again."
-msgstr "Validação de segurança falhou. Por favor recarregue a página e tente novamente."
-
-#: includes/form-handlers.php:41
-msgid "You must authorize data processing to submit this form."
-msgstr "É necessário autorizar o tratamento de dados para submeter este formulário."
-
-#: includes/form-handlers.php:48
-#: includes/form-handlers.php:185
-msgid "Please fill in all required fields (*)."
-msgstr "Por favor, preencha todos os campos obrigatórios (*)."
-
-#: includes/form-handlers.php:55
-#: includes/form-handlers.php:192
-msgid "Please provide a valid email address."
-msgstr "Por favor, introduza um endereço de email válido."
-
-#: includes/form-handlers.php:74
-msgid "Security validation failed. Please confirm you are not a robot."
-msgstr "Validação de segurança falhou. Por favor confirme que não é um robô."
-
-#: includes/form-handlers.php:82
-msgid "New Partnership Inquiry"
-msgstr "Novo Pedido de Parceria"
-
-#: includes/form-handlers.php:98
-msgid "Partnership Inquiry"
-msgstr "Pedido de Parceria"
-
-#: includes/form-handlers.php:99
-msgid "A new partnership inquiry was submitted through %s."
-msgstr "Foi submetido um novo pedido de parceria através do site %s."
-
-#: includes/form-handlers.php:101
-msgid "Name"
-msgstr "Nome"
-
-#: includes/form-handlers.php:102
-msgid "Company / Organization"
-msgstr "Empresa / Organização"
-
-#: includes/form-handlers.php:103
-msgid "Job Title / Role"
-msgstr "Cargo / Função"
-
-#: includes/form-handlers.php:104
-msgid "Email"
-msgstr "Email"
-
-#: includes/form-handlers.php:106
-msgid "Phone Number"
-msgstr "Telefone"
-
-#: includes/form-handlers.php:109
-msgid "Message / Areas of Interest"
-msgstr "Mensagem / Áreas de Interesse"
-
-#: includes/form-handlers.php:112
-msgid "Direct reply will be sent to the contact email address."
-msgstr "A resposta direta será enviada para o endereço de email do contacto."
-
-#: includes/form-handlers.php:129
-msgid "An error occurred while sending your request. Please try again later or contact us directly."
-msgstr "Ocorreu um erro ao enviar o seu pedido. Por favor tente mais tarde ou contacte-nos diretamente."
-
-#: includes/form-handlers.php:178
-msgid "You must authorize data processing to subscribe."
-msgstr "É necessário autorizar o tratamento de dados para subscrever."
-
-#: includes/form-handlers.php:230
-#: includes/form-handlers.php:244
-msgid "New Newsletter Subscription"
-msgstr "Nova Subscrição de Newsletter"
-
-#: includes/form-handlers.php:245
-msgid "A new visitor subscribed to the %s newsletter."
-msgstr "Um novo visitante subscreveu a newsletter de %s."
-
-#: includes/form-handlers.php:248
-msgid "Date"
-msgstr "Data"
-
-#: includes/sections/ctas.php:48
-msgid "Call for Sessions"
-msgstr "Call for Sessions"
-
-#: includes/sections/ctas.php:54
-msgid "Help shape the programme of ISHF Lisbon 2027: submit your proposal for a session, debate or workshop and share your ideas on the future of social and affordable housing."
-msgstr "Ajude a construir o programa do ISHF Lisboa 2027: submeta a sua proposta para uma sessão, debate ou workshop e partilhe as suas ideias sobre o futuro da habitação social e acessível."
-
-#: includes/sections/ctas.php:63
-msgid "Sessions & Debates"
-msgstr "Sessões e Debates"
-
-#: includes/sections/ctas.php:64
-msgid "Lead thought-provoking discussions, thematic panels, and policy roundtables."
-msgstr "Lidere discussões inspiradoras, painéis temáticos e mesas-redondas estratégicas."
-
-#: includes/sections/ctas.php:70
-msgid "Workshops & Labs"
-msgstr "Workshops e Laboratórios"
-
-#: includes/sections/ctas.php:71
-msgid "Host collaborative sessions, participatory workshops, and co-creation labs."
-msgstr "Conduza sessões colaborativas, workshops participativos e laboratórios de cocriação."
-
-#: includes/sections/ctas.php:77
-msgid "Projects & Ideas"
-msgstr "Projetos e Ideias"
-
-#: includes/sections/ctas.php:78
-msgid "Showcase innovative housing solutions, research breakthroughs, and field case studies."
-msgstr "Apresente soluções inovadoras de habitação, avanços de investigação e estudos de caso práticos."
-
-#: includes/sections/ctas.php:92
-msgid "Submit Your Proposal"
-msgstr "Submeter Proposta"
-
-#: includes/sections/ctas.php:96
-msgid "External application form opens in a new tab."
-msgstr "O formulário externo de candidatura abre num novo separador."
-
-#: includes/sections/ctas.php:94
-msgid "Become a Partner"
-msgstr "Tornar-se Parceiro"
-
-#: includes/sections/ctas.php:98
-msgid "Opens partnership inquiry form in a popup window."
-msgstr "Abre o formulário de contacto para parcerias numa janela popup."
-
-#: includes/sections/ctas.php:127
-msgid "Join ISHF 2027 as an official partner. Fill in the form below and our team will get in touch shortly."
-msgstr "Junte-se ao ISHF 2027 como parceiro oficial. Preencha o formulário abaixo e a nossa equipa entrará em contacto brevemente."
-
-
-
-#: includes/news-card.php, includes/post-meta-clipping.php, single.php (news & clippings)
-msgid "Clipping"
-msgstr "Cobertura"
-
-msgid "Portuguese"
-msgstr "Português"
-
-msgid "English"
-msgstr "Inglês"
-
-msgid "Spanish"
-msgstr "Espanhol"
-
-msgid "French"
-msgstr "Francês"
-
-msgid "In Portuguese"
-msgstr "Em português"
-
-msgid "In English"
-msgstr "Em inglês"
-
-msgid "In Spanish"
-msgstr "Em espanhol"
-
-msgid "In French"
-msgstr "Em francês"
-
-msgid "opens in a new tab"
-msgstr "abre num novo separador"
-
-msgid "(opens in a new tab)"
-msgstr "(abre num novo separador)"
-
-msgid "Clipping / External link"
-msgstr "Cobertura / Ligação externa"
-
-msgid "Fill in the URL only for coverage published on a third-party website. The card then links to it (new tab). Add the publication name as a post tag."
-msgstr "Preencha o URL apenas para cobertura publicada num site de terceiros. O cartão passa a apontar para esse endereço (novo separador). Adicione o nome da publicação como etiqueta (tag) do artigo."
-
-msgid "External URL"
-msgstr "URL externo"
-
-msgid "Publication date at the source"
-msgstr "Data de publicação na fonte"
-
-msgid "Language of the external content"
-msgstr "Idioma do conteúdo externo"
-
-msgid "Read the full article at the source"
-msgstr "Ler o artigo completo na fonte"
-
-msgid "Article content"
-msgstr "Conteúdo do artigo"
-
-msgid "Article navigation"
-msgstr "Navegação do artigo"
-
-msgid "News & articles"
-msgstr "Notícias e artigos"
-
-msgid "All news"
-msgstr "Todas as notícias"
-
-#: includes/news-card.php, includes/post-meta-clipping.php, single.php (news & clippings)
-msgid "Related articles"
-msgstr "Artigos relacionados"
-
-# --- Translation sweep (all theme strings) ---
-
-msgid "Page Not Found"
-msgstr "Página não encontrada"
-
-msgid "The page you are looking for does not exist, has been removed or is temporarily unavailable."
-msgstr "A página que procura não existe, foi removida ou está temporariamente indisponível."
-
-msgid "Back to Homepage"
-msgstr "Voltar à página inicial"
-
-msgid "Archive"
-msgstr "Arquivo"
-
-msgid "Previous"
-msgstr "Anterior"
-
-msgid "Next"
-msgstr "Seguinte"
-
-msgid "No Content Found"
-msgstr "Nenhum conteúdo encontrado"
-
-msgid "There are no publications available in this archive at the moment."
-msgstr "Não existem publicações disponíveis neste arquivo de momento."
-
-msgid "Category"
-msgstr "Categoria"
-
-msgid "Load More Articles"
-msgstr "Carregar mais artigos"
-
-msgid "International Social Housing Festival (ISHF) 2027 Lisbon. Cities with Soul: It Begins with a Key."
-msgstr "Festival Internacional de Habitação Social (ISHF) 2027 Lisboa. Cidades com Alma: Tudo Começa com uma Chave."
-
-msgid "Get Your Ticket"
-msgstr "Obtenha o seu bilhete"
-
-msgid "Open to everyone."
-msgstr "Aberto a todos."
-
-msgid "Register as a Professional"
-msgstr "Inscreva-se como profissional"
-
-msgid "Professional registration, open until 31 December 2026."
-msgstr "Inscrição profissional, aberta até 31 de dezembro de 2026."
-
-msgid "I expressly authorize the processing of my personal data for marketing communications by Medialivre, S.A. and its partner entities, via telephone, email, SMS, and postal mail."
-msgstr "Autorizo expressamente o tratamento dos meus dados pessoais para comunicações de marketing por parte da Medialivre, S.A. e das suas entidades parceiras, por telefone, e-mail, SMS e correio postal."
-
-msgid "YouTube Video"
-msgstr "Vídeo YouTube"
-
-msgid "BrightCove Video"
-msgstr "Vídeo BrightCove"
-
-msgid "Search: %s"
-msgstr "Pesquisa: %s"
-
-msgid "Cookies Disclaimer"
-msgstr "Aviso de cookies"
-
-msgid "Festival"
-msgstr "Festival"
-
-msgid "About"
-msgstr "Sobre"
-
-msgid "Join the ISHF 2027 community"
-msgstr "Junte-se à comunidade ISHF 2027"
-
-msgid "Subscribe"
-msgstr "Subscrever"
-
-msgid "Full Name is required."
-msgstr "O nome completo é obrigatório."
-
-msgid "Corporate Email is required."
-msgstr "O e-mail profissional é obrigatório."
-
-msgid "Company / Organization is required."
-msgstr "A empresa / organização é obrigatória."
-
-msgid "Job Title / Role is required."
-msgstr "O cargo / função é obrigatório."
-
-msgid "Please correct the highlighted fields and try again."
-msgstr "Corrija os campos assinalados e tente novamente."
-
-msgid "Email is required."
-msgstr "O e-mail é obrigatório."
-
-msgid "Language"
-msgstr "Idioma"
-
-msgid "Open menu"
-msgstr "Abrir menu"
-
-msgid "Menu"
-msgstr "Menu"
-
-msgid "Close menu"
-msgstr "Fechar menu"
-
-msgid "Close modal"
-msgstr "Fechar janela"
-
-msgid "Submit your proposal for Call for Sessions (opens external form in new tab)"
-msgstr "Submeta a sua proposta para a Chamada de Sessões (abre o formulário externo num novo separador)"
-
-msgid "International Social Housing Festival"
-msgstr "Festival Internacional de Habitação Social"
-
-msgid "The international meeting point for people, ideas and solutions to build more inclusive, sustainable and resilient cities."
-msgstr "O ponto de encontro internacional de pessoas, ideias e soluções para construir cidades mais inclusivas, sustentáveis e resilientes."
-
-msgid "7 – 9 June 2027"
-msgstr "7 – 9 de junho de 2027"
-
-msgid "Choose your journey"
-msgstr "Escolha o seu percurso"
-
-msgid "Contribute to the Programme"
-msgstr "Contribua para o Programa"
-
-msgid "Attend the Festival"
-msgstr "Participe no Festival"
-
-msgid "e.g. Maria Silva"
-msgstr "ex.: Maria Silva"
-
-msgid "e.g. maria@company.com"
-msgstr "ex.: maria@empresa.com"
-
-msgid "e.g. Housing Europe / Lisbon Municipality"
-msgstr "ex.: Housing Europe / Câmara Municipal de Lisboa"
-
-msgid "e.g. Director of Sustainability"
-msgstr "ex.: Diretora de Sustentabilidade"
-
-msgid "Tell us about your organization or preferred areas of collaboration..."
-msgstr "Fale-nos da sua organização ou das áreas de colaboração que prefere..."
-
-msgid "Festival Agenda"
-msgstr "Agenda do Festival"
-
-msgid "Three Days of Exchange, Innovation & Urban Action"
-msgstr "Três dias de troca, inovação e ação urbana"
-
-msgid "Explore high-level international plenaries, practical workshops, site tours of innovative Lisbon housing projects, and policy assemblies."
-msgstr "Descubra plenários internacionais de alto nível, workshops práticos, visitas a projetos inovadores de habitação em Lisboa e sessões de networking."
-
-msgid "Day 1 · 7 Jun"
-msgstr "Dia 1 · 7 jun"
-
-msgid "Day 2 · 8 Jun"
-msgstr "Dia 2 · 8 jun"
-
-msgid "Day 3 · 9 Jun"
-msgstr "Dia 3 · 9 jun"
-
-msgid "Plenary"
-msgstr "Plenário"
-
-msgid "Keynotes by European, Portuguese, and Lisbon leadership on social housing governance."
-msgstr "Intervenções de líderes europeus, portugueses e de Lisboa sobre a governação da habitação social."
-
-msgid "Policy Debate"
-msgstr "Debate de políticas"
-
-msgid "European Financing Models for Affordable Living"
-msgstr "Modelos europeus de financiamento da habitação acessível"
-
-msgid "Unlocking public investment, EIB facilities, and cooperative housing funds."
-msgstr "Mobilizar o investimento público, os instrumentos do BEI e os fundos de habitação cooperativa."
-
-msgid "Site Visits"
-msgstr "Visitas a projetos"
-
-msgid "Lisbon Housing Tour: Regeneration, Co-ops & Heritage"
-msgstr "Roteiro da habitação em Lisboa: regeneração, cooperativas e património"
-
-msgid "Guided field visits across innovative municipal and community housing projects in Greater Lisbon."
-msgstr "Visitas guiadas a projetos municipais e comunitários inovadores na Grande Lisboa."
-
-msgid "Workshops"
-msgstr "Workshops"
-
-msgid "Climate Resilience & Energy Communities in Social Housing"
-msgstr "Resiliência climática e comunidades de energia na habitação social"
-
-msgid "Circular renovation, zero-emission neighborhoods, and combating energy poverty."
-msgstr "Renovação circular, bairros com zero emissões e combate à pobreza energética."
-
-msgid "Mayors Assembly"
-msgstr "Assembleia de Presidentes de Câmara"
-
-msgid "International Mayors & Urban Leaders Roundtable"
-msgstr "Mesa-redonda de presidentes de câmara e líderes urbanos internacionais"
-
-msgid "Closing Plenary"
-msgstr "Plenário de encerramento"
-
-msgid "Handover of the ISHF Key to the 2029 Host City"
-msgstr "Entrega da Chave do ISHF à cidade anfitriã de 2029"
-
-msgid "Celebration of festival achievements, artistic performances, and future outlook."
-msgstr "Celebração das conquistas do festival, atuações artísticas e perspetivas futuras."
-
-msgid "Voices of the Festival"
-msgstr "Vozes do Festival"
-
-msgid "Meet the international policymakers, cooperative housing advocates, architects, and community leaders leading the dialogue in Lisbon."
-msgstr "Conheça os decisores políticos internacionais, defensores da habitação cooperativa, arquitetos e líderes comunitários que lideram a mudança."
-
-msgid "Mayor of Lisbon"
-msgstr "Presidente da Câmara Municipal de Lisboa"
-
-msgid "City of Lisbon"
-msgstr "Cidade de Lisboa"
-
-msgid "President of Housing Europe"
-msgstr "Presidente da Housing Europe"
-
-msgid "Housing Europe"
-msgstr "Housing Europe"
-
-msgid "European Social & Cooperative Housing Federation"
-msgstr "Federação Europeia de Habitação Social e Cooperativa"
-
-msgid "UN Special Rapporteur"
-msgstr "Relator Especial das Nações Unidas"
-
-msgid "United Nations"
-msgstr "Nações Unidas"
-
-msgid "Global Right to Adequate Housing Rapporteur"
-msgstr "Relator Global para o Direito à Habitação Condigna"
-
-msgid "Pritzker Laureate Guest"
-msgstr "Convidado laureado com o Prémio Pritzker"
-
-msgid "Sustainable Public Architecture & Circular Design"
-msgstr "Arquitetura pública sustentável e design circular"
-
-msgid "Partners"
-msgstr "Parceiros"
-
-msgid "Partners and sponsors"
-msgstr "Parceiros e patrocinadores"
-
-msgid "Live Stream"
-msgstr "Transmissão em direto"
-
-msgid "Watch Live Stream"
-msgstr "Ver transmissão em direto"
-
-msgid "Play video: %s"
-msgstr "Reproduzir vídeo: %s"
-
-msgid "Close video modal"
-msgstr "Fechar janela de vídeo"
-
-msgid "We are preparing something special for the International Social Housing Festival 2027. We will be back online soon."
-msgstr "Estamos a preparar algo especial para o Festival Internacional de Habitação Social 2027. Voltaremos em breve."
-
-msgid "Search"
-msgstr "Pesquisar"
-
-msgid "Search Results for: %s"
-msgstr "Resultados da pesquisa por: %s"
-
-msgid "Read More"
-msgstr "Ler mais"
-
-msgid "Nothing Found"
-msgstr "Nada encontrado"
-
-msgid "Sorry, but nothing matched your search terms. Please try again with different keywords."
-msgstr "Lamentamos, mas nada corresponde aos termos pesquisados. Tente novamente com outras palavras-chave."
-
-msgid "Back to Home"
-msgstr "Voltar ao início"
-
-msgid "Please enter a valid email address."
-msgstr "Por favor, insira um endereço de e-mail válido."
-
-msgid "You must authorise the processing of personal data (GDPR)."
-msgstr "É obrigatório autorizar o tratamento de dados pessoais (RGPD)."
-
-msgid "Your partnership request has already been received."
-msgstr "O seu pedido de parceria já foi recebido."
-
-msgid "Error saving your data. Please try again later."
-msgstr "Erro ao guardar os dados. Tente novamente mais tarde."
-
-msgid "Thank you for your interest! Your partnership request has been registered successfully."
-msgstr "Obrigado pelo seu interesse! O seu pedido de parceria foi registado com sucesso."
-
-msgid "Please fill in your name and email."
-msgstr "Por favor, preencha o seu nome e e-mail."
-
-msgid "You must authorise the sending of newsletters (GDPR)."
-msgstr "É obrigatório autorizar o envio de newsletters (RGPD)."
-
-msgid "You are already subscribed."
-msgstr "Subscrição já registada."
-
-msgid "Error registering your subscription. Please try again later."
-msgstr "Erro ao registar a sua subscrição. Tente novamente mais tarde."
-
-msgid "Subscription successful! Thank you for following ISHF 2027."
-msgstr "Subscrição efetuada com sucesso! Obrigado por acompanhar o ISHF 2027."
-
-msgid "Security check expired. Please refresh the page."
-msgstr "Validação de segurança expirada. Por favor, atualize a página."
-
-msgid "Opening Ceremony: Cities with Soul & Right to Housing"
-msgstr "Cerimónia de abertura: Cidades com Alma e o Direito à Habitação"
-
-msgid "Mayors commit to the Lisbon Declaration for Sustainable Public Housing."
-msgstr "Os presidentes de câmara comprometem-se com a Declaração de Lisboa para a Habitação Pública Sustentável."
-
-msgid "Keynote Speakers & Urban Visionaries"
-msgstr "Oradores principais e visionários urbanos"
-
-msgid "Host City Leader & Municipal Housing Champion"
-msgstr "Líder da cidade anfitriã e defensor da habitação municipal"
-
-msgid "Lead Architect & Urban Planner"
-msgstr "Arquiteto principal e urbanista"
-
-msgid "Lisbon"
-msgstr "Lisboa"
-
-# --- CPTs, blocks, seminar templates ---
-
-msgid "Frequently Asked Questions"
-msgstr "Perguntas frequentes"
-
-msgid "Moderation"
-msgstr "Moderação"
-
-msgid "Attendants"
-msgstr "Participantes"
-
-msgid "Attendant"
-msgstr "Participante"
-
-msgid "Parent attendant"
-msgstr "Participante principal"
-
-msgid "All attendants"
-msgstr "Todos os participantes"
-
-msgid "View attendants"
-msgstr "Ver participantes"
-
-msgid "Add new attendant"
-msgstr "Adicionar novo participante"
-
-msgid "New attendant"
-msgstr "Novo participante"
-
-msgid "Edit attendant"
-msgstr "Editar participante"
-
-msgid "Update attendant"
-msgstr "Atualizar participante"
-
-msgid "Search attendant"
-msgstr "Pesquisar participante"
-
-msgid "Not Found"
-msgstr "Não encontrado"
-
-msgid "Not found in Trash"
-msgstr "Não encontrado no lixo"
-
-msgid "Attendants Categories"
-msgstr "Categorias de participantes"
-
-msgid "Attendant Category"
-msgstr "Categoria de participante"
-
-msgid "Search Attendant Categories"
-msgstr "Pesquisar categorias de participantes"
-
-msgid "All Attendant Categories"
-msgstr "Todas as categorias de participantes"
-
-msgid "Parent Attendant Category"
-msgstr "Categoria de participante principal"
-
-msgid "Parent Attendant Category:"
-msgstr "Categoria de participante principal:"
-
-msgid "Edit Attendant Category"
-msgstr "Editar categoria de participante"
-
-msgid "Update Attendant Category"
-msgstr "Atualizar categoria de participante"
-
-msgid "Add New Attendant Category"
-msgstr "Adicionar nova categoria de participante"
-
-msgid "New Attendant Category"
-msgstr "Nova categoria de participante"
-
-msgid "Attendant Categories"
-msgstr "Categorias de participantes"
-
-msgid "Order"
-msgstr "Ordem"
-
-msgid "FAQs"
-msgstr "Perguntas frequentes"
-
-msgid "FAQ"
-msgstr "Pergunta frequente"
-
-msgid "Parent FAQ"
-msgstr "Pergunta principal"
-
-msgid "All FAQs"
-msgstr "Todas as perguntas"
-
-msgid "View FAQs"
-msgstr "Ver perguntas"
-
-msgid "Add new FAQ"
-msgstr "Adicionar nova pergunta"
-
-msgid "New FAQ"
-msgstr "Nova pergunta"
-
-msgid "Edit FAQ"
-msgstr "Editar pergunta"
-
-msgid "Update FAQ"
-msgstr "Atualizar pergunta"
-
-msgid "Search FAQ"
-msgstr "Pesquisar pergunta"
-
-msgid "Extra Parameters"
-msgstr "Parâmetros adicionais"
-
-msgid "Seminars"
-msgstr "Seminários"
-
-msgid "Seminar"
-msgstr "Seminário"
-
-msgid "Parent seminar"
-msgstr "Seminário principal"
-
-msgid "All seminars"
-msgstr "Todos os seminários"
-
-msgid "View seminars"
-msgstr "Ver seminários"
-
-msgid "Add new seminar"
-msgstr "Adicionar novo seminário"
-
-msgid "New seminar"
-msgstr "Novo seminário"
-
-msgid "Edit seminar"
-msgstr "Editar seminário"
-
-msgid "Update seminar"
-msgstr "Atualizar seminário"
-
-msgid "Search seminar"
-msgstr "Pesquisar seminário"
-
-msgid "Sponsors"
-msgstr "Patrocinadores"
-
-msgid "Sponsor"
-msgstr "Patrocinador"
-
-msgid "Parent sponsor"
-msgstr "Patrocinador principal"
-
-msgid "All sponsors"
-msgstr "Todos os patrocinadores"
-
-msgid "View sponsors"
-msgstr "Ver patrocinadores"
-
-msgid "Add new sponsor"
-msgstr "Adicionar novo patrocinador"
-
-msgid "New sponsor"
-msgstr "Novo patrocinador"
-
-msgid "Edit sponsor"
-msgstr "Editar patrocinador"
-
-msgid "Update sponsor"
-msgstr "Atualizar patrocinador"
-
-msgid "Search sponsor"
-msgstr "Pesquisar patrocinador"
-
-msgid "Search Sponsor Types"
-msgstr "Pesquisar tipos de patrocinador"
-
-msgid "All Sponsor Types"
-msgstr "Todos os tipos de patrocinador"
-
-msgid "Parent Sponsor Type"
-msgstr "Tipo de patrocinador principal"
-
-msgid "Parent Sponsor Type:"
-msgstr "Tipo de patrocinador principal:"
-
-msgid "Edit Sponsor Type"
-msgstr "Editar tipo de patrocinador"
-
-msgid "Update Sponsor Type"
-msgstr "Atualizar tipo de patrocinador"
-
-msgid "Add New Sponsor Type"
-msgstr "Adicionar novo tipo de patrocinador"
-
-msgid "New Sponsor Type"
-msgstr "Novo tipo de patrocinador"
-
-msgid "Sponsor Types"
-msgstr "Tipos de patrocinador"
-
-msgid "Use to order elements from minor to major (defaults to -1)"
-msgstr "Utilize para ordenar os elementos do menor para o maior (por defeito -1)"
-
-msgid "Homepage"
-msgstr "Página inicial"
-
-msgid "start page"
-msgstr "página inicial"
-
-msgid "start"
-msgstr "início"
-
-msgid "j F"
-msgstr "j \\d\\e F"
-
-msgid "Streaming"
-msgstr "Streaming"
-
-msgid "Follow live"
-msgstr "Acompanhe em direto"
-
-msgid "Watch the conference live and find out more about the topics under discussion."
-msgstr "Assista à conferência em direto e descubra mais sobre os temas em discussão."
-
-msgid "Watch the conferences again"
-msgstr "Reveja as conferências"
-
-msgid "Watch the events again and relive the highlights of these conversations."
-msgstr "Assista novamente aos eventos e relembre os momentos altos destas conversas."
-
-msgid "Programme"
-msgstr "Programa"
-
-msgid "Jury"
-msgstr "Júri"
-
-msgid "Speakers"
-msgstr "Oradores"
-
-# --- ISHF Contacts admin ---
-
-msgid "%d contact(s) deleted."
-msgstr "%d contacto(s) eliminado(s)."
-
-msgid "%d items"
-msgstr "%d itens"
-
-msgid "(filtered)"
-msgstr "(filtrado)"
-
-msgid "API"
-msgstr "API"
-
-msgid "Actions"
-msgstr "Ações"
-
-msgid "Clear filters"
-msgstr "Limpar filtros"
-
-msgid "Contact deleted."
-msgstr "Contacto eliminado."
-
-msgid "Data retention"
-msgstr "Retenção de dados"
-
-msgid "Delete"
-msgstr "Eliminar"
-
-msgid "Delete contacts received before"
-msgstr "Eliminar contactos recebidos antes de"
-
-msgid "Delete this contact permanently? This cannot be undone."
-msgstr "Eliminar este contacto definitivamente? Esta ação não pode ser revertida."
-
-msgid "Export all to CSV"
-msgstr "Exportar tudo para CSV"
-
-msgid "Export filtered results to CSV"
-msgstr "Exportar resultados filtrados para CSV"
-
-msgid "Failed"
-msgstr "Falhou"
-
-msgid "Filter"
-msgstr "Filtrar"
-
-msgid "From"
-msgstr "De"
-
-msgid "ISHF Contacts"
-msgstr "Contactos ISHF"
-
-msgid "ISHF Contacts - Lisbon 2027"
-msgstr "Contactos ISHF - Lisboa 2027"
-
-msgid "No contacts match these filters."
-msgstr "Nenhum contacto corresponde a estes filtros."
-
-msgid "No contacts received yet."
-msgstr "Ainda não foram recebidos contactos."
-
-msgid "Not configured"
-msgstr "Não configurado"
-
-msgid "Per page"
-msgstr "Por página"
-
-msgid "Permanently delete all contacts of this tab received before the chosen date? This cannot be undone."
-msgstr "Eliminar definitivamente todos os contactos deste separador recebidos antes da data escolhida? Esta ação não pode ser revertida."
-
-msgid "Permanently delete the contacts of the selected tab received before a given date (for example after the event, once the team has the data). Export a CSV first."
-msgstr "Elimina definitivamente os contactos do separador selecionado recebidos antes de uma data (por exemplo, após o evento, quando a equipa já tiver os dados). Exporte primeiro um CSV."
-
-msgid "Restricted to site administrators."
-msgstr "Acesso restrito aos administradores do site."
-
-
-msgid "Search name, email, company..."
-msgstr "Pesquisar nome, email, empresa..."
-
-msgid "Sent"
-msgstr "Enviado"
-
-msgid "Showing %1$d of %2$d contacts"
-msgstr "A apresentar %1$d de %2$d contactos"
-
-msgid "To"
-msgstr "Até"
-
-msgid "Unauthorised access."
-msgstr "Acesso não autorizado."
-
-# --- ISHF Contacts: English base strings ---
-
-msgid "API delivery"
-msgstr "Envio para a API"
-
-msgid "API detail"
-msgstr "Detalhe da API"
-
-msgid "Company / Organisation"
-msgstr "Empresa / Organização"
-
-msgid "GDPR"
-msgstr "RGPD"
-
-msgid "GDPR consent"
-msgstr "Consentimento RGPD"
-
-msgid "Institutional Partnerships"
-msgstr "Parcerias Institucionais"
-
-msgid "New Partnership Request"
-msgstr "Novo Pedido de Parceria"
-
-msgid "Newsletter Subscriptions"
-msgstr "Subscrições Newsletter"
-
-msgid "No"
-msgstr "Não"
-
-msgid "Phone"
-msgstr "Telefone"
-
-msgid "Record saved in the ISHF Contacts database."
-msgstr "Registo guardado na base de dados ISHF Contacts."
-
-msgid "Registered"
-msgstr "Data de registo"
-
-msgid "Safety copy of everyone who submits the Partnership or Newsletter form. Data is stored in the website database; the contacts are worked on outside WordPress. Contacts are personal data (GDPR): export what is needed and delete what is no longer required. Phone numbers are masked on screen; the full number is only included in the CSV export."
-msgstr "Cópia de segurança de todas as pessoas que submetem o formulário de Parcerias ou de Newsletter. Os dados ficam guardados na base de dados do site; os contactos são trabalhados fora do WordPress. Os contactos são dados pessoais (RGPD): exporte o necessário e elimine o que já não for preciso. Os números de telefone estão ocultados no ecrã; o número completo só consta da exportação CSV."
-
-msgid "Subscribed"
-msgstr "Data de subscrição"
-
-msgid "Yes"
-msgstr "Sim"
-
-# --- Programme ---
-
-msgid "%d sessions"
-msgstr "%d sessões"
-
-msgid "1 session"
-msgstr "1 sessão"
-
-msgid "Add to calendar"
-msgstr "Adicionar ao calendário"
-
-msgid "All rooms"
-msgstr "Todas as salas"
-
-msgid "All speakers"
-msgstr "Todos os oradores"
-
-msgid "All themes"
-msgstr "Todos os temas"
-
-msgid "Date to be announced"
-msgstr "Data por anunciar"
-
-msgid "Filter the programme"
-msgstr "Filtrar o programa"
-
-msgid "Full programme"
-msgstr "Programa completo"
-
-msgid "Get notified when it is published"
-msgstr "Seja notificado quando for publicado"
-
-msgid "No sessions match these filters."
-msgstr "Nenhuma sessão corresponde a estes filtros."
-
-msgid "Programme coming soon"
-msgstr "Programa em breve"
-
-msgid "Programme days"
-msgstr "Dias do programa"
-
-msgid "Provisional"
-msgstr "Provisório"
-
-msgid "Room"
-msgstr "Sala"
-
-msgid "Room:"
-msgstr "Sala:"
-
-msgid "Speaker"
-msgstr "Orador"
-
-msgid "Speakers:"
-msgstr "Oradores:"
-
-msgid "TBA"
-msgstr "Por anunciar"
-
-msgid "To be announced"
-msgstr "Por anunciar"
-
-msgid "View session"
-msgstr "Ver sessão"
-
-msgid "View the full programme"
-msgstr "Ver o programa completo"
-
-msgid "We are building three days of sessions, workshops and site visits for 7‑9 June 2027 in Lisbon. The full programme will be published here as soon as it is confirmed."
-msgstr "Estamos a preparar três dias de sessões, workshops e visitas técnicas para 7‑9 de junho de 2027, em Lisboa. O programa completo será publicado aqui assim que estiver confirmado."
-
-# --- Seminar page, program block, header ---
-
-msgid "Back"
-msgstr "Voltar"
-
-msgid "Know more"
-msgstr "Saber mais"
-
-#: includes/news-card.php, includes/post-meta-clipping.php, single.php (news & clippings)
-msgid "Sessions"
-msgstr "Sessões"
-
-msgid "Moderator"
-msgstr "Moderador(a)"
-
-#: includes/news-card.php, includes/post-meta-clipping.php, single.php (news & clippings)
-msgid "Sending..."
-msgstr "A enviar..."
-
-msgid "This email address has already submitted a partnership request."
-msgstr "Este endereço de email já submeteu um pedido de parceria."
-
-msgid "This email address is already subscribed to the newsletter."
-msgstr "Este endereço de email já está subscrito na newsletter."
-
-msgid "You are subscribed to the %s newsletter"
-msgstr "Está subscrito(a) na newsletter de %s"
-
-msgid "We received your partnership request - %s"
-msgstr "Recebemos o seu pedido de parceria - %s"
-
-msgid "Hello %s,"
-msgstr "Olá %s,"
-
-#: includes/programme.php (Home programme teaser)
-msgid "Programme 7–9 June 2027"
-msgstr "Programa 7–9 de junho de 2027"
-
-msgid "Day %1$d · %2$s"
-msgstr "Dia %1$d · %2$s"

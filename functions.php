@@ -47,6 +47,13 @@ defined('SITE_USE_NAVSCROLLER') or define('SITE_USE_NAVSCROLLER', true);
 defined('SITE_USE_SEARCH') or define('SITE_USE_SEARCH', false);
 defined('SITE_COOKIES_DISCLAIMER_POSITION') or define('SITE_COOKIES_DISCLAIMER_POSITION', 'top'); // 'top' or 'bottom'
 
+// -- Mapbox public token (pk.…) for the maps of the Past Editions page and for placing
+//    each edition's address on the map when it is saved. Without it the page shows the
+//    address and a "View on map" link instead of the map. Restrict the token to the site
+//    URLs in the Mapbox account (the save request sends the site URL as Referer).
+defined('SITE_MAPBOX_TOKEN') or define('SITE_MAPBOX_TOKEN', '');
+defined('CDN_MAPBOX_GL_VERSION') or define('CDN_MAPBOX_GL_VERSION', '3.34.2');
+
 // -- Call for Sessions External Form URL
 // Form link from Centro de Congressos de Lisboa.
 defined('SITE_CALL_FOR_SESSIONS_URL') or define('SITE_CALL_FOR_SESSIONS_URL', 'https://congressos.leading.pt/geral/inserirresumo.aspx?evento=338&formulario=757&lingua=en-GB&login=false');
@@ -62,18 +69,10 @@ defined('RECAPTCHA_SITE_KEY') or define('RECAPTCHA_SITE_KEY', null);
 defined('RECAPTCHA_SECRET_KEY') or define('RECAPTCHA_SECRET_KEY', null);
 
 defined('SITE_USE_ATTENDANTS') or define('SITE_USE_ATTENDANTS', true);
-defined('SITE_USE_BANNERS') or define('SITE_USE_BANNERS', false);
-defined('SITE_USE_COAUTHORS') or define('SITE_USE_COAUTHORS', false);
 defined('SITE_USE_FAQS') or define('SITE_USE_FAQS', true);
-defined('SITE_USE_HEADER_SLIDES') or define('SITE_USE_HEADER_SLIDES', false);
-defined('SITE_USE_PARTNERSHIPS') or define('SITE_USE_PARTNERSHIPS', false);
-defined('SITE_USE_PODCASTS') or define('SITE_USE_PODCASTS', false);
-defined('SITE_USE_PROJECTS') or define('SITE_USE_PROJECTS', false);
-defined('SITE_USE_QUOTATIONS') or define('SITE_USE_QUOTATIONS', false);
 defined('SITE_USE_SEMINARS') or define('SITE_USE_SEMINARS', true);
 defined('SITE_USE_SPONSORS') or define('SITE_USE_SPONSORS', true);
-defined('SITE_USE_VIDEOCASTS') or define('SITE_USE_VIDEOCASTS', false);
-defined('SITE_USE_WINNERS') or define('SITE_USE_WINNERS', false);
+defined('SITE_USE_EDITIONS') or define('SITE_USE_EDITIONS', true);
 
 // -- Base Path Constants (Standalone Base Theme)
 defined('BASE_SITE') or define('BASE_SITE', get_home_url());
@@ -504,6 +503,8 @@ if (SITE_USE_SEMINARS)
   require_once get_theme_file_path('includes/cpt/seminars.php');
 if (SITE_USE_SPONSORS)
   require_once get_theme_file_path('includes/cpt/sponsors.php');
+if (SITE_USE_EDITIONS)
+  require_once get_theme_file_path('includes/cpt/editions.php');
 require_once get_theme_file_path('includes/cpt/functions.php'); // custom fields engine (meta boxes ishf_cf_*)
 
 
