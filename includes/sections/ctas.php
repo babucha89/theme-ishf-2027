@@ -167,6 +167,7 @@ $show_boxes = !isset($args['show_boxes']) || $args['show_boxes'];
         <form id="form-partnership" class="ishf-form form-partnership" method="post" action="#partnership" aria-describedby="partnership-modal-help">
           <input type="hidden" name="partnership_form_submitted" value="1" />
           <input type="hidden" name="form_context" value="partnership" />
+          <input type="hidden" name="g-recaptcha-response" value="" />
           <?php wp_nonce_field('partnership_form_action', 'partnership_nonce'); ?>
 
           <fieldset class="uk-fieldset">

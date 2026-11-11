@@ -111,16 +111,6 @@ get_template_part('includes/sections/sponsors','header');
 </section>
 
 <?php
-// -- Section: SPONSORS for FOOTER
-get_template_part('includes/sections/sponsors','footer');
-?>
-
-<?php
-// -- Section: CONTACT FORM
-get_template_part('includes/sections/contact-form');
-?>
-
-<?php
 // -- Block: FOOTER
 get_footer();
 ?>

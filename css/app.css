@@ -631,6 +631,13 @@ html.dark-mode .ishf-footer-simple { background-color: var(--colors-neutral-gray
 .ishf-footer-full .uk-subnav .uk-list { margin-top: 8px; }
 .ishf-footer-full .uk-subnav .uk-list a { color: var(--colors-night-text-muted); }
 
+/* -- Newsletter Footer Link & Modal -- */
+.footer-newsletter-link { color: var(--colors-action-primary) !important; text-decoration: none !important; display: inline-flex; align-items: center; transition: opacity 0.2s ease; }
+.footer-newsletter-text { color: var(--colors-action-primary) !important; font-size: 14px !important; font-weight: 700; font-size: clamp(15px, 1.3vw, 18px); letter-spacing: 0.02em; transition: color 0.2s ease; }
+.footer-newsletter-link:hover, .footer-newsletter-link:focus { opacity: 0.85; }
+.footer-newsletter-link:hover .footer-newsletter-text, .footer-newsletter-link:focus .footer-newsletter-text { color: var(--colors-action-primary-hover) !important; }
+
+
 
 /* =============================================================================
    6. SHARED COMPONENTS
@@ -928,9 +935,9 @@ html.dark-mode .article-hero { background-color: var(--colors-night-800); }
 .programme-live-title { margin: 0 0 var(--grids-spacing-32); }
 .programme-live-grid { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: 1fr; gap: var(--grids-spacing-24); text-align: left; }
 .programme-live-card { display: flex; flex-direction: column; align-items: flex-start; box-sizing: border-box; min-height: 236px; padding: var(--grids-spacing-24); background-color: var(--colors-background-tint); border-radius: var(--grids-radius-md); }
-.programme-live-day { margin: 0 0 8px; font-family: var(--fonts-family-headings); font-weight: 700; font-size: var(--fonts-size-small); letter-spacing: .08em; text-transform: uppercase; color: var(--colors-text-eyebrow); }
-.programme-live-time { margin: 0 0 8px; font-size: var(--fonts-size-small); color: var(--colors-text-muted); }
-.programme-live-session { margin: 0 0 var(--grids-spacing-24); font-size: var(--fonts-size-heading-5); line-height: var(--fonts-line-height-headings); }
+.programme-live-session { margin: 0 0 12px; font-size: var(--fonts-size-heading-5); line-height: var(--fonts-line-height-headings); }
+.programme-live-day { margin: 0 0 4px; font-family: var(--fonts-family-headings); font-weight: 700; font-size: var(--fonts-size-small); letter-spacing: .08em; text-transform: uppercase; color: var(--colors-text-eyebrow); }
+.programme-live-time { margin: 0 0 var(--grids-spacing-24); font-size: var(--fonts-size-small); color: var(--colors-text-muted); }
 .programme-live-card .uk-button { margin-top: auto; }
 @media (min-width: 960px) { .programme-live { padding: var(--grids-spacing-48); } .programme-live-grid { grid-template-columns: repeat(3, 1fr); } }
 .programme-teaser-card { height: 100%; box-sizing: border-box; padding: var(--grids-spacing-24); background-color: var(--colors-background-card); border: 1px solid var(--colors-border-default); border-radius: var(--grids-radius-lg); }
@@ -944,6 +951,7 @@ html.dark-mode .article-hero { background-color: var(--colors-night-800); }
 .seminar-when { list-style: none; margin: var(--grids-spacing-16) 0 0; padding: 0; display: flex; flex-direction: column; gap: 6px; }
 .seminar-when li { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 12px; font-weight: var(--fonts-weight-semibold); color: var(--colors-text-eyebrow); }
 .ishf-seminar-content { padding-bottom: var(--grids-spacing-48); }
+.ishf-seminar-content--intro { padding-bottom: 0; }
 .seminar-head-inner, .ishf-seminar-content > * { max-width: 1100px; margin-left: auto; margin-right: auto; padding-left: var(--grids-spacing-24); padding-right: var(--grids-spacing-24); box-sizing: border-box; }
 .ishf-seminar-content > section, .ishf-seminar-content > .alignfull { max-width: none; padding-left: 0; padding-right: 0; }
 

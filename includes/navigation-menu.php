@@ -14,7 +14,7 @@
   <?php endif; ?>
 
   <?php $ishf_full = function_exists('ishf_use_full_layout') && ishf_use_full_layout(); ?>
-  <div class="uk-container <?php echo $ishf_full ? '' : 'uk-container-xlarge'; ?>">
+  <div class="uk-container uk-container-large">
     <nav class="uk-navbar-container uk-navbar-transparent uk-flex-between uk-flex-middle" data-uk-navbar role="navigation" aria-label="<?php esc_attr_e('Main Navigation', TEXT_DOMAIN); ?>">
       
       <!-- Brand Logo: icon-key + "ISHF 2027 | Lisbon" -->

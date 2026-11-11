@@ -65,6 +65,7 @@ $nl_errors = ($has_nl_result && !empty($newsletter_result['field_errors'])) ? $n
       <form id="form-newsletter-landing" class="ishf-form form-newsletter-landing" method="post" action="#newsletter" aria-describedby="nl-help">
         <input type="hidden" name="newsletter_landing_submitted" value="1" />
         <input type="hidden" name="form_context" value="newsletter" />
+        <input type="hidden" name="g-recaptcha-response" value="" />
         <?php wp_nonce_field('newsletter_landing_action', 'newsletter_landing_nonce'); ?>
 
         <fieldset class="uk-fieldset">

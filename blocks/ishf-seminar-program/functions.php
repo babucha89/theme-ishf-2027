@@ -139,7 +139,7 @@ function ishf_seminar_render_session($session) {
   $output = '<li class="ishf-session">';
   $output .= '<div class="ishf-session__time"><time>' . $time . '</time></div>';
   $output .= '<div class="ishf-session__body">';
-  $output .= '<h3 class="ishf-session__title">' . $keynote . '</h3>';
+  $output .= '<h3 class="uk-h4 ishf-session__title">' . $keynote . '</h3>';
 
   // -- Moderator
   if (!empty($moderator)):

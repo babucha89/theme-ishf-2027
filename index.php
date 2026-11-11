@@ -44,9 +44,6 @@ get_header();
   // -- Section 5: NEWS & ARTICLES (3 latest posts)
   // Sponsors + Newsletter are rendered site-wide by footer.php (full layout), right before the footer.
   get_template_part('includes/sections/news');
-
-  // -- Partnership modal only (opened by the "Become a Partner" journey card)
-  get_template_part('includes/sections/ctas', null, array('show_boxes' => false));
   ?>
 
 </main>

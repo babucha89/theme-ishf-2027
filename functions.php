@@ -58,8 +58,8 @@ defined('SITE_DEFAULT_CONSENT_DISCLAIMER') or define('SITE_DEFAULT_CONSENT_DISCL
 defined('SITE_PARTNERSHIP_CONSENT_DISCLAIMER') or define('SITE_PARTNERSHIP_CONSENT_DISCLAIMER', SITE_DEFAULT_CONSENT_DISCLAIMER);
 defined('SITE_NEWSLETTER_CONSENT_DISCLAIMER') or define('SITE_NEWSLETTER_CONSENT_DISCLAIMER', SITE_DEFAULT_CONSENT_DISCLAIMER);
 
-defined('RECAPTCHA_SITE_KEY') or define('RECAPTCHA_SITE_KEY', null);
-defined('RECAPTCHA_SECRET_KEY') or define('RECAPTCHA_SECRET_KEY', null);
+defined('RECAPTCHA_SITE_KEY') or define('RECAPTCHA_SITE_KEY', '6Lc2kRkuAAAAAD4ZTX3VvzcwRPT8uVmP5kdqcxC2');
+defined('RECAPTCHA_SECRET_KEY') or define('RECAPTCHA_SECRET_KEY', '6Lc2kRkuAAAAAJDpCm6LT53flvoH7x2VngXLUA5s');
 
 defined('SITE_USE_ATTENDANTS') or define('SITE_USE_ATTENDANTS', true);
 defined('SITE_USE_BANNERS') or define('SITE_USE_BANNERS', false);
@@ -209,6 +209,12 @@ function ishf_load_scripts()
 
   wp_enqueue_script('ishf-form-submit', BASE_JS . 'form-submit.js', array(), SITE_VERSION, true);
   wp_enqueue_script('light-dark-switch', BASE_JS . 'light-dark-switch.js', array('jquery'), false, true);
+
+  // -- Google reCAPTCHA v3 Protection
+  if (defined('RECAPTCHA_SITE_KEY') && !empty(RECAPTCHA_SITE_KEY)) {
+    wp_enqueue_script('recaptcha-v3', 'https://www.google.com/recaptcha/api.js?render=' . esc_attr(RECAPTCHA_SITE_KEY), array(), null, true);
+    wp_add_inline_script('recaptcha-v3', 'window.ishf_recaptcha_site_key = ' . wp_json_encode(RECAPTCHA_SITE_KEY) . ';', 'before');
+  }
 
   // -- ShareThis Sticky Buttons
   if (defined('SITE_SHARETHIS_PROPERTY') && !empty(SITE_SHARETHIS_PROPERTY)):

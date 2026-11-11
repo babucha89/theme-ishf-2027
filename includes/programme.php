@@ -354,23 +354,24 @@ function ishf_programme_panel($heading_tag = 'h3', array $sessions = array(), $u
   <?php if ($live): ?>
   <div class="programme-live">
     <p class="programme-live-eyebrow"><?php esc_html_e('Programme', TEXT_DOMAIN); ?></p>
-    <<?php echo $heading_tag; ?> class="programme-live-title"><?php esc_html_e('Programme 7–9 June 2027', TEXT_DOMAIN); ?></<?php echo $heading_tag; ?>>
+    <<?php echo $heading_tag; ?> class="programme-live-title"><?php esc_html_e('Full Event', TEXT_DOMAIN); ?></<?php echo $heading_tag; ?>>
     <ul class="programme-live-grid">
       <?php foreach ($sessions as $s): ?>
         <li class="programme-live-card">
+          <h3 class="programme-live-session"><?php echo esc_html($s['title']); ?></h3>
           <?php if ($s['start']):
-            $day_label = wp_date('D j F', $s['start']->getTimestamp(), new DateTimeZone('Europe/Lisbon'));
-            if (!empty($s['day_number'])) {
-              /* translators: 1: day number, 2: weekday and date, e.g. "Mon 7 June" */
-              $day_label = sprintf(__('Day %1$d · %2$s', TEXT_DOMAIN), (int) $s['day_number'], $day_label);
-            }
+            $tz        = new DateTimeZone('Europe/Lisbon');
+            $weekday   = wp_date('D', $s['start']->getTimestamp(), $tz);
+            $day_label = !empty($s['day_number'])
+              /* translators: 1: day number, 2: weekday abbreviation, e.g. "Day 1 - Mon" */
+              ? sprintf(__('Day %1$d - %2$s', TEXT_DOMAIN), (int) $s['day_number'], $weekday)
+              : $weekday;
             ?>
-            <p class="programme-live-day"><time datetime="<?php echo esc_attr($s['start']->format('c')); ?>"><?php echo esc_html($day_label); ?></time></p>
-            <p class="programme-live-time"><?php echo esc_html(str_replace(' - ', ' – ', ishf_programme_time_label($s))); ?></p>
+            <p class="programme-live-day"><?php echo esc_html($day_label); ?></p>
+            <p class="programme-live-time"><?php echo esc_html(ishf_programme_time_label($s)); ?></p>
           <?php else: ?>
             <p class="programme-live-day"><?php esc_html_e('Date to be announced', TEXT_DOMAIN); ?></p>
           <?php endif; ?>
-          <h3 class="programme-live-session"><?php echo esc_html($s['title']); ?></h3>
           <a class="uk-button uk-button-primary" href="<?php echo esc_url(!empty($s['url']) ? $s['url'] : $url); ?>">
             <?php esc_html_e('Know more', TEXT_DOMAIN); ?>
             <span class="uk-hidden-visually"> – <?php echo esc_html($s['title']); ?></span>

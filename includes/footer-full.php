@@ -8,7 +8,7 @@
 // -----------------------------------------------------------------------------
 ?>
 <footer class="ishf-footer-full on-inverse" role="contentinfo">
-  <div class="uk-container">
+  <div class="uk-container uk-container-large">
     <div data-uk-grid class="uk-grid-large">
 
       <div class="uk-width-1-1 uk-width-1-4@m">
@@ -29,15 +29,16 @@
 
       <div class="uk-width-1-1 uk-width-1-4@m">
         <h2 class="footer-heading"><?php _e('Newsletter', TEXT_DOMAIN); ?></h2>
-        <p class="uk-text-small"><?php _e('Join the ISHF 2027 community', TEXT_DOMAIN); ?></p>
-        <button type="button" class="uk-button uk-button-primary" data-uk-toggle="target: #modal-newsletter" aria-haspopup="dialog" aria-controls="modal-newsletter"><?php _e('Subscribe', TEXT_DOMAIN); ?></button>
+        <a href="#modal-newsletter" class="footer-newsletter-link uk-link-reset uk-flex uk-flex-middle uk-flex-center uk-flex-right@s uk-margin-bottom" data-uk-toggle="target: #modal-newsletter" aria-haspopup="dialog" aria-controls="modal-newsletter" aria-label="<?php esc_attr_e('Join the ISHF 2027 community', TEXT_DOMAIN); ?>">
+          <span class="footer-newsletter-text"><?php _e('Join the ISHF 2027 community', TEXT_DOMAIN); ?></span>
+        </a>
       </div>
 
     </div>
 
     <div class="footer-bottom">
       <p class="footer-legal-text">
-        © <?php echo date('Y'); ?> <?php echo esc_html(defined('SITE_SHORT_NAME') ? SITE_SHORT_NAME : SITE_NAME); ?>. <?php _e('All rights reserved.', TEXT_DOMAIN); ?>
+        © <?php echo date('Y'); ?> <?php echo esc_html(defined('SITE_NAME') ? SITE_NAME : 'International Social Housing Festival'); ?>. <?php _e('All rights reserved.', TEXT_DOMAIN); ?>
         <span class="footer-legal-sep" aria-hidden="true">|</span>
         <span><?php echo sprintf(esc_html__('Developed by %s', TEXT_DOMAIN), 'Medialivre Boost Solutions'); ?></span>
       </p>
