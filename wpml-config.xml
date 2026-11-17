@@ -45,11 +45,13 @@
     <custom-field action="copy">ishf_cf_logo_dark_id</custom-field>
     <custom-field action="ignore">_ishf_geocoded_address</custom-field>
     <custom-field action="ignore">_ishf_geocoded_coords</custom-field>
+    <custom-field action="ignore">_ishf_logo_bbox</custom-field>
 
     <!-- Sponsors (logo_dark_id above), attendants, seminars, FAQs -->
     <custom-field action="copy-once">ishf_cf_url</custom-field>
     <custom-field action="copy">ishf_cf_order</custom-field>
     <custom-field action="copy">ishf_cf_logo_scale</custom-field>
+    <custom-field action="copy">ishf_cf_logo_width</custom-field>
     <custom-field action="translate">ishf_cf_organization</custom-field>
     <custom-field action="translate">ishf_cf_function</custom-field>
     <custom-field action="copy">ishf_cf_gender</custom-field>

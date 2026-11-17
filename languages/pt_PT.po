@@ -2330,6 +2330,20 @@ msgstr ""
 "pequeno por ter espaço vazio à volta no ficheiro, diminua (ex.: 85) para um "
 "que pareça demasiado pesado."
 
+msgid "Logo width (px)"
+msgstr "Largura do logótipo (px)"
+
+msgid ""
+"0 = automatic. Any other value shows the logo at exactly this width (e.g. "
+"300), measured on the visible logo (empty margins in the file are trimmed), "
+"ignoring the automatic size and Logo size (%). On small screens it still "
+"shrinks to fit."
+msgstr ""
+"0 = automático. Qualquer outro valor mostra o logótipo exatamente com esta "
+"largura (ex.: 300), medida no logótipo visível (as margens vazias do "
+"ficheiro são cortadas), ignorando o tamanho automático e o Tamanho do "
+"logótipo (%). Em ecrãs pequenos continua a reduzir para caber."
+
 #~ msgid "Agenda"
 #~ msgstr "Programa"
 

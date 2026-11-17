@@ -782,6 +782,7 @@ html.dark-mode .cta-box-partnership { border-width: 1.5px; }
 .partner-logos a { display: inline-flex; align-items: center; text-decoration: none; }
 .partner-logos img { display: block; width: auto; max-width: 100%; height: 64px; object-fit: contain; } /* inline width + height:auto from ishf_sponsor_logo_html() win */
 .partner-name { font-weight: 700; font-size: var(--fonts-size-lead); color: var(--colors-text-heading); }
+.sponsor-logo-trim { position: relative; display: block; max-width: 100%; overflow: hidden; } /* Logo width (px): visible logo without the file's empty margins */
 
 /* --- Newsletter band (Figma: Home / Newsletter): brand yellow in both modes, skyline bottom-right. The form lives in the modal (section 4) ----- */
 #newsletter { scroll-margin-top: 96px; } /* footer "Subscribe" anchor must clear the sticky navigation */
@@ -940,6 +941,8 @@ a.lisbon-partner-tile:hover { opacity: 0.75; text-decoration: none; }
 .lisbon-partner-tile img { display: block; max-width: 100%; object-fit: contain; }
 .lisbon-partner-tile .partner-name { font-size: var(--fonts-size-regular); font-weight: 700; line-height: 1.3; color: var(--colors-text-heading); }
 html.dark-mode .lisbon-partner-tile:not(.has-dark-logo) img { box-sizing: content-box; padding: 8px 12px; background-color: var(--colors-neutral-white); border-radius: var(--grids-radius-md); } /* no dark-mode logo: light backing keeps it legible */
+html.dark-mode .lisbon-partner-tile:not(.has-dark-logo) .sponsor-logo-trim { background-color: var(--colors-neutral-white); outline: 8px solid var(--colors-neutral-white); border-radius: 2px; }
+.sponsor-logo-trim img { padding: 0 !important; background: none !important; }
 .lisbon-venue { background-color: var(--colors-background-tint); }
 html.dark-mode .lisbon-venue { background-color: var(--colors-night-800); }
 .lisbon-info-card { display: flex; flex-direction: column; gap: var(--grids-spacing-12); box-sizing: border-box; padding: var(--grids-spacing-32) var(--grids-spacing-24); background-color: var(--colors-background-card); border: 1px solid var(--colors-border-default); border-radius: var(--grids-radius-lg); }
@@ -955,6 +958,7 @@ html.dark-mode .lisbon-info-card { background-color: var(--colors-night-900); bo
 @media (max-width: 639.98px) {
   .lisbon-partner-logos { column-gap: var(--grids-spacing-32); }
   .lisbon-partner-logos li { max-width: calc(50% - 16px); }
+  .lisbon-partner-logos li.has-fixed-width { max-width: 100%; }
   :root { --fonts-size-heading-1: 40px; --fonts-size-heading-2: 32px; --fonts-size-heading-3: 26px; --fonts-size-heading-4: 22px; --fonts-size-heading-5: 18px; --fonts-size-lead: 18px; }
   .header-content-wrapper { padding-top: 35px; padding-bottom: 40px; }
   .header-project-logo { max-width: 320px; }

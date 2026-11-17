@@ -190,6 +190,16 @@ function ishf_get_custom_fields()
       'scope'       => array('sponsors'),
     ),
     array(
+      'name'        => 'logo_width',
+      'title'       => __('Logo width (px)', TEXT_DOMAIN),
+      'description' => __('0 = automatic. Any other value shows the logo at exactly this width (e.g. 300), measured on the visible logo (empty margins in the file are trimmed), ignoring the automatic size and Logo size (%). On small screens it still shrinks to fit.', TEXT_DOMAIN),
+      'type'        => 'number',
+      'default'     => 0,
+      'min'         => 0,
+      'max'         => 800,
+      'scope'       => array('sponsors'),
+    ),
+    array(
       'name'        => 'order',
       'title'       => __('Order', TEXT_DOMAIN),
       'description' => __('Higher numbers are shown first (defaults to -1).', TEXT_DOMAIN),

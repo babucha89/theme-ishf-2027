@@ -164,12 +164,65 @@ if (!function_exists('ishf_get_sponsor_groups')):
   }
 endif;
 
+// Visible part of a logo image (without empty margins): array(x, y, w, h) in fractions of
+// the image (0..1), or null. Transparent images: pixels that are not (almost) transparent;
+// opaque images: pixels that differ from the corner colour. Cached per file in the
+// attachment meta '_ishf_logo_bbox'.
+if (!function_exists('ishf_logo_content_box')):
+  function ishf_logo_content_box($attachment_id)
+  {
+    $file = get_attached_file($attachment_id);
+    if (!$file || !is_readable($file) || !function_exists('imagecreatefromstring')) {
+      return null;
+    }
+    $stamp  = filemtime($file) . ':' . filesize($file);
+    $cached = get_post_meta($attachment_id, '_ishf_logo_bbox', true);
+    if (is_array($cached) && isset($cached['stamp']) && $cached['stamp'] === $stamp) {
+      return $cached['box'];
+    }
+    $box = null;
+    $im  = @imagecreatefromstring((string) file_get_contents($file));
+    if ($im) {
+      $w = imagesx($im);
+      $h = imagesy($im);
+      $step = max(1, (int) floor(max($w, $h) / 600)); // sample at most ~600 px per side
+      $corner = imagecolorsforindex($im, imagecolorat($im, 0, 0));
+      $transparent = $corner['alpha'] > 100;
+      $x0 = $w; $y0 = $h; $x1 = -1; $y1 = -1;
+      for ($y = 0; $y < $h; $y += $step) {
+        for ($x = 0; $x < $w; $x += $step) {
+          $c = imagecolorsforindex($im, imagecolorat($im, $x, $y));
+          $ink = $transparent
+            ? $c['alpha'] < 110
+            : (abs($c['red'] - $corner['red']) + abs($c['green'] - $corner['green']) + abs($c['blue'] - $corner['blue']) > 45 && $c['alpha'] < 110);
+          if ($ink) {
+            if ($x < $x0) $x0 = $x;
+            if ($y < $y0) $y0 = $y;
+            if ($x > $x1) $x1 = $x;
+            if ($y > $y1) $y1 = $y;
+          }
+        }
+      }
+      imagedestroy($im);
+      if ($x1 >= $x0 && $y1 >= $y0) {
+        $x1 = min($w - 1, $x1 + $step - 1);
+        $y1 = min($h - 1, $y1 + $step - 1);
+        $box = array($x0 / $w, $y0 / $h, ($x1 - $x0 + 1) / $w, ($y1 - $y0 + 1) / $h);
+      }
+    }
+    update_post_meta($attachment_id, '_ishf_logo_bbox', array('stamp' => $stamp, 'box' => $box));
+    return $box;
+  }
+endif;
+
 // One sponsor logo (featured image + optional dark-mode logo), or its name when there is no logo.
 // $box = array(area, max width, max height) in px: every logo gets the same visual
 // weight (width x height = area) from its proportions, within the max box, so wide
 // and tall logos look balanced. The sponsor's "Logo size (%)" field (ishf_cf_logo_scale,
 // default 100) scales it by hand; above 100 it may also exceed the box by the same
-// factor (e.g. a wide lockup with small text). Without $box the CSS decides the size.
+// factor (e.g. a wide lockup with small text). "Logo width (px)" (ishf_cf_logo_width)
+// overrides all of this with an exact width of the visible logo: the empty margins of
+// the file are trimmed (ishf_logo_content_box()). Without $box the CSS decides the size.
 if (!function_exists('ishf_sponsor_logo_html')):
   function ishf_sponsor_logo_html($sponsor_id, $size = 'medium', $box = null)
   {
@@ -178,10 +231,23 @@ if (!function_exists('ishf_sponsor_logo_html')):
     $dark  = (int) get_post_meta($sponsor_id, 'ishf_cf_logo_dark_id', true);
     $scale = get_post_meta($sponsor_id, 'ishf_cf_logo_scale', true);
     $scale = is_numeric($scale) ? max(50, min(300, (int) $scale)) / 100 : 1;
+    $fixed = (int) get_post_meta($sponsor_id, 'ishf_cf_logo_width', true); // exact width in px (0 = automatic)
 
-    $img = function ($attachment_id, $class) use ($name, $size, $box, $scale) {
+    $img = function ($attachment_id, $class) use ($name, $size, $box, $scale, $fixed) {
       $att = array('alt' => $name, 'loading' => 'lazy', 'class' => $class);
-      if (is_array($box) && count($box) === 3) {
+      if ($fixed > 0) {
+        // "Logo width (px)" wins: the visible logo (empty margins of the file trimmed) is this wide
+        $src = wp_get_attachment_image_src($attachment_id, $size);
+        $bb  = ishf_logo_content_box($attachment_id);
+        if ($src && $src[1] > 0 && $src[2] > 0 && $bb && ($bb[2] < 0.98 || $bb[3] < 0.98)) {
+          $content_ratio = ($src[1] * $bb[2]) / ($src[2] * $bb[3]);
+          $att['class'] = '';
+          $att['style'] = sprintf('position:absolute;max-width:none;max-height:none;width:%.3f%%;height:auto;left:%.3f%%;top:%.3f%%;', 100 / $bb[2], -100 * $bb[0] / $bb[2], -100 * $bb[1] / $bb[3]);
+          return '<span class="sponsor-logo-trim' . ($class ? ' ' . esc_attr($class) : '') . '" style="width:' . $fixed . 'px;aspect-ratio:' . round($content_ratio, 4) . ';">'
+            . wp_get_attachment_image($attachment_id, $size, false, $att) . '</span>';
+        }
+        $att['style'] = 'width:' . $fixed . 'px;height:auto;max-height:none;';
+      } elseif (is_array($box) && count($box) === 3) {
         list($area, $max_w, $max_h) = $box;
         $src = wp_get_attachment_image_src($attachment_id, $size);
         $w   = $src ? (int) $src[1] : 0;
