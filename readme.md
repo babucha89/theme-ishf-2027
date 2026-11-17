@@ -9,7 +9,7 @@ Standalone Base Theme for the official website of the **International Social Hou
 ### 1. Standalone Base Theme (Parent Theme)
 - Fully self-contained base theme (`style.css` declares `Theme Name: ISHF 2027` without a `Template:` dependency).
 - Independent root template files: `header.php`, `footer.php`, `index.php`, `page.php`, `page-under-maintenance.php`.
-- Core base constants: `BASE_SITE`, `BASE_CSS`, `BASE_IMAGES`, `BASE_BRANDING`, `BASE_ASSETS`, `BASE_FAVICONS`, `BASE_JS`, `BASE_FONTS` (with backwards-compatibility aliases `CHILD_BASE_*`).
+- Core base constants: `BASE_SITE`, `BASE_CSS`, `BASE_IMAGES`, `BASE_BRANDING`, `BASE_ASSETS`, `BASE_FAVICONS`, `BASE_JS`, `BASE_FONTS`.
 - Self-contained textdomain loading (`load_theme_textdomain(TEXT_DOMAIN, ...)`).
 
 ### 2. UIkit 3 Framework Compliance & Button System

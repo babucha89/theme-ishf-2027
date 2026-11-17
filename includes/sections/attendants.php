@@ -71,7 +71,7 @@ if ($attendants->have_posts()):
             if (empty($image_url)):
               $gender = get_post_meta(get_the_ID(), 'ishf_cf_gender', true);
               $gender = ($gender === 'female') ? 'female' : 'male';
-              $image_url = CHILD_BASE_IMAGES . 'attendant-placeholder-' . $gender . '.jpg';
+              $image_url = BASE_IMAGES . 'attendant-placeholder-' . $gender . '.jpg';
             endif;
             $attendant_function = array();
             $function = get_post_meta(get_the_ID(), 'ishf_cf_function', true);

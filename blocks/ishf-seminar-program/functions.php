@@ -86,7 +86,7 @@ function ishf_seminar_format_speaker($speaker, $isModerator = false)
       $image_url = (string) get_the_post_thumbnail_url($id, 'image-speaker-face');
       if ($image_url === '') {
         $gender = get_post_meta($id, 'ishf_cf_gender', true) === 'female' ? 'female' : 'male';
-        $image_url = CHILD_BASE_IMAGES . 'attendant-placeholder-' . $gender . '.jpg';
+        $image_url = BASE_IMAGES . 'attendant-placeholder-' . $gender . '.jpg';
       }
     } else {
       $id = 0;
