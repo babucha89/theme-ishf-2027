@@ -51,14 +51,14 @@ defined('SITE_COOKIES_DISCLAIMER_POSITION') or define('SITE_COOKIES_DISCLAIMER_P
 //    each edition's address on the map when it is saved. Without it the page shows the
 //    address and a "View on map" link instead of the map. Restrict the token to the site
 //    URLs in the Mapbox account (the save request sends the site URL as Referer).
-defined('SITE_MAPBOX_TOKEN') or define('SITE_MAPBOX_TOKEN', '');
+defined('SITE_MAPBOX_TOKEN') or define('SITE_MAPBOX_TOKEN', null);
 defined('CDN_MAPBOX_GL_VERSION') or define('CDN_MAPBOX_GL_VERSION', '3.34.2');
 
 // -- Social media (navbar on desktop, off-canvas menu on mobile, footer: includes/social-links.php).
 //    Leave a URL empty to hide that network.
-defined('SITE_SOCIAL_LINKEDIN') or define('SITE_SOCIAL_LINKEDIN', '');
-defined('SITE_SOCIAL_INSTAGRAM') or define('SITE_SOCIAL_INSTAGRAM', '');
-defined('SITE_SOCIAL_FACEBOOK') or define('SITE_SOCIAL_FACEBOOK', '');
+defined('SITE_SOCIAL_LINKEDIN') or define('SITE_SOCIAL_LINKEDIN', 'https://www.linkedin.com/company/ishf-2027/home/');
+defined('SITE_SOCIAL_INSTAGRAM') or define('SITE_SOCIAL_INSTAGRAM', 'https://www.instagram.com/ishf_int_social_housing/');
+defined('SITE_SOCIAL_FACEBOOK') or define('SITE_SOCIAL_FACEBOOK', 'https://www.facebook.com/ishfdublin?locale=pt_PT');
 
 // -- Call for Sessions External Form URL
 // Form link from Centro de Congressos de Lisboa.
