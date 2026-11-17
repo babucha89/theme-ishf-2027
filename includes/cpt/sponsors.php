@@ -177,7 +177,7 @@ if (!function_exists('ishf_sponsor_logo_html')):
     $light = get_post_thumbnail_id($sponsor_id);
     $dark  = (int) get_post_meta($sponsor_id, 'ishf_cf_logo_dark_id', true);
     $scale = get_post_meta($sponsor_id, 'ishf_cf_logo_scale', true);
-    $scale = is_numeric($scale) ? max(50, min(200, (int) $scale)) / 100 : 1;
+    $scale = is_numeric($scale) ? max(50, min(300, (int) $scale)) / 100 : 1;
 
     $img = function ($attachment_id, $class) use ($name, $size, $box, $scale) {
       $att = array('alt' => $name, 'loading' => 'lazy', 'class' => $class);

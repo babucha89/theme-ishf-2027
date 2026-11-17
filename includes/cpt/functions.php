@@ -186,7 +186,7 @@ function ishf_get_custom_fields()
       'type'        => 'number',
       'default'     => 100,
       'min'         => 50,
-      'max'         => 200,
+      'max'         => 300,
       'scope'       => array('sponsors'),
     ),
     array(
