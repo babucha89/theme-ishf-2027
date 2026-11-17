@@ -10,7 +10,7 @@
     <?php // Site-wide pre-footer blocks: sponsors (CPT) then newsletter ?>
     <div class="ishf-pre-footer">
       <?php
-      get_template_part('includes/sections/sponsors');
+      // get_template_part('includes/sections/sponsors');
       get_template_part('includes/sections/newsletter');
       ?>
     </div>
