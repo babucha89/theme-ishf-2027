@@ -17,12 +17,12 @@ $ishf_header_compact = !isset($args['compact']) || !empty($args['compact']);
   get_template_part('includes/navigation-menu');
   ?>
 
-  <div class="uk-container uk-container-large header-content-wrapper">
+  <div class="uk-container<?php echo $ishf_header_compact ? ' uk-container-large' : ''; ?> header-content-wrapper">
     <div class="uk-grid uk-grid-large uk-flex-middle header-hero-grid" data-uk-grid>
       
       <!-- Project Logo (Adaptive Light / Dark) -->
       <div class="uk-width-1-1 uk-width-1-2@m header-logo-col uk-flex uk-flex-center uk-flex-right@m">
-        <div class="header-logo-container">
+        <div class="header-logo-container uk-width-1-1">
           <a class="header-logo-link" href="<?php echo esc_url(home_url('/')); ?>" title="<?php esc_attr_e('Back to Homepage', TEXT_DOMAIN); ?>" data-uk-tooltip="title: <?php echo esc_attr__('Back to Homepage', TEXT_DOMAIN); ?>; pos: bottom">
           <img class="light-mode-img header-project-logo" 
                src="<?php echo esc_url(BASE_BRANDING . 'logo-project-horizontal-dark.svg'); ?>" 
@@ -36,7 +36,7 @@ $ishf_header_compact = !isset($args['compact']) || !empty($args['compact']);
 
       <!-- Claim -->
       <div class="uk-width-1-1 uk-width-1-2@m header-claim-col uk-flex uk-flex-center uk-flex-left@m">
-        <div class="header-claim-inner">
+        <div class="header-claim-inner uk-width-1-1">
           <p class="header-claim uk-margin-remove" role="heading" aria-level="2">
             <?php _e('Cities with Soul: It Begins with a Key', TEXT_DOMAIN); ?>
           </p>

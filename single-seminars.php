@@ -59,6 +59,35 @@ $seminar_sessions = array_values(array_filter(ishf_get_programme_sessions(), fun
 $intro_html = '';
 $rest_html  = '';
 
+// Renders blocks with UIkit containers: consecutive ordinary blocks go inside a
+// <div class="uk-container">; blocks that bring their own full-width section
+// (ISHF Video Slider) or are set to "Full width" are left outside it.
+$ishf_render_blocks = function ($blocks) {
+  $html  = '';
+  $group = array();
+  $flush = function () use (&$group, &$html) {
+    if (!empty($group)) {
+      $inner = trim((string) apply_filters('the_content', serialize_blocks($group)));
+      if ($inner !== '') {
+        $html .= '<div class="uk-container">' . $inner . '</div>';
+      }
+      $group = array();
+    }
+  };
+  foreach ($blocks as $block) {
+    $name = $block['blockName'] ?? '';
+    $full = in_array($name, array('ishf/video-slider'), true) || (($block['attrs']['align'] ?? '') === 'full');
+    if ($full) {
+      $flush();
+      $html .= trim((string) apply_filters('the_content', serialize_block($block)));
+    } elseif ($name !== null && $name !== '' || trim((string) ($block['innerHTML'] ?? '')) !== '') {
+      $group[] = $block;
+    }
+  }
+  $flush();
+  return $html;
+};
+
 $raw_content = get_the_content();
 if (trim((string) $raw_content) !== '') {
   $blocks = parse_blocks($raw_content);
@@ -74,11 +103,11 @@ if (trim((string) $raw_content) !== '') {
   }
 
   if ($intro_block) {
-    $intro_html = trim((string) apply_filters('the_content', serialize_block($intro_block)));
+    $intro_html = $ishf_render_blocks(array($intro_block));
   }
 
   if (!empty($rest_blocks)) {
-    $rest_html = trim((string) apply_filters('the_content', serialize_blocks($rest_blocks)));
+    $rest_html = $ishf_render_blocks($rest_blocks);
   }
 }
 
@@ -92,7 +121,7 @@ get_template_part('includes/sections/header');
 <main id="content-start" role="main" class="site-main" tabindex="-1">
 
   <section id="seminar-heading" class="uk-section uk-section-small">
-    <div class="seminar-head-inner">
+    <div class="seminar-head-inner uk-container">
       <p class="ishf-eyebrow"><?php esc_html_e('Seminar', TEXT_DOMAIN); ?></p>
       <?php if (has_excerpt()): ?>
         <p class="text-featured"><?php echo esc_html(get_the_excerpt()); ?></p>

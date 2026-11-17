@@ -32,7 +32,7 @@ get_template_part('includes/sections/header');
   <div class="uk-container uk-section uk-section-small editions-intro">
     <h1 class="uk-article-title"><?php the_title(); ?></h1>
     <?php if (trim(get_the_content()) !== ''): ?>
-      <div class="uk-article-content"><?php the_content(); ?></div>
+      <div class="uk-article-content uk-width-2xlarge"><?php the_content(); ?></div>
     <?php endif; ?>
   </div>
   <?php get_template_part('includes/sections/past-editions'); ?>

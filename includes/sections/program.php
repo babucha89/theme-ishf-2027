@@ -48,33 +48,37 @@ $sessions = ishf_get_programme_sessions();
       <?php endif; ?>
 
       <?php if ($has_filters): ?>
-      <form class="programme-filters" id="programme-filters" aria-label="<?php esc_attr_e('Filter the programme', TEXT_DOMAIN); ?>" onsubmit="return false;" hidden>
+      <form class="programme-filters uk-width-1-1 uk-width-auto@m" id="programme-filters" aria-label="<?php esc_attr_e('Filter the programme', TEXT_DOMAIN); ?>" onsubmit="return false;" hidden>
         <p id="programme-count" class="programme-count" role="status" aria-live="polite"
            data-one="<?php echo esc_attr__('1 session', TEXT_DOMAIN); ?>"
            data-many="<?php echo esc_attr__('%d sessions', TEXT_DOMAIN); ?>"
            data-none="<?php echo esc_attr__('No sessions match these filters.', TEXT_DOMAIN); ?>"></p>
-        <?php if (!empty($themes)): ?>
-          <label class="programme-filter">
-            <span class="uk-visually-hidden"><?php esc_html_e('Theme', TEXT_DOMAIN); ?></span>
-            <select class="uk-select" data-filter="theme">
-              <option value=""><?php esc_html_e('All themes', TEXT_DOMAIN); ?></option>
-              <?php foreach ($themes as $slug => $name): ?>
-                <option value="<?php echo esc_attr($slug); ?>"><?php echo esc_html($name); ?></option>
-              <?php endforeach; ?>
-            </select>
-          </label>
-        <?php endif; ?>
-        <?php if (!empty($speakers)): ?>
-          <label class="programme-filter">
-            <span class="uk-visually-hidden"><?php esc_html_e('Speaker', TEXT_DOMAIN); ?></span>
-            <select class="uk-select" data-filter="speaker">
-              <option value=""><?php esc_html_e('All speakers', TEXT_DOMAIN); ?></option>
-              <?php foreach ($speakers as $sid => $name): ?>
-                <option value="<?php echo (int) $sid; ?>"><?php echo esc_html($name); ?></option>
-              <?php endforeach; ?>
-            </select>
-          </label>
-        <?php endif; ?>
+        <div class="programme-filter-fields uk-width-1-1 uk-width-auto@m">
+        <div class="uk-grid-small uk-flex-middle uk-child-width-1-1 uk-child-width-1-2@s uk-child-width-auto@m" data-uk-grid>
+          <?php if (!empty($themes)): ?>
+            <label class="programme-filter">
+              <span class="uk-visually-hidden"><?php esc_html_e('Theme', TEXT_DOMAIN); ?></span>
+              <select class="uk-select" data-filter="theme">
+                <option value=""><?php esc_html_e('All themes', TEXT_DOMAIN); ?></option>
+                <?php foreach ($themes as $slug => $name): ?>
+                  <option value="<?php echo esc_attr($slug); ?>"><?php echo esc_html($name); ?></option>
+                <?php endforeach; ?>
+              </select>
+            </label>
+          <?php endif; ?>
+          <?php if (!empty($speakers)): ?>
+            <label class="programme-filter">
+              <span class="uk-visually-hidden"><?php esc_html_e('Speaker', TEXT_DOMAIN); ?></span>
+              <select class="uk-select" data-filter="speaker">
+                <option value=""><?php esc_html_e('All speakers', TEXT_DOMAIN); ?></option>
+                <?php foreach ($speakers as $sid => $name): ?>
+                  <option value="<?php echo (int) $sid; ?>"><?php echo esc_html($name); ?></option>
+                <?php endforeach; ?>
+              </select>
+            </label>
+          <?php endif; ?>
+        </div>
+        </div>
         <button type="button" class="uk-button uk-button-text programme-reset" data-programme-reset><?php esc_html_e('Clear filters', TEXT_DOMAIN); ?></button>
       </form>
       <?php endif; ?>
@@ -97,14 +101,15 @@ $sessions = ishf_get_programme_sessions();
               <li class="programme-item"
                   data-themes="<?php echo esc_attr(implode(' ', array_keys($s['themes']))); ?>"
                   data-speakers="<?php echo esc_attr(implode(' ', array_keys($s['speakers']))); ?>">
-                <div class="programme-time">
+                <div class="uk-grid-small" data-uk-grid>
+                <div class="programme-time uk-width-1-1 uk-width-small@m">
                   <?php if ($s['start']): ?>
                     <time datetime="<?php echo esc_attr($s['start']->format('c')); ?>"><?php echo esc_html(ishf_programme_time_label($s)); ?></time>
                   <?php else: ?>
                     <span><?php esc_html_e('TBA', TEXT_DOMAIN); ?></span>
                   <?php endif; ?>
                 </div>
-                <div class="programme-body">
+                <div class="programme-body uk-width-1-1 uk-width-expand@m">
                   <?php if (!empty($s['themes']) || $s['provisional']): ?>
                     <div class="programme-tags">
                       <?php foreach ($s['themes'] as $name): ?>
@@ -128,11 +133,12 @@ $sessions = ishf_get_programme_sessions();
                     <?php endif; ?>
                   </ul>
                 </div>
-                <div class="programme-actions">
+                <div class="programme-actions uk-width-1-1 uk-width-auto@m">
                   <a class="uk-button uk-button-default uk-button-small" href="<?php echo esc_url($s['url']); ?>"><?php esc_html_e('View session', TEXT_DOMAIN); ?><span class="uk-visually-hidden"> - <?php echo esc_html($s['title']); ?></span></a>
                   <?php if ($ics): ?>
                     <a class="uk-button uk-button-text uk-button-small" href="<?php echo esc_url($ics); ?>" rel="nofollow"><span data-uk-icon="icon: calendar; ratio: .9" aria-hidden="true"></span> <?php esc_html_e('Add to calendar', TEXT_DOMAIN); ?><span class="uk-visually-hidden"> - <?php echo esc_html($s['title']); ?></span></a>
                   <?php endif; ?>
+                </div>
                 </div>
               </li>
             <?php endforeach; ?>

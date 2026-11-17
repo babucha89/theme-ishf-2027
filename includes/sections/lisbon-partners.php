@@ -29,21 +29,23 @@ if (empty($partner_groups)) {
   <div class="uk-container">
     <?php if ($partner_eyebrow !== ''): ?><p class="ishf-eyebrow"><?php echo esc_html($partner_eyebrow); ?></p><?php endif; ?>
     <h2 id="organisers-title" class="lisbon-section-title"><?php echo esc_html($partner_title); ?></h2>
-    <?php if ($partner_intro !== ''): ?><div class="lisbon-partners-intro"><?php echo wpautop(wp_kses_post($partner_intro)); ?></div><?php endif; ?>
+    <?php if ($partner_intro !== ''): ?><div class="lisbon-partners-intro uk-width-2xlarge"><?php echo wpautop(wp_kses_post($partner_intro)); ?></div><?php endif; ?>
 
     <div class="lisbon-partner-rows">
       <?php foreach ($partner_groups as $gi => $group):
         $label_id = 'partners-' . sanitize_title($group['slug']) . '-' . $gi; ?>
         <div class="lisbon-partner-row">
-          <h3 id="<?php echo esc_attr($label_id); ?>" class="lisbon-partner-label"><?php echo esc_html($group['label']); ?></h3>
-          <ul class="lisbon-partner-logos" aria-labelledby="<?php echo esc_attr($label_id); ?>">
+          <div class="uk-grid-medium uk-flex-middle" data-uk-grid>
+          <h3 id="<?php echo esc_attr($label_id); ?>" class="lisbon-partner-label uk-width-1-1 uk-width-1-5@m"><?php echo esc_html($group['label']); ?></h3>
+          <div class="uk-width-1-1 uk-width-expand@m">
+          <ul class="lisbon-partner-logos uk-grid-medium uk-flex-middle" data-uk-grid aria-labelledby="<?php echo esc_attr($label_id); ?>">
             <?php foreach ($group['items'] as $sid):
               $url      = get_post_meta($sid, 'ishf_cf_url', true);
               $has_dark = (bool) get_post_meta($sid, 'ishf_cf_logo_dark_id', true) && has_post_thumbnail($sid);
               $tag      = $url ? 'a' : 'span';
               $attrs    = $url ? ' href="' . esc_url($url) . '" target="_blank" rel="noopener noreferrer"' : '';
             ?>
-              <li<?php echo (int) get_post_meta($sid, 'ishf_cf_logo_width', true) > 0 ? ' class="has-fixed-width"' : ''; ?>>
+              <li class="<?php echo (int) get_post_meta($sid, 'ishf_cf_logo_width', true) > 0 ? 'uk-width-1-1' : 'uk-width-1-2'; ?> uk-width-auto@s">
                 <<?php echo $tag . $attrs; ?> class="lisbon-partner-tile<?php echo $has_dark ? ' has-dark-logo' : ''; ?>">
                   <?php echo ishf_sponsor_logo_html($sid, 'medium', $gi === 0 ? array(7200, 220, 96) : array(4400, 180, 76)); ?>
                   <?php if ($url): ?><span class="sr-only"> (<?php _e('opens in a new tab', TEXT_DOMAIN); ?>)</span><?php endif; ?>
@@ -51,6 +53,8 @@ if (empty($partner_groups)) {
               </li>
             <?php endforeach; ?>
           </ul>
+          </div>
+          </div>
         </div>
       <?php endforeach; ?>
     </div>

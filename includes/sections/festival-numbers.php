@@ -43,7 +43,7 @@ $ishf_numbers_cta = function_exists('ishf_get_template_page_url') ? ishf_get_tem
 ?>
 <section class="uk-section festival-numbers on-inverse" aria-labelledby="festival-numbers-title">
   <div class="uk-container">
-    <div class="festival-numbers-head">
+    <div class="festival-numbers-head uk-grid-medium uk-flex-bottom uk-child-width-1-1 uk-child-width-1-2@m" data-uk-grid>
       <div>
         <p class="ishf-eyebrow festival-numbers-eyebrow"><?php _e('2017 – 2027', TEXT_DOMAIN); ?></p>
         <h2 id="festival-numbers-title" class="festival-numbers-title"><?php _e('The festival in numbers', TEXT_DOMAIN); ?></h2>
@@ -51,12 +51,14 @@ $ishf_numbers_cta = function_exists('ishf_get_template_page_url') ? ishf_get_tem
       <p class="festival-numbers-intro"><?php _e('In ten years, ISHF has grown from a Dutch premiere into the global meeting point for social, public and cooperative housing.', TEXT_DOMAIN); ?></p>
     </div>
 
-    <ul class="festival-numbers-list">
+    <ul class="festival-numbers-list uk-grid-medium uk-child-width-1-1 uk-child-width-1-2@s uk-child-width-1-4@m" data-uk-grid>
       <?php foreach ($ishf_numbers as $number): ?>
-        <li class="festival-number">
-          <p class="festival-number-label"><?php echo esc_html($number['label']); ?></p>
-          <p class="festival-number-value"><strong><?php echo esc_html($number['value']); ?></strong> <span><?php echo esc_html($number['unit']); ?></span></p>
-          <p class="festival-number-text"><?php echo esc_html($number['text']); ?></p>
+        <li>
+          <div class="festival-number">
+            <p class="festival-number-label"><?php echo esc_html($number['label']); ?></p>
+            <p class="festival-number-value"><strong><?php echo esc_html($number['value']); ?></strong> <span><?php echo esc_html($number['unit']); ?></span></p>
+            <p class="festival-number-text"><?php echo esc_html($number['text']); ?></p>
+          </div>
         </li>
       <?php endforeach; ?>
     </ul>

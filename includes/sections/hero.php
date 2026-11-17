@@ -63,7 +63,7 @@ $has_hero_file   = file_exists($hero_file_path);
             <time datetime="2027-06-07/2027-06-09"><?php _e('7 – 9 June 2027', TEXT_DOMAIN); ?></time> · <?php _e('Lisbon, Portugal', TEXT_DOMAIN); ?>
           <?php endif; ?>
         </p>
-        <p class="uk-text-lead hero-lead">
+        <p class="uk-text-lead hero-lead uk-width-xlarge">
           <?php echo esc_html($hero_lead); ?>
         </p>
         <div class="hero-ctas uk-flex uk-flex-wrap">
@@ -78,7 +78,7 @@ $has_hero_file   = file_exists($hero_file_path);
       </div>
 
       <div class="uk-width-1-1 uk-width-expand@s">
-        <div class="hero-art uk-position-relative" aria-hidden="true">
+        <div class="hero-art uk-position-relative uk-width-large uk-width-1-1@m uk-margin-auto" aria-hidden="true">
           <?php if ($hero_image_id && wp_get_attachment_image_url($hero_image_id, 'image-gallery')): ?>
             <picture>
               <source media="(min-width: 960px)" srcset="<?php echo esc_url(wp_get_attachment_image_url($hero_image_id, 'image-gallery')); ?>">

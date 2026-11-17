@@ -36,7 +36,7 @@ if (has_post_thumbnail()) {
 
     <!-- Section 1: label, title, lead + image side by side (container + background A) -->
     <section class="article-hero" aria-labelledby="article-title">
-      <div class="uk-container uk-container-large">
+      <div class="uk-container">
         <div class="article-hero-grid uk-grid-large uk-flex-middle" data-uk-grid>
 
           <header class="article-header uk-width-1-1 <?php echo has_post_thumbnail() ? 'uk-width-1-3@s' : ''; ?>">
@@ -45,7 +45,7 @@ if (has_post_thumbnail()) {
             </p>
             <h1 id="article-title" class="article-title"><?php the_title(); ?></h1>
             <?php if ($ishf_lead): ?>
-              <p class="article-lead uk-text-lead"><?php echo esc_html($ishf_lead); ?></p>
+              <p class="article-lead uk-text-lead uk-width-2xlarge"><?php echo esc_html($ishf_lead); ?></p>
             <?php endif; ?>
             <?php if (!has_post_thumbnail()): ?>
               <p class="article-date"><time datetime="<?php echo esc_attr($ishf_date_iso); ?>"><?php echo esc_html($ishf_date_label); ?></time></p>

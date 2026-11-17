@@ -85,3 +85,8 @@ Every template, section, and block must strictly satisfy WCAG 2.1 AA accessibili
 - Informative graphics (e.g. logos) must have descriptive `alt` text.
 - Decorative icons (e.g., `sun.svg`, `moon.svg`, `icon-key-*.svg`) must have empty `alt=""` and `aria-hidden="true"`.
 - Adaptive Light/Dark switching must use `.light-mode-img` (for Light Mode, e.g. `icon-key-light.svg`, `logo-project-horizontal-dark.svg`) and `.dark-mode-img` (for Dark Mode, e.g. `icon-key-dark.svg`, `logo-project-horizontal-light.svg`).
+
+## Layout widths
+- Never set `width` / `max-width` / `grid-template-columns` on layout containers in `css/app.css`. Use UIkit: `uk-container` / `uk-container-large`, `uk-grid` with `uk-width-*` / `uk-child-width-*` (responsive `@s` / `@m` / `@l`), `uk-width-xlarge` / `uk-width-2xlarge` for text measure, `uk-modal-container` or `uk-width-*` on modal dialogs.
+- Fixed sizes are only for media and controls (logos, icons, avatars, tap targets).
+- UIkit grid gutters are padding on the columns: put borders and backgrounds on an inner element.

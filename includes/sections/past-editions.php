@@ -1,7 +1,8 @@
 <?php
 // -----------------------------------------------------------------------------
 //  Section: PAST EDITIONS (timeline of the CPT "editions")
-//  One card per edition (logo, title, dates, city) on a vertical timeline, oldest
+//  One card per edition (logo, title, dates, city) on a vertical timeline (UIkit
+//  grid: marker | card, cards alternating left / right from 960px), oldest
 //  first, closing with Lisbon 2027 (links to the Lisbon 2027 page, page-lisbon-2027.php,
 //  or to the homepage until that page exists). Each card opens a modal with everything:
 //  logo (left column) next to name, dates and venue / address (right column),
@@ -36,26 +37,29 @@ $ishf_edition_logo = function ($post_id, $class) {
   <div class="uk-container">
 
     <?php if (empty($ishf_editions)): ?>
-      <p class="editions-empty"><?php _e('The past editions will be published soon.', TEXT_DOMAIN); ?></p>
+      <p class="editions-empty uk-width-2xlarge uk-margin-auto"><?php _e('The past editions will be published soon.', TEXT_DOMAIN); ?></p>
     <?php else: ?>
 
     <ol class="editions-timeline">
-      <?php foreach ($ishf_editions as $edition):
+      <?php foreach ($ishf_editions as $ishf_i => $edition):
         $eid      = $edition->ID;
         $modal_id = 'edition-' . $edition->post_name;
         $title    = get_the_title($eid);
         $dates    = ishf_edition_dates($eid);
         $logo     = $ishf_edition_logo($eid, 'edition-logo');
+        $side     = $ishf_i % 2 === 0 ? 'left' : 'right'; // desktop: cards alternate around the line
         $has_dark = (bool) get_post_meta($eid, 'ishf_cf_logo_dark_id', true);
         $city     = ishf_edition_location($eid)['city'];
       ?>
-      <li class="edition-item">
-        <span class="edition-marker" aria-hidden="true"><?php echo esc_html($dates ? $dates['year'] : '—'); ?></span>
+      <li class="edition-item uk-grid uk-grid-collapse">
+        <div class="edition-marker-col uk-width-auto"><span class="edition-marker" aria-hidden="true"><?php echo esc_html($dates ? $dates['year'] : '—'); ?></span></div>
+        <div class="edition-card-col uk-width-expand<?php echo $side === 'left' ? ' uk-flex-first@m' : ''; ?>">
         <article class="edition-card" aria-labelledby="<?php echo esc_attr($modal_id); ?>-card-title">
+          <div class="uk-grid-medium uk-flex-middle" data-uk-grid>
           <?php if ($logo !== ''): ?>
-            <div class="edition-card-logo<?php echo $has_dark ? ' has-dark-logo' : ''; ?>"><?php echo $logo; ?></div>
+            <div class="uk-width-1-1 uk-width-1-3@m"><div class="edition-card-logo<?php echo $has_dark ? ' has-dark-logo' : ''; ?>"><?php echo $logo; ?></div></div>
           <?php endif; ?>
-          <div class="edition-card-body">
+          <div class="edition-card-body uk-width-1-1 uk-width-expand@m">
             <h2 id="<?php echo esc_attr($modal_id); ?>-card-title" class="edition-card-title"><?php echo esc_html($title); ?></h2>
             <?php if ($dates || $city !== ''): ?>
               <p class="edition-card-dates">
@@ -64,19 +68,24 @@ $ishf_edition_logo = function ($post_id, $class) {
                 <?php if ($city !== ''): ?><span class="edition-card-city"><?php if ($dates): ?><span aria-hidden="true">·</span> <?php endif; ?><?php echo esc_html($city); ?></span><?php endif; ?>
               </p>
             <?php endif; ?>
-            <button type="button" class="uk-button uk-button-primary uk-border-pill edition-card-button" data-uk-toggle="target: #<?php echo esc_attr($modal_id); ?>" aria-haspopup="dialog" aria-controls="<?php echo esc_attr($modal_id); ?>">
+            <button type="button" class="uk-button uk-button-primary uk-border-pill edition-card-button uk-width-1-1 uk-width-auto@s" data-uk-toggle="target: #<?php echo esc_attr($modal_id); ?>" aria-haspopup="dialog" aria-controls="<?php echo esc_attr($modal_id); ?>">
               <span><?php _e('Discover this edition', TEXT_DOMAIN); ?></span>
               <span class="sr-only"><?php echo esc_html(': ' . $title); ?></span>
               <span data-uk-icon="icon: arrow-right; ratio: 0.9" aria-hidden="true"></span>
             </button>
           </div>
+          </div>
         </article>
+        </div>
+        <div class="uk-width-expand uk-visible@m<?php echo $side === 'right' ? ' uk-flex-first@m' : ''; ?>" aria-hidden="true"></div>
       </li>
       <?php endforeach; ?>
+      <?php $side = count($ishf_editions) % 2 === 0 ? 'left' : 'right'; // the next edition continues the alternation ?>
 
       <!-- Next edition: Lisbon 2027 -->
-      <li class="edition-item edition-item--next">
-        <span class="edition-marker" aria-hidden="true">2027</span>
+      <li class="edition-item edition-item--next uk-grid uk-grid-collapse">
+        <div class="edition-marker-col uk-width-auto"><span class="edition-marker" aria-hidden="true">2027</span></div>
+        <div class="edition-card-col uk-width-expand<?php echo $side === 'left' ? ' uk-flex-first@m' : ''; ?>">
         <div class="edition-card edition-card--next">
           <div class="edition-card-body">
             <p class="edition-card-eyebrow"><?php _e('Next edition', TEXT_DOMAIN); ?></p>
@@ -86,12 +95,14 @@ $ishf_edition_logo = function ($post_id, $class) {
               <time datetime="2027-06-07/2027-06-09"><?php _e('7 – 9 June 2027', TEXT_DOMAIN); ?></time> · <?php _e('Lisbon, Portugal', TEXT_DOMAIN); ?>
             </p>
             <?php $ishf_lisbon_url = function_exists('ishf_get_template_page_url') ? ishf_get_template_page_url('page-lisbon-2027.php', 'lisbon-2027') : ''; ?>
-            <a class="uk-button uk-button-default uk-border-pill edition-card-button" href="<?php echo esc_url($ishf_lisbon_url !== '' ? $ishf_lisbon_url : home_url('/')); ?>">
+            <a class="uk-button uk-button-default uk-border-pill edition-card-button uk-width-1-1 uk-width-auto@s" href="<?php echo esc_url($ishf_lisbon_url !== '' ? $ishf_lisbon_url : home_url('/')); ?>">
               <span><?php _e('Discover ISHF 2027', TEXT_DOMAIN); ?></span>
               <span data-uk-icon="icon: arrow-right; ratio: 0.9" aria-hidden="true"></span>
             </a>
           </div>
         </div>
+        </div>
+        <div class="uk-width-expand uk-visible@m<?php echo $side === 'right' ? ' uk-flex-first@m' : ''; ?>" aria-hidden="true"></div>
       </li>
     </ol>
 
@@ -119,15 +130,15 @@ $ishf_edition_logo = function ($post_id, $class) {
       : ($address !== '' ? 'https://www.google.com/maps/search/?api=1&query=' . rawurlencode(trim($venue . ' ' . $address)) : '');
   ?>
   <div id="<?php echo esc_attr($modal_id); ?>" class="uk-flex-top modal-ishf-edition" data-uk-modal>
-    <div class="uk-modal-dialog uk-margin-auto-vertical" role="dialog" aria-modal="true" aria-labelledby="<?php echo esc_attr($modal_id); ?>-title">
+    <div class="uk-modal-dialog uk-width-2xlarge@m uk-margin-auto-vertical" role="dialog" aria-modal="true" aria-labelledby="<?php echo esc_attr($modal_id); ?>-title">
       <button class="uk-modal-close-default" type="button" data-uk-close aria-label="<?php esc_attr_e('Close modal', TEXT_DOMAIN); ?>"></button>
 
       <!-- Two columns: logo | name, dates and location (map and content follow below) -->
-      <div class="edition-modal-top<?php echo $logo !== '' ? ' has-logo' : ''; ?>">
+      <div class="edition-modal-top uk-grid-medium uk-flex-middle<?php echo $logo !== '' ? ' has-logo' : ''; ?>" data-uk-grid>
         <?php if ($logo !== ''): ?>
-          <div class="edition-modal-logo-box<?php echo $has_dark ? ' has-dark-logo' : ''; ?>"><?php echo $logo; ?></div>
+          <div class="uk-width-1-1 uk-width-2-5@s"><div class="edition-modal-logo-box<?php echo $has_dark ? ' has-dark-logo' : ''; ?>"><?php echo $logo; ?></div></div>
         <?php endif; ?>
-        <div class="edition-modal-info">
+        <div class="edition-modal-info uk-width-1-1 uk-width-expand@s">
           <header class="edition-modal-header">
             <?php if ($dates): ?><p class="edition-modal-eyebrow"><?php echo esc_html(sprintf(__('ISHF %s', TEXT_DOMAIN), $dates['year'])); ?></p><?php endif; ?>
             <h2 id="<?php echo esc_attr($modal_id); ?>-title" class="edition-modal-title"><?php echo esc_html($title); ?></h2>

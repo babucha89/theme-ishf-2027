@@ -136,16 +136,16 @@ function ishf_seminar_render_session($session) {
   $moderator = $session['moderator'] ?? array();
   $speakers = $session['speakers'] ?? array();
 
-  $output = '<li class="ishf-session">';
-  $output .= '<div class="ishf-session__time"><time>' . $time . '</time></div>';
-  $output .= '<div class="ishf-session__body">';
+  $output = '<li class="ishf-session"><div class="uk-grid-medium" data-uk-grid>';
+  $output .= '<div class="ishf-session__time uk-width-1-1 uk-width-small@m"><time>' . $time . '</time></div>';
+  $output .= '<div class="ishf-session__body uk-width-1-1 uk-width-expand@m">';
   $output .= '<h3 class="uk-h4 ishf-session__title">' . $keynote . '</h3>';
 
   // -- Moderator
   if (!empty($moderator)):
-    $output .= '<div class="ishf-session__group"><p class="ishf-session__label">' . esc_html__('Moderation', TEXT_DOMAIN) . '</p><div class="ishf-speakers">';
+    $output .= '<div class="ishf-session__group"><p class="ishf-session__label">' . esc_html__('Moderation', TEXT_DOMAIN) . '</p><div class="ishf-speakers uk-grid-small uk-child-width-1-1 uk-child-width-1-2@s uk-child-width-1-3@l" data-uk-grid>';
     foreach ($moderator as $mod):
-      $output .= ishf_seminar_format_speaker($mod, true);
+      $output .= '<div>' . ishf_seminar_format_speaker($mod, true) . '</div>';
     endforeach;
     $output .= '</div></div>';
   endif;
@@ -157,14 +157,14 @@ function ishf_seminar_render_session($session) {
         return strcasecmp($a['name'] ?? '', $b['name'] ?? '');
       });
     }
-    $output .= '<div class="ishf-session__group"><p class="ishf-session__label">' . esc_html__('Speakers', TEXT_DOMAIN) . '</p><div class="ishf-speakers">';
+    $output .= '<div class="ishf-session__group"><p class="ishf-session__label">' . esc_html__('Speakers', TEXT_DOMAIN) . '</p><div class="ishf-speakers uk-grid-small uk-child-width-1-1 uk-child-width-1-2@s uk-child-width-1-3@l" data-uk-grid>';
     foreach ($speakers as $speaker):
-      $output .= ishf_seminar_format_speaker($speaker);
+      $output .= '<div>' . ishf_seminar_format_speaker($speaker) . '</div>';
     endforeach;
     $output .= '</div></div>';
   endif;
 
-  $output .= '</div></li>';
+  $output .= '</div></div></li>';
 
   return $output;
 }

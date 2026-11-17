@@ -20,12 +20,13 @@ $ishf_first    = !empty($ishf_editions) ? ishf_edition_dates($ishf_editions[0]->
 <section class="uk-section uk-section-small section-editions-cta" aria-labelledby="editions-cta-title">
   <div class="uk-container">
     <div class="editions-cta">
-      <div class="editions-cta-text">
+      <div class="uk-grid-medium uk-flex-middle" data-uk-grid>
+      <div class="editions-cta-text uk-width-1-1 uk-width-expand@m">
         <?php if ($ishf_first): ?>
           <p class="editions-cta-eyebrow"><?php echo esc_html(sprintf(__('Since %s', TEXT_DOMAIN), $ishf_first['year'])); ?></p>
         <?php endif; ?>
         <h2 id="editions-cta-title" class="editions-cta-title"><?php _e('Past editions', TEXT_DOMAIN); ?></h2>
-        <p class="editions-cta-intro"><?php _e('Every edition takes the festival to a new city. Look back at where ISHF has been and what each edition brought to the conversation on social and affordable housing.', TEXT_DOMAIN); ?></p>
+        <p class="editions-cta-intro uk-width-xlarge"><?php _e('Every edition takes the festival to a new city. Look back at where ISHF has been and what each edition brought to the conversation on social and affordable housing.', TEXT_DOMAIN); ?></p>
 
         <?php if (!empty($ishf_editions)): ?>
           <ul class="editions-cta-chips" aria-label="<?php esc_attr_e('Past editions', TEXT_DOMAIN); ?>">
@@ -35,11 +36,12 @@ $ishf_first    = !empty($ishf_editions) ? ishf_edition_dates($ishf_editions[0]->
           </ul>
         <?php endif; ?>
       </div>
-      <div class="editions-cta-action">
+      <div class="editions-cta-action uk-width-1-1 uk-width-auto@m">
         <a class="uk-button uk-button-primary uk-border-pill" href="<?php echo esc_url($ishf_editions_url); ?>">
           <span><?php _e('Explore past editions', TEXT_DOMAIN); ?></span>
           <span data-uk-icon="icon: arrow-right; ratio: 0.9" aria-hidden="true"></span>
         </a>
+      </div>
       </div>
     </div>
   </div>

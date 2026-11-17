@@ -55,7 +55,7 @@ get_template_part('includes/sections/header');
         </li>
       </ul>
       <?php if (has_excerpt()): ?>
-        <p class="lisbon-hero-lead"><?php echo esc_html(get_the_excerpt()); ?></p>
+        <p class="lisbon-hero-lead uk-width-2xlarge"><?php echo esc_html(get_the_excerpt()); ?></p>
       <?php endif; ?>
     </div>
   </header>
@@ -63,7 +63,7 @@ get_template_part('includes/sections/header');
   <!-- 2. About the Lisbon edition (page content) -->
   <?php if (trim(get_the_content()) !== ''): ?>
     <div class="uk-container uk-section lisbon-intro">
-      <div class="uk-article-content"><?php the_content(); ?></div>
+      <div class="uk-article-content uk-width-2xlarge"><?php the_content(); ?></div>
     </div>
   <?php endif; ?>
 

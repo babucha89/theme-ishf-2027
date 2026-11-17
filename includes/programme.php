@@ -355,9 +355,10 @@ function ishf_programme_panel($heading_tag = 'h3', array $sessions = array(), $u
   <div class="programme-live">
     <p class="programme-live-eyebrow"><?php esc_html_e('Programme', TEXT_DOMAIN); ?></p>
     <<?php echo $heading_tag; ?> class="programme-live-title"><?php esc_html_e('Full Event', TEXT_DOMAIN); ?></<?php echo $heading_tag; ?>>
-    <ul class="programme-live-grid">
+    <ul class="programme-live-grid uk-grid-medium uk-grid-match uk-child-width-1-1 uk-child-width-1-3@m" data-uk-grid>
       <?php foreach ($sessions as $s): ?>
-        <li class="programme-live-card">
+        <li>
+          <div class="programme-live-card">
           <h3 class="programme-live-session"><?php echo esc_html($s['title']); ?></h3>
           <?php if ($s['start']):
             $tz        = new DateTimeZone('Europe/Lisbon');
@@ -376,15 +377,16 @@ function ishf_programme_panel($heading_tag = 'h3', array $sessions = array(), $u
             <?php esc_html_e('Know more', TEXT_DOMAIN); ?>
             <span class="uk-hidden-visually"> – <?php echo esc_html($s['title']); ?></span>
           </a>
+          </div>
         </li>
       <?php endforeach; ?>
     </ul>
   </div>
   <?php else: ?>
-  <div class="programme-soon">
+  <div class="programme-soon uk-width-2xlarge uk-margin-auto">
     <span class="programme-soon-icon" data-uk-icon="icon: calendar; ratio: 2" aria-hidden="true"></span>
       <<?php echo $heading_tag; ?> class="programme-soon-title"><?php esc_html_e('Programme coming soon', TEXT_DOMAIN); ?></<?php echo $heading_tag; ?>>
-      <p class="programme-soon-text">
+      <p class="programme-soon-text uk-width-xlarge uk-margin-auto">
         <?php esc_html_e('We are building three days of sessions, workshops and site visits for 7‑9 June 2027 in Lisbon. The full programme will be published here as soon as it is confirmed.', TEXT_DOMAIN); ?>
       </p>
       <button type="button" class="uk-button uk-button-primary" data-uk-toggle="target: #modal-newsletter" aria-haspopup="dialog" aria-controls="modal-newsletter">
