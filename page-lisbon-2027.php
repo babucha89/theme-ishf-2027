@@ -32,6 +32,10 @@ $lisbon_text = function ($key) use ($lisbon) {
 $venue_name = $lisbon('venue_name');
 $venue_maps = $lisbon('venue_map_url') ?: 'https://www.google.com/maps/search/?api=1&query=' . rawurlencode(trim($venue_name . ', ' . $lisbon('venue_address'), ', '));
 
+$lisbon_image_id  = (int) get_post_thumbnail_id($lisbon_id);
+$lisbon_file_path = get_template_directory() . '/img/lisbon/hp-lisbon.jpg';
+$has_lisbon_file  = file_exists($lisbon_file_path);
+
 ishf_use_full_layout(true);
 ishf_show_footer_sponsors(false); // the sponsors are part of this page
 get_header();
@@ -42,21 +46,41 @@ get_template_part('includes/sections/header');
   <!-- 1. Header -->
   <header class="lisbon-hero">
     <div class="uk-container">
-      <p class="ishf-eyebrow lisbon-hero-eyebrow"><?php echo esc_html($lisbon('eyebrow')); ?></p>
-      <h1 class="lisbon-hero-title"><?php the_title(); ?></h1>
-      <ul class="lisbon-hero-facts">
-        <li>
-          <span data-uk-icon="icon: calendar" aria-hidden="true"></span>
-          <time datetime="2027-06-07/2027-06-09"><?php echo esc_html($lisbon('dates')); ?></time>
-        </li>
-        <li>
-          <span data-uk-icon="icon: location" aria-hidden="true"></span>
-          <span><?php echo esc_html($lisbon('location')); ?></span>
-        </li>
-      </ul>
-      <?php if (has_excerpt()): ?>
-        <p class="lisbon-hero-lead uk-width-2xlarge"><?php echo esc_html(get_the_excerpt()); ?></p>
-      <?php endif; ?>
+      <div data-uk-grid class="uk-grid-large uk-flex-middle">
+        <div class="uk-width-1-1 uk-width-1-3@s">
+          <p class="ishf-eyebrow lisbon-hero-eyebrow"><?php echo esc_html($lisbon('eyebrow')); ?></p>
+          <h1 class="lisbon-hero-title"><?php the_title(); ?></h1>
+          <ul class="lisbon-hero-facts">
+            <li>
+              <span data-uk-icon="icon: calendar" aria-hidden="true"></span>
+              <time datetime="2027-06-07/2027-06-09"><?php echo esc_html($lisbon('dates')); ?></time>
+            </li>
+            <li>
+              <span data-uk-icon="icon: location" aria-hidden="true"></span>
+              <span><?php echo esc_html($lisbon('location')); ?></span>
+            </li>
+          </ul>
+          <?php if (has_excerpt()): ?>
+            <p class="lisbon-hero-lead uk-width-2xlarge"><?php echo esc_html(get_the_excerpt()); ?></p>
+          <?php endif; ?>
+        </div>
+
+        <div class="uk-width-1-1 uk-width-expand@s">
+          <div class="hero-art uk-position-relative uk-margin-auto" aria-hidden="true">
+            <?php if ($lisbon_image_id && wp_get_attachment_image_url($lisbon_image_id, 'image-gallery')): ?>
+              <picture>
+                <source media="(min-width: 960px)" srcset="<?php echo esc_url(wp_get_attachment_image_url($lisbon_image_id, 'image-gallery')); ?>">
+                <img class="hero-photo" src="<?php echo esc_url(wp_get_attachment_image_url($lisbon_image_id, 'image-speaker-face')); ?>" alt="" width="450" height="450" loading="eager" fetchpriority="high" />
+              </picture>
+            <?php elseif ($has_lisbon_file): ?>
+              <img class="hero-photo" src="<?php echo esc_url(BASE_IMAGES . 'lisbon/hp-lisbon.jpg'); ?>" alt="" width="1600" height="900" loading="eager" fetchpriority="high" />
+            <?php else: ?>
+              <div class="hero-photo hero-photo--placeholder"><img src="<?php echo esc_url(BASE_ASSETS . 'skyline-colors.svg'); ?>" alt="" /></div>
+            <?php endif; ?>
+            <img class="hero-wave" src="<?php echo esc_url(BASE_ASSETS . 'icon-wave.svg'); ?>" alt="" />
+          </div>
+        </div>
+      </div>
     </div>
   </header>
 
