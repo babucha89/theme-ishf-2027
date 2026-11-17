@@ -1,13 +1,13 @@
 <?php
 // -----------------------------------------------------------------------------
 //  Section: PAST EDITIONS (timeline of the CPT "editions")
-//  One card per edition (logo, title, dates) on a vertical timeline, oldest
+//  One card per edition (logo, title, dates, city) on a vertical timeline, oldest
 //  first, closing with Lisbon 2027. Each card opens a modal with everything:
 //  logo, dates, venue, address, map (Mapbox, js/past-editions.js) and content.
 //  A modal opens directly from a link to the page with its id as hash,
 //  e.g. /past-editions/#edition-dublin-2025.
 //  Base Theme: ISHF 2027 Lisbon
-//  Edited: BB, 11-NOV-2026
+//  Edited: BB, 17-NOV-2026
 // -----------------------------------------------------------------------------
 if (!function_exists('ishf_get_editions')) {
   return;
@@ -45,6 +45,7 @@ $ishf_edition_logo = function ($post_id, $class) {
         $dates    = ishf_edition_dates($eid);
         $logo     = $ishf_edition_logo($eid, 'edition-logo');
         $has_dark = (bool) get_post_meta($eid, 'ishf_cf_logo_dark_id', true);
+        $city     = ishf_edition_location($eid)['city'];
       ?>
       <li class="edition-item">
         <span class="edition-marker" aria-hidden="true"><?php echo esc_html($dates ? $dates['year'] : '—'); ?></span>
@@ -54,10 +55,11 @@ $ishf_edition_logo = function ($post_id, $class) {
           <?php endif; ?>
           <div class="edition-card-body">
             <h2 id="<?php echo esc_attr($modal_id); ?>-card-title" class="edition-card-title"><?php echo esc_html($title); ?></h2>
-            <?php if ($dates): ?>
+            <?php if ($dates || $city !== ''): ?>
               <p class="edition-card-dates">
-                <span data-uk-icon="icon: calendar; ratio: 0.85" aria-hidden="true"></span>
-                <time datetime="<?php echo esc_attr($dates['start'] . ($dates['end'] !== $dates['start'] ? '/' . $dates['end'] : '')); ?>"><?php echo esc_html($dates['label']); ?></time>
+                <span data-uk-icon="icon: <?php echo $dates ? 'calendar' : 'location'; ?>; ratio: 0.85" aria-hidden="true"></span>
+                <?php if ($dates): ?><time datetime="<?php echo esc_attr($dates['datetime']); ?>"><?php echo esc_html($dates['label']); ?></time><?php endif; ?>
+                <?php if ($city !== ''): ?><span class="edition-card-city"><?php if ($dates): ?><span aria-hidden="true">·</span> <?php endif; ?><?php echo esc_html($city); ?></span><?php endif; ?>
               </p>
             <?php endif; ?>
             <button type="button" class="uk-button uk-button-primary uk-border-pill edition-card-button" data-uk-toggle="target: #<?php echo esc_attr($modal_id); ?>" aria-haspopup="dialog" aria-controls="<?php echo esc_attr($modal_id); ?>">
@@ -102,11 +104,13 @@ $ishf_edition_logo = function ($post_id, $class) {
     $dates    = ishf_edition_dates($eid);
     $logo     = $ishf_edition_logo($eid, 'edition-modal-logo');
     $has_dark = (bool) get_post_meta($eid, 'ishf_cf_logo_dark_id', true);
-    $venue    = trim((string) get_post_meta($eid, 'ishf_cf_venue', true));
-    $address  = trim((string) get_post_meta($eid, 'ishf_cf_address', true));
+    $location = ishf_edition_location($eid);
+    $venue    = $location['venue'];
+    $address  = $location['address'];
+    $city     = $location['city'];
     $coords   = ishf_edition_coordinates($eid);
     $content  = apply_filters('the_content', $edition->post_content);
-    $place    = $venue !== '' ? $venue : $address;
+    $place    = $venue !== '' ? $venue : ($address !== '' ? $address : $city); // no venue / address: city only
     $maps_url = $coords
       ? 'https://www.google.com/maps/search/?api=1&query=' . rawurlencode($coords['lat'] . ',' . $coords['lng'])
       : ($address !== '' ? 'https://www.google.com/maps/search/?api=1&query=' . rawurlencode(trim($venue . ' ' . $address)) : '');
@@ -129,7 +133,7 @@ $ishf_edition_logo = function ($post_id, $class) {
         <?php if ($dates): ?>
           <li>
             <span class="edition-fact-icon" data-uk-icon="icon: calendar" aria-hidden="true"></span>
-            <span><span class="sr-only"><?php _e('Dates', TEXT_DOMAIN); ?>: </span><time datetime="<?php echo esc_attr($dates['start'] . ($dates['end'] !== $dates['start'] ? '/' . $dates['end'] : '')); ?>"><?php echo esc_html($dates['label']); ?></time></span>
+            <span><span class="sr-only"><?php _e('Dates', TEXT_DOMAIN); ?>: </span><time datetime="<?php echo esc_attr($dates['datetime']); ?>"><?php echo esc_html($dates['label']); ?></time></span>
           </li>
         <?php endif; ?>
         <?php if ($place !== ''): ?>
@@ -139,6 +143,7 @@ $ishf_edition_logo = function ($post_id, $class) {
               <span class="sr-only"><?php _e('Location', TEXT_DOMAIN); ?>: </span>
               <?php if ($venue !== ''): ?><strong class="edition-venue"><?php echo esc_html($venue); ?></strong><?php endif; ?>
               <?php if ($address !== '' && $address !== $venue): ?><span class="edition-address"><?php echo esc_html($address); ?></span><?php endif; ?>
+              <?php if (!$location['exact']): ?><strong class="edition-venue"><?php echo esc_html($city); ?></strong><?php endif; ?>
             </span>
           </li>
         <?php endif; ?>

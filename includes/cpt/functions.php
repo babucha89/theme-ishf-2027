@@ -121,7 +121,7 @@ function ishf_get_custom_fields()
     array(
       'name'        => 'date_start',
       'title'       => __('Date Start', TEXT_DOMAIN),
-      'description' => __('First day of the festival.', TEXT_DOMAIN),
+      'description' => __('First day of the festival. If you only know the month, pick any day of that month and choose "Month only" below.', TEXT_DOMAIN),
       'type'        => 'date',
       'scope'       => array('editions'),
     ),
@@ -130,6 +130,23 @@ function ishf_get_custom_fields()
       'title'       => __('Date End', TEXT_DOMAIN),
       'description' => __('Last day of the festival (leave empty for a one-day event).', TEXT_DOMAIN),
       'type'        => 'date',
+      'scope'       => array('editions'),
+    ),
+    array(
+      'name'        => 'date_precision',
+      'title'       => __('Show dates as', TEXT_DOMAIN),
+      'description' => __('"Month only" shows just the month and year (e.g. "June 2025"), for editions whose exact days are not known.', TEXT_DOMAIN),
+      'type'        => 'radio',
+      'labels'      => array(__('Exact days', TEXT_DOMAIN), __('Month only', TEXT_DOMAIN)),
+      'values'      => array('day', 'month'),
+      'default'     => 'day',
+      'scope'       => array('editions'),
+    ),
+    array(
+      'name'        => 'city',
+      'title'       => __('City', TEXT_DOMAIN),
+      'description' => __('City (and country), e.g. "Dublin, Ireland". Shown on the card, and in place of the venue and address when those are not known.', TEXT_DOMAIN),
+      'type'        => 'text',
       'scope'       => array('editions'),
     ),
     array(
@@ -275,6 +292,9 @@ if (!class_exists('ISHF_Custom_Fields')):
             break;
 
           case 'radio':
+            if ($value === '' && isset($field['default'])) {
+              $value = $field['default'];
+            }
             echo '<fieldset><legend><b>' . $title . '</b></legend>';
             foreach ($field['values'] as $i => $option) {
               $id = $key . '_' . $option;
@@ -380,6 +400,9 @@ if (!class_exists('ISHF_Custom_Fields')):
             break;
           case 'checkbox':
             $value = $value === 'yes' ? 'yes' : '';
+            break;
+          case 'radio':
+            $value = in_array($value, $field['values'], true) ? $value : '';
             break;
           default:
             $value = sanitize_text_field((string) $value);

@@ -3,14 +3,17 @@
 //  CPT: EDITIONS (past festivals: Amsterdam 2017, Lyon 2019, ...)
 //  - Name  = title
 //  - Logo  = featured image (optional dark-mode logo: field ishf_cf_logo_dark_id)
-//  - Dates = ishf_cf_date_start / ishf_cf_date_end (yyyy-mm-dd), shown combined
+//  - Dates = ishf_cf_date_start / ishf_cf_date_end (yyyy-mm-dd), shown combined;
+//            ishf_cf_date_precision = "month" shows only month and year
 //  - Venue = ishf_cf_venue + ishf_cf_address; map pin = ishf_cf_geolocation
 //            ("lat, lng"), geocoded from the address with Mapbox on save
+//  - City  = ishf_cf_city: on the card, and in the modal when there is no
+//            venue / address
 //  - Body  = post content
 //  No single pages: every edition is shown in a modal on the Past Editions page
 //  (page-past-editions.php, includes/sections/past-editions.php).
 //  Base Theme: ISHF 2027 Lisbon
-//  Edited: BB, 11-NOV-2026
+//  Edited: BB, 17-NOV-2026
 // -----------------------------------------------------------------------------
 
 if (!function_exists('ishf_set_cpt_editions')):
@@ -75,7 +78,8 @@ if (!function_exists('ishf_get_editions')):
   }
 endif;
 
-// Dates of an edition: array('label' => '9–11 June 2025', 'start' => 'Y-m-d', 'end' => 'Y-m-d', 'year' => '2025') or null
+// Dates of an edition: array('label' => '9–11 June 2025', 'start' => 'Y-m-d', 'end' => 'Y-m-d', 'year' => '2025',
+// 'datetime' => value for <time datetime>) or null. Precision "month": 'June 2025', 'May – June 2025'.
 if (!function_exists('ishf_edition_dates')):
   function ishf_edition_dates($post_id)
   {
@@ -102,6 +106,25 @@ if (!function_exists('ishf_edition_dates')):
 
     $sts = $s->getTimestamp();
     $ets = $e->getTimestamp();
+
+    // Only the month is known
+    if (get_post_meta($post_id, 'ishf_cf_date_precision', true) === 'month') {
+      /* translators: PHP date format: month and year, e.g. "June 2025" */
+      $month_year = __('F Y', TEXT_DOMAIN);
+      /* translators: PHP date format: month alone, e.g. "May" (start of a range of months in the same year) */
+      $month = __('F', TEXT_DOMAIN);
+      $sm = $s->format('Y-m');
+      $em = $e->format('Y-m');
+      if ($sm === $em) {
+        $label = wp_date($month_year, $sts, $tz);
+      } elseif ($s->format('Y') === $e->format('Y')) {
+        $label = wp_date($month, $sts, $tz) . ' – ' . wp_date($month_year, $ets, $tz);
+      } else {
+        $label = wp_date($month_year, $sts, $tz) . ' – ' . wp_date($month_year, $ets, $tz);
+      }
+      return array('label' => $label, 'start' => $start, 'end' => $end, 'year' => $s->format('Y'), 'datetime' => $sm . ($em !== $sm ? '/' . $em : ''));
+    }
+
     if ($start === $end) {
       $label = wp_date($full, $sts, $tz);
     } elseif ($s->format('Y-m') === $e->format('Y-m')) {
@@ -112,7 +135,7 @@ if (!function_exists('ishf_edition_dates')):
       $label = wp_date($full, $sts, $tz) . ' – ' . wp_date($full, $ets, $tz);
     }
 
-    return array('label' => $label, 'start' => $start, 'end' => $end, 'year' => $s->format('Y'));
+    return array('label' => $label, 'start' => $start, 'end' => $end, 'year' => $s->format('Y'), 'datetime' => $start . ($end !== $start ? '/' . $end : ''));
   }
 endif;
 
@@ -130,6 +153,18 @@ if (!function_exists('ishf_edition_coordinates')):
       return null;
     }
     return array('lat' => $lat, 'lng' => $lng);
+  }
+endif;
+
+// Where an edition took place: array('venue', 'address', 'city', 'exact' => bool). Without venue and
+// address only the city is shown ('exact' => false).
+if (!function_exists('ishf_edition_location')):
+  function ishf_edition_location($post_id)
+  {
+    $venue   = trim((string) get_post_meta($post_id, 'ishf_cf_venue', true));
+    $address = trim((string) get_post_meta($post_id, 'ishf_cf_address', true));
+    $city    = trim((string) get_post_meta($post_id, 'ishf_cf_city', true));
+    return array('venue' => $venue, 'address' => $address, 'city' => $city, 'exact' => ($venue !== '' || $address !== ''));
   }
 endif;
 
@@ -252,7 +287,8 @@ add_action('manage_editions_posts_custom_column', function ($column, $post_id) {
       echo $dates ? esc_html($dates['label']) : '—';
       break;
     case 'edition_venue':
-      $venue = (string) get_post_meta($post_id, 'ishf_cf_venue', true);
+      $loc   = ishf_edition_location($post_id);
+      $venue = $loc['venue'] !== '' ? $loc['venue'] : ($loc['address'] !== '' ? $loc['address'] : $loc['city']);
       echo $venue !== '' ? esc_html($venue) : '—';
       echo ishf_edition_coordinates($post_id) ? ' <span class="dashicons dashicons-location" title="' . esc_attr__('On the map', TEXT_DOMAIN) . '"></span>' : '';
       break;

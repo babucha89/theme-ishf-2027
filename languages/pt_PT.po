@@ -2067,6 +2067,45 @@ msgstr "Ver no Google Maps"
 msgid "j F Y"
 msgstr "j \\d\\e F \\d\\e Y"
 
+msgid ""
+"First day of the festival. If you only know the month, pick any day of that "
+"month and choose \"Month only\" below."
+msgstr ""
+"Primeiro dia do festival. Se só souber o mês, escolha qualquer dia desse mês"
+" e selecione \"Só o mês\" abaixo."
+
+msgid "Show dates as"
+msgstr "Mostrar datas como"
+
+msgid ""
+"\"Month only\" shows just the month and year (e.g. \"June 2025\"), for "
+"editions whose exact days are not known."
+msgstr ""
+"\"Só o mês\" mostra apenas o mês e o ano (ex.: \"junho de 2025\"), para "
+"edições cujos dias exatos não são conhecidos."
+
+msgid "Exact days"
+msgstr "Dias exatos"
+
+msgid "Month only"
+msgstr "Só o mês"
+
+msgid "City"
+msgstr "Cidade"
+
+msgid ""
+"City (and country), e.g. \"Dublin, Ireland\". Shown on the card, and in "
+"place of the venue and address when those are not known."
+msgstr ""
+"Cidade (e país), ex.: \"Dublin, Irlanda\". Aparece no cartão e substitui o "
+"local e a morada quando estes não são conhecidos."
+
+msgid "F Y"
+msgstr "F \\d\\e Y"
+
+msgid "F"
+msgstr "F"
+
 #~ msgid "Agenda"
 #~ msgstr "Programa"
 
