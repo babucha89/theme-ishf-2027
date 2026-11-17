@@ -49,6 +49,7 @@
     <!-- Sponsors (logo_dark_id above), attendants, seminars, FAQs -->
     <custom-field action="copy-once">ishf_cf_url</custom-field>
     <custom-field action="copy">ishf_cf_order</custom-field>
+    <custom-field action="copy">ishf_cf_logo_scale</custom-field>
     <custom-field action="translate">ishf_cf_organization</custom-field>
     <custom-field action="translate">ishf_cf_function</custom-field>
     <custom-field action="copy">ishf_cf_gender</custom-field>

@@ -164,20 +164,44 @@ if (!function_exists('ishf_get_sponsor_groups')):
   }
 endif;
 
-// One sponsor logo (featured image + optional dark-mode logo), or its name when there is no logo
+// One sponsor logo (featured image + optional dark-mode logo), or its name when there is no logo.
+// $box = array(area, max width, max height) in px: every logo gets the same visual
+// weight (width x height = area) from its proportions, within the max box, so wide
+// and tall logos look balanced. The sponsor's "Logo size (%)" field (ishf_cf_logo_scale,
+// default 100) scales it by hand. Without $box the CSS decides the size.
 if (!function_exists('ishf_sponsor_logo_html')):
-  function ishf_sponsor_logo_html($sponsor_id, $size = 'medium')
+  function ishf_sponsor_logo_html($sponsor_id, $size = 'medium', $box = null)
   {
     $name  = get_the_title($sponsor_id);
     $light = get_post_thumbnail_id($sponsor_id);
     $dark  = (int) get_post_meta($sponsor_id, 'ishf_cf_logo_dark_id', true);
-    $att   = array('alt' => $name, 'loading' => 'lazy', 'class' => '');
+    $scale = get_post_meta($sponsor_id, 'ishf_cf_logo_scale', true);
+    $scale = is_numeric($scale) ? max(50, min(200, (int) $scale)) / 100 : 1;
+
+    $img = function ($attachment_id, $class) use ($name, $size, $box, $scale) {
+      $att = array('alt' => $name, 'loading' => 'lazy', 'class' => $class);
+      if (is_array($box) && count($box) === 3) {
+        list($area, $max_w, $max_h) = $box;
+        $src = wp_get_attachment_image_src($attachment_id, $size);
+        $w   = $src ? (int) $src[1] : 0;
+        $h   = $src ? (int) $src[2] : 0;
+        if ($w > 0 && $h > 0) {
+          $ratio  = $w / $h;
+          $width  = sqrt($area * $ratio) * $scale;     // same area for every logo
+          $width  = min($width, $max_w, $max_h * $ratio); // stay inside the box
+          $att['style'] = 'width:' . round($width) . 'px;height:auto;';
+        } else {
+          $att['style'] = 'width:auto;height:' . round(sqrt($area) * $scale) . 'px;'; // e.g. SVG without sizes
+        }
+      }
+      return wp_get_attachment_image($attachment_id, $size, false, $att);
+    };
+
     if ($light && $dark) {
-      return wp_get_attachment_image($light, $size, false, array_merge($att, array('class' => 'light-mode-img')))
-        . wp_get_attachment_image($dark, $size, false, array_merge($att, array('class' => 'dark-mode-img')));
+      return $img($light, 'light-mode-img') . $img($dark, 'dark-mode-img');
     }
     if ($light) {
-      return wp_get_attachment_image($light, $size, false, $att);
+      return $img($light, '');
     }
     return '<span class="partner-name">' . esc_html($name) . '</span>';
   }

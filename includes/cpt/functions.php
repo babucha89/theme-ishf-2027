@@ -180,6 +180,16 @@ function ishf_get_custom_fields()
       'scope'       => array('sponsors', 'editions'),
     ),
     array(
+      'name'        => 'logo_scale',
+      'title'       => __('Logo size (%)', TEXT_DOMAIN),
+      'description' => __('100 = automatic size. All logos get the same visual weight from their proportions; raise it (e.g. 130) for a logo that looks small because its file has empty space around it, lower it (e.g. 85) for one that looks too heavy.', TEXT_DOMAIN),
+      'type'        => 'number',
+      'default'     => 100,
+      'min'         => 50,
+      'max'         => 200,
+      'scope'       => array('sponsors'),
+    ),
+    array(
       'name'        => 'order',
       'title'       => __('Order', TEXT_DOMAIN),
       'description' => __('Higher numbers are shown first (defaults to -1).', TEXT_DOMAIN),
@@ -306,7 +316,9 @@ if (!class_exists('ISHF_Custom_Fields')):
 
           case 'number':
             echo '<label for="' . esc_attr($key) . '"><b>' . $title . '</b></label>';
-            echo '<input type="number" step="1" name="' . esc_attr($key) . '" id="' . esc_attr($key) . '" value="' . esc_attr($value === '' ? '-1' : $value) . '" />';
+            $default = isset($field['default']) ? (string) $field['default'] : '-1';
+            $range   = (isset($field['min']) ? ' min="' . (int) $field['min'] . '"' : '') . (isset($field['max']) ? ' max="' . (int) $field['max'] . '"' : '');
+            echo '<input type="number" step="1"' . $range . ' name="' . esc_attr($key) . '" id="' . esc_attr($key) . '" value="' . esc_attr($value === '' ? $default : $value) . '" />';
             break;
 
           case 'date':
@@ -390,7 +402,10 @@ if (!class_exists('ISHF_Custom_Fields')):
             $value = is_array($value) ? implode(',', array_filter(array_map('intval', $value))) : '';
             break;
           case 'number':
-            $value = is_numeric($value) ? (string) (int) $value : '-1';
+            $value = is_numeric($value) ? (int) $value : (isset($field['default']) ? (int) $field['default'] : -1);
+            if (isset($field['min'])) $value = max((int) $field['min'], $value);
+            if (isset($field['max'])) $value = min((int) $field['max'], $value);
+            $value = (string) $value;
             break;
           case 'image':
             $value = absint($value) ? (string) absint($value) : '';

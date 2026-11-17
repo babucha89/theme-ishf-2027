@@ -2316,6 +2316,20 @@ msgstr ""
 "É permitido HTML simples (ligações, negrito); uma linha em branco começa um "
 "novo parágrafo."
 
+msgid "Logo size (%)"
+msgstr "Tamanho do logótipo (%)"
+
+msgid ""
+"100 = automatic size. All logos get the same visual weight from their "
+"proportions; raise it (e.g. 130) for a logo that looks small because its "
+"file has empty space around it, lower it (e.g. 85) for one that looks too "
+"heavy."
+msgstr ""
+"100 = tamanho automático. Todos os logótipos recebem o mesmo peso visual a "
+"partir das suas proporções; aumente (ex.: 130) para um logótipo que pareça "
+"pequeno por ter espaço vazio à volta no ficheiro, diminua (ex.: 85) para um "
+"que pareça demasiado pesado."
+
 #~ msgid "Agenda"
 #~ msgstr "Programa"
 

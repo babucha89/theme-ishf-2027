@@ -5,8 +5,10 @@
 //  Parceiros, Apoio, ...): type name on the left, its logos on the right.
 //  Order: ishf_get_sponsor_groups() (includes/cpt/sponsors.php): type "Order"
 //  field, highest first; inside a type, sponsor "Order" field, highest first.
-//  Logo tiles: white in both modes (brand logos stay legible); with a dark-mode
-//  logo the tile turns dark in dark mode. Link = custom field ishf_cf_url.
+//  Logos without boxes, balanced by area (ishf_sponsor_logo_html(): same visual
+//  weight from each logo's proportions; first row larger; per-sponsor "Logo size
+//  (%)" to fine-tune). Dark mode uses the sponsor's dark-mode logo; a logo without
+//  one gets a light backing so it stays legible. Link = custom field ishf_cf_url.
 //  Renders nothing when there are no published sponsors.
 //  Base Theme: ISHF 2027 Lisbon
 //  Edited: BB, 17-NOV-2026
@@ -43,7 +45,7 @@ if (empty($partner_groups)) {
             ?>
               <li>
                 <<?php echo $tag . $attrs; ?> class="lisbon-partner-tile<?php echo $has_dark ? ' has-dark-logo' : ''; ?>">
-                  <?php echo ishf_sponsor_logo_html($sid); ?>
+                  <?php echo ishf_sponsor_logo_html($sid, 'medium', $gi === 0 ? array(7200, 220, 96) : array(4400, 180, 76)); ?>
                   <?php if ($url): ?><span class="sr-only"> (<?php _e('opens in a new tab', TEXT_DOMAIN); ?>)</span><?php endif; ?>
                 </<?php echo $tag; ?>>
               </li>

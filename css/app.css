@@ -780,7 +780,7 @@ html.dark-mode .cta-box-partnership { border-width: 1.5px; }
 .partner-group + .partner-group { margin-top: var(--grids-spacing-48); }
 .partner-logos { list-style: none; margin: var(--grids-spacing-24) 0 0; padding: 0; display: flex; flex-wrap: wrap; align-items: center; gap: var(--grids-spacing-32); }
 .partner-logos a { display: inline-flex; align-items: center; text-decoration: none; }
-.partner-logos img { width: auto; max-width: 100%; height: 64px; object-fit: contain; }
+.partner-logos img { display: block; width: auto; max-width: 100%; height: 64px; object-fit: contain; } /* inline width + height:auto from ishf_sponsor_logo_html() win */
 .partner-name { font-weight: 700; font-size: var(--fonts-size-lead); color: var(--colors-text-heading); }
 
 /* --- Newsletter band (Figma: Home / Newsletter): brand yellow in both modes, skyline bottom-right. The form lives in the modal (section 4) ----- */
@@ -932,15 +932,14 @@ html.dark-mode .lisbon-hero { background-color: var(--colors-night-800); }
 .lisbon-partner-row { display: grid; gap: var(--grids-spacing-16); padding: var(--grids-spacing-24) 0; border-bottom: 1px solid var(--colors-border-default); }
 html.dark-mode .lisbon-partner-rows, html.dark-mode .lisbon-partner-row { border-color: var(--colors-night-700); }
 .lisbon-partner-label { margin: 0; font-family: var(--fonts-family-labels); font-size: var(--fonts-size-small); font-weight: 700; letter-spacing: .08em; line-height: 1.4; text-transform: uppercase; color: var(--colors-text-eyebrow); }
-.lisbon-partner-logos { list-style: none; display: flex; flex-wrap: wrap; gap: var(--grids-spacing-16); margin: 0; padding: 0; }
-.lisbon-partner-logos li { flex: 0 0 auto; }
-.lisbon-partner-tile { display: flex; align-items: center; justify-content: center; box-sizing: border-box; width: 200px; height: 112px; padding: var(--grids-spacing-16) var(--grids-spacing-24); background-color: var(--colors-neutral-white); border: 1px solid var(--colors-border-default); border-radius: var(--grids-radius-md); text-decoration: none; transition: border-color 0.2s ease, box-shadow 0.2s ease; }
-a.lisbon-partner-tile:hover, a.lisbon-partner-tile:focus-visible { border-color: var(--colors-brand-blue-tejo); box-shadow: 0 8px 20px rgba(var(--colors-neutral-black-rgb), 0.10); text-decoration: none; }
-html.dark-mode .lisbon-partner-tile { border-color: var(--colors-night-700); }
-html.dark-mode .lisbon-partner-tile.has-dark-logo { background-color: var(--colors-night-800); }
-.lisbon-partner-tile img { display: block; width: auto; height: auto; max-width: 100%; max-height: 100%; object-fit: contain; }
-.lisbon-partner-tile .partner-name { font-size: var(--fonts-size-regular); line-height: 1.3; text-align: center; color: var(--colors-brand-blue-sky); }
-.lisbon-partner-row:first-child .lisbon-partner-tile { width: 240px; height: 136px; } /* first type (organisers): larger tiles */
+.lisbon-partner-logos { list-style: none; display: flex; flex-wrap: wrap; align-items: center; gap: var(--grids-spacing-16) var(--grids-spacing-48); margin: 0; padding: 0; }
+.lisbon-partner-logos li { flex: 0 0 auto; display: flex; align-items: center; min-height: 80px; }
+.lisbon-partner-row:first-child .lisbon-partner-logos li { min-height: 100px; }
+.lisbon-partner-tile { display: inline-flex; align-items: center; justify-content: center; max-width: 100%; text-decoration: none; border-radius: var(--grids-radius-sm); transition: opacity 0.2s ease; }
+a.lisbon-partner-tile:hover { opacity: 0.75; text-decoration: none; }
+.lisbon-partner-tile img { display: block; max-width: 100%; object-fit: contain; }
+.lisbon-partner-tile .partner-name { font-size: var(--fonts-size-regular); font-weight: 700; line-height: 1.3; color: var(--colors-text-heading); }
+html.dark-mode .lisbon-partner-tile:not(.has-dark-logo) img { box-sizing: content-box; padding: 8px 12px; background-color: var(--colors-neutral-white); border-radius: var(--grids-radius-md); } /* no dark-mode logo: light backing keeps it legible */
 .lisbon-venue { background-color: var(--colors-background-tint); }
 html.dark-mode .lisbon-venue { background-color: var(--colors-night-800); }
 .lisbon-info-card { display: flex; flex-direction: column; gap: var(--grids-spacing-12); box-sizing: border-box; padding: var(--grids-spacing-32) var(--grids-spacing-24); background-color: var(--colors-background-card); border: 1px solid var(--colors-border-default); border-radius: var(--grids-radius-lg); }
@@ -954,8 +953,8 @@ html.dark-mode .lisbon-info-card { background-color: var(--colors-night-900); bo
 .lisbon-info-link { display: inline-flex; align-items: center; gap: 6px; margin-top: auto; padding-top: var(--grids-spacing-8); font-size: var(--fonts-size-small); font-weight: 700; }
 /* --- Below s: < 640px (mobile, 390 design) ------------------------------------------------- */
 @media (max-width: 639.98px) {
-  .lisbon-partner-logos li { flex: 1 1 calc(50% - 8px); max-width: calc(50% - 8px); }
-  .lisbon-partner-tile, .lisbon-partner-row:first-child .lisbon-partner-tile { width: 100%; height: 104px; }
+  .lisbon-partner-logos { column-gap: var(--grids-spacing-32); }
+  .lisbon-partner-logos li { max-width: calc(50% - 16px); }
   :root { --fonts-size-heading-1: 40px; --fonts-size-heading-2: 32px; --fonts-size-heading-3: 26px; --fonts-size-heading-4: 22px; --fonts-size-heading-5: 18px; --fonts-size-lead: 18px; }
   .header-content-wrapper { padding-top: 35px; padding-bottom: 40px; }
   .header-project-logo { max-width: 320px; }
@@ -996,7 +995,6 @@ html.dark-mode .lisbon-info-card { background-color: var(--colors-night-900); bo
   .hero-key { top: -40px; right: -32px; width: 200px; }
   .hero-wave { left: -40px; width: 260px; }
   .partner-logos { gap: var(--grids-spacing-80); }
-  .partner-logos img { height: 80px; }
   .newsletter-band { flex-direction: row; align-items: stretch; padding-top: 0; min-height: 265px; }
   .newsletter-band-copy { align-self: center; padding: var(--grids-spacing-48) 0; }
   .newsletter-band-title { font-size: var(--fonts-size-heading-2); margin-bottom: var(--grids-spacing-24); }

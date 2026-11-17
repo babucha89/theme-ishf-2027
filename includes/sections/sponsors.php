@@ -28,7 +28,7 @@ if (empty($groups)) {
             $url = get_post_meta($sid, 'ishf_cf_url', true); ?>
             <li>
               <?php if ($url): ?><a href="<?php echo esc_url($url); ?>" target="_blank" rel="noopener noreferrer"><?php endif; ?>
-              <?php echo ishf_sponsor_logo_html($sid); ?>
+              <?php echo ishf_sponsor_logo_html($sid, 'medium', array(3600, 180, 64)); ?>
               <?php if ($url): ?><span class="uk-visually-hidden"> <?php _e('(opens in a new tab)', TEXT_DOMAIN); ?></span></a><?php endif; ?>
             </li>
           <?php endforeach; ?>
