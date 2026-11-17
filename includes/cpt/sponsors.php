@@ -168,7 +168,8 @@ endif;
 // $box = array(area, max width, max height) in px: every logo gets the same visual
 // weight (width x height = area) from its proportions, within the max box, so wide
 // and tall logos look balanced. The sponsor's "Logo size (%)" field (ishf_cf_logo_scale,
-// default 100) scales it by hand. Without $box the CSS decides the size.
+// default 100) scales it by hand; above 100 it may also exceed the box by the same
+// factor (e.g. a wide lockup with small text). Without $box the CSS decides the size.
 if (!function_exists('ishf_sponsor_logo_html')):
   function ishf_sponsor_logo_html($sponsor_id, $size = 'medium', $box = null)
   {
@@ -188,7 +189,8 @@ if (!function_exists('ishf_sponsor_logo_html')):
         if ($w > 0 && $h > 0) {
           $ratio  = $w / $h;
           $width  = sqrt($area * $ratio) * $scale;     // same area for every logo
-          $width  = min($width, $max_w, $max_h * $ratio); // stay inside the box
+          $grow   = max(1, $scale);                         // "Logo size" above 100% also enlarges the box
+          $width  = min($width, $max_w * $grow, $max_h * $grow * $ratio); // stay inside the box
           $att['style'] = 'width:' . round($width) . 'px;height:auto;';
         } else {
           $att['style'] = 'width:auto;height:' . round(sqrt($area) * $scale) . 'px;'; // e.g. SVG without sizes
