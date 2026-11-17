@@ -32,6 +32,7 @@
         <a href="#modal-newsletter" class="footer-newsletter-link uk-link-reset uk-flex uk-flex-middle uk-flex-center uk-flex-right@s uk-margin-bottom" data-uk-toggle="target: #modal-newsletter" aria-haspopup="dialog" aria-controls="modal-newsletter" aria-label="<?php esc_attr_e('Join the ISHF 2027 community', TEXT_DOMAIN); ?>">
           <span class="footer-newsletter-text"><?php _e('Join the ISHF 2027 community', TEXT_DOMAIN); ?></span>
         </a>
+        <?php get_template_part('includes/social-links', null, array('class' => 'footer-social')); ?>
       </div>
 
     </div>

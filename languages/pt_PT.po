@@ -2106,6 +2106,146 @@ msgstr "F \\d\\e Y"
 msgid "F"
 msgstr "F"
 
+msgid "Centro de Congressos de Lisboa"
+msgstr "Centro de Congressos de Lisboa"
+
+msgid "Praça das Indústrias, 1300-307 Lisboa, Portugal"
+msgstr "Praça das Indústrias, 1300-307 Lisboa, Portugal"
+
+msgid "Next edition · ISHF 2027"
+msgstr "Próxima edição · ISHF 2027"
+
+msgid "Plan your visit"
+msgstr "Planeie a sua visita"
+
+msgid "Venue & practical info"
+msgstr "Local e informações práticas"
+
+msgid "Primary venue"
+msgstr "Local principal"
+
+msgid ""
+"The festival takes place at the Lisbon Congress Centre, by the river Tagus. "
+"Its Pavilhão do Rio is the central exhibition area: 3,800 m² with room for "
+"2,000 people."
+msgstr ""
+"O festival decorre no Centro de Congressos de Lisboa, junto ao rio Tejo. O "
+"Pavilhão do Rio é a área central de exposição: 3800 m² com capacidade para "
+"2000 pessoas."
+
+msgid "Transport & participant support"
+msgstr "Transportes e apoio ao participante"
+
+msgid ""
+"Lisbon's buses, trams, metro and trains connect the city centre and the "
+"airport with the venue. Travel tips, transport passes for participants and "
+"the help desk opening hours will be published here before the festival."
+msgstr ""
+"Os autocarros, elétricos, metro e comboios de Lisboa ligam o centro da "
+"cidade e o aeroporto ao local do festival. Sugestões de viagem, passes de "
+"transporte para participantes e o horário do balcão de apoio serão "
+"publicados aqui antes do festival."
+
+msgid "Venue accessibility & transport model"
+msgstr "Acessibilidade do local e modelo de mobilidade"
+
+msgid ""
+"We encourage everyone to reach the festival by public transport, on foot or "
+"by bike. Information on step-free routes, accessible facilities and "
+"assistance on request will be published here; if you have specific needs, "
+"contact the organisation in advance."
+msgstr ""
+"Incentivamos todos a chegar ao festival de transportes públicos, a pé ou de "
+"bicicleta. A informação sobre percursos sem degraus, instalações acessíveis "
+"e assistência a pedido será publicada aqui; se tiver necessidades "
+"específicas, contacte a organização com antecedência."
+
+msgid "Who makes it happen"
+msgstr "Quem o torna possível"
+
+msgid "Organisers and partners"
+msgstr "Organização e parceiros"
+
+msgid "Decade impact"
+msgstr "Uma década de impacto"
+
+msgid "10"
+msgstr "10"
+
+msgid "years"
+msgstr "anos"
+
+msgid ""
+"From Amsterdam 2017 to Lisbon 2027: six editions in six European cities."
+msgstr ""
+"De Amesterdão 2017 a Lisboa 2027: seis edições em seis cidades europeias."
+
+msgid "Attendee growth"
+msgstr "Crescimento de participantes"
+
+msgid "2,400+"
+msgstr "+2400"
+
+msgid "participants"
+msgstr "participantes"
+
+msgid "In Dublin 2025, almost twice the 1,300 visitors of the first edition."
+msgstr "Em Dublin 2025, quase o dobro dos 1300 visitantes da primeira edição."
+
+msgid "Event expansion"
+msgstr "Expansão de eventos"
+
+msgid "350"
+msgstr "350"
+
+msgid "events"
+msgstr "eventos"
+
+msgid "In Dublin 2025, up from 40 events in Amsterdam 2017."
+msgstr "Em Dublin 2025, face a 40 eventos em Amesterdão 2017."
+
+msgid "Global network reach"
+msgstr "Alcance da rede global"
+
+msgid "35"
+msgstr "35"
+
+msgid "countries"
+msgstr "países"
+
+msgid "Participants from six continents met in Dublin 2025."
+msgstr "Participantes de seis continentes reuniram-se em Dublin 2025."
+
+msgid "2017 – 2027"
+msgstr "2017 – 2027"
+
+msgid "The festival in numbers"
+msgstr "O festival em números"
+
+msgid ""
+"In ten years, ISHF has grown from a Dutch premiere into the global meeting "
+"point for social, public and cooperative housing."
+msgstr ""
+"Em dez anos, o ISHF passou de uma estreia nos Países Baixos a ponto de "
+"encontro mundial da habitação social, pública e cooperativa."
+
+msgid ""
+"Sources: festival reports by Housing Europe and the host organisations."
+msgstr ""
+"Fontes: relatórios do festival da Housing Europe e das entidades anfitriãs."
+
+msgid "Join us in Lisbon 2027"
+msgstr "Junte-se a nós em Lisboa 2027"
+
+msgid "ISHF 2027 on social media"
+msgstr "ISHF 2027 nas redes sociais"
+
+msgid "%s (opens in a new tab)"
+msgstr "%s (abre num novo separador)"
+
+msgid "Higher numbers are shown first (defaults to -1)."
+msgstr "Os números mais altos aparecem primeiro (por omissão: -1)."
+
 #~ msgid "Agenda"
 #~ msgstr "Programa"
 

@@ -54,6 +54,12 @@ defined('SITE_COOKIES_DISCLAIMER_POSITION') or define('SITE_COOKIES_DISCLAIMER_P
 defined('SITE_MAPBOX_TOKEN') or define('SITE_MAPBOX_TOKEN', '');
 defined('CDN_MAPBOX_GL_VERSION') or define('CDN_MAPBOX_GL_VERSION', '3.34.2');
 
+// -- Social media (navbar on desktop, off-canvas menu on mobile, footer: includes/social-links.php).
+//    Leave a URL empty to hide that network.
+defined('SITE_SOCIAL_LINKEDIN') or define('SITE_SOCIAL_LINKEDIN', '');
+defined('SITE_SOCIAL_INSTAGRAM') or define('SITE_SOCIAL_INSTAGRAM', '');
+defined('SITE_SOCIAL_FACEBOOK') or define('SITE_SOCIAL_FACEBOOK', '');
+
 // -- Call for Sessions External Form URL
 // Form link from Centro de Congressos de Lisboa.
 defined('SITE_CALL_FOR_SESSIONS_URL') or define('SITE_CALL_FOR_SESSIONS_URL', 'https://congressos.leading.pt/geral/inserirresumo.aspx?evento=338&formulario=757&lingua=en-GB&login=false');
@@ -152,6 +158,36 @@ if (!function_exists('ishf_use_full_layout')):
     static $full = false;
     if ($set !== null) $full = (bool) $set;
     return $full;
+  }
+endif;
+
+
+//------------------------------------------------------------------------------
+//  Site-wide sponsors before the footer: on by default; templates that show the
+//  sponsors themselves (Lisbon 2027) call ishf_show_footer_sponsors(false).
+//------------------------------------------------------------------------------
+if (!function_exists('ishf_show_footer_sponsors')):
+  function ishf_show_footer_sponsors($set = null)
+  {
+    static $show = true;
+    if ($set !== null) $show = (bool) $set;
+    return $show;
+  }
+endif;
+
+//------------------------------------------------------------------------------
+//  URL of the published page that uses a template (e.g. 'page-lisbon-2027.php'),
+//  or else of the page with that slug, in the current language; '' when none.
+//------------------------------------------------------------------------------
+if (!function_exists('ishf_get_template_page_url')):
+  function ishf_get_template_page_url($template, $slug)
+  {
+    $pages = get_pages(array('meta_key' => '_wp_page_template', 'meta_value' => $template, 'number' => 1));
+    $page  = !empty($pages) ? $pages[0] : get_page_by_path($slug);
+    if (!$page || $page->post_status !== 'publish') {
+      return '';
+    }
+    return get_permalink(ishf_translate_post($page, 'page'));
   }
 endif;
 

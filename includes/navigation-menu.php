@@ -3,7 +3,7 @@
 //  Block: NAVIGATION MENU
 //  Minimal navbar: icon-key + "ISHF 2027 | Lisbon" logo and Theme Toggle
 //  Full variant (ishf_use_full_layout): + menu links, WPML language switch,
-//  off-canvas menu on < 960px. Menus use the UIkit helpers/walkers of includes/uikit-menus.php. No Register button: the CTA lives in the CTA sections.
+//  social links (includes/social-links.php), off-canvas menu on < 960px. Menus use the UIkit helpers/walkers of includes/uikit-menus.php. No Register button: the CTA lives in the CTA sections.
 //  Base Theme: ISHF 2027 Lisbon
 //  Edited: BB, 27-OUT-2026
 // -----------------------------------------------------------------------------
@@ -41,6 +41,7 @@
       <div class="uk-navbar-right uk-flex uk-flex-middle">
         <?php uikit_top_navbar_right(); // location "Top Navbar / Right" (includes/uikit-menus.php) ?>
         <div class="nav-tools uk-visible@m uk-margin-medium-left">
+          <?php get_template_part('includes/social-links', null, array('class' => 'nav-social')); ?>
           <?php get_template_part('includes/language-switcher'); ?>
           <span class="nav-tools-divider" aria-hidden="true"></span>
           <?php get_template_part('includes/theme-toggle'); ?>
@@ -69,6 +70,7 @@
   <div class="uk-offcanvas-bar on-inverse" role="dialog" aria-label="<?php esc_attr_e('Main Navigation', TEXT_DOMAIN); ?>">
     <button class="uk-offcanvas-close" type="button" data-uk-close aria-label="<?php esc_attr_e('Close menu', TEXT_DOMAIN); ?>"></button>
     <?php uikit_offcanvas_right(); // same menu ("Top Navbar / Right"), off-canvas walker ?>
+    <?php get_template_part('includes/social-links', null, array('class' => 'offcanvas-social')); ?>
     <div class="nav-tools">
       <?php get_template_part('includes/language-switcher'); ?>
       <span class="nav-tools-divider" aria-hidden="true"></span>

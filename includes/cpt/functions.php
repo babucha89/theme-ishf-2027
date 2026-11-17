@@ -182,7 +182,7 @@ function ishf_get_custom_fields()
     array(
       'name'        => 'order',
       'title'       => __('Order', TEXT_DOMAIN),
-      'description' => __('Use to order elements from minor to major (defaults to -1)', TEXT_DOMAIN),
+      'description' => __('Higher numbers are shown first (defaults to -1).', TEXT_DOMAIN),
       'type'        => 'number',
       'scope'       => array('attendants', 'faqs', 'seminars', 'sponsors'),
     ),

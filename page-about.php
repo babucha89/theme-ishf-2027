@@ -1,11 +1,11 @@
 <?php
 // -----------------------------------------------------------------------------
 //  Template Name: About
-//  Page: ABOUT (page content + Past Editions CTA)
+//  Page: ABOUT (page content + festival in numbers + Past Editions CTA)
 //  Used automatically by a page with the slug "about" and selectable for any
 //  other page (e.g. the Portuguese "sobre").
 //  Base Theme: ISHF 2027 Lisbon
-//  Edited: BB, 11-NOV-2026
+//  Edited: BB, 17-NOV-2026
 // -----------------------------------------------------------------------------
 
 // -- Initializations
@@ -39,6 +39,11 @@ get_template_part('includes/sections/header');
       </div>
     </article>
   </div>
+
+  <?php
+  // -- Section: THE FESTIVAL IN NUMBERS (big numbers + CTA to Lisbon 2027)
+  get_template_part('includes/sections/festival-numbers');
+  ?>
 
   <?php
   // -- Section: PAST EDITIONS CTA (after the content)

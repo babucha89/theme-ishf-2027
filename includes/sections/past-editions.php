@@ -2,7 +2,8 @@
 // -----------------------------------------------------------------------------
 //  Section: PAST EDITIONS (timeline of the CPT "editions")
 //  One card per edition (logo, title, dates, city) on a vertical timeline, oldest
-//  first, closing with Lisbon 2027. Each card opens a modal with everything:
+//  first, closing with Lisbon 2027 (links to the Lisbon 2027 page, page-lisbon-2027.php,
+//  or to the homepage until that page exists). Each card opens a modal with everything:
 //  logo (left column) next to name, dates and venue / address (right column),
 //  then map (Mapbox, js/past-editions.js) and content.
 //  A modal opens directly from a link to the page with its id as hash,
@@ -84,7 +85,8 @@ $ishf_edition_logo = function ($post_id, $class) {
               <span data-uk-icon="icon: calendar; ratio: 0.85" aria-hidden="true"></span>
               <time datetime="2027-06-07/2027-06-09"><?php _e('7 – 9 June 2027', TEXT_DOMAIN); ?></time> · <?php _e('Lisbon, Portugal', TEXT_DOMAIN); ?>
             </p>
-            <a class="uk-button uk-button-default uk-border-pill edition-card-button" href="<?php echo esc_url(home_url('/')); ?>">
+            <?php $ishf_lisbon_url = function_exists('ishf_get_template_page_url') ? ishf_get_template_page_url('page-lisbon-2027.php', 'lisbon-2027') : ''; ?>
+            <a class="uk-button uk-button-default uk-border-pill edition-card-button" href="<?php echo esc_url($ishf_lisbon_url !== '' ? $ishf_lisbon_url : home_url('/')); ?>">
               <span><?php _e('Discover ISHF 2027', TEXT_DOMAIN); ?></span>
               <span data-uk-icon="icon: arrow-right; ratio: 0.9" aria-hidden="true"></span>
             </a>

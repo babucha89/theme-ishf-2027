@@ -73,7 +73,7 @@ if (!function_exists('ishf_set_cpt_sponsor_types')):
     echo '<div class="form-field">';
     echo '<label for="ishf_cf_sponsor_types_order">'.__('Order', TEXT_DOMAIN).'</label>';
     echo '<input type="text" name="ishf_cf_sponsor_types_order" id="ishf_cf_sponsor_types_order" value="-1" />';
-    echo '<p>'.__('Use to order elements from minor to major (defaults to -1)', TEXT_DOMAIN).'</p>';
+    echo '<p>'.__('Higher numbers are shown first (defaults to -1).', TEXT_DOMAIN).'</p>';
     echo '</div>';
   }
 
@@ -88,7 +88,7 @@ if (!function_exists('ishf_set_cpt_sponsor_types')):
     echo '<th><label for="ishf_cf_sponsor_types_order">'.__('Order', TEXT_DOMAIN).'</label></th>';
     echo '<td>';
     echo '<input name="ishf_cf_sponsor_types_order" id="ishf_cf_sponsor_types_order" type="text" value="'.esc_attr($ishf_cf_sponsor_types_order).'" />';
-    echo '<p class="description">'.__('Use to order elements from minor to major (defaults to -1)', TEXT_DOMAIN).'</p>';
+    echo '<p class="description">'.__('Higher numbers are shown first (defaults to -1).', TEXT_DOMAIN).'</p>';
     echo '</td>';
     echo '</tr>';
   }
@@ -98,12 +98,87 @@ if (!function_exists('ishf_set_cpt_sponsor_types')):
   add_action('created_sponsor_types', 'ishf_cpt_sponsor_types_custom_fields_save');
   add_action('edited_sponsor_types', 'ishf_cpt_sponsor_types_custom_fields_save');
   function ishf_cpt_sponsor_types_custom_fields_save($term_id) {
+    // Only when the field was submitted (terms created by code or by WPML keep their order)
+    if (!isset($_POST['ishf_cf_sponsor_types_order'])) {
+      return;
+    }
     update_term_meta(
       $term_id,
       'ishf_cf_sponsor_types_order',
-      sanitize_text_field($_POST['ishf_cf_sponsor_types_order'])
+      sanitize_text_field(wp_unslash($_POST['ishf_cf_sponsor_types_order']))
     );
   }
 
 endif;
-?>
+
+
+//------------------------------------------------------------------------------
+//  Sponsors grouped by type, for the site-wide sponsors section and the
+//  Lisbon 2027 page. Returns a list of groups:
+//    array('label' => 'Organização', 'slug' => 'organizacao', 'order' => 40, 'items' => array(post IDs))
+//  - Groups: term field ishf_cf_sponsor_types_order, highest first, then name.
+//  - Inside a group: custom field ishf_cf_order, highest first, then title.
+//    Sponsors without an order value count as -1 (they go last).
+//  - A sponsor with several types is listed under the first one.
+//------------------------------------------------------------------------------
+if (!function_exists('ishf_get_sponsor_groups')):
+  function ishf_get_sponsor_groups()
+  {
+    $posts = get_posts(array(
+      'post_type'        => 'sponsors',
+      'post_status'      => 'publish',
+      'numberposts'      => 100,
+      'suppress_filters' => false, // WPML: current language only
+    ));
+    if (empty($posts)) {
+      return array();
+    }
+    $order_of = function ($id) {
+      $v = get_post_meta($id, 'ishf_cf_order', true);
+      return is_numeric($v) ? (int) $v : -1;
+    };
+    usort($posts, function ($a, $b) use ($order_of) {
+      return array($order_of($b->ID), $a->post_title) <=> array($order_of($a->ID), $b->post_title);
+    });
+
+    $groups = array();
+    foreach ($posts as $p) {
+      $terms = get_the_terms($p->ID, 'sponsor_types');
+      $term  = (!empty($terms) && !is_wp_error($terms)) ? $terms[0] : null;
+      $key   = $term ? $term->term_id : 0;
+      if (!isset($groups[$key])) {
+        $order = $term ? get_term_meta($term->term_id, 'ishf_cf_sponsor_types_order', true) : '';
+        $groups[$key] = array(
+          'label' => $term ? $term->name : __('Partners', TEXT_DOMAIN),
+          'slug'  => $term ? $term->slug : 'partners',
+          'order' => is_numeric($order) ? (int) $order : -1,
+          'items' => array(),
+        );
+      }
+      $groups[$key]['items'][] = $p->ID;
+    }
+    uasort($groups, function ($a, $b) {
+      return array($b['order'], $a['label']) <=> array($a['order'], $b['label']);
+    });
+    return array_values($groups);
+  }
+endif;
+
+// One sponsor logo (featured image + optional dark-mode logo), or its name when there is no logo
+if (!function_exists('ishf_sponsor_logo_html')):
+  function ishf_sponsor_logo_html($sponsor_id, $size = 'medium')
+  {
+    $name  = get_the_title($sponsor_id);
+    $light = get_post_thumbnail_id($sponsor_id);
+    $dark  = (int) get_post_meta($sponsor_id, 'ishf_cf_logo_dark_id', true);
+    $att   = array('alt' => $name, 'loading' => 'lazy', 'class' => '');
+    if ($light && $dark) {
+      return wp_get_attachment_image($light, $size, false, array_merge($att, array('class' => 'light-mode-img')))
+        . wp_get_attachment_image($dark, $size, false, array_merge($att, array('class' => 'dark-mode-img')));
+    }
+    if ($light) {
+      return wp_get_attachment_image($light, $size, false, $att);
+    }
+    return '<span class="partner-name">' . esc_html($name) . '</span>';
+  }
+endif;
