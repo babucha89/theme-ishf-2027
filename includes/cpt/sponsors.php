@@ -223,15 +223,18 @@ endif;
 // factor (e.g. a wide lockup with small text). "Logo width (px)" (ishf_cf_logo_width)
 // overrides all of this with an exact width of the visible logo: the empty margins of
 // the file are trimmed (ishf_logo_content_box()). Without $box the CSS decides the size.
+// $opts: 'variant' => 'auto' (light / dark logo follow the site mode) or 'on-dark' (dark
+// background in both modes: dark-mode logo only); 'fixed' => false ignores "Logo width (px)".
 if (!function_exists('ishf_sponsor_logo_html')):
-  function ishf_sponsor_logo_html($sponsor_id, $size = 'medium', $box = null)
+  function ishf_sponsor_logo_html($sponsor_id, $size = 'medium', $box = null, $opts = array())
   {
+    $opts  = wp_parse_args($opts, array('variant' => 'auto', 'fixed' => true));
     $name  = get_the_title($sponsor_id);
     $light = get_post_thumbnail_id($sponsor_id);
     $dark  = (int) get_post_meta($sponsor_id, 'ishf_cf_logo_dark_id', true);
     $scale = get_post_meta($sponsor_id, 'ishf_cf_logo_scale', true);
     $scale = is_numeric($scale) ? max(50, min(300, (int) $scale)) / 100 : 1;
-    $fixed = (int) get_post_meta($sponsor_id, 'ishf_cf_logo_width', true); // exact width in px (0 = automatic)
+    $fixed = $opts['fixed'] ? (int) get_post_meta($sponsor_id, 'ishf_cf_logo_width', true) : 0; // exact width in px (0 = automatic)
 
     $img = function ($attachment_id, $class) use ($name, $size, $box, $scale, $fixed) {
       $att = array('alt' => $name, 'loading' => 'lazy', 'class' => $class);
@@ -265,6 +268,13 @@ if (!function_exists('ishf_sponsor_logo_html')):
       return wp_get_attachment_image($attachment_id, $size, false, $att);
     };
 
+    // On a dark background in both modes (footer): the dark-mode logo, or the normal logo on a light backing
+    if ($opts['variant'] === 'on-dark') {
+      if ($dark) {
+        return $img($dark, '');
+      }
+      return $light ? '<span class="logo-light-backing">' . $img($light, '') . '</span>' : '<span class="partner-name">' . esc_html($name) . '</span>';
+    }
     if ($light && $dark) {
       return $img($light, 'light-mode-img') . $img($dark, 'dark-mode-img');
     }
@@ -272,5 +282,32 @@ if (!function_exists('ishf_sponsor_logo_html')):
       return $img($light, '');
     }
     return '<span class="partner-name">' . esc_html($name) . '</span>';
+  }
+endif;
+
+
+//------------------------------------------------------------------------------
+//  Organisers: the sponsors of the first sponsor type (highest "Order", e.g.
+//  "Organisation"), shown in the header and footer of every page
+//  (includes/organisers.php). Another type can be chosen by slug:
+//  add_filter('ishf_organisers_sponsor_type', fn() => 'organisation');
+//------------------------------------------------------------------------------
+if (!function_exists('ishf_get_organisers')):
+  function ishf_get_organisers()
+  {
+    $groups = ishf_get_sponsor_groups();
+    if (empty($groups)) {
+      return array();
+    }
+    $slug = (string) apply_filters('ishf_organisers_sponsor_type', '');
+    if ($slug !== '') {
+      foreach ($groups as $group) {
+        if ($group['slug'] === $slug) {
+          return $group['items'];
+        }
+      }
+      return array();
+    }
+    return $groups[0]['items'];
   }
 endif;

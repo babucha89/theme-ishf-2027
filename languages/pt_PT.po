@@ -2344,6 +2344,9 @@ msgstr ""
 "ficheiro são cortadas), ignorando o tamanho automático e o Tamanho do "
 "logótipo (%). Em ecrãs pequenos continua a reduzir para caber."
 
+msgid "Organised by"
+msgstr "Organização"
+
 #~ msgid "Agenda"
 #~ msgstr "Programa"
 

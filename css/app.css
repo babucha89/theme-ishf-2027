@@ -590,7 +590,7 @@ html.dark-mode .theme-toggle-icon-moon { opacity: 1; transform: translate(-50%, 
 .nav-social { display: none; padding-right: 10px; border-right: 1px solid var(--colors-border-default); } /* shown >= 1400px (media queries): below that the menu needs the room; the off-canvas menu and footer keep the links */
 html.dark-mode .nav-social { border-right-color: var(--colors-night-700); }
 .offcanvas-social { margin-top: 24px; }
-.footer-social { justify-content: center; margin-top: var(--grids-spacing-8); }
+.footer-social { justify-content: flex-start; margin-top: var(--grids-spacing-8); margin-left: -10px; } /* icon glyphs line up with the Newsletter heading and link */
 .lang-switch { display: flex; align-items: center; gap: 8px; list-style: none; margin: 0; padding: 0; }
 .lang-switch a { display: inline-flex; align-items: center; justify-content: center; min-width: 44px; height: 32px; box-sizing: border-box; padding: 0 12px; border-radius: var(--grids-radius-pill); border: 1.5px solid var(--lang-border); color: var(--lang-color); font-family: var(--fonts-family-headings); font-weight: 700; font-size: var(--fonts-size-xsmall); letter-spacing: 0.04em; text-decoration: none; transition: background-color 0.2s ease, color 0.2s ease; }
 .lang-switch a { gap: 6px; }
@@ -631,6 +631,23 @@ html.dark-mode .ishf-footer-simple { background-color: var(--colors-neutral-gray
 .ishf-footer-full a:hover { text-decoration: underline; text-underline-offset: 3px; color: var(--colors-neutral-white); }
 .ishf-footer-full .footer-logo { width: 100%; max-width: 280px; height: auto; display: block; }
 .footer-heading { margin: 0 0 16px; font-family: var(--fonts-family-labels); font-size: var(--fonts-size-xsmall); font-weight: var(--fonts-weight-labels); text-transform: uppercase; letter-spacing: 1.2px; color: var(--colors-brand-blue-tejo); }
+/* Organised by (includes/organisers.php): header band, homepage hero, footer */
+.organisers { display: flex; flex-wrap: wrap; align-items: center; gap: var(--grids-spacing-8) var(--grids-spacing-16); margin-top: var(--grids-spacing-16); }
+.organisers-label { margin: 0; font-family: var(--fonts-family-labels); font-size: var(--fonts-size-xsmall); font-weight: var(--fonts-weight-labels); letter-spacing: 1.2px; text-transform: uppercase; color: var(--colors-text-muted); }
+.organisers-logos { list-style: none; display: flex; flex-wrap: wrap; align-items: center; gap: var(--grids-spacing-12) var(--grids-spacing-24); margin: 0; padding: 0; }
+.organisers-logos li { display: flex; align-items: center; }
+.organisers-logos a { display: inline-flex; align-items: center; text-decoration: none; transition: opacity 0.2s ease; }
+.organisers-logos a:hover { opacity: 0.75; text-decoration: none; }
+.organisers-logos img { display: block; max-width: 100%; }
+.organisers-logos .partner-name { font-size: var(--fonts-size-small); font-weight: 700; color: var(--colors-text-heading); }
+.hero-ctas + .organisers { margin-top: var(--grids-spacing-32); }
+.organisers--footer { margin-top: var(--grids-spacing-48); padding-top: var(--grids-spacing-24); border-top: 1px solid rgba(var(--colors-neutral-white-rgb), 0.15); gap: var(--grids-spacing-12) var(--grids-spacing-32); }
+.organisers--footer .organisers-label { color: rgba(var(--colors-neutral-white-rgb), 0.75); }
+.organisers--footer .organisers-logos { gap: var(--grids-spacing-16) var(--grids-spacing-48); }
+.organisers--footer .partner-name { color: var(--colors-neutral-white); }
+.organisers--footer + .footer-bottom { margin-top: var(--grids-spacing-24); }
+.logo-light-backing { display: inline-block; padding: 6px 10px; background-color: var(--colors-neutral-white); border-radius: var(--grids-radius-sm); } /* footer: a logo without a dark-mode version */
+.logo-light-backing img { display: block; }
 .footer-bottom { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px; margin-top: 40px; padding-top: 24px; border-top: 1px solid rgba(var(--colors-neutral-white-rgb), 0.15); }
 .footer-bottom .footer-legal-text { margin: 0; color: var(--colors-neutral-white); font-size: var(--fonts-size-xsmall); }
 .footer-tools { display: flex; align-items: center; gap: 12px; }
@@ -972,7 +989,6 @@ html.dark-mode .lisbon-info-card { background-color: var(--colors-night-900); bo
 
 /* --- s only: 640px to 959px (tablet) ------------------------------------------------------- */
 @media (min-width: 640px) and (max-width: 959.98px) {
-  .footer-social { justify-content: flex-end; }
   .festival-numbers-list { grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: var(--grids-spacing-32); }
   .edition-modal-top.has-logo { grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); }
   .edition-modal-top.has-logo .edition-modal-logo-box { height: 220px; }
@@ -992,7 +1008,6 @@ html.dark-mode .lisbon-info-card { background-color: var(--colors-night-900); bo
   .festival-numbers-head { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
   .festival-numbers-list { grid-template-columns: repeat(4, minmax(0, 1fr)); column-gap: var(--grids-spacing-32); }
   .lisbon-partner-row { grid-template-columns: 220px minmax(0, 1fr); align-items: center; gap: var(--grids-spacing-32); }
-  .footer-social { justify-content: flex-end; }
   .ishf-hero { padding: var(--grids-spacing-96) 0; }
   .hero-art { max-width: none; margin-top: 0; }
   .hero-photo { aspect-ratio: 16 / 9; }

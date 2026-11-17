@@ -1,7 +1,8 @@
 <?php
 // -----------------------------------------------------------------------------
 //  Section: HEADER
-//  Clean header with the project logo and the claim side-by-side
+//  Clean header with the project logo and the claim side-by-side; the organisers'
+//  logos under the claim (includes/organisers.php)
 //  Base Theme: ISHF 2027 Lisbon
 //  Edited: BB, 27-OUT-2026
 // -----------------------------------------------------------------------------
@@ -38,6 +39,7 @@ $ishf_header_compact = !isset($args['compact']) || !empty($args['compact']);
           <p class="header-claim uk-margin-remove" role="heading" aria-level="2">
             <?php _e('Cities with Soul: It Begins with a Key', TEXT_DOMAIN); ?>
           </p>
+          <?php get_template_part('includes/organisers', null, array('context' => 'header')); // Organised by: CM Lisboa, Gebalis, Housing Europe (Sponsors) ?>
         </div>
       </div>
 

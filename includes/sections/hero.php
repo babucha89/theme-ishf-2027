@@ -2,7 +2,8 @@
 // -----------------------------------------------------------------------------
 //  Section: HERO (Home)
 //  Figma: Home / Hero. Eyebrow, H1 claim, date, lead, two CTAs (Call for Sessions
-//  + Partnership, same targets as the landing page), wide photo.
+//  + Partnership, same targets as the landing page), organisers' logos
+//  (includes/organisers.php), wide photo.
 //  The only <h1> of the page.
 //
 //  Photo (art direction):
@@ -73,6 +74,7 @@ $has_hero_file   = file_exists($hero_file_path);
             <?php echo esc_html($hero_cta_2); ?>
           </button>
         </div>
+        <?php get_template_part('includes/organisers', null, array('context' => 'header')); // Organised by (Sponsors: first sponsor type) ?>
       </div>
 
       <div class="uk-width-1-1 uk-width-expand@s">
