@@ -13,7 +13,7 @@ globs: **/*
   - `footer.php`: Calls `wp_footer()` and closes `</body></html>`.
   - `functions.php`: Declares `BASE_*` constants, enqueues UIkit 3 + Google Fonts + jQuery, registers theme supports, and sets up text domain.
 - **Path Constants**:
-  - Use `BASE_SITE`, `BASE_CSS`, `BASE_IMAGES`, `BASE_BRANDING`, `BASE_ASSETS`, `BASE_FAVICONS`, `BASE_JS`, `BASE_FONTS`.
+  - Use `BASE_SITE`, `BASE_CSS`, `BASE_IMAGES`, `BASE_BRANDING`, `BASE_ASSETS`, `BASE_FAVICONS`, `BASE_JS`, `BASE_OG_IMAGES`.
   - Use the `BASE_*` constants (the old `CHILD_BASE_*` aliases were removed in Nov 2026).
 - **Form Project Tokens & API Webhooks**:
   - `NEWSLETTER_API_ENDPOINT`: `https://api-mm.boostsolutions.pt/api/webhooks/gravity-forms`.

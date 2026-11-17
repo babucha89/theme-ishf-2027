@@ -84,15 +84,11 @@ defined('SITE_USE_EDITIONS') or define('SITE_USE_EDITIONS', true);
 defined('BASE_SITE') or define('BASE_SITE', get_home_url());
 defined('BASE_CSS') or define('BASE_CSS', str_replace(BASE_SITE, REDIRECT_SITE, get_stylesheet_directory_uri()) . '/css/');
 defined('BASE_IMAGES') or define('BASE_IMAGES', str_replace(BASE_SITE, REDIRECT_SITE, get_stylesheet_directory_uri()) . '/img/');
-defined('BASE_BACKGROUNDS') or define('BASE_BACKGROUNDS', str_replace(BASE_SITE, REDIRECT_SITE, get_stylesheet_directory_uri()) . '/img/backgrounds/');
 defined('BASE_BRANDING') or define('BASE_BRANDING', str_replace(BASE_SITE, REDIRECT_SITE, get_stylesheet_directory_uri()) . '/img/branding/');
 defined('BASE_ASSETS') or define('BASE_ASSETS', str_replace(BASE_SITE, REDIRECT_SITE, get_stylesheet_directory_uri()) . '/img/assets/');
-defined('BASE_BANNERS') or define('BASE_BANNERS', str_replace(BASE_SITE, REDIRECT_SITE, get_stylesheet_directory_uri()) . '/img/banners/');
 defined('BASE_OG_IMAGES') or define('BASE_OG_IMAGES', str_replace(BASE_SITE, REDIRECT_SITE, get_stylesheet_directory_uri()) . '/img/og-images/');
-defined('BASE_SPONSORS') or define('BASE_SPONSORS', str_replace(BASE_SITE, REDIRECT_SITE, get_stylesheet_directory_uri()) . '/img/sponsors/');
 defined('BASE_FAVICONS') or define('BASE_FAVICONS', str_replace(BASE_SITE, REDIRECT_SITE, get_stylesheet_directory_uri()) . '/favicons/');
 defined('BASE_JS') or define('BASE_JS', str_replace(BASE_SITE, REDIRECT_SITE, get_stylesheet_directory_uri()) . '/js/');
-defined('BASE_FONTS') or define('BASE_FONTS', str_replace(BASE_SITE, REDIRECT_SITE, get_stylesheet_directory_uri()) . '/fonts/');
 
 // -- API Webhook Endpoint & Form Project Tokens
 // https://api-mm.boostsolutions.pt/
@@ -323,6 +319,18 @@ add_action('wp', function () {
   setlocale(LC_ALL, $base . '.UTF-8', $base . '.utf8', str_replace('_', '-', $base) . '.UTF-8', $base);
   setlocale(LC_NUMERIC, 'C');
 });
+
+//------------------------------------------------------------------------------
+//  /favicon.ico at the site root: serve the theme's icon (WordPress would answer
+//  with its own "W" logo when no Site Icon is set in Appearance > Customize).
+//------------------------------------------------------------------------------
+add_action('do_faviconico', function () {
+  if (has_site_icon()) {
+    return; // a Site Icon set in WordPress wins (core redirects to it)
+  }
+  wp_redirect(BASE_FAVICONS . 'favicon.ico', 301);
+  exit;
+}, 5);
 
 //------------------------------------------------------------------------------
 //  Helper: Open Graph Tags

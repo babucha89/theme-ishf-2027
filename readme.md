@@ -9,7 +9,7 @@ Standalone Base Theme for the official website of the **International Social Hou
 ### 1. Standalone Base Theme (Parent Theme)
 - Fully self-contained base theme (`style.css` declares `Theme Name: ISHF 2027` without a `Template:` dependency).
 - Independent root template files: `header.php`, `footer.php`, `index.php`, `page.php`, `page-under-maintenance.php`.
-- Core base constants: `BASE_SITE`, `BASE_CSS`, `BASE_IMAGES`, `BASE_BRANDING`, `BASE_ASSETS`, `BASE_FAVICONS`, `BASE_JS`, `BASE_FONTS`.
+- Core base constants: `BASE_SITE`, `BASE_CSS`, `BASE_IMAGES`, `BASE_BRANDING`, `BASE_ASSETS`, `BASE_FAVICONS`, `BASE_JS`, `BASE_OG_IMAGES`.
 - Self-contained textdomain loading (`load_theme_textdomain(TEXT_DOMAIN, ...)`).
 
 ### 2. UIkit 3 Framework Compliance & Button System
@@ -34,6 +34,7 @@ Standalone Base Theme for the official website of the **International Social Hou
 - **Form and modal tokens** (`--modal-*`, `--form-*`): the partnership modal/form defines the field colours; the newsletter modal reuses it and only overrides the tokens on `.modal-ishf-newsletter`. Change colours there, not in the rules.
 - **Languages**: English (GB) is the base language (UK spelling in all theme strings), Portuguese (pt_PT) through `languages/pt_PT.po` and WPML. The PHP locale, `og:locale` / `og:locale:alternate` and the language switch's `lang` / `hreflang` follow the page's locale (en_GB / pt_PT). The site language itself is set in WordPress (Settings > General > Site Language: English (UK)) and WPML (Languages > Edit Languages > English: locale en_GB).
 - **WPML configuration** `wpml-config.xml`: which custom fields are translated per language (Lisbon page texts, homepage hero texts, edition venue / address / city, attendant organisation / function, seminar location), copied from the original (dates, order, coordinates, logos, ...) or copied once (sponsor URL, YouTube IDs). Post types and taxonomies stay in WPML > Settings.
+- **Favicons** (`includes/favicons.php`, files in `favicons/`): `favicon.svg`, `favicon-96x96.png`, `favicon.ico`, `apple-touch-icon.png`, `site.webmanifest` (icons `web-app-manifest-192x192/512x512.png`, paths relative to the manifest). `/favicon.ico` at the site root redirects to the theme's icon unless a Site Icon is set in WordPress.
 - **Line endings**: LF everywhere. `.gitattributes` (`* text=auto eol=lf`, binaries excluded) makes Git write LF on every checkout, Windows included, whatever `core.autocrlf` says; `.editorconfig` tells the editor to save LF (UTF-8, 2-space indent).
 - **Consolidated Media Queries** (aligned with UIkit breakpoints, at the end of `css/app.css` and `css/app.min.css`):
     - Small / mobile: `@media (max-width: 639.98px)`
