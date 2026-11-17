@@ -611,7 +611,7 @@ html.dark-mode .nav-social { border-right-color: var(--colors-night-700); }
 .ishf-simplified-header--compact .header-content-wrapper { padding-top: 16px; padding-bottom: 16px; }
 .ishf-simplified-header--compact .header-project-logo { max-width: 200px; }
 .ishf-simplified-header--compact .header-claim { font-size: clamp(20px, 1.9vw, 28px); }
-.ishf-simplified-header--compact .header-claim-inner { border-left-width: 3px; padding-left: 16px; margin-top: 0; text-align: left; }
+.ishf-simplified-header--compact .header-claim-inner { border-left: 0; padding-left: 0; margin-top: 0; text-align: left; } /* inner pages: the yellow bar separates the claim from the organisers instead */
 .ishf-simplified-header--compact .header-logo-col { justify-content: flex-end; }
 
 /* --- Footers: always dark (navy in light mode, near-black in dark mode) --------------------- */
@@ -643,7 +643,7 @@ html.dark-mode .ishf-footer-simple { background-color: var(--colors-neutral-gray
 .organisers--offcanvas .organisers-label { color: rgba(var(--colors-neutral-white-rgb), 0.75); }
 .organisers--offcanvas .organisers-logos { flex-direction: column; align-items: flex-start; gap: var(--grids-spacing-16); }
 .organisers--offcanvas .partner-name { color: var(--colors-neutral-white); }
-.organisers--band { justify-content: flex-end; margin-top: 0; gap: var(--grids-spacing-8) var(--grids-spacing-24); }
+.organisers--band { justify-content: flex-end; margin-top: 0; gap: var(--grids-spacing-8) var(--grids-spacing-24); padding-left: var(--grids-spacing-24); border-left: 3px solid var(--colors-brand-sunny-yellow); }
 .organisers--band .organisers-logos { gap: var(--grids-spacing-16) var(--grids-spacing-32); }
 .hero-ctas + .organisers { margin-top: var(--grids-spacing-32); }
 .organisers--footer { margin-top: var(--grids-spacing-48); padding-top: var(--grids-spacing-24); border-top: 1px solid rgba(var(--colors-neutral-white-rgb), 0.15); gap: var(--grids-spacing-12) var(--grids-spacing-32); }
@@ -726,13 +726,13 @@ html.dark-mode .ishf-hero { background-color: var(--colors-night-800); }
 /* --- Journeys ----------------------------------------------------------------------------- */
 .ishf-journeys, .ishf-news, .ishf-partners { padding: var(--grids-spacing-64) 0; }
 .ishf-journeys .ishf-eyebrow { margin: 0 0 var(--grids-spacing-24); }
-.journey-grid { list-style: none; margin-left: 0; padding: 0; }
+.journey-grid { list-style: none; padding: 0; } /* keep UIkit's grid margin: cards line up with the container edge */
 .journey-card { position: relative; display: flex; flex-direction: column; align-items: flex-start; justify-content: space-between; gap: var(--grids-spacing-24); height: 100%; min-height: 280px; padding: var(--grids-spacing-32); border-radius: var(--grids-radius-lg); overflow: hidden; }
 .journey-card--tejo { background-color: var(--colors-brand-blue-tejo); }
 .journey-card--sun  { background-color: var(--colors-brand-sunny-yellow); }
 .journey-card--navy { background-color: var(--colors-brand-blue-sky); }
 html.dark-mode .journey-card--navy { background-color: var(--colors-night-700); }
-.journey-title { font-size: var(--fonts-size-heading-3); line-height: 1.2; margin: 0; position: relative; z-index: 1; }
+.journey-title { font-size: var(--fonts-size-heading-3); line-height: 1.2; margin: 0; padding-right: 104px; position: relative; z-index: 1; } /* keeps the title clear of the illustration (top right) */
 .journey-card--tejo .journey-title, .journey-card--sun .journey-title { color: var(--colors-brand-blue-sky); }
 .journey-card--navy .journey-title { color: var(--colors-neutral-white); }
 .journey-art { position: absolute; right: var(--grids-spacing-16); top: var(--grids-spacing-16); width: 96px; height: auto; opacity: 0.9; pointer-events: none; }
@@ -769,7 +769,7 @@ html.dark-mode .cta-box-streaming .streaming-video-wrapper { box-shadow: 0 16px 
 .streaming-play-btn:hover, .streaming-play-btn:focus { background-color: var(--colors-brand-sunny-yellow-hover); transform: scale(1.08); }
 
 /* --- News (home) + related articles: cards live in section 6 -------------------------------- */
-.news-grid { list-style: none; margin-left: 0; padding: 0; margin-top: var(--grids-spacing-24); }
+.news-grid { list-style: none; padding: 0; margin-top: var(--grids-spacing-24); } /* keep UIkit's grid margin */
 .article-related { background-color: var(--colors-background-muted); }
 html.dark-mode .article-related { background-color: var(--colors-background-default); }
 
@@ -947,7 +947,7 @@ html.dark-mode .lisbon-hero { background-color: var(--colors-night-800); }
 .lisbon-partner-row { padding: var(--grids-spacing-24) 0; border-bottom: 1px solid var(--colors-border-default); }
 html.dark-mode .lisbon-partner-rows, html.dark-mode .lisbon-partner-row { border-color: var(--colors-night-700); }
 .lisbon-partner-label { margin: 0; font-family: var(--fonts-family-labels); font-size: var(--fonts-size-small); font-weight: 700; letter-spacing: .08em; line-height: 1.4; text-transform: uppercase; color: var(--colors-text-eyebrow); }
-.lisbon-partner-logos { list-style: none; padding: 0; } /* UIkit grid: two logos per row on phones, natural widths from 640px */
+.lisbon-partner-logos { list-style: none; padding: 0; } /* UIkit grid, every logo at its own size (back office), wrapping */
 .lisbon-partner-logos li { display: flex; align-items: center; min-height: 80px; }
 .lisbon-partner-row:first-child .lisbon-partner-logos li { min-height: 100px; }
 .lisbon-partner-tile { display: inline-flex; align-items: center; justify-content: center; max-width: 100%; text-decoration: none; border-radius: var(--grids-radius-sm); transition: opacity 0.2s ease; }
@@ -978,6 +978,8 @@ html.dark-mode .lisbon-info-card { background-color: var(--colors-night-900); bo
 
 /* --- Below s: < 640px (mobile, 390 design) ------------------------------------------------- */
 @media (max-width: 639.98px) {
+  /* Phones: 30px side padding for all page content (UIkit: 15px here, 30px from 640px, 40px from 960px) */
+  .uk-container { padding-left: 30px; padding-right: 30px; }
   :root { --fonts-size-heading-1: 40px; --fonts-size-heading-2: 32px; --fonts-size-heading-3: 26px; --fonts-size-heading-4: 22px; --fonts-size-heading-5: 18px; --fonts-size-lead: 18px; }
   .header-content-wrapper { padding-top: 35px; padding-bottom: 40px; }
   .header-project-logo { max-width: 320px; }
@@ -1108,6 +1110,8 @@ html.dark-mode .lisbon-info-card { background-color: var(--colors-night-900); bo
 .programme-live-time { margin: 0 0 var(--grids-spacing-24); font-size: var(--fonts-size-small); color: var(--colors-text-muted); }
 .programme-live-card .uk-button { margin-top: auto; }
 @media (min-width: 960px) { .programme-live { padding: var(--grids-spacing-48); } }
+.programme-teaser-more { margin-top: var(--grids-spacing-32); }
+.programme-teaser-more .uk-button { display: inline-flex; align-items: center; gap: 8px; }
 .programme-teaser-card { height: 100%; box-sizing: border-box; padding: var(--grids-spacing-24); background-color: var(--colors-background-card); border: 1px solid var(--colors-border-default); border-radius: var(--grids-radius-lg); }
 .programme-teaser-when { margin: 0 0 8px; font-family: var(--fonts-family-headings); font-weight: 700; font-size: var(--fonts-size-small); text-transform: uppercase; letter-spacing: .06em; color: var(--colors-text-eyebrow); }
 .programme-teaser-title { margin: 0 0 8px; font-size: var(--fonts-size-heading-5); line-height: var(--fonts-line-height-headings); }

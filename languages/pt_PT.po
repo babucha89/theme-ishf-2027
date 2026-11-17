@@ -2347,6 +2347,97 @@ msgstr ""
 msgid "Organised by"
 msgstr "Organização"
 
+msgid "until 31 Dec 2026"
+msgstr "até 31 dez. 2026"
+
+msgid "from 1 Jan 2027"
+msgstr "a partir de 1 jan. 2027"
+
+msgid "Hero"
+msgstr "Destaque principal"
+
+msgid "The only H1 of the homepage."
+msgstr "O único H1 da página inicial."
+
+msgid "Dates and place"
+msgstr "Datas e local"
+
+msgid "7 – 9 June 2027 · Lisbon, Portugal"
+msgstr "7 – 9 de junho de 2027 · Lisboa, Portugal"
+
+msgid "The photo is this page's featured image."
+msgstr "A fotografia é a imagem de destaque desta página."
+
+msgid "Main button (%s)"
+msgstr "Botão principal (%s)"
+
+msgid "Leads to the Call for Sessions form."
+msgstr "Abre o formulário da Call for Sessions."
+
+msgid "Leads to the attendee registration form."
+msgstr "Abre o formulário de inscrição de participantes."
+
+msgid "Main button link (optional)"
+msgstr "Ligação do botão principal (opcional)"
+
+msgid "Leave empty to follow the dates above."
+msgstr "Deixe vazio para seguir as datas acima."
+
+msgid "Second button"
+msgstr "Segundo botão"
+
+msgid "Second button link (optional)"
+msgstr "Ligação do segundo botão (opcional)"
+
+msgid "Leave empty to open the partnership form."
+msgstr "Deixe vazio para abrir o formulário de parcerias."
+
+msgid "Journeys"
+msgstr "Percursos"
+
+msgid "Section title"
+msgstr "Título da secção"
+
+msgid "Participate: title (%s)"
+msgstr "Participar: título (%s)"
+
+msgid "Call for Sessions."
+msgstr "Call for Sessions."
+
+msgid "Participate: button (%s)"
+msgstr "Participar: botão (%s)"
+
+msgid "Attendee registration."
+msgstr "Inscrição de participantes."
+
+msgid "Partnerships: title"
+msgstr "Parcerias: título"
+
+msgid "Opens the partnership form."
+msgstr "Abre o formulário de parcerias."
+
+msgid "Partnerships: button"
+msgstr "Parcerias: botão"
+
+msgid "Homepage: hero and journeys"
+msgstr "Página inicial: destaque e percursos"
+
+msgid ""
+"Texts of the homepage in this language. An empty field shows the text in "
+"grey."
+msgstr ""
+"Textos da página inicial neste idioma. Um campo vazio mostra o texto a "
+"cinzento."
+
+msgid "See the full programme"
+msgstr "Ver o programa completo"
+
+msgid "Current edition"
+msgstr "Edição atual"
+
+msgid "Current edition · ISHF 2027"
+msgstr "Edição atual · ISHF 2027"
+
 #~ msgid "Agenda"
 #~ msgstr "Programa"
 

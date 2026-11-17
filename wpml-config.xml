@@ -28,11 +28,23 @@
     <custom-field action="translate">ishf_lisbon_access_title</custom-field>
     <custom-field action="translate">ishf_lisbon_access_text</custom-field>
 
-    <!-- Homepage hero (page sections/hero, includes/sections/hero.php) -->
+    <!-- Homepage hero and journeys (page sections/hero, includes/home-fields.php) -->
     <custom-field action="translate">ishf_hero_eyebrow</custom-field>
     <custom-field action="translate">ishf_hero_date</custom-field>
     <custom-field action="translate">ishf_hero_cta_primary</custom-field>
     <custom-field action="translate">ishf_hero_cta_secondary</custom-field>
+    <custom-field action="translate">ishf_hero_title</custom-field>
+    <custom-field action="translate">ishf_hero_lead</custom-field>
+    <custom-field action="translate">ishf_hero_cta_primary_2027</custom-field>
+    <custom-field action="translate">ishf_journeys_title</custom-field>
+    <custom-field action="translate">ishf_journeys_participate_title</custom-field>
+    <custom-field action="translate">ishf_journeys_participate_button</custom-field>
+    <custom-field action="translate">ishf_journeys_attend_title</custom-field>
+    <custom-field action="translate">ishf_journeys_attend_button</custom-field>
+    <custom-field action="translate">ishf_journeys_partner_title</custom-field>
+    <custom-field action="translate">ishf_journeys_partner_button</custom-field>
+    <custom-field action="copy-once">ishf_hero_cta_primary_url</custom-field>
+    <custom-field action="copy-once">ishf_hero_cta_secondary_url</custom-field>
 
     <!-- Past editions (CPT editions) -->
     <custom-field action="translate">ishf_cf_city</custom-field>

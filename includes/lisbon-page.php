@@ -19,7 +19,7 @@ if (!function_exists('ishf_lisbon_fields')):
   {
     return array(
       __('Header', TEXT_DOMAIN) => array(
-        'eyebrow'  => array(__('Eyebrow', TEXT_DOMAIN), 'text', __('Next edition · ISHF 2027', TEXT_DOMAIN), __('Small text above the title. The title is the page title; the lead under the facts is the page Excerpt.', TEXT_DOMAIN)),
+        'eyebrow'  => array(__('Eyebrow', TEXT_DOMAIN), 'text', __('Current edition · ISHF 2027', TEXT_DOMAIN), __('Small text above the title. The title is the page title; the lead under the facts is the page Excerpt.', TEXT_DOMAIN)),
         'dates'    => array(__('Dates', TEXT_DOMAIN), 'text', __('7 – 9 June 2027', TEXT_DOMAIN), ''),
         'location' => array(__('Location', TEXT_DOMAIN), 'text', __('Centro de Congressos de Lisboa · Lisbon, Portugal', TEXT_DOMAIN), ''),
       ),

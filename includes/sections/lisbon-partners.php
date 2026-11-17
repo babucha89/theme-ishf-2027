@@ -45,7 +45,7 @@ if (empty($partner_groups)) {
               $tag      = $url ? 'a' : 'span';
               $attrs    = $url ? ' href="' . esc_url($url) . '" target="_blank" rel="noopener noreferrer"' : '';
             ?>
-              <li class="<?php echo (int) get_post_meta($sid, 'ishf_cf_logo_width', true) > 0 ? 'uk-width-1-1' : 'uk-width-1-2'; ?> uk-width-auto@s">
+              <li class="uk-width-auto"><?php // every size (automatic, Logo size %, Logo width px) is kept on phones; only wider than the screen shrinks ?>
                 <<?php echo $tag . $attrs; ?> class="lisbon-partner-tile<?php echo $has_dark ? ' has-dark-logo' : ''; ?>">
                   <?php echo ishf_sponsor_logo_html($sid, 'medium', $gi === 0 ? array(7200, 220, 96) : array(4400, 180, 76)); ?>
                   <?php if ($url): ?><span class="sr-only"> (<?php _e('opens in a new tab', TEXT_DOMAIN); ?>)</span><?php endif; ?>

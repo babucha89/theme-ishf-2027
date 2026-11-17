@@ -82,13 +82,13 @@ $ishf_edition_logo = function ($post_id, $class) {
       <?php endforeach; ?>
       <?php $side = count($ishf_editions) % 2 === 0 ? 'left' : 'right'; // the next edition continues the alternation ?>
 
-      <!-- Next edition: Lisbon 2027 -->
+      <!-- Current edition: Lisbon 2027 -->
       <li class="edition-item edition-item--next uk-grid uk-grid-collapse">
         <div class="edition-marker-col uk-width-auto"><span class="edition-marker" aria-hidden="true">2027</span></div>
         <div class="edition-card-col uk-width-expand<?php echo $side === 'left' ? ' uk-flex-first@m' : ''; ?>">
         <div class="edition-card edition-card--next">
           <div class="edition-card-body">
-            <p class="edition-card-eyebrow"><?php _e('Next edition', TEXT_DOMAIN); ?></p>
+            <p class="edition-card-eyebrow"><?php _e('Current edition', TEXT_DOMAIN); ?></p>
             <h2 class="edition-card-title"><?php _e('Lisbon 2027', TEXT_DOMAIN); ?></h2>
             <p class="edition-card-dates">
               <span data-uk-icon="icon: calendar; ratio: 0.85" aria-hidden="true"></span>

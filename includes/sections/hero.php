@@ -17,30 +17,24 @@
 //    3. A skyline illustration placeholder.
 //  Decorative art is aria-hidden.
 //
-//  Content (editable and translatable through WPML): optional page 'sections/hero'
-//  (a child of the "sections" page, like Streaming). When it exists and is published:
-//    - Page title ........ H1 claim
-//    - Excerpt ........... lead paragraph
-//    - Featured image .... hero photo (after the 'ishf_hero_image_id' filter)
-//    - Custom fields ..... ishf_hero_eyebrow, ishf_hero_date (text shown, e.g. "7 – 9 June 2027 · Lisbon, Portugal"),
-//                          ishf_hero_cta_primary, ishf_hero_cta_secondary (button labels)
-//  Any empty value falls back to the translated string in languages/*.po.
+//  Content (back office, translatable with WPML): the "Homepage: hero and journeys"
+//  box of the page 'sections/hero' (includes/home-fields.php): eyebrow, title, dates,
+//  text, main button (one label until 31 Dec 2026 -> Call for Sessions, another from
+//  1 Jan 2027 -> attendee registration; optional own link), second button (opens the
+//  partnership form unless it has a link). Photo: the page's featured image.
+//  Any empty field falls back to the translated default in languages/*.po.
 //  Base Theme: ISHF 2027 Lisbon
 // -----------------------------------------------------------------------------
-$hero_page = get_page_by_path('sections/hero');
-$hero_page = $hero_page ? ishf_translate_post($hero_page) : null; // current-language version (WPML)
-if ($hero_page && $hero_page->post_status !== 'publish') {
-  $hero_page = null;
-}
-$hero_meta = function ($key) use ($hero_page) {
-  return $hero_page ? trim((string) get_post_meta($hero_page->ID, $key, true)) : '';
-};
-$hero_eyebrow = $hero_meta('ishf_hero_eyebrow') ?: __('International Social Housing Festival', TEXT_DOMAIN);
-$hero_title   = ($hero_page && trim($hero_page->post_title) !== '') ? $hero_page->post_title : __('Cities with Soul: It Begins with a Key', TEXT_DOMAIN);
-$hero_date    = $hero_meta('ishf_hero_date');
-$hero_lead    = ($hero_page && trim($hero_page->post_excerpt) !== '') ? $hero_page->post_excerpt : __('The international meeting point for people, ideas and solutions to build more inclusive, sustainable and resilient cities.', TEXT_DOMAIN);
-$hero_cta_1   = $hero_meta('ishf_hero_cta_primary') ?: __('Submit Your Proposal', TEXT_DOMAIN);
-$hero_cta_2   = $hero_meta('ishf_hero_cta_secondary') ?: __('Become a Partner', TEXT_DOMAIN);
+$hero_page    = ishf_home_content_page(); // page sections/hero, current language (includes/home-fields.php)
+$hero_phase   = ishf_get_register_phase(); // 'b2b' until 31 Dec 2026, 'b2c' from 1 Jan 2027
+$hero_eyebrow = ishf_home_get('ishf_hero_eyebrow');
+$hero_title   = ishf_home_get('ishf_hero_title');
+$hero_date    = ishf_home_get('ishf_hero_date');
+$hero_lead    = ishf_home_get('ishf_hero_lead');
+$hero_cta_1   = ishf_home_get($hero_phase === 'b2c' ? 'ishf_hero_cta_primary_2027' : 'ishf_hero_cta_primary');
+$hero_cta_1_url = ishf_home_get('ishf_hero_cta_primary_url') ?: ($hero_phase === 'b2c' ? ishf_get_register_url() : ishf_get_call_for_sessions_url());
+$hero_cta_2   = ishf_home_get('ishf_hero_cta_secondary');
+$hero_cta_2_url = ishf_home_get('ishf_hero_cta_secondary_url'); // empty: opens the partnership form
 
 $hero_image_id   = (int) apply_filters('ishf_hero_image_id', 0);
 if (!$hero_image_id && $hero_page) {
@@ -57,22 +51,22 @@ $has_hero_file   = file_exists($hero_file_path);
         <p class="ishf-eyebrow uk-margin-remove-bottom"><?php echo esc_html($hero_eyebrow); ?></p>
         <h1 id="hero-title" class="hero-title uk-margin-small-top"><?php echo esc_html($hero_title); ?></h1>
         <p class="hero-date uk-margin-remove-top">
-          <?php if ($hero_date !== ''): ?>
-            <time datetime="2027-06-07/2027-06-09"><?php echo esc_html($hero_date); ?></time>
-          <?php else: ?>
-            <time datetime="2027-06-07/2027-06-09"><?php _e('7 – 9 June 2027', TEXT_DOMAIN); ?></time> · <?php _e('Lisbon, Portugal', TEXT_DOMAIN); ?>
-          <?php endif; ?>
+          <time datetime="2027-06-07/2027-06-09"><?php echo esc_html($hero_date); ?></time>
         </p>
         <p class="uk-text-lead hero-lead uk-width-xlarge">
-          <?php echo esc_html($hero_lead); ?>
+          <?php echo nl2br(esc_html($hero_lead)); ?>
         </p>
         <div class="hero-ctas uk-flex uk-flex-wrap">
-          <a class="uk-button uk-button-primary" id="btn-hero-call-for-sessions" href="<?php echo esc_url(ishf_get_call_for_sessions_url()); ?>" target="_blank" rel="noopener noreferrer">
+          <a class="uk-button uk-button-primary" id="btn-hero-call-for-sessions" href="<?php echo esc_url($hero_cta_1_url); ?>" target="_blank" rel="noopener noreferrer">
             <?php echo esc_html($hero_cta_1); ?><span class="uk-visually-hidden"> <?php _e('(opens in a new tab)', TEXT_DOMAIN); ?></span>
           </a>
-          <button type="button" class="uk-button uk-button-default" data-uk-toggle="target: #modal-partnership" aria-haspopup="dialog" aria-controls="modal-partnership">
-            <?php echo esc_html($hero_cta_2); ?>
-          </button>
+          <?php if ($hero_cta_2_url !== ''): ?>
+            <a class="uk-button uk-button-default" href="<?php echo esc_url($hero_cta_2_url); ?>"><?php echo esc_html($hero_cta_2); ?></a>
+          <?php else: ?>
+            <button type="button" class="uk-button uk-button-default" data-uk-toggle="target: #modal-partnership" aria-haspopup="dialog" aria-controls="modal-partnership">
+              <?php echo esc_html($hero_cta_2); ?>
+            </button>
+          <?php endif; ?>
         </div>
         <?php get_template_part('includes/organisers', null, array('context' => 'header')); // Organised by (Sponsors: first sponsor type) ?>
       </div>
