@@ -926,6 +926,8 @@ html.dark-mode .lisbon-hero { background-color: var(--colors-night-800); }
 .lisbon-intro .uk-article-content { max-width: 760px; }
 .lisbon-intro + .lisbon-partners { padding-top: 0; }
 .lisbon-section-title { margin: var(--grids-spacing-8) 0 var(--grids-spacing-32); font-size: var(--fonts-size-heading-2); line-height: 1.15; color: var(--colors-text-heading); }
+.lisbon-partners-intro { max-width: 760px; margin: calc(-1 * var(--grids-spacing-16)) 0 var(--grids-spacing-32); color: var(--colors-text-default); }
+.lisbon-partners-intro > :last-child { margin-bottom: 0; }
 .lisbon-partner-rows { border-top: 1px solid var(--colors-border-default); }
 .lisbon-partner-row { display: grid; gap: var(--grids-spacing-16); padding: var(--grids-spacing-24) 0; border-bottom: 1px solid var(--colors-border-default); }
 html.dark-mode .lisbon-partner-rows, html.dark-mode .lisbon-partner-row { border-color: var(--colors-night-700); }

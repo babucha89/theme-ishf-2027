@@ -43,7 +43,7 @@ if ($has_result && !empty($partnership_result['fields'])) {
           </h2>
 
           <p class="section-lead uk-margin-bottom">
-            <?php _e('Position your organization at the center of the European conversation on affordable and sustainable living. As a festival partner, you will connect with international policymakers, municipal leaders, housing federations, and urban innovators.', TEXT_DOMAIN); ?>
+            <?php _e('Position your organisation at the centre of the European conversation on affordable and sustainable living. As a festival partner, you will connect with international policymakers, municipal leaders, housing federations, and urban innovators.', TEXT_DOMAIN); ?>
           </p>
 
           <div class="partnership-benefits uk-margin-medium-bottom">
@@ -51,7 +51,7 @@ if ($has_result && !empty($partnership_result['fields'])) {
               <span data-uk-icon="icon: check; ratio: 1.1" class="benefit-icon uk-margin-small-right"></span>
               <div>
                 <strong><?php _e('Global Visibility:', TEXT_DOMAIN); ?></strong>
-                <span><?php _e('Showcase your brand and vision before 2,000+ delegates and hundreds of participating organizations from over 40 countries.', TEXT_DOMAIN); ?></span>
+                <span><?php _e('Showcase your brand and vision before 2,000+ delegates and hundreds of participating organisations from over 40 countries.', TEXT_DOMAIN); ?></span>
               </div>
             </div>
 
@@ -159,7 +159,7 @@ if ($has_result && !empty($partnership_result['fields'])) {
                 <div class="uk-grid-small uk-child-width-1-1 uk-child-width-1-2@s uk-margin-small-top" data-uk-grid>
                   <div>
                     <label class="uk-form-label" for="partnership-company">
-                      <?php _e('Company / Organization *', TEXT_DOMAIN); ?>
+                      <?php _e('Company / Organisation *', TEXT_DOMAIN); ?>
                     </label>
                     <div class="uk-form-controls">
                       <input class="uk-input" type="text" name="partnership_company" id="partnership-company"
@@ -199,7 +199,7 @@ if ($has_result && !empty($partnership_result['fields'])) {
                   </label>
                   <div class="uk-form-controls">
                     <textarea class="uk-textarea" name="partnership_message" id="partnership-message" rows="3"
-                              placeholder="<?php esc_attr_e('Tell us about your organization or preferred areas of collaboration...', TEXT_DOMAIN); ?>"><?php echo esc_textarea($p_message); ?></textarea>
+                              placeholder="<?php esc_attr_e('Tell us about your organisation or preferred areas of collaboration...', TEXT_DOMAIN); ?>"><?php echo esc_textarea($p_message); ?></textarea>
                   </div>
                 </div>
 

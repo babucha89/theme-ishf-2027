@@ -15,14 +15,19 @@ if (!function_exists('ishf_get_sponsor_groups')) {
   return;
 }
 $partner_groups = ishf_get_sponsor_groups();
+// Texts from the "Lisbon 2027 page" box (page-lisbon-2027.php passes them)
+$partner_eyebrow = isset($args['eyebrow']) ? $args['eyebrow'] : __('Who makes it happen', TEXT_DOMAIN);
+$partner_title   = isset($args['title']) ? $args['title'] : __('Organisers and partners', TEXT_DOMAIN);
+$partner_intro   = isset($args['intro']) ? trim((string) $args['intro']) : '';
 if (empty($partner_groups)) {
   return;
 }
 ?>
 <section id="organisers" class="uk-section lisbon-partners" aria-labelledby="organisers-title">
   <div class="uk-container">
-    <p class="ishf-eyebrow"><?php _e('Who makes it happen', TEXT_DOMAIN); ?></p>
-    <h2 id="organisers-title" class="lisbon-section-title"><?php _e('Organisers and partners', TEXT_DOMAIN); ?></h2>
+    <?php if ($partner_eyebrow !== ''): ?><p class="ishf-eyebrow"><?php echo esc_html($partner_eyebrow); ?></p><?php endif; ?>
+    <h2 id="organisers-title" class="lisbon-section-title"><?php echo esc_html($partner_title); ?></h2>
+    <?php if ($partner_intro !== ''): ?><div class="lisbon-partners-intro"><?php echo wpautop(wp_kses_post($partner_intro)); ?></div><?php endif; ?>
 
     <div class="lisbon-partner-rows">
       <?php foreach ($partner_groups as $gi => $group):

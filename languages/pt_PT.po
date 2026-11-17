@@ -155,7 +155,7 @@ msgid "Corporate Email *"
 msgstr "E-mail Profissional *"
 
 #: includes/sections/ctas.php:122
-msgid "name@organization.com"
+msgid "name@organisation.com"
 msgstr "nome@organizacao.pt"
 
 #: includes/sections/ctas.php:132
@@ -163,7 +163,7 @@ msgid "Company / Organization *"
 msgstr "Empresa / Organização *"
 
 #: includes/sections/ctas.php:136
-msgid "Organization name"
+msgid "Organisation name"
 msgstr "Nome da organização"
 
 #: includes/sections/ctas.php:143
@@ -307,7 +307,7 @@ msgstr "Cidades com Alma: Tudo Começa com uma Chave"
 
 #: includes/sections/ctas.php:57
 msgid ""
-"Join ISHF 2027 as an official partner. Connect your organization with key "
+"Join ISHF 2027 as an official partner. Connect your organisation with key "
 "decision-makers and urban housing pioneers shaping the future of affordable "
 "living."
 msgstr ""
@@ -423,7 +423,7 @@ msgstr "Transição Ecológica"
 
 #: includes/sections/about.php:48
 msgid ""
-"Decarbonizing neighborhoods through circular renovation, renewable energy "
+"Decarbonising neighbourhoods through circular renovation, renewable energy "
 "communities, and climate-resilient architecture."
 msgstr ""
 "Descarbonização de bairros através da renovação circular, comunidades de "
@@ -448,7 +448,7 @@ msgstr "Lisboa e Além"
 #: includes/sections/about.php:76
 msgid ""
 "Immerse in field visits, site tours, and international debates hosted in "
-"historic and revitalized venues across the Portuguese capital."
+"historic and revitalised venues across the Portuguese capital."
 msgstr ""
 "Participe em visitas de estudo no terreno e debates internacionais acolhidos"
 " em espaços históricos e revitalizados por toda a capital portuguesa."
@@ -463,7 +463,7 @@ msgstr "Torne-se Parceiro Oficial do ISHF 2027"
 
 #: includes/sections/partnership.php:41
 msgid ""
-"Position your organization at the center of the European conversation on "
+"Position your organisation at the centre of the European conversation on "
 "affordable and sustainable living. As a festival partner, you will connect "
 "with international policymakers, municipal leaders, housing federations, and"
 " urban innovators."
@@ -480,7 +480,7 @@ msgstr "Visibilidade Global:"
 #: includes/sections/partnership.php:49
 msgid ""
 "Showcase your brand and vision before 2,000+ delegates and hundreds of "
-"participating organizations from over 40 countries."
+"participating organisations from over 40 countries."
 msgstr ""
 "Destaque a sua marca e visão perante mais de 2.000 delegados e centenas de "
 "organizações participantes de mais de 40 países."
@@ -550,7 +550,7 @@ msgid "Corporate Email *"
 msgstr "Email Institucional / Profissional *"
 
 #: includes/sections/partnership.php:148
-msgid "Company / Organization *"
+msgid "Company / Organisation *"
 msgstr "Empresa / Organização *"
 
 #: includes/sections/partnership.php:158
@@ -697,7 +697,7 @@ msgstr ""
 "novamente."
 
 #: includes/form-handlers.php:41
-msgid "You must authorize data processing to submit this form."
+msgid "You must authorise data processing to submit this form."
 msgstr ""
 "É necessário autorizar o tratamento de dados para submeter este formulário."
 
@@ -762,7 +762,7 @@ msgstr ""
 "contacte-nos diretamente."
 
 #: includes/form-handlers.php:178
-msgid "You must authorize data processing to subscribe."
+msgid "You must authorise data processing to subscribe."
 msgstr "É necessário autorizar o tratamento de dados para subscrever."
 
 #: includes/form-handlers.php:230 includes/form-handlers.php:244
@@ -979,7 +979,7 @@ msgid "Professional registration, open until 31 December 2026."
 msgstr "Inscrição profissional, aberta até 31 de dezembro de 2026."
 
 msgid ""
-"I expressly authorize the processing of my personal data for marketing "
+"I expressly authorise the processing of my personal data for marketing "
 "communications by Medialivre, S.A. and its partner entities, via telephone, "
 "email, SMS, and postal mail."
 msgstr ""
@@ -1017,7 +1017,7 @@ msgstr "O nome completo é obrigatório."
 msgid "Corporate Email is required."
 msgstr "O e-mail profissional é obrigatório."
 
-msgid "Company / Organization is required."
+msgid "Company / Organisation is required."
 msgstr "A empresa / organização é obrigatória."
 
 msgid "Job Title / Role is required."
@@ -1084,7 +1084,7 @@ msgstr "ex.: Housing Europe / Câmara Municipal de Lisboa"
 msgid "e.g. Director of Sustainability"
 msgstr "ex.: Diretora de Sustentabilidade"
 
-msgid "Tell us about your organization or preferred areas of collaboration..."
+msgid "Tell us about your organisation or preferred areas of collaboration..."
 msgstr ""
 "Fale-nos da sua organização ou das áreas de colaboração que prefere..."
 
@@ -1977,7 +1977,7 @@ msgstr ""
 "Opcional. Versão clara do logótipo, apresentada quando o site está em modo "
 "escuro."
 
-msgid "Organization"
+msgid "Organisation"
 msgstr "Organização"
 
 msgid "Past Editions"
@@ -2245,6 +2245,76 @@ msgstr "%s (abre num novo separador)"
 
 msgid "Higher numbers are shown first (defaults to -1)."
 msgstr "Os números mais altos aparecem primeiro (por omissão: -1)."
+
+msgid "Header"
+msgstr "Cabeçalho"
+
+msgid "Eyebrow"
+msgstr "Sobretítulo"
+
+msgid ""
+"Small text above the title. The title is the page title; the lead under the "
+"facts is the page Excerpt."
+msgstr ""
+"Texto pequeno acima do título. O título é o título da página; o texto de "
+"destaque por baixo é o Excerto da página."
+
+msgid "Centro de Congressos de Lisboa · Lisbon, Portugal"
+msgstr "Centro de Congressos de Lisboa · Lisboa, Portugal"
+
+msgid "Title"
+msgstr "Título"
+
+msgid ""
+"The logos come from Sponsors, one row per Sponsor Type (Order field: higher "
+"numbers first)."
+msgstr ""
+"Os logótipos vêm de Patrocinadores, uma linha por Tipo de Patrocinador "
+"(campo Ordem: números mais altos primeiro)."
+
+msgid "Introduction (optional)"
+msgstr "Introdução (opcional)"
+
+msgid "Shown under the title. Leave empty for none."
+msgstr "Aparece por baixo do título. Deixe vazio para não mostrar."
+
+msgid "Card 1: primary venue"
+msgstr "Cartão 1: local principal"
+
+msgid "Card title"
+msgstr "Título do cartão"
+
+msgid "Venue name"
+msgstr "Nome do local"
+
+msgid "Text"
+msgstr "Texto"
+
+msgid "Map link (optional)"
+msgstr "Ligação do mapa (opcional)"
+
+msgid "Leave empty to search the venue name and address on Google Maps."
+msgstr "Deixe vazio para pesquisar o nome e a morada do local no Google Maps."
+
+msgid "Card 2: transport & participant support"
+msgstr "Cartão 2: transportes e apoio ao participante"
+
+msgid "Card 3: venue accessibility & transport model"
+msgstr "Cartão 3: acessibilidade do local e modelo de mobilidade"
+
+msgid "Lisbon 2027 page"
+msgstr "Página Lisboa 2027"
+
+msgid ""
+"Texts of this page in this language. An empty field shows the text in grey."
+msgstr ""
+"Textos desta página neste idioma. Um campo vazio mostra o texto a cinzento."
+
+msgid ""
+"Simple HTML (links, bold) allowed; a blank line starts a new paragraph."
+msgstr ""
+"É permitido HTML simples (ligações, negrito); uma linha em branco começa um "
+"novo parágrafo."
 
 #~ msgid "Agenda"
 #~ msgstr "Programa"

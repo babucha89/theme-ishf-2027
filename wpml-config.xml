@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  WPML configuration of the ISHF 2027 theme (read by WPML when the theme is active).
+  translate = edited per language in the translation editor
+  copy      = always the same value as the original (changing the original updates the translations)
+  copy-once = copied when the translation is created, then free to differ
+  ignore    = internal, not translated
+  Post types and taxonomies (translatable or not) stay in WPML > Settings.
+-->
+<wpml-config>
+  <custom-fields>
+    <!-- Lisbon 2027 page (includes/lisbon-page.php) -->
+    <custom-field action="translate">ishf_lisbon_eyebrow</custom-field>
+    <custom-field action="translate">ishf_lisbon_dates</custom-field>
+    <custom-field action="translate">ishf_lisbon_location</custom-field>
+    <custom-field action="translate">ishf_lisbon_org_eyebrow</custom-field>
+    <custom-field action="translate">ishf_lisbon_org_title</custom-field>
+    <custom-field action="translate">ishf_lisbon_org_intro</custom-field>
+    <custom-field action="translate">ishf_lisbon_venue_eyebrow</custom-field>
+    <custom-field action="translate">ishf_lisbon_venue_title</custom-field>
+    <custom-field action="translate">ishf_lisbon_venue_card_title</custom-field>
+    <custom-field action="translate">ishf_lisbon_venue_name</custom-field>
+    <custom-field action="translate">ishf_lisbon_venue_address</custom-field>
+    <custom-field action="translate">ishf_lisbon_venue_text</custom-field>
+    <custom-field action="translate">ishf_lisbon_venue_map_url</custom-field>
+    <custom-field action="translate">ishf_lisbon_transport_title</custom-field>
+    <custom-field action="translate">ishf_lisbon_transport_text</custom-field>
+    <custom-field action="translate">ishf_lisbon_access_title</custom-field>
+    <custom-field action="translate">ishf_lisbon_access_text</custom-field>
+
+    <!-- Homepage hero (page sections/hero, includes/sections/hero.php) -->
+    <custom-field action="translate">ishf_hero_eyebrow</custom-field>
+    <custom-field action="translate">ishf_hero_date</custom-field>
+    <custom-field action="translate">ishf_hero_cta_primary</custom-field>
+    <custom-field action="translate">ishf_hero_cta_secondary</custom-field>
+
+    <!-- Past editions (CPT editions) -->
+    <custom-field action="translate">ishf_cf_city</custom-field>
+    <custom-field action="translate">ishf_cf_venue</custom-field>
+    <custom-field action="translate">ishf_cf_address</custom-field>
+    <custom-field action="copy">ishf_cf_date_start</custom-field>
+    <custom-field action="copy">ishf_cf_date_end</custom-field>
+    <custom-field action="copy">ishf_cf_date_precision</custom-field>
+    <custom-field action="copy">ishf_cf_geolocation</custom-field>
+    <custom-field action="copy">ishf_cf_logo_dark_id</custom-field>
+    <custom-field action="ignore">_ishf_geocoded_address</custom-field>
+    <custom-field action="ignore">_ishf_geocoded_coords</custom-field>
+
+    <!-- Sponsors (logo_dark_id above), attendants, seminars, FAQs -->
+    <custom-field action="copy-once">ishf_cf_url</custom-field>
+    <custom-field action="copy">ishf_cf_order</custom-field>
+    <custom-field action="translate">ishf_cf_organization</custom-field>
+    <custom-field action="translate">ishf_cf_function</custom-field>
+    <custom-field action="copy">ishf_cf_gender</custom-field>
+    <custom-field action="translate">ishf_cf_event_local</custom-field>
+    <custom-field action="copy">ishf_cf_date_time_1</custom-field>
+    <custom-field action="copy">ishf_cf_date_time_2</custom-field>
+    <custom-field action="copy">ishf_cf_date_end_time_1</custom-field>
+    <custom-field action="copy">ishf_cf_date_end_time_2</custom-field>
+    <custom-field action="copy">ishf_cf_is_provisional</custom-field>
+    <custom-field action="copy-once">ishf_cf_youtube_id_1</custom-field>
+    <custom-field action="copy-once">ishf_cf_youtube_id_2</custom-field>
+  </custom-fields>
+
+  <custom-term-fields>
+    <!-- Sponsor Types: display order -->
+    <custom-term-field action="copy">ishf_cf_sponsor_types_order</custom-term-field>
+  </custom-term-fields>
+</wpml-config>

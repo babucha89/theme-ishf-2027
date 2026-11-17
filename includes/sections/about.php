@@ -48,7 +48,7 @@
             <?php _e('Green Transition', TEXT_DOMAIN); ?>
           </h3>
           <p class="uk-text-small uk-margin-remove">
-            <?php _e('Decarbonizing neighborhoods through circular renovation, renewable energy communities, and climate-resilient architecture.', TEXT_DOMAIN); ?>
+            <?php _e('Decarbonising neighbourhoods through circular renovation, renewable energy communities, and climate-resilient architecture.', TEXT_DOMAIN); ?>
           </p>
         </div>
       </div>
@@ -78,7 +78,7 @@
             <?php _e('Lisbon & Beyond', TEXT_DOMAIN); ?>
           </h3>
           <p class="uk-text-small uk-margin-remove">
-            <?php _e('Immerse in field visits, site tours, and international debates hosted in historic and revitalized venues across the Portuguese capital.', TEXT_DOMAIN); ?>
+            <?php _e('Immerse in field visits, site tours, and international debates hosted in historic and revitalised venues across the Portuguese capital.', TEXT_DOMAIN); ?>
           </p>
         </div>
       </div>

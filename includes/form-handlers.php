@@ -138,7 +138,7 @@ function ishf_process_landing_forms() {
     }
 
     if (empty($company)) {
-      $field_errors['partnership_company'] = __('Company / Organization is required.', TEXT_DOMAIN);
+      $field_errors['partnership_company'] = __('Company / Organisation is required.', TEXT_DOMAIN);
     }
 
     if (empty($position)) {
@@ -146,7 +146,7 @@ function ishf_process_landing_forms() {
     }
 
     if (empty($consent)) {
-      $field_errors['partnership_consent'] = __('You must authorize data processing to submit this form.', TEXT_DOMAIN);
+      $field_errors['partnership_consent'] = __('You must authorise data processing to submit this form.', TEXT_DOMAIN);
     }
 
     if (empty($field_errors) && function_exists('ishf2027_email_exists') && ishf2027_email_exists($email, 'partnerships')) {
@@ -192,7 +192,7 @@ function ishf_process_landing_forms() {
     $email_body .= '<p style="color: #64748b;">' . sprintf(esc_html__('A new partnership inquiry was submitted through %s.', TEXT_DOMAIN), esc_html($site_name)) . '</p>';
     $email_body .= '<hr style="border: 0; border-top: 1px solid #e2e8f0; margin: 20px 0;" />';
     $email_body .= '<p><strong>' . esc_html__('Name', TEXT_DOMAIN) . ':</strong> ' . esc_html($name) . '</p>';
-    $email_body .= '<p><strong>' . esc_html__('Company / Organization', TEXT_DOMAIN) . ':</strong> ' . esc_html($company) . '</p>';
+    $email_body .= '<p><strong>' . esc_html__('Company / Organisation', TEXT_DOMAIN) . ':</strong> ' . esc_html($company) . '</p>';
     $email_body .= '<p><strong>' . esc_html__('Job Title / Role', TEXT_DOMAIN) . ':</strong> ' . esc_html($position) . '</p>';
     $email_body .= '<p><strong>' . esc_html__('Email', TEXT_DOMAIN) . ':</strong> <a href="mailto:' . esc_attr($email) . '">' . esc_html($email) . '</a></p>';
     if (!empty($phone)) {
@@ -338,7 +338,7 @@ function ishf_process_landing_forms() {
     }
 
     if (empty($consent)) {
-      $field_errors['newsletter_consent'] = __('You must authorize data processing to subscribe.', TEXT_DOMAIN);
+      $field_errors['newsletter_consent'] = __('You must authorise data processing to subscribe.', TEXT_DOMAIN);
     }
 
     if (empty($field_errors) && function_exists('ishf2027_email_exists') && ishf2027_email_exists($email, 'newsletter')) {

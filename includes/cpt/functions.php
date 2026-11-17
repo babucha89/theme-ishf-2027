@@ -20,7 +20,7 @@ function ishf_get_custom_fields()
     // -- ATTENDANTS
     array(
       'name'        => 'organization',
-      'title'       => __('Organization', TEXT_DOMAIN),
+      'title'       => __('Organisation', TEXT_DOMAIN),
       'description' => __('Name of the Association or Company', TEXT_DOMAIN),
       'type'        => 'text',
       'scope'       => array('attendants'),

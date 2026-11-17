@@ -91,7 +91,7 @@ $show_boxes = !isset($args['show_boxes']) || $args['show_boxes'];
                 <?php _e('Partner with Us', TEXT_DOMAIN); ?>
               </h2>
               <p class="cta-intro uk-margin-remove-top">
-                <?php _e('Join ISHF 2027 as an official partner. Connect your organization with key decision-makers and urban housing pioneers shaping the future of affordable living.', TEXT_DOMAIN); ?>
+                <?php _e('Join ISHF 2027 as an official partner. Connect your organisation with key decision-makers and urban housing pioneers shaping the future of affordable living.', TEXT_DOMAIN); ?>
               </p>
             </div>
           </div>
@@ -198,7 +198,7 @@ $show_boxes = !isset($args['show_boxes']) || $args['show_boxes'];
                 <div class="uk-form-controls">
                   <input class="uk-input<?php echo isset($p_errors['partnership_email']) ? ' uk-form-danger' : ''; ?>"
                          type="email" name="partnership_email" id="partnership-email"
-                         value="<?php echo esc_attr($p_email); ?>" placeholder="<?php esc_attr_e('name@organization.com', TEXT_DOMAIN); ?>"
+                         value="<?php echo esc_attr($p_email); ?>" placeholder="<?php esc_attr_e('name@organisation.com', TEXT_DOMAIN); ?>"
                          autocomplete="email" inputmode="email" required aria-required="true"
                          <?php echo isset($p_errors['partnership_email']) ? ' aria-invalid="true"' : ''; ?> />
                   <?php if (isset($p_errors['partnership_email'])): ?>
@@ -213,12 +213,12 @@ $show_boxes = !isset($args['show_boxes']) || $args['show_boxes'];
             <div class="uk-grid-small uk-child-width-1-1 uk-child-width-1-2@s uk-margin-small-top" data-uk-grid>
               <div>
                 <label class="uk-form-label" for="partnership-company">
-                  <?php _e('Company / Organization *', TEXT_DOMAIN); ?>
+                  <?php _e('Company / Organisation *', TEXT_DOMAIN); ?>
                 </label>
                 <div class="uk-form-controls">
                   <input class="uk-input<?php echo isset($p_errors['partnership_company']) ? ' uk-form-danger' : ''; ?>"
                          type="text" name="partnership_company" id="partnership-company"
-                         value="<?php echo esc_attr($p_company); ?>" placeholder="<?php esc_attr_e('Organization name', TEXT_DOMAIN); ?>"
+                         value="<?php echo esc_attr($p_company); ?>" placeholder="<?php esc_attr_e('Organisation name', TEXT_DOMAIN); ?>"
                          autocomplete="organization" required aria-required="true"
                          <?php echo isset($p_errors['partnership_company']) ? ' aria-invalid="true"' : ''; ?> />
                   <?php if (isset($p_errors['partnership_company'])): ?>

@@ -67,7 +67,7 @@ defined('SITE_CALL_FOR_SESSIONS_URL') or define('SITE_CALL_FOR_SESSIONS_URL', 'h
 // -- GDPR / Privacy Consent Disclaimers (Configurable)
 // For Partnership & Newsletter Forms it's applied the same consent.
 defined('SITE_DEFAULT_CONSENT_DISCLAIMER') or define('SITE_DEFAULT_CONSENT_DISCLAIMER',
-'I expressly authorize the processing of my personal data for marketing communications by Medialivre, S.A. and its partner entities, via telephone, email, SMS, and postal mail.');
+'I expressly authorise the processing of my personal data for marketing communications by Medialivre, S.A. and its partner entities, via telephone, email, SMS, and postal mail.');
 defined('SITE_PARTNERSHIP_CONSENT_DISCLAIMER') or define('SITE_PARTNERSHIP_CONSENT_DISCLAIMER', SITE_DEFAULT_CONSENT_DISCLAIMER);
 defined('SITE_NEWSLETTER_CONSENT_DISCLAIMER') or define('SITE_NEWSLETTER_CONSENT_DISCLAIMER', SITE_DEFAULT_CONSENT_DISCLAIMER);
 
@@ -128,8 +128,6 @@ function ishf_setup()
   load_theme_textdomain(TEXT_DOMAIN, __DIR__ . '/languages');
 
   date_default_timezone_set('Europe/Lisbon');
-  $locale = !ISHF_IS_LOCAL ? 'pt_PT.UTF-8' : 'pt-PT.UTF-8';
-  setlocale(LC_ALL, $locale);
 
   // Modern Theme Features (Explicitly declared <title> in header.php for WAVE / WCAG 2.1 AA compliance)
   remove_action('wp_head', '_wp_render_title_tag', 1);
@@ -328,6 +326,18 @@ endif;
 
 
 //------------------------------------------------------------------------------
+//  PHP locale follows the language of the page (WordPress / WPML locale):
+//  English (GB) pages en_GB, Portuguese pages pt_PT. Set on 'wp', after WPML
+//  has chosen the language. LC_NUMERIC stays "C" so decimals keep a dot.
+//------------------------------------------------------------------------------
+add_action('wp', function () {
+  $wp_locale = determine_locale();                          // e.g. en_GB, pt_PT
+  $base      = preg_replace('/[^A-Za-z_]/', '', $wp_locale);
+  setlocale(LC_ALL, $base . '.UTF-8', $base . '.utf8', str_replace('_', '-', $base) . '.UTF-8', $base);
+  setlocale(LC_NUMERIC, 'C');
+});
+
+//------------------------------------------------------------------------------
 //  Helper: Open Graph Tags
 //------------------------------------------------------------------------------
 if (!function_exists('ishf_open_graph_tags')):
@@ -340,6 +350,18 @@ if (!function_exists('ishf_open_graph_tags')):
     ?>
     <!-- Open Graph / Social Meta Tags -->
     <meta property="og:type" content="website" />
+    <meta property="og:locale" content="<?php echo esc_attr(determine_locale()); ?>" />
+    <?php
+    // Other languages of the site (WPML), e.g. pt_PT on an English page
+    $og_langs = apply_filters('wpml_active_languages', null, array('skip_missing' => 0));
+    if (is_array($og_langs)) {
+      foreach ($og_langs as $og_lang) {
+        if (empty($og_lang['active']) && !empty($og_lang['default_locale'])) {
+          echo '<meta property="og:locale:alternate" content="' . esc_attr($og_lang['default_locale']) . '" />' . "\n";
+        }
+      }
+    }
+    ?>
     <meta property="og:url" content="<?php echo esc_url($og_url); ?>" />
     <meta property="og:title" content="<?php echo esc_attr($og_title); ?>" />
     <meta property="og:description" content="<?php echo esc_attr($og_description); ?>" />
@@ -481,7 +503,7 @@ if (!function_exists('ishf_get_partnership_disclaimer')):
   {
     $fallback = defined('SITE_DEFAULT_CONSENT_DISCLAIMER')
       ? SITE_DEFAULT_CONSENT_DISCLAIMER
-      : __('I expressly authorize the processing of my personal data for marketing communications by Medialivre, S.A. and its partner entities, via telephone, email, SMS, and postal mail.', TEXT_DOMAIN);
+      : __('I expressly authorise the processing of my personal data for marketing communications by Medialivre, S.A. and its partner entities, via telephone, email, SMS, and postal mail.', TEXT_DOMAIN);
 
     $default = defined('SITE_PARTNERSHIP_CONSENT_DISCLAIMER')
       ? SITE_PARTNERSHIP_CONSENT_DISCLAIMER
@@ -502,7 +524,7 @@ if (!function_exists('ishf_get_newsletter_disclaimer')):
   {
     $fallback = defined('SITE_DEFAULT_CONSENT_DISCLAIMER')
       ? SITE_DEFAULT_CONSENT_DISCLAIMER
-      : __('I expressly authorize the processing of my personal data for marketing communications by Medialivre, S.A. and its partner entities, via telephone, email, SMS, and postal mail.', TEXT_DOMAIN);
+      : __('I expressly authorise the processing of my personal data for marketing communications by Medialivre, S.A. and its partner entities, via telephone, email, SMS, and postal mail.', TEXT_DOMAIN);
 
     $default = defined('SITE_NEWSLETTER_CONSENT_DISCLAIMER')
       ? SITE_NEWSLETTER_CONSENT_DISCLAIMER
@@ -519,6 +541,7 @@ endif;
 require_once __DIR__ . '/includes/post-meta-clipping.php';
 require_once __DIR__ . '/includes/seo.php';
 require_once __DIR__ . '/includes/programme.php';
+require_once __DIR__ . '/includes/lisbon-page.php'; // Lisbon 2027 page: content fields (back office)
 require_once __DIR__ . '/includes/uikit-walker.php';
 require_once __DIR__ . '/includes/uikit-menus.php';
 
