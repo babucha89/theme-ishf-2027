@@ -94,19 +94,6 @@ defined('BASE_FAVICONS') or define('BASE_FAVICONS', str_replace(BASE_SITE, REDIR
 defined('BASE_JS') or define('BASE_JS', str_replace(BASE_SITE, REDIRECT_SITE, get_stylesheet_directory_uri()) . '/js/');
 defined('BASE_FONTS') or define('BASE_FONTS', str_replace(BASE_SITE, REDIRECT_SITE, get_stylesheet_directory_uri()) . '/fonts/');
 
-// -- Backwards Compatibility Aliases
-defined('CHILD_BASE_SITE') or define('CHILD_BASE_SITE', BASE_SITE);
-defined('CHILD_BASE_CSS') or define('CHILD_BASE_CSS', BASE_CSS);
-defined('CHILD_BASE_IMAGES') or define('CHILD_BASE_IMAGES', BASE_IMAGES);
-defined('CHILD_BASE_BACKGROUNDS') or define('CHILD_BASE_BACKGROUNDS', BASE_BACKGROUNDS);
-defined('CHILD_BASE_BRANDING') or define('CHILD_BASE_BRANDING', BASE_BRANDING);
-defined('CHILD_BASE_ASSETS') or define('CHILD_BASE_ASSETS', BASE_ASSETS);
-defined('CHILD_BASE_BANNERS') or define('CHILD_BASE_BANNERS', BASE_BANNERS);
-defined('CHILD_BASE_OG_IMAGES') or define('CHILD_BASE_OG_IMAGES', BASE_OG_IMAGES);
-defined('CHILD_BASE_SPONSORS') or define('CHILD_BASE_SPONSORS', BASE_SPONSORS);
-defined('CHILD_BASE_FAVICONS') or define('CHILD_BASE_FAVICONS', BASE_FAVICONS);
-defined('CHILD_BASE_JS') or define('CHILD_BASE_JS', BASE_JS);
-
 // -- API Webhook Endpoint & Form Project Tokens
 // https://api-mm.boostsolutions.pt/
 defined('NEWSLETTER_API_ENDPOINT') or define('NEWSLETTER_API_ENDPOINT', 'https://api-mm.boostsolutions.pt/api/webhooks/gravity-forms');

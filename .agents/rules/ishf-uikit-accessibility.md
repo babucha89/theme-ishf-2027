@@ -14,7 +14,7 @@ globs: **/*
   - `functions.php`: Declares `BASE_*` constants, enqueues UIkit 3 + Google Fonts + jQuery, registers theme supports, and sets up text domain.
 - **Path Constants**:
   - Use `BASE_SITE`, `BASE_CSS`, `BASE_IMAGES`, `BASE_BRANDING`, `BASE_ASSETS`, `BASE_FAVICONS`, `BASE_JS`, `BASE_FONTS`.
-  - All `CHILD_BASE_*` constants are aliased to `BASE_*` for backwards compatibility.
+  - Use the `BASE_*` constants (the old `CHILD_BASE_*` aliases were removed in Nov 2026).
 - **Form Project Tokens & API Webhooks**:
   - `NEWSLETTER_API_ENDPOINT`: `https://api-mm.boostsolutions.pt/api/webhooks/gravity-forms`.
   - `PARTNERSHIP_PROJECT_TOKEN`: Token for Partnership contact inquiries form.
