@@ -400,7 +400,7 @@ h6, .uk-h6 { font-size: var(--fonts-size-heading-6); }
 .uk-text-lead, .section-lead { font-size: var(--fonts-size-lead); line-height: var(--fonts-line-height-lead); color: var(--colors-text-muted); }
 .uk-text-small { font-size: var(--fonts-size-small); }
 .ishf-eyebrow { font-family: var(--fonts-family-labels); font-weight: var(--fonts-weight-labels); font-size: var(--fonts-size-xsmall); text-transform: uppercase; letter-spacing: 1.2px; color: var(--colors-text-eyebrow); }
-p { color: var(--colors-text-default); line-height: var(--fonts-line-height-texts); }
+p, em { color: var(--colors-text-default); line-height: var(--fonts-line-height-texts); }
 /* Links: Blue Sky on white 13:1 (Light), Blue Tejo on night 8.7:1 (Dark). Links inside running text are underlined (WCAG 1.4.1). */
 a { color: var(--colors-text-link); text-decoration: none; transition: color 0.2s ease; }
 a:hover, a:focus { color: var(--colors-text-link-hover); }
@@ -913,12 +913,6 @@ html.dark-mode .editions-cta-chips a { background-color: var(--colors-night-900)
 .editions-cta-chips a:hover, .editions-cta-chips a:focus { background-color: var(--colors-brand-sunny-yellow); border-color: var(--colors-brand-sunny-yellow); color: var(--colors-brand-blue-sky); text-decoration: none; }
 .editions-cta-action .uk-button { display: inline-flex; align-items: center; gap: 8px; }
 
-/* =============================================================================
-   8. MEDIA QUERIES (UIkit breakpoints: s 640 / m 960 / l 1200 / xl 1600)
-   Overrides sit at the end of the file by project convention.
-   ============================================================================= */
-
-
 /* --- Festival in numbers (About page, includes/sections/festival-numbers.php) ----------------- */
 .festival-numbers { color: var(--colors-neutral-white); background-color: var(--colors-brand-blue-sky); }
 html.dark-mode .festival-numbers { background-color: var(--colors-night-950); border-top: 1px solid var(--colors-night-700); border-bottom: 1px solid var(--colors-night-700); }
@@ -976,6 +970,14 @@ html.dark-mode .lisbon-info-card { background-color: var(--colors-night-900); bo
 .lisbon-info-text p { margin: 0 0 var(--grids-spacing-12); }
 .lisbon-info-text > :last-child { margin-bottom: 0; }
 .lisbon-info-link { display: inline-flex; align-items: center; gap: 6px; margin-top: auto; padding-top: var(--grids-spacing-8); font-size: var(--fonts-size-small); font-weight: 700; }
+
+
+
+/* =============================================================================
+   8. MEDIA QUERIES (UIkit breakpoints: s 640 / m 960 / l 1200 / xl 1600)
+   Overrides sit at the end of the file by project convention.
+   ============================================================================= */
+
 /* --- Below s: < 640px (mobile, 390 design) ------------------------------------------------- */
 @media (max-width: 639.98px) {
   .lisbon-partner-logos { column-gap: var(--grids-spacing-32); }
