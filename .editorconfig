@@ -1,0 +1,12 @@
+# Editor settings for the ISHF 2027 theme (VS Code / Antigravity read this with the EditorConfig extension)
+root = true
+
+[*]
+charset = utf-8
+end_of_line = lf
+insert_final_newline = true
+trim_trailing_whitespace = false
+
+[*.{php,js,css,json,md,svg,webmanifest}]
+indent_style = space
+indent_size = 2

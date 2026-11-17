@@ -32,6 +32,7 @@ Standalone Base Theme for the official website of the **International Social Hou
   - Dedicated component tokens for Theme Toggle (`--toggle-*`), CTA Boxes (`--cta-*`), and UIkit Buttons (`--btn-*`).
 - **Stylesheet structure** (`css/app.css`, minified copy `css/app.min.css`; regenerate the minified file after every edit): 1. root and tokens (`:root` + `html.dark-mode`), 2. base elements, 3. utilities and accessibility, 4. UIkit components (buttons, labels, forms, alerts, modals, dropdowns), 5. site chrome (cookies, navigation, header, footers), 6. shared components (CTA box, news card), 7. page sections in page order, 8. media queries, 9. reduced motion. A table of contents sits at the top of section 2. `html.dark-mode` selectors appear only where a rule cannot be expressed through a token.
 - **Form and modal tokens** (`--modal-*`, `--form-*`): the partnership modal/form defines the field colours; the newsletter modal reuses it and only overrides the tokens on `.modal-ishf-newsletter`. Change colours there, not in the rules.
+- **Line endings**: LF everywhere. `.gitattributes` (`* text=auto eol=lf`, binaries excluded) makes Git write LF on every checkout, Windows included, whatever `core.autocrlf` says; `.editorconfig` tells the editor to save LF (UTF-8, 2-space indent).
 - **Consolidated Media Queries** (aligned with UIkit breakpoints, at the end of `css/app.css` and `css/app.min.css`):
     - Small / mobile: `@media (max-width: 639.98px)`
     - Medium / tablet: `@media (min-width: 640px) and (max-width: 959.98px)`
