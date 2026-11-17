@@ -6,8 +6,9 @@
 //  logo and website (URL field) are edited in Sponsors, per language with WPML.
 //  Sizes are balanced by area like the Lisbon 2027 page (the "Logo size (%)"
 //  field applies, "Logo width (px)" does not).
-//  get_template_part('includes/organisers', null, array('context' => 'header'|'footer'));
+//  get_template_part('includes/organisers', null, array('context' => 'header'|'mobile'|'footer'));
 //    - header: light / dark logo follow the site mode
+//    - mobile: same, smaller, for the slim row under the menu bar (< 960px)
 //    - footer: dark background in both modes, so always the dark-mode logo
 //  Renders nothing when there are no organisers.
 //  Base Theme: ISHF 2027 Lisbon
@@ -20,13 +21,15 @@ $ishf_org_ids = ishf_get_organisers();
 if (empty($ishf_org_ids)) {
   return;
 }
-$ishf_org_context = (isset($args['context']) && $args['context'] === 'footer') ? 'footer' : 'header';
-$ishf_org_box     = $ishf_org_context === 'footer' ? array(3000, 170, 52) : array(2600, 150, 46);
+$ishf_org_context = (isset($args['context']) && in_array($args['context'], array('footer', 'mobile'), true)) ? $args['context'] : 'header';
+$ishf_org_boxes   = array('header' => array(2600, 150, 46), 'mobile' => array(1300, 96, 30), 'footer' => array(3000, 170, 52));
+$ishf_org_box     = $ishf_org_boxes[$ishf_org_context];
+$ishf_org_label_id = wp_unique_id('organisers-label-'); // unique: the header block can appear twice (band + mobile row)
 $ishf_org_label   = __('Organised by', TEXT_DOMAIN);
 ?>
 <div class="organisers organisers--<?php echo esc_attr($ishf_org_context); ?>">
-  <p class="organisers-label" id="organisers-label-<?php echo esc_attr($ishf_org_context); ?>"><?php echo esc_html($ishf_org_label); ?></p>
-  <ul class="organisers-logos" aria-labelledby="organisers-label-<?php echo esc_attr($ishf_org_context); ?>">
+  <p class="organisers-label" id="<?php echo esc_attr($ishf_org_label_id); ?>"><?php echo esc_html($ishf_org_label); ?></p>
+  <ul class="organisers-logos" aria-labelledby="<?php echo esc_attr($ishf_org_label_id); ?>">
     <?php foreach ($ishf_org_ids as $sid):
       $url  = get_post_meta($sid, 'ishf_cf_url', true);
       $logo = ishf_sponsor_logo_html($sid, 'medium', $ishf_org_box, array(

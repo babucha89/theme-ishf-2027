@@ -640,6 +640,11 @@ html.dark-mode .ishf-footer-simple { background-color: var(--colors-neutral-gray
 .organisers-logos a:hover { opacity: 0.75; text-decoration: none; }
 .organisers-logos img { display: block; max-width: 100%; }
 .organisers-logos .partner-name { font-size: var(--fonts-size-small); font-weight: 700; color: var(--colors-text-heading); }
+/* Slim row under the menu bar on inner pages below 960px (includes/sections/header.php) */
+.header-organisers-mobile { padding: var(--grids-spacing-8) 0; border-bottom: 1px solid var(--colors-border-default); }
+html.dark-mode .header-organisers-mobile { border-bottom-color: var(--colors-night-700); }
+.organisers--mobile { justify-content: center; margin-top: 0; gap: 4px var(--grids-spacing-12); }
+.organisers--mobile .organisers-logos { justify-content: center; gap: var(--grids-spacing-8) var(--grids-spacing-16); }
 .hero-ctas + .organisers { margin-top: var(--grids-spacing-32); }
 .organisers--footer { margin-top: var(--grids-spacing-48); padding-top: var(--grids-spacing-24); border-top: 1px solid rgba(var(--colors-neutral-white-rgb), 0.15); gap: var(--grids-spacing-12) var(--grids-spacing-32); }
 .organisers--footer .organisers-label { color: rgba(var(--colors-neutral-white-rgb), 0.75); }

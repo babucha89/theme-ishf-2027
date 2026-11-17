@@ -2,7 +2,8 @@
 // -----------------------------------------------------------------------------
 //  Section: HEADER
 //  Clean header with the project logo and the claim side-by-side; the organisers'
-//  logos under the claim (includes/organisers.php)
+//  logos under the claim (includes/organisers.php); below 960px, where the compact
+//  band is hidden, a slim organisers row under the menu bar
 //  Base Theme: ISHF 2027 Lisbon
 //  Edited: BB, 27-OUT-2026
 // -----------------------------------------------------------------------------
@@ -45,4 +46,13 @@ $ishf_header_compact = !isset($args['compact']) || !empty($args['compact']);
 
     </div>
   </div>
+
+  <?php if ($ishf_header_compact): ?>
+    <!-- Phones / tablets (< 960px): the compact band above is hidden, so the organisers get a slim row under the menu bar -->
+    <div class="header-organisers-mobile uk-hidden@m">
+      <div class="uk-container">
+        <?php get_template_part('includes/organisers', null, array('context' => 'mobile')); ?>
+      </div>
+    </div>
+  <?php endif; ?>
 </header>
