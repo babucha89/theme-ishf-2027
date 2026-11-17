@@ -3,7 +3,8 @@
 //  Section: PAST EDITIONS (timeline of the CPT "editions")
 //  One card per edition (logo, title, dates, city) on a vertical timeline, oldest
 //  first, closing with Lisbon 2027. Each card opens a modal with everything:
-//  logo, dates, venue, address, map (Mapbox, js/past-editions.js) and content.
+//  logo (left column) next to name, dates and venue / address (right column),
+//  then map (Mapbox, js/past-editions.js) and content.
 //  A modal opens directly from a link to the page with its id as hash,
 //  e.g. /past-editions/#edition-dublin-2025.
 //  Base Theme: ISHF 2027 Lisbon
@@ -119,35 +120,38 @@ $ishf_edition_logo = function ($post_id, $class) {
     <div class="uk-modal-dialog uk-margin-auto-vertical" role="dialog" aria-modal="true" aria-labelledby="<?php echo esc_attr($modal_id); ?>-title">
       <button class="uk-modal-close-default" type="button" data-uk-close aria-label="<?php esc_attr_e('Close modal', TEXT_DOMAIN); ?>"></button>
 
-      <header class="edition-modal-header">
+      <!-- Two columns: logo | name, dates and location (map and content follow below) -->
+      <div class="edition-modal-top<?php echo $logo !== '' ? ' has-logo' : ''; ?>">
         <?php if ($logo !== ''): ?>
           <div class="edition-modal-logo-box<?php echo $has_dark ? ' has-dark-logo' : ''; ?>"><?php echo $logo; ?></div>
         <?php endif; ?>
-        <div>
-          <?php if ($dates): ?><p class="edition-modal-eyebrow"><?php echo esc_html(sprintf(__('ISHF %s', TEXT_DOMAIN), $dates['year'])); ?></p><?php endif; ?>
-          <h2 id="<?php echo esc_attr($modal_id); ?>-title" class="edition-modal-title"><?php echo esc_html($title); ?></h2>
-        </div>
-      </header>
+        <div class="edition-modal-info">
+          <header class="edition-modal-header">
+            <?php if ($dates): ?><p class="edition-modal-eyebrow"><?php echo esc_html(sprintf(__('ISHF %s', TEXT_DOMAIN), $dates['year'])); ?></p><?php endif; ?>
+            <h2 id="<?php echo esc_attr($modal_id); ?>-title" class="edition-modal-title"><?php echo esc_html($title); ?></h2>
+          </header>
 
-      <ul class="edition-modal-facts">
-        <?php if ($dates): ?>
-          <li>
-            <span class="edition-fact-icon" data-uk-icon="icon: calendar" aria-hidden="true"></span>
-            <span><span class="sr-only"><?php _e('Dates', TEXT_DOMAIN); ?>: </span><time datetime="<?php echo esc_attr($dates['datetime']); ?>"><?php echo esc_html($dates['label']); ?></time></span>
-          </li>
-        <?php endif; ?>
-        <?php if ($place !== ''): ?>
-          <li>
-            <span class="edition-fact-icon" data-uk-icon="icon: location" aria-hidden="true"></span>
-            <span>
-              <span class="sr-only"><?php _e('Location', TEXT_DOMAIN); ?>: </span>
-              <?php if ($venue !== ''): ?><strong class="edition-venue"><?php echo esc_html($venue); ?></strong><?php endif; ?>
-              <?php if ($address !== '' && $address !== $venue): ?><span class="edition-address"><?php echo esc_html($address); ?></span><?php endif; ?>
-              <?php if (!$location['exact']): ?><strong class="edition-venue"><?php echo esc_html($city); ?></strong><?php endif; ?>
-            </span>
-          </li>
-        <?php endif; ?>
-      </ul>
+          <ul class="edition-modal-facts">
+            <?php if ($dates): ?>
+              <li>
+                <span class="edition-fact-icon" data-uk-icon="icon: calendar" aria-hidden="true"></span>
+                <span><span class="sr-only"><?php _e('Dates', TEXT_DOMAIN); ?>: </span><time datetime="<?php echo esc_attr($dates['datetime']); ?>"><?php echo esc_html($dates['label']); ?></time></span>
+              </li>
+            <?php endif; ?>
+            <?php if ($place !== ''): ?>
+              <li>
+                <span class="edition-fact-icon" data-uk-icon="icon: location" aria-hidden="true"></span>
+                <span>
+                  <span class="sr-only"><?php _e('Location', TEXT_DOMAIN); ?>: </span>
+                  <?php if ($venue !== ''): ?><strong class="edition-venue"><?php echo esc_html($venue); ?></strong><?php endif; ?>
+                  <?php if ($address !== '' && $address !== $venue): ?><span class="edition-address"><?php echo esc_html($address); ?></span><?php endif; ?>
+                  <?php if (!$location['exact']): ?><strong class="edition-venue"><?php echo esc_html($city); ?></strong><?php endif; ?>
+                </span>
+              </li>
+            <?php endif; ?>
+          </ul>
+        </div>
+      </div>
 
       <?php if ($coords || $maps_url !== ''): ?>
         <div class="edition-modal-map">
