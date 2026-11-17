@@ -589,7 +589,7 @@ html.dark-mode .theme-toggle-icon-moon { opacity: 1; transform: translate(-50%, 
 .on-inverse .social-links a:hover, .on-inverse .social-links a:focus-visible { color: var(--colors-brand-blue-sky); }
 .nav-social { display: none; padding-right: 10px; border-right: 1px solid var(--colors-border-default); } /* shown >= 1400px (media queries): below that the menu needs the room; the off-canvas menu and footer keep the links */
 html.dark-mode .nav-social { border-right-color: var(--colors-night-700); }
-.offcanvas-social { margin-top: 24px; }
+.offcanvas-social { margin-top: 24px; margin-left: -10px; } /* icon glyphs line up with the menu items */
 .footer-social { justify-content: flex-start; margin-top: var(--grids-spacing-8); margin-left: -10px; } /* icon glyphs line up with the Newsletter heading and link */
 .lang-switch { display: flex; align-items: center; gap: 8px; list-style: none; margin: 0; padding: 0; }
 .lang-switch a { display: inline-flex; align-items: center; justify-content: center; min-width: 44px; height: 32px; box-sizing: border-box; padding: 0 12px; border-radius: var(--grids-radius-pill); border: 1.5px solid var(--lang-border); color: var(--lang-color); font-family: var(--fonts-family-headings); font-weight: 700; font-size: var(--fonts-size-xsmall); letter-spacing: 0.04em; text-decoration: none; transition: background-color 0.2s ease, color 0.2s ease; }
@@ -640,11 +640,11 @@ html.dark-mode .ishf-footer-simple { background-color: var(--colors-neutral-gray
 .organisers-logos a:hover { opacity: 0.75; text-decoration: none; }
 .organisers-logos img { display: block; max-width: 100%; }
 .organisers-logos .partner-name { font-size: var(--fonts-size-small); font-weight: 700; color: var(--colors-text-heading); }
-/* Slim row under the menu bar on inner pages below 960px (includes/sections/header.php) */
-.header-organisers-mobile { padding: var(--grids-spacing-8) 0; border-bottom: 1px solid var(--colors-border-default); }
-html.dark-mode .header-organisers-mobile { border-bottom-color: var(--colors-night-700); }
-.organisers--mobile { justify-content: center; margin-top: 0; gap: 4px var(--grids-spacing-12); }
-.organisers--mobile .organisers-logos { justify-content: center; gap: var(--grids-spacing-8) var(--grids-spacing-16); }
+/* Off-canvas menu (< 960px): one larger logo per line, white logos on the dark panel */
+.organisers--offcanvas { flex-direction: column; align-items: flex-start; gap: var(--grids-spacing-12); margin-top: var(--grids-spacing-32); padding-top: var(--grids-spacing-24); border-top: 1px solid rgba(var(--colors-neutral-white-rgb), 0.2); }
+.organisers--offcanvas .organisers-label { color: rgba(var(--colors-neutral-white-rgb), 0.75); }
+.organisers--offcanvas .organisers-logos { flex-direction: column; align-items: flex-start; gap: var(--grids-spacing-16); }
+.organisers--offcanvas .partner-name { color: var(--colors-neutral-white); }
 .hero-ctas + .organisers { margin-top: var(--grids-spacing-32); }
 .organisers--footer { margin-top: var(--grids-spacing-48); padding-top: var(--grids-spacing-24); border-top: 1px solid rgba(var(--colors-neutral-white-rgb), 0.15); gap: var(--grids-spacing-12) var(--grids-spacing-32); }
 .organisers--footer .organisers-label { color: rgba(var(--colors-neutral-white-rgb), 0.75); }

@@ -3,7 +3,8 @@
 //  Block: NAVIGATION MENU
 //  Minimal navbar: icon-key + "ISHF 2027 | Lisbon" logo and Theme Toggle
 //  Full variant (ishf_use_full_layout): + menu links, WPML language switch,
-//  social links (includes/social-links.php), off-canvas menu on < 960px. Menus use the UIkit helpers/walkers of includes/uikit-menus.php. No Register button: the CTA lives in the CTA sections.
+//  social links (includes/social-links.php), off-canvas menu on < 960px (with the
+//  organisers' logos, includes/organisers.php). Menus use the UIkit helpers/walkers of includes/uikit-menus.php. No Register button: the CTA lives in the CTA sections.
 //  Base Theme: ISHF 2027 Lisbon
 //  Edited: BB, 27-OUT-2026
 // -----------------------------------------------------------------------------
@@ -76,6 +77,7 @@
       <span class="nav-tools-divider" aria-hidden="true"></span>
       <?php get_template_part('includes/theme-toggle'); ?>
     </div>
+    <?php get_template_part('includes/organisers', null, array('context' => 'offcanvas')); // Organised by (white logos) ?>
   </div>
 </div>
 <?php endif; ?>
