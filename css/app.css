@@ -610,7 +610,7 @@ html.dark-mode .nav-social { border-right-color: var(--colors-night-700); }
 /* Compact variant (single article) */
 .ishf-simplified-header--compact .header-content-wrapper { padding-top: 16px; padding-bottom: 16px; }
 .ishf-simplified-header--compact .header-project-logo { max-width: 200px; }
-.ishf-simplified-header--compact .header-claim { font-size: clamp(16px, 1.6vw, 22px); }
+.ishf-simplified-header--compact .header-claim { font-size: clamp(20px, 1.9vw, 28px); }
 .ishf-simplified-header--compact .header-claim-inner { border-left-width: 3px; padding-left: 16px; margin-top: 0; text-align: left; }
 .ishf-simplified-header--compact .header-logo-col { justify-content: flex-end; }
 
@@ -643,6 +643,8 @@ html.dark-mode .ishf-footer-simple { background-color: var(--colors-neutral-gray
 .organisers--offcanvas .organisers-label { color: rgba(var(--colors-neutral-white-rgb), 0.75); }
 .organisers--offcanvas .organisers-logos { flex-direction: column; align-items: flex-start; gap: var(--grids-spacing-16); }
 .organisers--offcanvas .partner-name { color: var(--colors-neutral-white); }
+.organisers--band { justify-content: flex-end; margin-top: 0; gap: var(--grids-spacing-8) var(--grids-spacing-24); }
+.organisers--band .organisers-logos { gap: var(--grids-spacing-16) var(--grids-spacing-32); }
 .hero-ctas + .organisers { margin-top: var(--grids-spacing-32); }
 .organisers--footer { margin-top: var(--grids-spacing-48); padding-top: var(--grids-spacing-24); border-top: 1px solid rgba(var(--colors-neutral-white-rgb), 0.15); gap: var(--grids-spacing-12) var(--grids-spacing-32); }
 .organisers--footer .organisers-label { color: rgba(var(--colors-neutral-white-rgb), 0.75); }

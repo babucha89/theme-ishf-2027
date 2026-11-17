@@ -1,8 +1,10 @@
 <?php
 // -----------------------------------------------------------------------------
 //  Section: HEADER
-//  Clean header with the project logo and the claim side-by-side; the organisers'
-//  logos under the claim (includes/organisers.php). Below 960px the compact band is
+//  Inner pages (compact): the claim on the left and the organisers' logos on the
+//  right (includes/organisers.php, context 'band'); the ISHF logo is not repeated
+//  because it is in the navigation bar. Landing page (compact => false): project
+//  logo | claim with the organisers under it. Below 960px the compact band is
 //  hidden; the organisers are then in the off-canvas menu (includes/navigation-menu.php)
 //  Base Theme: ISHF 2027 Lisbon
 //  Edited: BB, 27-OUT-2026
@@ -18,32 +20,49 @@ $ishf_header_compact = !isset($args['compact']) || !empty($args['compact']);
   ?>
 
   <div class="uk-container<?php echo $ishf_header_compact ? ' uk-container-large' : ''; ?> header-content-wrapper">
+    <?php if ($ishf_header_compact): ?>
+    <!-- Inner pages: claim | organisers' logos (the ISHF logo is already in the navigation bar) -->
     <div class="uk-grid uk-grid-large uk-flex-middle header-hero-grid" data-uk-grid>
-      
-      <!-- Project Logo (Adaptive Light / Dark) -->
-      <div class="uk-width-1-1 uk-width-1-2@m header-logo-col uk-flex uk-flex-center uk-flex-right@m">
-        <div class="header-logo-container uk-width-1-1">
-          <a class="header-logo-link" href="<?php echo esc_url(home_url('/')); ?>" title="<?php esc_attr_e('Back to Homepage', TEXT_DOMAIN); ?>" data-uk-tooltip="title: <?php echo esc_attr__('Back to Homepage', TEXT_DOMAIN); ?>; pos: bottom">
-          <img class="light-mode-img header-project-logo" 
-               src="<?php echo esc_url(BASE_BRANDING . 'logo-project-horizontal-dark.svg'); ?>" 
-               alt="<?php echo esc_attr(SITE_NAME); ?>" />
-          <img class="dark-mode-img header-project-logo" 
-               src="<?php echo esc_url(BASE_BRANDING . 'logo-project-horizontal-light.svg'); ?>" 
-               alt="<?php echo esc_attr(SITE_NAME); ?>" />
-          </a>
-        </div>
-      </div>
-
-      <!-- Claim -->
-      <div class="uk-width-1-1 uk-width-1-2@m header-claim-col uk-flex uk-flex-center uk-flex-left@m">
+      <div class="uk-width-1-1 uk-width-1-2@m header-claim-col">
         <div class="header-claim-inner uk-width-1-1">
           <p class="header-claim uk-margin-remove" role="heading" aria-level="2">
             <?php _e('Cities with Soul: It Begins with a Key', TEXT_DOMAIN); ?>
           </p>
-          <?php get_template_part('includes/organisers', null, array('context' => 'header')); // Organised by: CM Lisboa, Gebalis, Housing Europe (Sponsors) ?>
         </div>
       </div>
+      <div class="uk-width-1-1 uk-width-1-2@m header-organisers-col uk-flex uk-flex-right@m">
+        <?php get_template_part('includes/organisers', null, array('context' => 'band')); // Organised by (Sponsors: first sponsor type) ?>
+      </div>
+    </div>
+    <?php else: ?>
+      <div class="uk-grid uk-grid-large uk-flex-middle header-hero-grid" data-uk-grid>
+      
+        <!-- Project Logo (Adaptive Light / Dark) -->
+        <div class="uk-width-1-1 uk-width-1-2@m header-logo-col uk-flex uk-flex-center uk-flex-right@m">
+          <div class="header-logo-container uk-width-1-1">
+            <a class="header-logo-link" href="<?php echo esc_url(home_url('/')); ?>" title="<?php esc_attr_e('Back to Homepage', TEXT_DOMAIN); ?>" data-uk-tooltip="title: <?php echo esc_attr__('Back to Homepage', TEXT_DOMAIN); ?>; pos: bottom">
+            <img class="light-mode-img header-project-logo" 
+                 src="<?php echo esc_url(BASE_BRANDING . 'logo-project-horizontal-dark.svg'); ?>" 
+                 alt="<?php echo esc_attr(SITE_NAME); ?>" />
+            <img class="dark-mode-img header-project-logo" 
+                 src="<?php echo esc_url(BASE_BRANDING . 'logo-project-horizontal-light.svg'); ?>" 
+                 alt="<?php echo esc_attr(SITE_NAME); ?>" />
+            </a>
+          </div>
+        </div>
 
+        <!-- Claim -->
+        <div class="uk-width-1-1 uk-width-1-2@m header-claim-col uk-flex uk-flex-center uk-flex-left@m">
+          <div class="header-claim-inner uk-width-1-1">
+            <p class="header-claim uk-margin-remove" role="heading" aria-level="2">
+              <?php _e('Cities with Soul: It Begins with a Key', TEXT_DOMAIN); ?>
+            </p>
+            <?php get_template_part('includes/organisers', null, array('context' => 'header')); // Organised by: CM Lisboa, Gebalis, Housing Europe (Sponsors) ?>
+          </div>
+        </div>
+
+      </div>
+    <?php endif; ?>
     </div>
   </div>
 </header>
