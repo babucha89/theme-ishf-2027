@@ -1,7 +1,8 @@
 <?php
 // -----------------------------------------------------------------------------
 //  Section: USER JOURNEYS (Home)
-//  Two cards at a time:
+//  Two cards at a time (title on top; button and illustration in a bottom row,
+//  illustrations all the same height):
 //    1. Participate, by registration phase (ishf_get_register_phase(), functions.php):
 //       - until 31 Dec 2026: Call for Sessions (external form, new tab)
 //       - from 1 Jan 2027:  attendee registration (external form, new tab)
@@ -41,20 +42,24 @@ if ($ishf_phase === 'b2c') {
       <li>
         <article class="journey-card journey-card--<?php echo esc_attr($ishf_participate['style']); ?>">
           <h3 class="journey-title"><?php echo esc_html($ishf_participate['title']); ?></h3>
-          <img class="journey-art" src="<?php echo esc_url(BASE_ASSETS . $ishf_participate['art']); ?>" alt="" aria-hidden="true" />
-          <a class="<?php echo esc_attr($ishf_participate['class']); ?>" href="<?php echo esc_url($ishf_participate['url']); ?>" target="_blank" rel="noopener noreferrer">
-            <?php echo esc_html($ishf_participate['button']); ?><span class="uk-visually-hidden"> <?php _e('(opens in a new tab)', TEXT_DOMAIN); ?></span>
-          </a>
+          <div class="journey-card-foot">
+            <a class="<?php echo esc_attr($ishf_participate['class']); ?>" href="<?php echo esc_url($ishf_participate['url']); ?>" target="_blank" rel="noopener noreferrer">
+              <?php echo esc_html($ishf_participate['button']); ?><span class="uk-visually-hidden"> <?php _e('(opens in a new tab)', TEXT_DOMAIN); ?></span>
+            </a>
+            <img class="journey-art" src="<?php echo esc_url(BASE_ASSETS . $ishf_participate['art']); ?>" alt="" aria-hidden="true" />
+          </div>
         </article>
       </li>
 
       <li>
         <article class="journey-card journey-card--sun">
           <h3 class="journey-title"><?php echo esc_html(ishf_home_get('ishf_journeys_partner_title')); ?></h3>
-          <img class="journey-art" src="<?php echo esc_url(BASE_ASSETS . 'icon-bridge.svg'); ?>" alt="" aria-hidden="true" />
-          <button type="button" class="uk-button btn-ishf-dark" data-uk-toggle="target: #modal-partnership" aria-haspopup="dialog" aria-controls="modal-partnership">
-            <?php echo esc_html(ishf_home_get('ishf_journeys_partner_button')); ?>
-          </button>
+          <div class="journey-card-foot">
+            <button type="button" class="uk-button btn-ishf-dark" data-uk-toggle="target: #modal-partnership" aria-haspopup="dialog" aria-controls="modal-partnership">
+              <?php echo esc_html(ishf_home_get('ishf_journeys_partner_button')); ?>
+            </button>
+            <img class="journey-art" src="<?php echo esc_url(BASE_ASSETS . 'icon-bridge.svg'); ?>" alt="" aria-hidden="true" />
+          </div>
         </article>
       </li>
 
