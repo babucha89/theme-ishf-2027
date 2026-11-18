@@ -2447,6 +2447,15 @@ msgstr "j M Y"
 msgid "In %1$s, %2$s"
 msgstr "Em %1$s, %2$s"
 
+#: includes/programme.php
+msgid "Full Event"
+msgstr "Evento completo"
+
+#: includes/programme.php
+#, php-format
+msgid "Day %1$d - %2$s"
+msgstr "Dia %1$d - %2$s"
+
 #~ msgid "Agenda"
 #~ msgstr "Programa"
 

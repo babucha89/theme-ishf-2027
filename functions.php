@@ -187,6 +187,11 @@ function ishf_translated_page_template($templates)
   if (!($page instanceof WP_Post) || $page->post_type !== 'page') {
     return $templates;
   }
+  // "About ISHF" gets the slug "about-ishf": still the About template
+  $own_slug = urldecode($page->post_name);
+  if (strpos($own_slug, 'about-') === 0 && !get_page_template_slug($page->ID)) {
+    array_unshift($templates, 'page-about.php');
+  }
   $default_lang = apply_filters('wpml_default_language', null);
   if (!$default_lang) {
     return $templates;
@@ -195,11 +200,17 @@ function ishf_translated_page_template($templates)
   if (!$original_id || $original_id === (int) $page->ID) {
     return $templates;
   }
-  $slug = get_post_field('post_name', $original_id, 'raw');
+  // Template chosen in the original's Page Attributes, when the translation has none
+  $original_custom = get_page_template_slug($original_id);
+  if ($original_custom && !get_page_template_slug($page->ID)) {
+    array_unshift($templates, $original_custom);
+    return $templates;
+  }
+  $slug = urldecode((string) get_post_field('post_name', $original_id, 'raw'));
   if ($slug === '' || $slug === $page->post_name) {
     return $templates;
   }
-  $extra = 'page-' . urldecode($slug) . '.php';
+  $extra = strpos($slug, 'about-') === 0 ? 'page-about.php' : 'page-' . $slug . '.php';
   if (in_array($extra, $templates, true)) {
     return $templates;
   }
