@@ -4,7 +4,8 @@
 //  Internal article  -> links to single.php, label = first category.
 //  Clipping (external URL, see includes/post-meta-clipping.php) -> label = its "Clipping" category
 //  (translated by WPML), links to the third-party site in a new tab; date line: "In Público, 17 Nov 2026"
-//  (publication = post tags), followed by an "In Portuguese" pill when the article's language differs.
+//  (publication = post tags); an "In Portuguese" pill on the image's top-right corner, opposite the
+//  category, when the article's language differs from the page's.
 //  Dates use the abbreviated month (ishf_short_date(): "17 Nov 2026").
 //  Base Theme: ISHF 2027 Lisbon
 // -----------------------------------------------------------------------------
@@ -21,6 +22,9 @@ $ishf_lang_attr = ($ishf_clip && $ishf_clip['lang_note']) ? ' lang="' . esc_attr
     <?php if ($ishf_label): ?>
       <span class="uk-label ishf-label<?php echo $ishf_clip || ishf_clipping_category() ? ' ishf-label--clipping' : ''; ?> news-card-label"><?php echo esc_html($ishf_label); ?></span>
     <?php endif; ?>
+    <?php if ($ishf_clip && $ishf_clip['lang_note']): // article language differs from the page's: pill top right, opposite the category ?>
+      <span class="uk-label news-card-tag--lang news-card-lang-label"><?php echo esc_html($ishf_clip['lang_note']); ?></span>
+    <?php endif; ?>
   </div>
 
   <h3 class="news-card-title uk-h5">
@@ -35,7 +39,7 @@ $ishf_lang_attr = ($ishf_clip && $ishf_clip['lang_note']) ? ' lang="' . esc_attr
   </h3>
 
   <?php if ($ishf_clip):
-    // "In Público, 17 Nov 2026" + [In Portuguese] pill: publication(s) from the post tags, short date, language note
+    // "In Público, 17 Nov 2026": publication(s) from the post tags and the short date
     $ishf_date_html = '<time datetime="' . esc_attr($ishf_clip['date_iso']) . '">' . esc_html($ishf_clip['date_short']) . '</time>';
     $ishf_sources   = implode(', ', $ishf_clip['sources']);
   ?>
@@ -46,9 +50,6 @@ $ishf_lang_attr = ($ishf_clip && $ishf_clip['lang_note']) ? ' lang="' . esc_attr
       else:
         echo $ishf_date_html;
       endif; ?>
-      <?php if ($ishf_clip['lang_note']): ?>
-        <span class="news-card-tag news-card-tag--lang"><?php echo esc_html($ishf_clip['lang_note']); ?></span>
-      <?php endif; ?>
     </p>
   <?php else: ?>
     <p class="news-card-date uk-text-small"><time datetime="<?php echo esc_attr(get_the_date('c')); ?>"><?php echo esc_html(ishf_short_date((int) get_post_time('U'))); ?></time></p>
