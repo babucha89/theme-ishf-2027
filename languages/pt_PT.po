@@ -2438,6 +2438,10 @@ msgstr "Edição atual"
 msgid "Current edition · ISHF 2027"
 msgstr "Edição atual · ISHF 2027"
 
+#. PHP date format for news cards: day, abbreviated month, year
+msgid "j M Y"
+msgstr "j M Y"
+
 #~ msgid "Agenda"
 #~ msgstr "Programa"
 

@@ -41,7 +41,7 @@ if (has_post_thumbnail()) {
 
           <header class="article-header uk-width-1-1 <?php echo has_post_thumbnail() ? 'uk-width-1-3@s' : ''; ?>">
             <p class="article-meta">
-              <?php if ($ishf_label): ?><span class="uk-label ishf-label<?php echo ($ishf_clip || has_category(array('clipping', 'cobertura'))) ? ' ishf-label--clipping' : ''; ?>"><?php echo esc_html($ishf_label); ?></span><?php endif; ?>
+              <?php if ($ishf_label): ?><span class="uk-label ishf-label<?php echo ($ishf_clip || ishf_clipping_category()) ? ' ishf-label--clipping' : ''; ?>"><?php echo esc_html($ishf_label); ?></span><?php endif; ?>
             </p>
             <h1 id="article-title" class="article-title"><?php the_title(); ?></h1>
             <?php if ($ishf_lead): ?>

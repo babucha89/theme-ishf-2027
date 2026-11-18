@@ -42,7 +42,8 @@ endif;
 if (!function_exists('ishf_get_clipping')):
   /**
    * Clipping data for a post, or null when the post is a regular (internal) article.
-   * Returns: url, lang, lang_note (empty when same language as the site), date_iso, date_label, sources (tag names).
+   * Returns: url, lang, lang_note (empty when same language as the site), date_iso, date_label,
+   * date_short (abbreviated month, for cards), sources (tag names).
    */
   function ishf_get_clipping($post_id = 0)
   {
@@ -67,6 +68,7 @@ if (!function_exists('ishf_get_clipping')):
     $ts   = $date ? strtotime($date) : false;
     $iso  = $ts ? gmdate('Y-m-d', $ts) : get_the_date('Y-m-d', $post_id);
     $label = $ts ? date_i18n(get_option('date_format'), $ts) : get_the_date('', $post_id);
+    $stamp = $ts ? $ts : (int) get_post_time('U', false, $post_id);
 
     // Publication the article comes from: post tags (optionally limited to the slugs returned by the
     // 'ishf_publication_tag_slugs' filter, e.g. array('publico', 'expresso')); if there is none, the
@@ -94,21 +96,62 @@ if (!function_exists('ishf_get_clipping')):
       'lang_note'  => ($lang !== ishf_current_language()) ? $notes[$lang] : '',
       'date_iso'   => $iso,
       'date_label' => $label,
+      'date_short' => ishf_short_date($stamp),
       'sources'    => $sources,
     );
   }
 endif;
 
+// The post's "Clipping" category (slug clipping / cobertura, or a WPML translation of one), or null
+if (!function_exists('ishf_clipping_category')):
+  function ishf_clipping_category($post_id = 0)
+  {
+    $post_id = $post_id ? (int) $post_id : get_the_ID();
+    $slugs   = array('clipping', 'cobertura');
+    $default = apply_filters('wpml_default_language', null);
+    foreach ((array) get_the_category($post_id) as $cat) {
+      if (in_array($cat->slug, $slugs, true)) {
+        return $cat;
+      }
+      if ($default) { // translated category (e.g. "cobertura-pt"): check its original
+        $orig_id = (int) apply_filters('wpml_object_id', $cat->term_id, 'category', false, $default);
+        $orig    = $orig_id && $orig_id !== (int) $cat->term_id ? get_term($orig_id, 'category') : null;
+        if ($orig && !is_wp_error($orig) && in_array($orig->slug, $slugs, true)) {
+          return $cat;
+        }
+      }
+    }
+    return null;
+  }
+endif;
+
 if (!function_exists('ishf_post_label')):
-  /** Eyebrow label of a post: "Clipping"/"Cobertura" for external or clipping-category posts, else its first category. */
+  /**
+   * Eyebrow label of a post: the name of its category in the current language (WPML
+   * translates the term), the "Clipping" category first for clippings. A clipping
+   * without that category falls back to the theme string "Clipping" / "Cobertura".
+   */
   function ishf_post_label($post_id = 0)
   {
     $post_id = $post_id ? (int) $post_id : get_the_ID();
-    if (ishf_get_clipping($post_id) || has_category(array('clipping', 'cobertura'), $post_id)) {
+    $clip_cat = ishf_clipping_category($post_id);
+    if ($clip_cat) {
+      return $clip_cat->name;
+    }
+    if (ishf_get_clipping($post_id)) {
       return __('Clipping', TEXT_DOMAIN);
     }
     $cats = get_the_category($post_id);
     return !empty($cats) ? $cats[0]->name : '';
+  }
+endif;
+
+// Short date for cards: day, abbreviated month, year ("17 Nov 2026" / "17 nov 2026")
+if (!function_exists('ishf_short_date')):
+  function ishf_short_date($timestamp)
+  {
+    /* translators: PHP date format for news cards: day, abbreviated month, year */
+    return date_i18n(__('j M Y', TEXT_DOMAIN), $timestamp);
   }
 endif;
 
