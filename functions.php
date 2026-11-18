@@ -174,6 +174,44 @@ endif;
 
 
 //------------------------------------------------------------------------------
+//  WPML: a translated page uses the same slug template as its original.
+//  page-past-editions.php, page-lisbon-2027.php, page-about.php… are picked by
+//  the English slug; the Portuguese translation has its own slug (e.g.
+//  "edicoes-anteriores"), so without this it fell back to page.php (no timeline).
+//  A template chosen in Page Attributes still wins.
+//------------------------------------------------------------------------------
+add_filter('page_template_hierarchy', 'ishf_translated_page_template');
+function ishf_translated_page_template($templates)
+{
+  $page = get_queried_object();
+  if (!($page instanceof WP_Post) || $page->post_type !== 'page') {
+    return $templates;
+  }
+  $default_lang = apply_filters('wpml_default_language', null);
+  if (!$default_lang) {
+    return $templates;
+  }
+  $original_id = (int) apply_filters('wpml_object_id', $page->ID, 'page', false, $default_lang);
+  if (!$original_id || $original_id === (int) $page->ID) {
+    return $templates;
+  }
+  $slug = get_post_field('post_name', $original_id, 'raw');
+  if ($slug === '' || $slug === $page->post_name) {
+    return $templates;
+  }
+  $extra = 'page-' . urldecode($slug) . '.php';
+  if (in_array($extra, $templates, true)) {
+    return $templates;
+  }
+  // Right after a custom template (if any) and before page-{own slug}.php / page-{id}.php / page.php
+  $custom = get_page_template_slug($page->ID);
+  $pos    = ($custom && isset($templates[0]) && $templates[0] === $custom) ? 1 : 0;
+  array_splice($templates, $pos, 0, array($extra));
+  return $templates;
+}
+
+
+//------------------------------------------------------------------------------
 //  Loading SCRIPTS and STYLESHEETS
 //------------------------------------------------------------------------------
 //------------------------------------------------------------------------------
