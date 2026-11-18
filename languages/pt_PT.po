@@ -2442,6 +2442,11 @@ msgstr "Edição atual · ISHF 2027"
 msgid "j M Y"
 msgstr "j M Y"
 
+#. 1: publication name(s); 2: date
+#, php-format
+msgid "In %1$s, %2$s"
+msgstr "Em %1$s, %2$s"
+
 #~ msgid "Agenda"
 #~ msgstr "Programa"
 

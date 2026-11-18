@@ -3,8 +3,8 @@
 //  Block: NEWS CARD (used inside The Loop: home news, archive, category, search)
 //  Internal article  -> links to single.php, label = first category.
 //  Clipping (external URL, see includes/post-meta-clipping.php) -> label = its "Clipping" category
-//  (translated by WPML), links to the third-party site in a new tab; the date is followed on the same
-//  line by the publication (post tags) and, when the language differs from the page's, "In Portuguese".
+//  (translated by WPML), links to the third-party site in a new tab; date line: "In Público, 17 Nov 2026"
+//  (publication = post tags) plus "(In Portuguese)" when the article's language differs from the page's.
 //  Dates use the abbreviated month (ishf_short_date(): "17 Nov 2026").
 //  Base Theme: ISHF 2027 Lisbon
 // -----------------------------------------------------------------------------
@@ -34,20 +34,22 @@ $ishf_lang_attr = ($ishf_clip && $ishf_clip['lang_note']) ? ' lang="' . esc_attr
     </a>
   </h3>
 
-  <?php if ($ishf_clip): ?>
-    <div class="news-card-meta">
-      <p class="news-card-date uk-text-small"><time datetime="<?php echo esc_attr($ishf_clip['date_iso']); ?>"><?php echo esc_html($ishf_clip['date_short']); ?></time></p>
-      <?php if (!empty($ishf_clip['sources']) || $ishf_clip['lang_note']): ?>
-        <ul class="news-card-sources" role="list">
-          <?php foreach ($ishf_clip['sources'] as $source): ?>
-            <li class="news-card-tag"><?php echo esc_html($source); ?></li>
-          <?php endforeach; ?>
-          <?php if ($ishf_clip['lang_note']): ?>
-            <li class="news-card-tag news-card-tag--lang"><?php echo esc_html($ishf_clip['lang_note']); ?></li>
-          <?php endif; ?>
-        </ul>
+  <?php if ($ishf_clip):
+    // "In Público, 17 Nov 2026 (In Portuguese)": publication(s) from the post tags, short date, language note
+    $ishf_date_html = '<time datetime="' . esc_attr($ishf_clip['date_iso']) . '">' . esc_html($ishf_clip['date_short']) . '</time>';
+    $ishf_sources   = implode(', ', $ishf_clip['sources']);
+  ?>
+    <p class="news-card-date uk-text-small">
+      <?php if ($ishf_sources !== ''):
+        /* translators: 1: publication name(s), e.g. "Público"; 2: date, e.g. "17 Nov 2026" */
+        printf(esc_html__('In %1$s, %2$s', TEXT_DOMAIN), '<span class="news-card-source">' . esc_html($ishf_sources) . '</span>', $ishf_date_html);
+      else:
+        echo $ishf_date_html;
+      endif; ?>
+      <?php if ($ishf_clip['lang_note']): ?>
+        <span class="news-card-lang">(<?php echo esc_html($ishf_clip['lang_note']); ?>)</span>
       <?php endif; ?>
-    </div>
+    </p>
   <?php else: ?>
     <p class="news-card-date uk-text-small"><time datetime="<?php echo esc_attr(get_the_date('c')); ?>"><?php echo esc_html(ishf_short_date((int) get_post_time('U'))); ?></time></p>
   <?php endif; ?>
