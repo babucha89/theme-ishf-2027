@@ -309,6 +309,33 @@ endif;
 
 
 //------------------------------------------------------------------------------
+//  Portuguese pages always get the theme's Portuguese strings (languages/pt_PT.mo),
+//  even when WPML's Portuguese locale is not exactly "pt_PT" (e.g. "pt", "pt_BR" or
+//  a custom code) and WordPress would look for another file name. Self-check: if
+//  the current language is Portuguese and a known string is still in English, the
+//  file is loaded explicitly. Runs before the page is rendered and again whenever
+//  WPML switches language (e.g. in AJAX or REST requests).
+//------------------------------------------------------------------------------
+if (!function_exists('ishf_ensure_portuguese_strings')):
+  function ishf_ensure_portuguese_strings()
+  {
+    $code   = (string) apply_filters('wpml_current_language', null);
+    $locale = determine_locale();
+    $is_pt  = strpos(strtolower($code), 'pt') === 0 || stripos($locale, 'pt') === 0;
+    if (!$is_pt || __('About', TEXT_DOMAIN) !== 'About') {
+      return; // not Portuguese, or the Portuguese strings are already active
+    }
+    $mo = get_template_directory() . '/languages/pt_PT.mo';
+    if (is_readable($mo)) {
+      unload_textdomain(TEXT_DOMAIN);
+      load_textdomain(TEXT_DOMAIN, $mo);
+    }
+  }
+endif;
+add_action('wp', 'ishf_ensure_portuguese_strings', 0);
+add_action('wpml_language_has_switched', 'ishf_ensure_portuguese_strings');
+
+//------------------------------------------------------------------------------
 //  PHP locale follows the language of the page (WordPress / WPML locale):
 //  English (GB) pages en_GB, Portuguese pages pt_PT. Set on 'wp', after WPML
 //  has chosen the language. LC_NUMERIC stays "C" so decimals keep a dot.

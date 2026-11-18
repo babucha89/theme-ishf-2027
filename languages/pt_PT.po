@@ -2062,7 +2062,7 @@ msgid "Video ID #2"
 msgstr "ID do vídeo #2"
 
 msgid "View on Google Maps"
-msgstr "Ver no Google Maps"
+msgstr "Veja no Google Maps"
 
 msgid "j F Y"
 msgstr "j \\d\\e F \\d\\e Y"
