@@ -4,7 +4,7 @@
 //  Internal article  -> links to single.php, label = first category.
 //  Clipping (external URL, see includes/post-meta-clipping.php) -> label = its "Clipping" category
 //  (translated by WPML), links to the third-party site in a new tab; date line: "In Público, 17 Nov 2026"
-//  (publication = post tags) plus "(In Portuguese)" when the article's language differs from the page's.
+//  (publication = post tags), followed by an "In Portuguese" pill when the article's language differs.
 //  Dates use the abbreviated month (ishf_short_date(): "17 Nov 2026").
 //  Base Theme: ISHF 2027 Lisbon
 // -----------------------------------------------------------------------------
@@ -35,7 +35,7 @@ $ishf_lang_attr = ($ishf_clip && $ishf_clip['lang_note']) ? ' lang="' . esc_attr
   </h3>
 
   <?php if ($ishf_clip):
-    // "In Público, 17 Nov 2026 (In Portuguese)": publication(s) from the post tags, short date, language note
+    // "In Público, 17 Nov 2026" + [In Portuguese] pill: publication(s) from the post tags, short date, language note
     $ishf_date_html = '<time datetime="' . esc_attr($ishf_clip['date_iso']) . '">' . esc_html($ishf_clip['date_short']) . '</time>';
     $ishf_sources   = implode(', ', $ishf_clip['sources']);
   ?>
@@ -47,7 +47,7 @@ $ishf_lang_attr = ($ishf_clip && $ishf_clip['lang_note']) ? ' lang="' . esc_attr
         echo $ishf_date_html;
       endif; ?>
       <?php if ($ishf_clip['lang_note']): ?>
-        <span class="news-card-lang">(<?php echo esc_html($ishf_clip['lang_note']); ?>)</span>
+        <span class="news-card-tag news-card-tag--lang"><?php echo esc_html($ishf_clip['lang_note']); ?></span>
       <?php endif; ?>
     </p>
   <?php else: ?>
