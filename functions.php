@@ -614,6 +614,7 @@ require_once __DIR__ . '/includes/seo.php';
 require_once __DIR__ . '/includes/programme.php';
 require_once __DIR__ . '/includes/lisbon-page.php'; // Lisbon 2027 page: content fields (back office)
 require_once __DIR__ . '/includes/home-fields.php'; // Homepage hero + journeys texts (back office, page sections/hero)
+require_once __DIR__ . '/includes/about-page.php'; // About page: festival in numbers texts (back office)
 require_once __DIR__ . '/includes/uikit-walker.php';
 require_once __DIR__ . '/includes/uikit-menus.php';
 

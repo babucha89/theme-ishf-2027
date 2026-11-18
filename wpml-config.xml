@@ -46,6 +46,29 @@
     <custom-field action="copy-once">ishf_hero_cta_primary_url</custom-field>
     <custom-field action="copy-once">ishf_hero_cta_secondary_url</custom-field>
 
+    <!-- About page: festival in numbers (includes/about-page.php) -->
+    <custom-field action="translate">ishf_about_numbers_eyebrow</custom-field>
+    <custom-field action="translate">ishf_about_numbers_title</custom-field>
+    <custom-field action="translate">ishf_about_numbers_intro</custom-field>
+    <custom-field action="translate">ishf_about_number_1_label</custom-field>
+    <custom-field action="translate">ishf_about_number_1_value</custom-field>
+    <custom-field action="translate">ishf_about_number_1_unit</custom-field>
+    <custom-field action="translate">ishf_about_number_1_text</custom-field>
+    <custom-field action="translate">ishf_about_number_2_label</custom-field>
+    <custom-field action="translate">ishf_about_number_2_value</custom-field>
+    <custom-field action="translate">ishf_about_number_2_unit</custom-field>
+    <custom-field action="translate">ishf_about_number_2_text</custom-field>
+    <custom-field action="translate">ishf_about_number_3_label</custom-field>
+    <custom-field action="translate">ishf_about_number_3_value</custom-field>
+    <custom-field action="translate">ishf_about_number_3_unit</custom-field>
+    <custom-field action="translate">ishf_about_number_3_text</custom-field>
+    <custom-field action="translate">ishf_about_number_4_label</custom-field>
+    <custom-field action="translate">ishf_about_number_4_value</custom-field>
+    <custom-field action="translate">ishf_about_number_4_unit</custom-field>
+    <custom-field action="translate">ishf_about_number_4_text</custom-field>
+    <custom-field action="translate">ishf_about_numbers_source</custom-field>
+    <custom-field action="translate">ishf_about_numbers_button</custom-field>
+
     <!-- Past editions (CPT editions) -->
     <custom-field action="translate">ishf_cf_city</custom-field>
     <custom-field action="translate">ishf_cf_venue</custom-field>

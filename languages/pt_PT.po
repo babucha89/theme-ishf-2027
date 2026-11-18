@@ -2456,6 +2456,78 @@ msgstr "Evento completo"
 msgid "Day %1$d - %2$s"
 msgstr "Dia %1$d - %2$s"
 
+#: includes/about-page.php
+msgid "Number: the big figure (e.g. 2,400+). Unit: the word after it."
+msgstr "Número: o valor em destaque (ex. 2400+). Unidade: a palavra a seguir."
+
+#: includes/about-page.php
+msgid "Heading"
+msgstr "Cabeçalho"
+
+#: includes/about-page.php
+msgid "Introduction"
+msgstr "Introdução"
+
+#: includes/about-page.php
+msgid "Number 1"
+msgstr "Número 1"
+
+#: includes/about-page.php
+msgid "Label"
+msgstr "Etiqueta"
+
+#: includes/about-page.php
+msgid "Number"
+msgstr "Número"
+
+#: includes/about-page.php
+msgid "Unit"
+msgstr "Unidade"
+
+#: includes/about-page.php
+msgid "Number 2"
+msgstr "Número 2"
+
+#: includes/about-page.php
+msgid "Number 3"
+msgstr "Número 3"
+
+#: includes/about-page.php
+msgid "Number 4"
+msgstr "Número 4"
+
+#: includes/about-page.php
+msgid "Footer"
+msgstr "Rodapé"
+
+#: includes/about-page.php
+msgid "Sources"
+msgstr "Fontes"
+
+#: includes/about-page.php
+msgid "Button text"
+msgstr "Texto do botão"
+
+#: includes/about-page.php
+msgid ""
+"The button links to the Lisbon 2027 page and is hidden until that page is "
+"published."
+msgstr ""
+"O botão liga à página Lisboa 2027 e fica oculto até essa página ser "
+"publicada."
+
+#: includes/about-page.php
+msgid "Festival in numbers"
+msgstr "Festival em números"
+
+#: includes/about-page.php
+msgid ""
+"Texts of the \"festival in numbers\" section in this language. An empty "
+"field shows the text in grey."
+msgstr ""
+"Textos da secção \"festival em números\" neste idioma. Um campo vazio mostra"
+" o texto a cinzento."
+
 #~ msgid "Agenda"
 #~ msgstr "Programa"
 
