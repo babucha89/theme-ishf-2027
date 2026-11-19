@@ -2345,7 +2345,7 @@ msgstr ""
 "logótipo (%). Em ecrãs pequenos continua a reduzir para caber."
 
 msgid "Organised by"
-msgstr "Organização"
+msgstr "Organizado por"
 
 msgid "until 31 Dec 2026"
 msgstr "até 31 dez. 2026"

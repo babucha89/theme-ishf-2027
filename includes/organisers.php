@@ -24,7 +24,7 @@ if (empty($ishf_org_ids)) {
   return;
 }
 $ishf_org_context = (isset($args['context']) && in_array($args['context'], array('footer', 'offcanvas', 'band'), true)) ? $args['context'] : 'header';
-$ishf_org_boxes   = array('header' => array(2600, 150, 46), 'band' => array(4200, 200, 64), 'offcanvas' => array(5000, 220, 64), 'footer' => array(3000, 170, 52));
+$ishf_org_boxes   = array('header' => array(4000, 190, 60), 'band' => array(4200, 200, 64), 'offcanvas' => array(5000, 220, 64), 'footer' => array(4400, 210, 64));
 $ishf_org_box     = $ishf_org_boxes[$ishf_org_context];
 $ishf_org_label_id = wp_unique_id('organisers-label-'); // unique: several blocks per page (header / menu / footer)
 $ishf_org_label   = __('Organised by', TEXT_DOMAIN);
