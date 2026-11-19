@@ -32,6 +32,8 @@
   // -- Newsletter modal: hard-coded in the footer so every Subscribe button always has its target
   if ((function_exists('ishf_use_full_layout') && ishf_use_full_layout()) || is_page_template('page-landing-page.php')):
     get_template_part('includes/newsletter-modal');
+    // -- Partnership modal: every "Become a partner" button (hero, journeys…) opens it; skipped when the page already has it (landing page CTAs)
+    get_template_part('includes/sections/ctas', null, array('show_boxes' => false));
   endif;
   ?>
 

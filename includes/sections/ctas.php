@@ -31,8 +31,13 @@ if ($has_p_result && !empty($partnership_result['fields'])) {
 
 $p_errors = ($has_p_result && !empty($partnership_result['field_errors'])) ? $partnership_result['field_errors'] : array();
 
-// show_boxes=false renders only the partnership modal (homepage: the journey cards open it)
+// show_boxes=false renders only the partnership modal (footer.php, every page: hero, journeys… open it)
 $show_boxes = !isset($args['show_boxes']) || $args['show_boxes'];
+// The modal is rendered once per page (landing page: here; other pages: footer.php)
+if (!empty($GLOBALS['ishf_partnership_modal_done'])) {
+  return;
+}
+$GLOBALS['ishf_partnership_modal_done'] = true;
 ?>
 <section id="dual-ctas" class="<?php echo $show_boxes ? 'uk-section uk-section-medium section-dual-ctas' : 'ishf-modal-only'; ?>"<?php echo $show_boxes ? ' aria-label="' . esc_attr__('Engagement Options', TEXT_DOMAIN) . '"' : ''; ?>>
   <?php if ($show_boxes): ?>

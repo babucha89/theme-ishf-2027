@@ -6,7 +6,7 @@
 //    1. Participate, by registration phase (ishf_get_register_phase(), functions.php):
 //       - until 31 Dec 2026: Call for Sessions (external form, new tab)
 //       - from 1 Jan 2027:  attendee registration (external form, new tab)
-//    2. Partnerships: opens #modal-partnership (rendered by sections/ctas).
+//    2. Partnerships: opens #modal-partnership (rendered in footer.php by sections/ctas).
 //  Texts: "Homepage: hero and journeys" box of the page 'sections/hero'
 //  (includes/home-fields.php), per language; empty fields use the defaults.
 //  Base Theme: ISHF 2027 Lisbon
