@@ -286,6 +286,20 @@ if (!function_exists('ishf_sponsor_logo_html')):
 endif;
 
 
+// Tooltip with the sponsor's name, for the element around its logo (link, or the list item
+// when there is no link). JSON options, so names with ":" or ";" stay intact.
+if (!function_exists('ishf_sponsor_tooltip_attr')):
+  function ishf_sponsor_tooltip_attr($sponsor_id, $pos = 'bottom')
+  {
+    $name = trim(wp_strip_all_tags(get_the_title($sponsor_id)));
+    if ($name === '') {
+      return '';
+    }
+    return ' data-uk-tooltip="' . esc_attr(wp_json_encode(array('title' => esc_html($name), 'pos' => $pos, 'delay' => 150))) . '"';
+  }
+endif;
+
+
 //------------------------------------------------------------------------------
 //  Organisers: the sponsors of the first sponsor type (highest "Order", e.g.
 //  "Organisation"), shown in the header and footer of every page

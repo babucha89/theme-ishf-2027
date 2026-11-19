@@ -26,8 +26,8 @@ if (empty($groups)) {
         <ul class="partner-logos" role="list">
           <?php foreach ($group['items'] as $sid):
             $url = get_post_meta($sid, 'ishf_cf_url', true); ?>
-            <li>
-              <?php if ($url): ?><a href="<?php echo esc_url($url); ?>" target="_blank" rel="noopener noreferrer"><?php endif; ?>
+            <li<?php echo $url ? '' : ishf_sponsor_tooltip_attr($sid); ?>>
+              <?php if ($url): ?><a href="<?php echo esc_url($url); ?>" target="_blank" rel="noopener noreferrer"<?php echo ishf_sponsor_tooltip_attr($sid); ?>><?php endif; ?>
               <?php echo ishf_sponsor_logo_html($sid, 'medium', array(3600, 180, 64)); ?>
               <?php if ($url): ?><span class="uk-visually-hidden"> <?php _e('(opens in a new tab)', TEXT_DOMAIN); ?></span></a><?php endif; ?>
             </li>

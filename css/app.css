@@ -651,6 +651,14 @@ html.dark-mode .ishf-footer-simple { background-color: var(--colors-neutral-gray
 .organisers--footer .organisers-logos { gap: var(--grids-spacing-16) var(--grids-spacing-48); }
 .organisers--footer .partner-name { color: var(--colors-neutral-white); }
 .organisers--footer + .footer-bottom { margin-top: var(--grids-spacing-24); }
+/* Homepage footer: one row per sponsor type under "Organised by"; labels in a column so the logos line up */
+.organisers-stack--footer { margin-top: var(--grids-spacing-48); padding-top: var(--grids-spacing-24); border-top: 1px solid rgba(var(--colors-neutral-white-rgb), 0.15); display: grid; gap: var(--grids-spacing-24); }
+.organisers-stack--footer .organisers--footer { margin-top: 0; padding-top: 0; border-top: 0; }
+.organisers-stack--footer + .footer-bottom { margin-top: var(--grids-spacing-24); }
+@media (min-width: 960px) {
+  .organisers-stack--footer .organisers--footer { flex-wrap: nowrap; }
+  .organisers-stack--footer .organisers-label { flex: 0 0 180px; }
+}
 .logo-light-backing { display: inline-block; padding: 6px 10px; background-color: var(--colors-neutral-white); border-radius: var(--grids-radius-sm); } /* footer: a logo without a dark-mode version */
 .logo-light-backing img { display: block; }
 .footer-bottom { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px; margin-top: 40px; padding-top: 24px; border-top: 1px solid rgba(var(--colors-neutral-white-rgb), 0.15); }

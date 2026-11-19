@@ -43,7 +43,7 @@ if (empty($partner_groups)) {
               $url      = get_post_meta($sid, 'ishf_cf_url', true);
               $has_dark = (bool) get_post_meta($sid, 'ishf_cf_logo_dark_id', true) && has_post_thumbnail($sid);
               $tag      = $url ? 'a' : 'span';
-              $attrs    = $url ? ' href="' . esc_url($url) . '" target="_blank" rel="noopener noreferrer"' : '';
+              $attrs    = ($url ? ' href="' . esc_url($url) . '" target="_blank" rel="noopener noreferrer"' : '') . ishf_sponsor_tooltip_attr($sid); // tooltip: sponsor name
             ?>
               <li class="uk-width-auto"><?php // every size (automatic, Logo size %, Logo width px) is kept on phones; only wider than the screen shrinks ?>
                 <<?php echo $tag . $attrs; ?> class="lisbon-partner-tile<?php echo $has_dark ? ' has-dark-logo' : ''; ?>">

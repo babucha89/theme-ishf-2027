@@ -2,7 +2,7 @@
 // -----------------------------------------------------------------------------
 //  Block: FOOTER (full variant)
 //  Logo, menu columns, newsletter shortcut + social links, organisers' logos
-//  (includes/organisers.php) and legal line (Design System v2).
+//  (includes/organisers.php; on the homepage all the sponsor types) and legal line (Design System v2).
 //  The language switch lives in the navbar next to the theme toggle. Sponsor logos live in their own section.
 //  Menus: Appearance > Menus > locations "Footer: Festival" / "Footer: About".
 //  Base Theme: ISHF 2027 Lisbon
@@ -38,7 +38,8 @@
 
     </div>
 
-    <?php get_template_part('includes/organisers', null, array('context' => 'footer')); // Organised by: white logos (Sponsors) ?>
+    <?php // Organised by: white logos (Sponsors); homepage: also every other sponsor type, one row each
+    get_template_part('includes/organisers', null, array('context' => 'footer', 'all_groups' => is_front_page())); ?>
 
     <div class="footer-bottom">
       <p class="footer-legal-text">
