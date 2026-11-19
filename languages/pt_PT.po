@@ -2528,6 +2528,50 @@ msgstr ""
 "Textos da secção \"festival em números\" neste idioma. Um campo vazio mostra"
 " o texto a cinzento."
 
+msgid "YouTube video"
+msgstr "Vídeo do YouTube"
+
+msgid ""
+"ID of the YouTube video (e.g. dQw4w9WgXcQ) or its full link. Shown in the "
+"edition popup, after the text."
+msgstr ""
+"ID do vídeo do YouTube (ex. dQw4w9WgXcQ) ou a ligação completa. Aparece na "
+"janela da edição, a seguir ao texto."
+
+msgid "Photo gallery"
+msgstr "Galeria de fotografias"
+
+msgid ""
+"Pick the photos in the Media Library (drag them there to change the order). "
+"Shown in the edition popup, after the video; each photo opens in full size."
+msgstr ""
+"Escolha as fotografias na Biblioteca de Multimédia (arraste-as para mudar a "
+"ordem). Aparece na janela da edição, a seguir ao vídeo; cada fotografia abre"
+" em tamanho grande."
+
+msgid "Edit gallery"
+msgstr "Editar galeria"
+
+msgid "Select images"
+msgstr "Selecionar imagens"
+
+msgid "Remove gallery"
+msgstr "Remover galeria"
+
+msgid "Watch on YouTube"
+msgstr "Ver no YouTube"
+
+msgid "Video"
+msgstr "Vídeo"
+
+#, php-format
+msgid "Video: %s"
+msgstr "Vídeo: %s"
+
+#, php-format
+msgid "Open photo: %s"
+msgstr "Abrir fotografia: %s"
+
 #~ msgid "Agenda"
 #~ msgstr "Programa"
 

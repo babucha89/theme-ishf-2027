@@ -10,10 +10,12 @@
 //  - City  = ishf_cf_city: on the card, and in the modal when there is no
 //            venue / address
 //  - Body  = post content
+//  - Video = ishf_cf_youtube_id; Gallery = ishf_cf_gallery (image IDs, shown
+//            with the [gallery] shortcode: includes/gallery.php)
 //  No single pages: every edition is shown in a modal on the Past Editions page
 //  (page-past-editions.php, includes/sections/past-editions.php).
 //  Base Theme: ISHF 2027 Lisbon
-//  Edited: BB, 17-NOV-2026
+//  Edited: BB, 19-NOV-2026
 // -----------------------------------------------------------------------------
 
 if (!function_exists('ishf_set_cpt_editions')):

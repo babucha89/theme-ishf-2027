@@ -6,6 +6,7 @@
 //  The meta box is added to every post type named in a field "scope".
 //
 //  Field types: text (default), number, date, checkbox, radio, image,
+//  gallery (images, saved as comma-separated IDs), youtube (ID or link, saved as the ID),
 //  posts_checkboxes (list of posts of 'post_type_target', saved comma-separated).
 //
 //  Base Theme: ISHF 2027 Lisbon
@@ -171,6 +172,21 @@ function ishf_get_custom_fields()
       'scope'       => array('editions'),
     ),
 
+    array(
+      'name'        => 'youtube_id',
+      'title'       => __('YouTube video', TEXT_DOMAIN),
+      'description' => __('ID of the YouTube video (e.g. dQw4w9WgXcQ) or its full link. Shown in the edition popup, after the text.', TEXT_DOMAIN),
+      'type'        => 'youtube',
+      'scope'       => array('editions'),
+    ),
+    array(
+      'name'        => 'gallery',
+      'title'       => __('Photo gallery', TEXT_DOMAIN),
+      'description' => __('Pick the photos in the Media Library (drag them there to change the order). Shown in the edition popup, after the video; each photo opens in full size.', TEXT_DOMAIN),
+      'type'        => 'gallery',
+      'scope'       => array('editions'),
+    ),
+
     // -- SHARED
     array(
       'name'        => 'logo_dark_id',
@@ -208,6 +224,22 @@ function ishf_get_custom_fields()
     ),
   );
 }
+
+
+// YouTube video ID from an ID or any YouTube link (watch?v=, youtu.be/, embed/, shorts/, live/)
+if (!function_exists('ishf_youtube_id_from')):
+  function ishf_youtube_id_from($value)
+  {
+    $value = trim(wp_strip_all_tags($value));
+    if (preg_match('~^[A-Za-z0-9_-]{11}$~', $value)) {
+      return $value;
+    }
+    if (preg_match('~(?:youtube(?:-nocookie)?\.com/(?:watch\?(?:.*&)?v=|embed/|shorts/|live/|v/)|youtu\.be/)([A-Za-z0-9_-]{11})~', $value, $m)) {
+      return $m[1];
+    }
+    return '';
+  }
+endif;
 
 
 if (!class_exists('ISHF_Custom_Fields')):
@@ -347,6 +379,32 @@ if (!class_exists('ISHF_Custom_Fields')):
             echo '</div>';
             break;
 
+          case 'gallery':
+            $ids = $value !== '' ? array_filter(array_map('absint', explode(',', $value))) : array();
+            echo '<label><b>' . $title . '</b></label>';
+            echo '<div class="ishf-gallery-field">';
+            echo '<input type="hidden" name="' . esc_attr($key) . '" value="' . esc_attr(implode(',', $ids)) . '" />';
+            echo '<ul class="ishf-gallery-thumbs" style="display:flex; flex-wrap:wrap; gap:6px; margin:8px 0; padding:0; list-style:none;">';
+            foreach ($ids as $id) {
+              $thumb = wp_get_attachment_image_url($id, 'thumbnail');
+              if ($thumb) {
+                echo '<li style="margin:0;"><img src="' . esc_url($thumb) . '" alt="" style="width:72px; height:72px; object-fit:cover; display:block;" /></li>';
+              }
+            }
+            echo '</ul>';
+            echo '<p style="margin:0;"><button type="button" class="button ishf-gallery-select">' . esc_html($ids ? __('Edit gallery', TEXT_DOMAIN) : __('Select images', TEXT_DOMAIN)) . '</button> ';
+            echo '<button type="button" class="button ishf-gallery-remove"' . ($ids ? '' : ' style="display:none;"') . '>' . esc_html__('Remove gallery', TEXT_DOMAIN) . '</button></p>';
+            echo '</div>';
+            break;
+
+          case 'youtube':
+            echo '<label for="' . esc_attr($key) . '"><b>' . $title . '</b></label>';
+            echo '<input type="text" name="' . esc_attr($key) . '" id="' . esc_attr($key) . '" value="' . esc_attr($value) . '" placeholder="dQw4w9WgXcQ" />';
+            if ($value !== '') {
+              echo '<p><a href="' . esc_url('https://www.youtube.com/watch?v=' . $value) . '" target="_blank" rel="noopener noreferrer">' . esc_html__('Watch on YouTube', TEXT_DOMAIN) . '</a></p>';
+            }
+            break;
+
           default:
             echo '<label for="' . esc_attr($key) . '"><b>' . $title . '</b></label>';
             echo '<input type="text" name="' . esc_attr($key) . '" id="' . esc_attr($key) . '" value="' . esc_attr($value) . '" />';
@@ -361,7 +419,7 @@ if (!class_exists('ISHF_Custom_Fields')):
       $this->image_field_script();
     }
 
-    /** One script for every image field in the box */
+    /** One script for every image and gallery field in the box */
     private function image_field_script()
     {
       ?>
@@ -384,6 +442,46 @@ if (!class_exists('ISHF_Custom_Fields')):
             e.preventDefault();
             $input.val('');
             $img.hide();
+            $remove.hide();
+          });
+        });
+        // Gallery fields: WordPress's own gallery frame (pick, reorder, captions)
+        $('.ishf-gallery-field').each(function () {
+          var $box = $(this), $input = $box.find('input[type="hidden"]'), $list = $box.find('.ishf-gallery-thumbs'), $select = $box.find('.ishf-gallery-select'), $remove = $box.find('.ishf-gallery-remove');
+          var labels = { add: <?php echo wp_json_encode(__('Select images', TEXT_DOMAIN)); ?>, edit: <?php echo wp_json_encode(__('Edit gallery', TEXT_DOMAIN)); ?> };
+          $select.on('click', function (e) {
+            e.preventDefault();
+            var ids = $input.val(), frame;
+            if (ids) {
+              var selection = wp.media.gallery.attachments(wp.shortcode.next('gallery', '[gallery ids="' + ids + '"]').shortcode);
+              selection.more().done(function () {
+                selection.props.set({ query: false });
+                selection.unmirror();
+                selection.props.unset('orderby');
+              });
+              frame = wp.media({ frame: 'post', state: 'gallery-edit', editing: true, multiple: true, selection: new wp.media.model.Selection(selection.models, { multiple: true }) });
+            } else {
+              frame = wp.media({ frame: 'post', state: 'gallery-library', library: { type: 'image' }, multiple: true });
+            }
+            frame.on('update', function (selection) {
+              var list = [];
+              $list.empty();
+              selection.each(function (att) {
+                var a = att.toJSON(), src = a.sizes && a.sizes.thumbnail ? a.sizes.thumbnail.url : a.url;
+                list.push(a.id);
+                $list.append($('<li style="margin:0;"></li>').append($('<img alt="" style="width:72px; height:72px; object-fit:cover; display:block;">').attr('src', src)));
+              });
+              $input.val(list.join(','));
+              $select.text(list.length ? labels.edit : labels.add);
+              $remove.toggle(list.length > 0);
+            });
+            frame.open();
+          });
+          $remove.on('click', function (e) {
+            e.preventDefault();
+            $input.val('');
+            $list.empty();
+            $select.text(labels.add);
             $remove.hide();
           });
         });
@@ -419,6 +517,12 @@ if (!class_exists('ISHF_Custom_Fields')):
             break;
           case 'image':
             $value = absint($value) ? (string) absint($value) : '';
+            break;
+          case 'gallery':
+            $value = implode(',', array_filter(array_map('absint', explode(',', (string) $value))));
+            break;
+          case 'youtube':
+            $value = ishf_youtube_id_from((string) $value);
             break;
           case 'date':
             $value = preg_match('/^\d{4}-\d{2}-\d{2}$/', (string) $value) ? $value : '';

@@ -124,6 +124,9 @@ $ishf_edition_logo = function ($post_id, $class) {
     $city     = $location['city'];
     $coords   = ishf_edition_coordinates($eid);
     $content  = apply_filters('the_content', $edition->post_content);
+    $video_id = (string) get_post_meta($eid, 'ishf_cf_youtube_id', true);
+    $gallery  = (string) get_post_meta($eid, 'ishf_cf_gallery', true);
+    $gallery  = $gallery !== '' ? do_shortcode('[gallery ids="' . esc_attr($gallery) . '" columns="3"]') : ''; // includes/gallery.php
     $place    = $venue !== '' ? $venue : ($address !== '' ? $address : $city); // no venue / address: city only
     $maps_url = $coords
       ? 'https://www.google.com/maps/search/?api=1&query=' . rawurlencode($coords['lat'] . ',' . $coords['lng'])
@@ -182,6 +185,22 @@ $ishf_edition_logo = function ($post_id, $class) {
 
       <?php if (trim(wp_strip_all_tags($content)) !== '' || strpos($content, '<img') !== false): ?>
         <div class="edition-modal-content uk-article-content"><?php echo $content; ?></div>
+      <?php endif; ?>
+
+      <?php if ($video_id !== ''): // loads only when the popup opens (hidden iframes are lazy); paused when it closes (uk-video) ?>
+        <div class="edition-modal-media edition-modal-video">
+          <h3 class="edition-modal-subtitle"><?php _e('Video', TEXT_DOMAIN); ?></h3>
+          <div class="edition-video-frame">
+            <iframe src="<?php echo esc_url('https://www.youtube-nocookie.com/embed/' . rawurlencode($video_id) . '?rel=0&enablejsapi=1'); ?>" width="1280" height="720" title="<?php echo esc_attr(sprintf(__('Video: %s', TEXT_DOMAIN), $title)); ?>" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy" referrerpolicy="strict-origin-when-cross-origin" data-uk-video="autoplay: false"></iframe>
+          </div>
+        </div>
+      <?php endif; ?>
+
+      <?php if ($gallery !== ''): ?>
+        <div class="edition-modal-media edition-modal-gallery">
+          <h3 class="edition-modal-subtitle"><?php _e('Photo gallery', TEXT_DOMAIN); ?></h3>
+          <?php echo $gallery; ?>
+        </div>
       <?php endif; ?>
     </div>
   </div>

@@ -78,6 +78,8 @@
     <custom-field action="copy">ishf_cf_date_precision</custom-field>
     <custom-field action="copy">ishf_cf_geolocation</custom-field>
     <custom-field action="copy">ishf_cf_logo_dark_id</custom-field>
+    <custom-field action="copy">ishf_cf_youtube_id</custom-field>
+    <custom-field action="copy">ishf_cf_gallery</custom-field>
     <custom-field action="ignore">_ishf_geocoded_address</custom-field>
     <custom-field action="ignore">_ishf_geocoded_coords</custom-field>
     <custom-field action="ignore">_ishf_logo_bbox</custom-field>

@@ -906,6 +906,21 @@ html.dark-mode .edition-map { border-color: var(--colors-night-700); background-
 .edition-modal-content { margin-top: var(--grids-spacing-24); padding-top: var(--grids-spacing-24); border-top: 1px solid var(--colors-border-default); }
 html.dark-mode .edition-modal-content { border-top-color: var(--colors-night-700); }
 .edition-modal-content > :last-child { margin-bottom: 0; }
+.edition-modal-media { margin-top: var(--grids-spacing-24); padding-top: var(--grids-spacing-24); border-top: 1px solid var(--colors-border-default); }
+html.dark-mode .edition-modal-media { border-top-color: var(--colors-night-700); }
+.edition-modal-subtitle { margin: 0 0 var(--grids-spacing-12); font-family: var(--fonts-family-headings); font-weight: 700; font-size: var(--fonts-size-small); letter-spacing: .08em; text-transform: uppercase; color: var(--colors-text-eyebrow); }
+.edition-video-frame { position: relative; aspect-ratio: 16 / 9; overflow: hidden; border-radius: var(--grids-radius-md); background-color: #000; }
+.edition-video-frame iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+
+/* [gallery] shortcode (includes/gallery.php): thumbnails that open in a UIkit lightbox */
+.ishf-gallery { margin-bottom: var(--grids-spacing-24); }
+.edition-modal-gallery .ishf-gallery { margin-bottom: 0; }
+.ishf-gallery-item { display: block; overflow: hidden; border-radius: var(--grids-radius-md); background-color: var(--colors-background-tint); }
+.ishf-gallery-img { display: block; width: 100%; height: auto; aspect-ratio: 4 / 3; object-fit: cover; transition: transform .3s ease; }
+.ishf-gallery-item:hover .ishf-gallery-img, .ishf-gallery-item:focus-visible .ishf-gallery-img { transform: scale(1.04); }
+.ishf-gallery-item:focus-visible { outline: 3px solid var(--colors-brand-sunny-yellow); outline-offset: 2px; }
+html.dark-mode .ishf-gallery-item { background-color: var(--colors-night-800); }
+@media (prefers-reduced-motion: reduce) { .ishf-gallery-img { transition: none; } }
 
 /* --- Past editions CTA (About page, includes/sections/past-editions-cta.php) ----------------------- */
 .editions-cta { padding: var(--grids-spacing-32) var(--grids-spacing-24); background-color: var(--colors-background-tint); border-left: 6px solid var(--colors-brand-sunny-yellow); border-radius: var(--grids-radius-lg); }
