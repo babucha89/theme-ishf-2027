@@ -65,9 +65,9 @@ defined('SITE_SOCIAL_FACEBOOK') or define('SITE_SOCIAL_FACEBOOK', 'https://www.f
 defined('SITE_CALL_FOR_SESSIONS_URL') or define('SITE_CALL_FOR_SESSIONS_URL', 'https://congressos.leading.pt/geral/inserirresumo.aspx?evento=338&formulario=757&lingua=en-GB&login=false');
 
 // -- GDPR / Privacy Consent Disclaimers (Configurable)
-// For Partnership & Newsletter Forms it's applied the same consent.
-defined('SITE_DEFAULT_CONSENT_DISCLAIMER') or define('SITE_DEFAULT_CONSENT_DISCLAIMER',
-'I expressly authorise the processing of my personal data for marketing communications by Medialivre, S.A. and its partner entities, via telephone, email, SMS, and postal mail.');
+// Empty = the translated default sentence (languages/*.po: EN / PT). Set a text
+// here or in wp-config.php only to override it (that text is then used in every language).
+defined('SITE_DEFAULT_CONSENT_DISCLAIMER') or define('SITE_DEFAULT_CONSENT_DISCLAIMER', '');
 defined('SITE_PARTNERSHIP_CONSENT_DISCLAIMER') or define('SITE_PARTNERSHIP_CONSENT_DISCLAIMER', SITE_DEFAULT_CONSENT_DISCLAIMER);
 defined('SITE_NEWSLETTER_CONSENT_DISCLAIMER') or define('SITE_NEWSLETTER_CONSENT_DISCLAIMER', SITE_DEFAULT_CONSENT_DISCLAIMER);
 
@@ -563,45 +563,39 @@ endif;
 //------------------------------------------------------------------------------
 //  Form Disclaimers / GDPR Consent Statements
 //------------------------------------------------------------------------------
-if (!function_exists('ishf_get_partnership_disclaimer')):
+if (!function_exists('ishf_consent_disclaimer')):
   /**
-   * Retorna a frase de consentimento/disclaimer para o formulário de parcerias.
-   * Pode ser editado na constante SITE_PARTNERSHIP_CONSENT_DISCLAIMER ou via filtro.
+   * Consent sentence of a form ('partnership' | 'newsletter') in the current language.
+   * Uses the SITE_*_CONSENT_DISCLAIMER constant when it holds a text; otherwise the
+   * translatable default (PT in languages/pt_PT.po, editable in WPML String Translation).
    *
+   * @param  string $form partnership | newsletter
    * @return string
    */
+  function ishf_consent_disclaimer($form)
+  {
+    $translated = __('I expressly authorise the processing of my personal data for marketing communications by Medialivre, S.A. and its partner entities, via telephone, email, SMS, and postal mail.', TEXT_DOMAIN);
+    $constant   = $form === 'newsletter' ? 'SITE_NEWSLETTER_CONSENT_DISCLAIMER' : 'SITE_PARTNERSHIP_CONSENT_DISCLAIMER';
+    $custom     = defined($constant) ? trim((string) constant($constant)) : '';
+    // The old English default as a constant (e.g. copied into wp-config.php) still gets translated
+    if ($custom === '' || $custom === 'I expressly authorise the processing of my personal data for marketing communications by Medialivre, S.A. and its partner entities, via telephone, email, SMS, and postal mail.') {
+      $custom = $translated;
+    }
+    return $custom;
+  }
+endif;
+
+if (!function_exists('ishf_get_partnership_disclaimer')):
   function ishf_get_partnership_disclaimer()
   {
-    $fallback = defined('SITE_DEFAULT_CONSENT_DISCLAIMER')
-      ? SITE_DEFAULT_CONSENT_DISCLAIMER
-      : __('I expressly authorise the processing of my personal data for marketing communications by Medialivre, S.A. and its partner entities, via telephone, email, SMS, and postal mail.', TEXT_DOMAIN);
-
-    $default = defined('SITE_PARTNERSHIP_CONSENT_DISCLAIMER')
-      ? SITE_PARTNERSHIP_CONSENT_DISCLAIMER
-      : $fallback;
-
-    return apply_filters('ishf_partnership_consent_disclaimer', $default);
+    return apply_filters('ishf_partnership_consent_disclaimer', ishf_consent_disclaimer('partnership'));
   }
 endif;
 
 if (!function_exists('ishf_get_newsletter_disclaimer')):
-  /**
-   * Retorna a frase de consentimento/disclaimer para o formulário de newsletter.
-   * Pode ser editado na constante SITE_NEWSLETTER_CONSENT_DISCLAIMER ou via filtro.
-   *
-   * @return string
-   */
   function ishf_get_newsletter_disclaimer()
   {
-    $fallback = defined('SITE_DEFAULT_CONSENT_DISCLAIMER')
-      ? SITE_DEFAULT_CONSENT_DISCLAIMER
-      : __('I expressly authorise the processing of my personal data for marketing communications by Medialivre, S.A. and its partner entities, via telephone, email, SMS, and postal mail.', TEXT_DOMAIN);
-
-    $default = defined('SITE_NEWSLETTER_CONSENT_DISCLAIMER')
-      ? SITE_NEWSLETTER_CONSENT_DISCLAIMER
-      : $fallback;
-
-    return apply_filters('ishf_newsletter_consent_disclaimer', $default);
+    return apply_filters('ishf_newsletter_consent_disclaimer', ishf_consent_disclaimer('newsletter'));
   }
 endif;
 
